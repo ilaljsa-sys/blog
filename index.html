@@ -69,6 +69,12 @@
     }
     .page-tab-enter { animation: tabSpringEnter 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; will-change: transform, opacity; }
 
+    @keyframes cardPopStagger {
+      0% { opacity: 0; transform: translate3d(0, 16px, 0) scale(0.94); }
+      100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+    }
+    .skill-card-pop { animation: cardPopStagger 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards; will-change: transform, opacity; }
+
     .smooth-zoom-card {
       transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.25s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.2s ease;
       will-change: transform, box-shadow;
@@ -1014,7 +1020,7 @@
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           </div>
           <span class="px-4 py-1.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold uppercase border border-amber-500/20">Sedang Dalam Tahap Pengembangan</span>
-          <h4 class="text-xl font-bold">Modul N3 Sedang Disusun oleh I'lal</h4>
+          <h4 class="text-xl font-bold">Modul N3 Sedang Disusun oleh Developer</h4>
           <p class="text-sm text-slate-400 max-w-md">Bank materi tata bahasa (bunpou) dan ringkasan kanji sedang dirapikan ke database ilaljsa agar dapat diakses secara interaktif.</p>
         </div>
       `;

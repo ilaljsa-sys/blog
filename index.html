@@ -69,12 +69,6 @@
     }
     .page-tab-enter { animation: tabSpringEnter 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; will-change: transform, opacity; }
 
-    @keyframes cardPopStagger {
-      0% { opacity: 0; transform: translate3d(0, 16px, 0) scale(0.94); }
-      100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
-    }
-    .skill-card-pop { animation: cardPopStagger 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards; will-change: transform, opacity; }
-
     .smooth-zoom-card {
       transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.25s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.2s ease;
       will-change: transform, box-shadow;
@@ -230,11 +224,13 @@
           <p>Selain bekerja dan mengembangkan skill, saya sedang menempuh pendidikan <b>Ilmu Hukum di Universitas Terbuka</b>. Saya melihat hukum sebagai bidang yang berbeda dari dunia kreatif dan peternakan yang saya jalani, tetapi justru dari perbedaan itulah saya mendapatkan perspektif baru.</p>
           
           <p>Saya juga berbagi <i>basic Japanese learning</i> melalui laman web pribadi, khususnya materi bahasa Jepang tingkat <b>JLPT N5–N4</b>. Bagi saya, berbagi apa yang sudah dipelajari merupakan bagian dari proses belajar itu sendiri.</p>
+          
+          <p>Perjalanan ini mungkin terlihat seperti kumpulan bidang yang berbeda—<i>poultry farming</i>, DKV, digital technology, Japanese language, dan law. Namun, semuanya menjadi bagian dari proses yang sama: terus belajar, mencoba hal baru, dan membangun kemampuan sedikit demi sedikit.</p>
         </div>
 
         <div class="smooth-zoom-card p-8 rounded-3xl bg-sky-50/70 dark:bg-sky-950/30 border-l-8 border-sky-500 border border-sky-100 dark:border-sky-900 text-slate-800 dark:text-slate-200 space-y-2 cursor-default">
           <p class="italic text-base sm:text-lg font-medium leading-relaxed">
-            "Waktu akan terus berjalan, namun kenangan masa lalu dan ilmu yang kita tanam hari ini adalah warisan abadi yang akan memandu kita di masa depan. Jangan pernah takut untuk belajar hal baru, dan jangan pernah lupa untuk sesekali menengok ke belakang."
+            "Waktu akan terus berjalan, namun kenangan masa lalu dan ilmu yang kita tanam hari ini adalah warisan abadi yang akan memandu kita di masa depan. Jangan pernah takut untuk belajar hal baru, dan jangan pernah lupa untuk sesekali menengok ke belakang. Karena dari kepingan masa lalulah, kita menyadari betapa jauh dan hebatnya langkah kita hari ini."
           </p>
           <p class="text-xs font-black text-sky-600 dark:text-sky-400">— I'lal Jalalludin Syahputra</p>
         </div>
@@ -249,7 +245,7 @@
       </div>
     </section>
 
-    <!-- KEAHLIAN (LENGKAP DIRENDER OTOMATIS) -->
+    <!-- KEAHLIAN -->
     <section id="sec-skills" class="hidden space-y-10 py-10">
       <div class="text-center max-w-3xl mx-auto space-y-3">
         <span class="px-4 py-1 rounded-full bg-sky-100 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 text-xs font-black uppercase tracking-wider">Keahlian</span>
@@ -258,7 +254,7 @@
       </div>
 
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5 max-w-5xl mx-auto" id="skills-grid-container">
-        <!-- Render otomatis via JavaScript -->
+        <!-- Render otomatis via JS -->
       </div>
     </section>
 
@@ -341,6 +337,20 @@
       <textarea id="anon-pesan-input" rows="4" placeholder="Tulis pesan rahasia di sini..." class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 text-sm focus:outline-none focus:border-sky-500 resize-none"></textarea>
       <div id="anon-status" class="text-xs font-bold text-center hidden"></div>
       <button onclick="kirimPesanAnonim()" id="btn-kirim-anon" class="w-full py-3.5 rounded-xl bg-sky-500 text-white font-extrabold text-sm">Kirim Pesan Rahasia</button>
+    </div>
+  </div>
+
+  <!-- FLOATING AUDIO PLAYER -->
+  <div class="fixed bottom-6 right-6 z-40">
+    <div class="bg-white/90 dark:bg-cardDark/90 backdrop-blur-md px-4 py-2.5 rounded-2xl flex items-center gap-3 shadow-xl border border-slate-200 dark:border-slate-800">
+      <button onclick="toggleAudio()" id="btn-audio" class="w-9 h-9 rounded-xl bg-sky-500 hover:bg-sky-400 text-white flex items-center justify-center font-bold text-xs transition">
+        ▶
+      </button>
+      <div class="text-xs pr-2">
+        <span class="block font-bold text-slate-900 dark:text-white">Ambient Chill</span>
+        <span id="audio-status" class="text-slate-400">Jeda (Klik putar)</span>
+      </div>
+      <audio id="bg-audio" loop src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3"></audio>
     </div>
   </div>
 

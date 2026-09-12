@@ -98,8 +98,8 @@
     <div id="mobile-menu" class="hidden md:hidden pt-4 pb-2 border-t border-slate-200 dark:border-slate-800 mt-4 space-y-2">
       <button onclick="pindahTabByName('beranda'); toggleMobileMenu();" class="w-full text-left px-4 py-2.5 rounded-xl font-bold text-sm">Beranda</button>
       <button onclick="pindahTabByName('tentang'); toggleMobileMenu();" class="w-full text-left px-4 py-2.5 rounded-xl font-bold text-sm">Tentang</button>
-      <button onclick="pindahTabByName('keahlian'); toggleMobileMenu();" class="w-full text-left px-4 py-2.5 rounded-xl font-bold text-sm">Keahlian</button>
-      <button onclick="pindahTabByName('catatan'); toggleMobileMenu();" class="w-full text-left px-4 py-2.5 rounded-xl font-bold text-sm">Catatan</button>
+      <button onclick="pindahTabByName('skills'); toggleMobileMenu();" class="w-full text-left px-4 py-2.5 rounded-xl font-bold text-sm">Keahlian</button>
+      <button onclick="pindahTabByName('blog'); toggleMobileMenu();" class="w-full text-left px-4 py-2.5 rounded-xl font-bold text-sm">Catatan</button>
       <button onclick="pindahTabByName('eksplor'); toggleMobileMenu();" class="w-full text-left px-4 py-2.5 rounded-xl font-bold text-sm">Eksplor</button>
     </div>
   </nav>
@@ -200,7 +200,7 @@
       </div>
     </section>
 
-    <!-- KEAHLIAN (DIKETIK MATI DI HTML - DIJAMIN P ASTI MUNCUL) -->
+    <!-- KEAHLIAN (ID DISAMAKAN: sec-skills) -->
     <section id="sec-skills" class="hidden space-y-10 py-10">
       <div class="text-center max-w-3xl mx-auto space-y-3">
         <span class="px-4 py-1 rounded-full bg-sky-100 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 text-xs font-black uppercase tracking-wider">Keahlian</span>
@@ -407,7 +407,7 @@
           Tanggal: "02 Agu 2026", 
           "Ringkasan Cuplikan": "Analisis waktu, mentalitas, dan imbal hasil jangka panjang antara investasi pasif dan trading.", 
           "Isi Lengkap Artikel": "Perdebatan abadi di kalangan pelaku pasar adalah antara melakukan buy-and-hold jangka panjang (investor pasif) atau trading aktif harian. Statistik menunjukkan bahwa bagi pekerja profesional yang memiliki kesibukan harian, investasi pasif cenderung memberikan hasil yang lebih konsisten.",
-          "SumberURL": "https://id.wikipedia.org/articles/investing/092815/active-vs-passive-investing.asp"
+          "SumberURL": "https://www.investopedia.com/articles/investing/092815/active-vs-passive-investing.asp"
         },
         { 
           "Judul Artikel": "Kisah Mark Zuckerberg & Facebook dari Asrama Harvard", 
@@ -593,16 +593,6 @@
         updateNavIndicator(el);
       }
 
-      if (nama === 'skills') {
-        const cards = document.querySelectorAll('.skill-card');
-        cards.forEach((c, idx) => {
-          c.style.opacity = '0';
-          c.style.animation = 'none';
-          void c.offsetWidth;
-          c.style.animation = `cardPopStagger 0.45s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 0.04}s forwards`;
-        });
-      }
-
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -616,8 +606,7 @@
       } else {
         const secEl = document.getElementById(`sec-${targetId}`);
         if (secEl) {
-          const seksi = ['beranda', 'tentang', 'skills', 'blog', 'eksplor'];
-          seksi.forEach(s => {
+          ['beranda', 'tentang', 'skills', 'blog', 'eksplor'].forEach(s => {
             const el = document.getElementById(`sec-${s}`);
             if(el) el.classList.add('hidden');
           });

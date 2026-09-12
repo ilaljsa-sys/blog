@@ -52,7 +52,7 @@
       background-size: 26px 26px;
     }
 
-    /* Animasi Mengambang GPU-Accelerated */
+    /* Animasi Mengambang GPU */
     @keyframes slowFloat {
       0%, 100% { transform: translate3d(0, 0, 0); }
       50% { transform: translate3d(0, -9px, 0); }
@@ -62,7 +62,7 @@
       will-change: transform;
     }
 
-    /* Cahaya Biru Remang Berjalan */
+    /* Cahaya Biru Remang */
     @keyframes movingGlowFast {
       0% { transform: translate3d(0px, 0px, 0) scale(1); opacity: 0.4; }
       33% { transform: translate3d(16px, -14px, 0) scale(1.1); opacity: 0.7; }
@@ -74,7 +74,7 @@
       will-change: transform, opacity;
     }
 
-    /* Transisi Tab Masuk Gesit */
+    /* Transisi Tab */
     @keyframes tabSpringEnter {
       0% { opacity: 0; transform: translate3d(0, 14px, 0) scale(0.99); }
       70% { transform: translate3d(0, -2px, 0) scale(1.002); }
@@ -95,7 +95,7 @@
       will-change: transform, opacity;
     }
 
-    /* Elevasi & Zoom Halus Tegak Lurus */
+    /* Zoom Halus */
     .smooth-zoom-card {
       transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), 
                   box-shadow 0.25s cubic-bezier(0.25, 1, 0.5, 1),
@@ -128,7 +128,7 @@
 </head>
 <body class="bg-slate-50 dark:bg-neutralDark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col justify-between selection:bg-sky-500 selection:text-white bg-dots-light dark:bg-dots-dark text-base antialiased" id="body-root">
 
-  <!-- NAVBAR ATAS (LOGO + TOMBOL ANONIM DI SAMPING KANAN + MENU DIGESER KANAN) -->
+  <!-- NAVBAR ATAS -->
   <nav class="sticky top-0 z-50 backdrop-blur-xl border-b border-slate-200/80 dark:border-slate-800/80 bg-white/85 dark:bg-neutralDark/85 px-6 py-4 transition-colors">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       
@@ -138,14 +138,13 @@
           ilal<span class="text-sky-500 font-black group-hover:text-sky-400 transition">jsa</span>
         </a>
 
-        <!-- Tombol Hubungi via Anonymous di Samping Header -->
         <button onclick="bukaModalAnon()" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-sky-50 dark:bg-sky-950/60 border border-sky-200 dark:border-sky-800 hover:border-sky-500 text-xs font-bold text-sky-600 dark:text-sky-400 transition shadow-sm group active:scale-95">
           <svg class="w-3.5 h-3.5 group-hover:rotate-12 transition duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
           <span>Pesan Rahasia</span>
         </button>
       </div>
 
-      <!-- TENGAH-KANAN: MENU TABS (DIGESER SEDIKIT KE KANAN AGAR PRESISI) -->
+      <!-- TENGAH: MENU TABS -->
       <div class="relative hidden md:flex items-center bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 p-1.5 rounded-2xl shadow-inner mr-4 lg:mr-8" id="nav-container">
         <div id="nav-indicator" class="rounded-xl bg-white dark:bg-slate-800 shadow-sm"></div>
 
@@ -171,7 +170,7 @@
         </button>
       </div>
 
-      <!-- SWITCH TEMA -->
+      <!-- KANAN: SWITCH TEMA -->
       <div class="flex items-center gap-3">
         <button onclick="toggleTheme()" class="w-11 h-11 rounded-2xl flex items-center justify-center bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-sky-500 transition shadow-sm" title="Ubah Tema">
           <svg id="theme-sun" class="w-5 h-5 hidden dark:block text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
@@ -238,7 +237,7 @@
           </div>
         </div>
 
-        <!-- FOTO PERSEGI KOTAK -->
+        <!-- FOTO VEKTOR HD DRIVE -->
         <div class="relative flex items-center justify-center">
           <div class="absolute w-80 h-80 sm:w-96 sm:h-96 bg-sky-500/30 dark:bg-sky-500/25 blur-[90px] rounded-full pointer-events-none -z-10 animate-moving-glow"></div>
           
@@ -383,7 +382,7 @@
       </div>
     </section>
 
-    <!-- ==================== SEKSI 4: BLOG / CATATAN ==================== -->
+    <!-- ==================== SEKSI 4: BLOG / CATATAN (10 ARTIKEL SEJARAH & INVESTOR) ==================== -->
     <section id="sec-blog" class="hidden space-y-10 py-10">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-5">
         <div>
@@ -556,7 +555,7 @@
     let localDB = {
       profil: {
         nama_lengkap: "I'lal Jalalludin Syahputra",
-        teks_ketik: "Mahasiswa Hukum, Japanese Learner, Tech Enthusiast",
+        teks_ketik: "Mahasiswa Hukum, Japanese Learner, Tech Enthusiast, Livestock Farm",
         quote: "Keadilan adalah fondasi akal, konsistensi adalah kunci keberhasilan.",
         foto_avatar: "https://lh3.googleusercontent.com/d/1Yulw-uNtRaOhin1uxctkrEXMhCW-ekSs"
       },
@@ -569,18 +568,74 @@
       ],
       blog: [
         {
-          "Judul Artikel": "Membangun Personal Web dengan Google Sheets & Apps Script",
-          Kategori: "Teknologi",
+          "Judul Artikel": "Kisah Steve Jobs & Garasi Apple: Dari Hobi Otak-Atik Menjadi Imperium Teknologi",
+          Kategori: "Sejarah Bisnis",
           Tanggal: "12 September 2026",
-          "Ringkasan Cuplikan": "Mekanisme memanfaatkan spreadsheet gratis sebagai database headless tanpa server berbayar.",
-          "Isi Lengkap Artikel": "Website ini dibangun menggunakan Tailwind CSS dan memanfaatkan Google Sheets sebagai sistem Content Management System (CMS) mandiri."
+          "Ringkasan Cuplikan": "Bagaimana ketekunan Steve Jobs dan Steve Wozniak mengubah komputer pribadi menjadi barang revolusioner.",
+          "Isi Lengkap Artikel": "Apple Inc. bukan lahir dari ruang rapat mewah ber-AC, melainkan dari garasi sempit di Los Altos, California pada tahun 1976. Steve Jobs yang sempat keluar dari kuliahnya bersama Wozniak membuktikan bahwa kegigihan dan visi estetika produk jauh melahirkan sejarah besar."
         },
         {
-          "Judul Artikel": "Meninjau Asas Kepastian Hukum di Era Otomasi Digital",
-          Kategori: "Hukum",
+          "Judul Artikel": "Mengenal Berbagai Jenis Investor Saham: Debat Klasik Dunia Keuangan",
+          Kategori: "Finansial",
           Tanggal: "10 September 2026",
-          "Ringkasan Cuplikan": "Kajian teoritis terhadap perkembangan regulasi cyber law dan integritas sistem informasi.",
-          "Isi Lengkap Artikel": "Tantangan hukum di era modern membutuhkan pemahaman interdisipliner antara doktrin hukum formal dan pemahaman struktur logis sistem digital."
+          "Ringkasan Cuplikan": "Membahas tuntas profil dan tipe investor mulai dari Value Investor, Growth Investor, hingga Day Trader.",
+          "Isi Lengkap Artikel": "Dalam dunia investasi, tipe investor dibagi menjadi beberapa gaya dan profil risiko. Value Investor mencari saham undervalued yang harganya di bawah nilai intrinsik, sementara Growth Investor fokus pada perusahaan dengan potensi ekspansi pesat seperti saham teknologi. Memilih gaya yang tepat menentukan ketenangan psikologis dan profit jangka panjang."
+        },
+        {
+          "Judul Artikel": "Jeff Bezos & Perjalanan Panjang Amazon: Menjual Buku dari Garasi Rumah",
+          Kategori: "Sejarah Bisnis",
+          Tanggal: "04 September 2026",
+          "Ringkasan Cuplikan": "Perjuangan Jeff Bezos meninggalkan pekerjaan mapan di Wall Street demi membangun toko buku online pertama.",
+          "Isi Lengkap Artikel": "Tahun 1994, Jeff Bezos menyetir mobil lintas negara sambil merancang model bisnis Amazon di atas kertas. Berawal dari garasi kecil di Seattle yang menjual buku, Amazon bertransformasi menjadi raksasa e-commerce dan cloud computing global (AWS)."
+        },
+        {
+          "Judul Artikel": "Tipe Investor Berdasarkan Profil Risiko: Konservatif vs Agresif",
+          Kategori: "Finansial",
+          Tanggal: "28 Agustus 2026",
+          "Ringkasan Cuplikan": "Menilai tingkat kenyamanan psikologis dalam menghadapi fluktuasi pasar modal dan instrumen yang cocok.",
+          "Isi Lengkap Artikel": "Debat sering terjadi ketika membahas instrumen investasi. Investor konservatif menyukai instrumen minim risiko seperti Surat Utang Negara dan Deposito. Di sisi lain, investor agresif berani masuk ke saham pertumbuhan tinggi atau kripto demi return maksimal dengan manajemen risiko yang ketat."
+        },
+        {
+          "Judul Artikel": "Bill Gates dan Revolusi Perangkat Lunak: Kisah Berdirinya Microsoft",
+          Kategori: "Sejarah Bisnis",
+          Tanggal: "22 Agustus 2026",
+          "Ringkasan Cuplikan": "Kisah drop-out Harvard yang sukses mendominasi ekosistem komputer pribadi global.",
+          "Isi Lengkap Artikel": "Bersama Paul Allen, Bill Gates mendedikasikan masa mudanya di ruang komputer kampus hingga mendirikan Microsoft tahun 1975. Visi mereka sederhana: 'sebuah komputer di setiap rumah dan di setiap meja kerja'."
+        },
+        {
+          "Judul Artikel": "Mengenal Investor Institusional vs Investor Ritel di Pasar Modal",
+          Kategori: "Finansial",
+          Tanggal: "15 Agustus 2026",
+          "Ringkasan Cuplikan": "Perbedaan kekuatan modal, analisis fundamental, dan cara gerak antara dana raksasa institusi dengan investor individu.",
+          "Isi Lengkap Artikel": "Di bursa saham, kita bersaing dan berdampingan dengan dua kekuatan besar. Investor ritel adalah individu yang mengelola modal pribadi, sementara investor institusional meliputi dana pensiun, reksa dana, dan asuransi yang memegang triliunan rupiah."
+        },
+        {
+          "Judul Artikel": "Kisah Henry Ford dan Lini Produksi Massal Mobil Ford Model T",
+          Kategori: "Sejarah Bisnis",
+          Tanggal: "08 Agustus 2026",
+          "Ringkasan Cuplikan": "Bagaimana inovasi pabrik konveyor mengubah mobil dari barang mewah bangsawan menjadi alat transportasi umum.",
+          "Isi Lengkap Artikel": "Henry Ford tidak hanya membuat mobil; ia merevolusi cara dunia bekerja melalui sistem lini perakitan massal. Efisiensi ini memangkas waktu pembuatan mobil dari belasan jam menjadi hanya hitungan menit."
+        },
+        {
+          "Judul Artikel": "Passive Investor vs Active Trader: Mana Gaya yang Paling Masuk Akal?",
+          Kategori: "Finansial",
+          Tanggal: "02 Agustus 2026",
+          "Ringkasan Cuplikan": "Analisis waktu, mentalitas, dan imbal hasil jangka panjang antara investasi pasif beli-lalu-simpan dan trading harian.",
+          "Isi Lengkap Artikel": "Perdebatan abadi di kalangan teman diskusi keuangan adalah antara melakukan buy-and-hold jangka panjang atau trading aktif harian. Data menunjukkan bahwa bagi sebagian besar pekerja profesional, investor pasif mencatatkan tingkat keberhasilan waktu yang jauh lebih stabil."
+        },
+        {
+          "Judul Artikel": "Kisah Mark Zuckerberg & Asal-Usul Facebook dari Asrama Harvard",
+          Kategori: "Sejarah Bisnis",
+          Tanggal: "25 Juli 2026",
+          "Ringkasan Cuplikan": "Proyek kamar kos mahasiswa psikologi dan ilmu komputer yang menjelma menjadi jejaring sosial terbesar di bumi.",
+          "Isi Lengkap Artikel": "Dimulai dari situs direktori kampus sederhana bernama TheFacebook di Universitas Harvard, Mark Zuckerberg membangun Meta yang kini menghubungkan miliaran manusia di seluruh penjuru dunia."
+        },
+        {
+          "Judul Artikel": "Pentingnya Memahami Valuasi Saham bagi Pemula: Jangan Asal Ikut Tren",
+          Kategori: "Finansial",
+          Tanggal: "18 Juli 2026",
+          "Ringkasan Cuplikan": "Belajar membedakan perusahaan bagus dan harga saham yang wajar agar terhindar dari jebakan spekulasi.",
+          "Isi Lengkap Artikel": "Banyak pemula terjebak membeli saham hanya karena sedang ramai dibicarakan di media sosial tanpa melihat laporan keuangan. Seorang investor sejati selalu menghitung nilai intrinsik sebelum menanamkan modal jerih payahnya."
         }
       ],
       tugas: [
@@ -833,7 +888,8 @@
         else if (url.includes('id=')) fileId = url.split('id=')[1].split('&')[0];
 
         if (fileId) {
-          imgEl.src = `https://lh3.googleusercontent.com/d/${fileId}`;
+          // FOTO HD FULL RESOLUSI
+          imgEl.src = `https://lh3.googleusercontent.com/d/${fileId}=w2500`;
           imgEl.onerror = function() {
             this.onerror = null;
             this.src = `https://drive.google.com/thumbnail?id=${fileId}&sz=w2500`;
@@ -843,7 +899,7 @@
         }
       }
 
-      const keywords = localDB.profil.teks_ketik ? localDB.profil.teks_ketik.split(',') : ["Mahasiswa Hukum", "Japanese Learner", "Tech Enthusiast"];
+      const keywords = localDB.profil.teks_ketik ? localDB.profil.teks_ketik.split(',') : ["Mahasiswa Hukum", "Japanese Learner", "Livestock Farm"];
       mulaiTypewriter(keywords.map(k => k.trim()));
 
       renderPendidikan(localDB.pendidikan || []);
@@ -949,6 +1005,7 @@
       document.getElementById('modal-reader').classList.add('hidden');
     }
 
+    // EFEK MENGETIK DIPERLAMBAT AGAR LEBIH SANTAI & NYAMAN
     function mulaiTypewriter(words) {
       let wordIdx = 0;
       let charIdx = 0;
@@ -966,14 +1023,14 @@
           charIdx++;
         }
 
-        let delay = isDeleting ? 30 : 75;
+        let delay = isDeleting ? 50 : 120; // Diperlamat dari sebelumnya
         if (!isDeleting && charIdx === current.length) {
-          delay = 1800;
+          delay = 2200; // Jeda saat kalimat penuh
           isDeleting = true;
         } else if (isDeleting && charIdx === 0) {
           isDeleting = false;
           wordIdx = (wordIdx + 1) % words.length;
-          delay = 350;
+          delay = 500;
         }
         setTimeout(type, delay);
       }

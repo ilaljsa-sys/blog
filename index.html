@@ -128,17 +128,25 @@
 </head>
 <body class="bg-slate-50 dark:bg-neutralDark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col justify-between selection:bg-sky-500 selection:text-white bg-dots-light dark:bg-dots-dark text-base antialiased" id="body-root">
 
-  <!-- NAVBAR ATAS -->
+  <!-- NAVBAR ATAS (LOGO + TOMBOL ANONIM DI SAMPING KANAN + MENU DIGESER KANAN) -->
   <nav class="sticky top-0 z-50 backdrop-blur-xl border-b border-slate-200/80 dark:border-slate-800/80 bg-white/85 dark:bg-neutralDark/85 px-6 py-4 transition-colors">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       
-      <!-- LOGO -->
-      <a href="#" onclick="pindahTabByName('beranda'); return false;" class="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 dark:text-white group">
-        ilal<span class="text-sky-500 font-black group-hover:text-sky-400 transition">jsa</span>
-      </a>
+      <!-- KIRI: LOGO + TOMBOL ANONIM -->
+      <div class="flex items-center gap-5">
+        <a href="#" onclick="pindahTabByName('beranda'); return false;" class="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 dark:text-white group">
+          ilal<span class="text-sky-500 font-black group-hover:text-sky-400 transition">jsa</span>
+        </a>
 
-      <!-- MENU TABS -->
-      <div class="relative hidden md:flex items-center bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 p-1.5 rounded-2xl shadow-inner" id="nav-container">
+        <!-- Tombol Hubungi via Anonymous di Samping Header -->
+        <button onclick="bukaModalAnon()" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-sky-50 dark:bg-sky-950/60 border border-sky-200 dark:border-sky-800 hover:border-sky-500 text-xs font-bold text-sky-600 dark:text-sky-400 transition shadow-sm group active:scale-95">
+          <svg class="w-3.5 h-3.5 group-hover:rotate-12 transition duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+          <span>Pesan Rahasia</span>
+        </button>
+      </div>
+
+      <!-- TENGAH-KANAN: MENU TABS (DIGESER SEDIKIT KE KANAN AGAR PRESISI) -->
+      <div class="relative hidden md:flex items-center bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 p-1.5 rounded-2xl shadow-inner mr-4 lg:mr-8" id="nav-container">
         <div id="nav-indicator" class="rounded-xl bg-white dark:bg-slate-800 shadow-sm"></div>
 
         <button onclick="pindahTab('beranda', this)" class="tab-item px-5 py-2.5 rounded-xl text-sm font-bold text-sky-600 dark:text-sky-400 flex items-center gap-2.5 transition active:scale-95">
@@ -285,7 +293,7 @@
         </div>
       </div>
 
-      <!-- RIWAYAT PENDIDIKAN (DINAMIS DARI SHEET) -->
+      <!-- RIWAYAT PENDIDIKAN -->
       <div class="space-y-6 pt-6">
         <div class="text-center space-y-2">
           <span class="px-4 py-1 rounded-full bg-sky-100 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 text-xs font-black uppercase tracking-wider">Linimasa Akademik</span>
@@ -428,7 +436,7 @@
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
             </div>
             <h3 class="text-lg font-bold text-slate-900 dark:text-white">Al-Qur'an Digital</h3>
-            <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Akses 114 surah lengkap 30 juz, terjemahan resmi, transliterasi latin, audio qari, dan pilihan mode baca.</p>
+            <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Akses 114 surah lengkap 30 juz, terjemahan resmi, transliterasi latin, audio tilawah, dan pilihan mode baca.</p>
           </div>
           <button onclick="bukaAlquranDigital()" class="mt-6 w-full py-3.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-white text-sm font-extrabold transition shadow-sm">
             Buka Al-Qur'an 30 Juz
@@ -535,22 +543,14 @@
   </div>
 
   <!-- FOOTER -->
-  <footer class="border-t border-slate-200 dark:border-slate-900 py-8 px-6 transition-colors">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p class="text-xs text-slate-400 dark:text-slate-500">
-        © 2026 I'lal Jalalludin Syahputra
-      </p>
-
-      <button onclick="bukaModalAnon()" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 hover:border-sky-500 text-xs font-bold text-slate-700 dark:text-slate-300 hover:text-sky-500 transition shadow-sm group active:scale-95">
-        <svg class="w-4 h-4 text-sky-500 group-hover:rotate-12 transition duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-        <span>Hubungi Saya via Anonymous</span>
-      </button>
-    </div>
+  <footer class="border-t border-slate-200 dark:border-slate-900 py-8 px-6 transition-colors text-center">
+    <p class="text-xs text-slate-400 dark:text-slate-500">
+      © 2026 I'lal Jalalludin Syahputra
+    </p>
   </footer>
 
-  <!-- SCRIPT LOGIKA UTAMA -->
+  <!-- SCRIPT UTAMA -->
   <script>
-    // URL EXEC TERBARU YANG DIMINTA
     const APPS_SCRIPT_API_URL = "https://script.google.com/macros/s/AKfycbzelb8A39t38A_oYlNut4MVfsO5KzcbaWm7Azt3Gl3qqlAg79J4CsVWygQ5zhJu93dz1g/exec";
 
     let localDB = {
@@ -913,7 +913,7 @@
 
     function renderBlogPopuler(list) {
       const popBox = document.getElementById('blog-populer-container');
-      if (!popBox || !list || list.length === 0) return;
+      if (!list || list.length === 0) return;
       popBox.innerHTML = list.slice(0, 4).map((b, idx) => `
         <div onclick="bukaModalBlog(${idx})" class="smooth-zoom-card p-4 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 hover:border-sky-500 cursor-pointer transition duration-300 flex items-center justify-between gap-4 shadow-sm group">
           <div class="space-y-1">
@@ -1272,7 +1272,7 @@
       document.getElementById('eksplor-detail-display').classList.add('hidden');
     }
 
-    // ==================== PESAN ANONIM KE DATABASE ILALJSA ====================
+    // ==================== PESAN ANONIM ====================
     function bukaModalAnon() {
       document.getElementById('anon-pesan-input').value = "";
       const status = document.getElementById('anon-status');

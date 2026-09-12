@@ -26,7 +26,7 @@
       }
     }
   </script>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Amiri:wght@400;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Scheherazade+New:wght@400;700&family=Noto+Naskh+Arabic:wght@400;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   
   <style>
     body {
@@ -34,7 +34,13 @@
       transition: background-color 0.3s ease, color 0.3s ease;
     }
     .mono-font { font-family: 'JetBrains Mono', monospace; }
-    .quran-font { font-family: 'Amiri', serif; }
+    
+    /* Font Khusus Mushaf Al-Qur'an Standar */
+    .mushaf-font {
+      font-family: 'Scheherazade New', 'Noto Naskh Arabic', serif;
+      word-spacing: 0.35rem;
+      letter-spacing: 0;
+    }
 
     .bg-dots-dark {
       background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
@@ -65,45 +71,39 @@
       animation: movingGlow 6.5s ease-in-out infinite;
     }
 
-    /* Animasi Transisi Masuk Tab */
+    /* Animasi Masuk Tab */
     @keyframes pageEnter {
-      0% { opacity: 0; transform: translateY(16px) scale(0.98); }
+      0% { opacity: 0; transform: translateY(14px) scale(0.99); }
       100% { opacity: 1; transform: translateY(0px) scale(1); }
     }
     .page-section-active {
       animation: pageEnter 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    /* Animasi Goyang Scroll yang Jelas & Halus */
-    @keyframes scrollWobble {
-      0% { opacity: 0; transform: translateX(-35px) rotate(-1.8deg) scale(0.97); }
-      60% { transform: translateX(8px) rotate(0.8deg) scale(1.01); }
-      80% { transform: translateX(-4px) rotate(-0.4deg); }
-      100% { opacity: 1; transform: translateX(0px) rotate(0deg) scale(1); }
-    }
-    .scroll-item {
+    /* ANIMASI GOYANG SCROLL SMOOTH (ANTI-HILANG & SANGAT LEMBUT) */
+    .smooth-scroll-card {
       opacity: 0;
-      transition: all 0.3s ease;
+      transform: translateY(28px) scale(0.98);
+      transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), 
+                  transform 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.35s ease,
+                  border-color 0.35s ease;
+      will-change: transform, opacity;
     }
-    .scroll-visible {
-      animation: scrollWobble 0.75s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    .smooth-scroll-card.revealed {
+      opacity: 1 !important;
+      transform: translateY(0px) scale(1) !important;
     }
 
-    /* Animasi Goyang Saat Disentuh / Hover */
-    @keyframes hoverTiltWobble {
-      0% { transform: scale(1) rotate(0deg); }
-      25% { transform: translateY(-3px) rotate(-1.5deg) scale(1.015); }
-      50% { transform: translateY(-5px) rotate(1.2deg) scale(1.02); }
-      75% { transform: translateY(-3px) rotate(-0.6deg) scale(1.015); }
-      100% { transform: translateY(-4px) rotate(0deg) scale(1.015); }
-    }
-    .hover-wobble:hover {
-      animation: hoverTiltWobble 0.6s ease-in-out infinite alternate !important;
+    /* Efek Goyang Sentuhan (Smooth Organic Hover) */
+    .smooth-scroll-card:hover {
+      transform: translateY(-6px) rotate(-0.6deg) scale(1.012) !important;
+      box-shadow: 0 20px 30px -10px rgba(14, 165, 233, 0.15);
     }
 
     /* Animasi Muncul Skills Bertahap */
     @keyframes smoothSkillPop {
-      0% { opacity: 0; transform: translateY(26px) scale(0.9); }
+      0% { opacity: 0; transform: translateY(24px) scale(0.92); }
       100% { opacity: 1; transform: translateY(0px) scale(1); }
     }
     .skill-card-pop {
@@ -130,13 +130,16 @@
 </head>
 <body class="bg-slate-50 dark:bg-neutralDark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col justify-between selection:bg-sky-500 selection:text-white bg-dots-light dark:bg-dots-dark text-base" id="body-root">
 
+  <!-- NAVBAR ATAS -->
   <nav class="sticky top-0 z-50 backdrop-blur-xl border-b border-slate-200/80 dark:border-slate-800/80 bg-white/85 dark:bg-neutralDark/85 px-6 py-4 transition-colors">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       
+      <!-- LOGO -->
       <a href="#" onclick="pindahTabByName('beranda'); return false;" class="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 dark:text-white group">
         ilal<span class="text-sky-500 font-black group-hover:text-sky-400 transition">jsa</span>
       </a>
 
+      <!-- MENU TABS -->
       <div class="relative hidden md:flex items-center bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 p-1.5 rounded-2xl shadow-inner" id="nav-container">
         <div id="nav-indicator" class="rounded-xl bg-white dark:bg-slate-800 shadow-sm"></div>
 
@@ -162,6 +165,7 @@
         </button>
       </div>
 
+      <!-- SWITCH TEMA -->
       <div class="flex items-center gap-3">
         <button onclick="toggleTheme()" class="w-11 h-11 rounded-2xl flex items-center justify-center bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-sky-500 transition shadow-sm" title="Ubah Tema">
           <svg id="theme-sun" class="w-5 h-5 hidden dark:block text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
@@ -171,13 +175,16 @@
     </div>
   </nav>
 
+  <!-- WRAPPER UTAMA -->
   <main class="max-w-7xl mx-auto w-full px-6 flex-grow flex flex-col justify-center">
     
+    <!-- ==================== SEKSI 1: BERANDA ==================== -->
     <section id="sec-beranda" class="w-full py-12 md:py-20 flex items-center page-section-active">
       <div class="w-full flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-16">
         
         <div class="space-y-6 max-w-xl text-center lg:text-left">
           
+          <!-- SOSIAL MEDIA RESMI -->
           <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">
             <div class="flex items-center gap-2.5">
               <a href="https://www.instagram.com/ilaljsa_?stkn=ang4dWxsbmtqNTlx" target="_blank" class="w-9 h-9 rounded-xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-sky-500 hover:border-sky-500 transition shadow-sm hover:scale-105" title="Instagram @ilaljsa_">
@@ -207,6 +214,7 @@
             <span class="cursor-blink bg-sky-500 h-6"></span>
           </div>
 
+          <!-- KUTIPAN BIJAK -->
           <div class="relative group">
             <div class="absolute -inset-1.5 bg-gradient-to-r from-sky-500/35 via-blue-600/25 to-sky-400/35 rounded-3xl blur-xl animate-moving-glow -z-10"></div>
             <div class="p-6 rounded-2xl bg-white/95 dark:bg-cardDark/95 border-l-4 border-sky-500 border border-slate-200 dark:border-slate-800 text-base text-slate-700 dark:text-slate-300 shadow-md space-y-2 backdrop-blur-sm">
@@ -225,6 +233,7 @@
           </div>
         </div>
 
+        <!-- FOTO PERSEGI KOTAK -->
         <div class="relative flex items-center justify-center">
           <div class="absolute w-80 h-80 sm:w-96 sm:h-96 bg-sky-500/30 dark:bg-sky-500/25 blur-[100px] rounded-full pointer-events-none -z-10 animate-moving-glow"></div>
           
@@ -248,6 +257,7 @@
       </div>
     </section>
 
+    <!-- ==================== SEKSI 2: TENTANG (ANIMASI SMOOTH TANPA HILANG) ==================== -->
     <section id="sec-tentang" class="hidden space-y-12 py-10">
       <div class="text-center max-w-3xl mx-auto space-y-3">
         <span class="px-4 py-1 rounded-full bg-sky-100 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 text-xs font-black uppercase tracking-wider">Tentang Saya</span>
@@ -255,8 +265,9 @@
         <p class="text-base text-slate-600 dark:text-slate-400 leading-relaxed">Mendalami ilmu hukum, otomasi digital, peternakan modern, dan eksplorasi lintas disiplin.</p>
       </div>
 
+      <!-- KOTAK BIOGRAFI RESMI -->
       <div class="max-w-4xl mx-auto space-y-6">
-        <div class="scroll-item p-8 sm:p-10 rounded-3xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 shadow-sm space-y-5 text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed hover-wobble">
+        <div class="smooth-scroll-card p-8 sm:p-10 rounded-3xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 shadow-sm space-y-5 text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed">
           <p>Nama saya <b>I'lal Jalalludin Syahputra</b>. Saat ini saya menjalani kehidupan di Jepang dan bekerja di bidang <b>poultry farming</b>, khususnya dalam lingkungan peternakan ayam. Pengalaman ini menjadi bagian penting dari perjalanan saya karena mengajarkan banyak hal tentang <i>discipline, responsibility, teamwork</i>, dan bagaimana pekerjaan sederhana sekalipun membutuhkan ketelitian dan konsistensi.</p>
           
           <p>Di sisi lain, saya memiliki background <b>Desain Komunikasi Visual (DKV)</b> yang membuat saya tetap dekat dengan dunia kreatif. <i>Graphic design, photography, visual communication</i>, hingga <i>digital content</i> menjadi beberapa bidang yang saya sukai dan terus saya kembangkan. Saya juga tertarik pada data processing, computer operation, dan pemanfaatan teknologi modern untuk membuat pekerjaan menjadi lebih efektif.</p>
@@ -270,7 +281,7 @@
           <p>Perjalanan ini mungkin terlihat seperti kumpulan bidang yang berbeda—<i>poultry farming</i>, DKV, digital technology, Japanese language, dan law. Namun, semuanya menjadi bagian dari proses yang sama: terus belajar, mencoba hal baru, dan membangun kemampuan sedikit demi sedikit.</p>
         </div>
 
-        <div class="scroll-item p-8 rounded-3xl bg-sky-50/70 dark:bg-sky-950/30 border-l-8 border-sky-500 border border-sky-100 dark:border-sky-900 text-slate-800 dark:text-slate-200 space-y-2 hover-wobble">
+        <div class="smooth-scroll-card p-8 rounded-3xl bg-sky-50/70 dark:bg-sky-950/30 border-l-8 border-sky-500 border border-sky-100 dark:border-sky-900 text-slate-800 dark:text-slate-200 space-y-2">
           <p class="italic text-base sm:text-lg font-medium leading-relaxed">
             "Waktu akan terus berjalan, namun kenangan masa lalu dan ilmu yang kita tanam hari ini adalah warisan abadi yang akan memandu kita di masa depan. Jangan pernah takut untuk belajar hal baru, dan jangan pernah lupa untuk sesekali menengok ke belakang. Karena dari kepingan masa lalulah, kita menyadari betapa jauh dan hebatnya langkah kita hari ini."
           </p>
@@ -278,6 +289,7 @@
         </div>
       </div>
 
+      <!-- RIWAYAT PENDIDIKAN -->
       <div class="space-y-6 pt-6">
         <div class="text-center space-y-2">
           <span class="px-4 py-1 rounded-full bg-sky-100 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 text-xs font-black uppercase tracking-wider">Linimasa Akademik</span>
@@ -285,7 +297,8 @@
         </div>
 
         <div class="space-y-4 max-w-3xl mx-auto" id="pendidikan-container">
-          <div class="scroll-item hover-wobble p-6 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between cursor-pointer">
+          <!-- TK -->
+          <div class="smooth-scroll-card p-6 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between cursor-pointer">
             <div class="flex items-center gap-4">
               <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center font-bold">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -298,7 +311,8 @@
             <span class="text-xs sm:text-sm font-bold text-slate-500">2010 - 2012</span>
           </div>
 
-          <div class="scroll-item hover-wobble p-6 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between cursor-pointer">
+          <!-- SD -->
+          <div class="smooth-scroll-card p-6 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between cursor-pointer">
             <div class="flex items-center gap-4">
               <div class="w-12 h-12 rounded-xl bg-sky-500/10 text-sky-500 flex items-center justify-center font-bold">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
@@ -311,7 +325,8 @@
             <span class="text-xs sm:text-sm font-bold text-slate-500">2012 - 2018</span>
           </div>
 
-          <div class="scroll-item hover-wobble p-6 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between cursor-pointer">
+          <!-- SMP -->
+          <div class="smooth-scroll-card p-6 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between cursor-pointer">
             <div class="flex items-center gap-4">
               <div class="w-12 h-12 rounded-xl bg-teal-500/10 text-teal-500 flex items-center justify-center font-bold">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path></svg>
@@ -324,7 +339,8 @@
             <span class="text-xs sm:text-sm font-bold text-slate-500">2018 - 2021</span>
           </div>
 
-          <div class="scroll-item hover-wobble p-6 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between cursor-pointer">
+          <!-- SMK -->
+          <div class="smooth-scroll-card p-6 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between cursor-pointer">
             <div class="flex items-center gap-4">
               <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center font-bold">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"></path></svg>
@@ -337,7 +353,8 @@
             <span class="text-xs sm:text-sm font-bold text-slate-500">2021 - 2024</span>
           </div>
 
-          <div class="scroll-item hover-wobble p-6 rounded-2xl bg-white dark:bg-cardDark border-2 border-sky-500/40 shadow-sm flex items-center justify-between cursor-pointer">
+          <!-- Universitas -->
+          <div class="smooth-scroll-card p-6 rounded-2xl bg-white dark:bg-cardDark border-2 border-sky-500/40 shadow-sm flex items-center justify-between cursor-pointer">
             <div class="flex items-center gap-4">
               <div class="w-12 h-12 rounded-xl bg-sky-500 text-white flex items-center justify-center font-bold">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg>
@@ -353,6 +370,7 @@
       </div>
     </section>
 
+    <!-- ==================== SEKSI 3: KEAHLIAN ==================== -->
     <section id="sec-skills" class="hidden space-y-10 py-10">
       <div class="text-center max-w-3xl mx-auto space-y-3">
         <span class="px-4 py-1 rounded-full bg-sky-100 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 text-xs font-black uppercase tracking-wider">Keahlian</span>
@@ -361,48 +379,57 @@
       </div>
 
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5 max-w-5xl mx-auto" id="skills-grid-container">
-        <div class="skill-card hover-wobble p-6 sm:p-7 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-4 hover:border-sky-500 transition duration-300 group shadow-sm cursor-pointer">
+        <!-- Canva -->
+        <div class="skill-card p-6 sm:p-7 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-4 hover:border-sky-500 hover:-translate-y-2 transition duration-300 group shadow-sm cursor-pointer">
           <svg class="w-10 h-10 text-sky-500 group-hover:scale-110 transition" fill="currentColor" viewBox="0 0 24 24"><path d="M12.012 0C5.388 0 0 5.388 0 12.012s5.388 12.012 12.012 12.012c6.624 0 12.012-5.388 12.012-12.012S18.636 0 12.012 0zm3.882 17.518c-1.393.596-3.08.621-4.484.072-2.18-.853-3.642-3.132-3.642-5.679 0-3.324 2.536-6.046 5.86-6.046 1.83 0 3.447.818 4.542 2.115l-1.637 1.487c-.742-.878-1.782-1.428-2.905-1.428-2.146 0-3.791 1.764-3.791 3.872 0 1.631.961 3.107 2.404 3.694.978.398 2.176.365 3.15-.098l.503 1.991z"/></svg>
           <span class="text-sm font-bold text-slate-800 dark:text-slate-200">Canva</span>
         </div>
 
-        <div class="skill-card hover-wobble p-6 sm:p-7 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-4 hover:border-sky-500 transition duration-300 group shadow-sm cursor-pointer">
+        <!-- CorelDraw -->
+        <div class="skill-card p-6 sm:p-7 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-4 hover:border-sky-500 hover:-translate-y-2 transition duration-300 group shadow-sm cursor-pointer">
           <svg class="w-10 h-10 text-emerald-500 group-hover:scale-110 transition" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.93V18h-2v-1.07c-2.83-.48-5-2.94-5-5.93s2.17-5.45 5-5.93V4h2v1.07c2.83.48 5 2.94 5 5.93s-2.17 5.45-5 5.93zM12 6.5C9.51 6.5 7.5 8.51 7.5 11s2.01 4.5 4.5 4.5 4.5-2.01 4.5-4.5S14.49 6.5 12 6.5z"/></svg>
           <span class="text-sm font-bold text-slate-800 dark:text-slate-200">CorelDraw</span>
         </div>
 
-        <div class="skill-card hover-wobble p-6 sm:p-7 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-4 hover:border-sky-500 transition duration-300 group shadow-sm cursor-pointer">
+        <!-- Photoshop -->
+        <div class="skill-card p-6 sm:p-7 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-4 hover:border-sky-500 hover:-translate-y-2 transition duration-300 group shadow-sm cursor-pointer">
           <svg class="w-10 h-10 text-blue-500 group-hover:scale-110 transition" fill="currentColor" viewBox="0 0 24 24"><path d="M0 3v18h24V3H0zm18.9 14.3c-.6.4-1.4.6-2.4.6-1.5 0-2.6-.5-3.3-1.4-.7-.9-1.1-2.2-1.1-3.9 0-1.8.4-3.1 1.2-4 .8-.9 1.9-1.3 3.3-1.3 1 0 1.7.2 2.3.5v2.1c-.6-.4-1.3-.6-2-.6-1.6 0-2.4 1.1-2.4 3.3 0 1.2.2 2.1.6 2.6.4.6 1 .8 1.8.8.7 0 1.4-.2 2-.5v2.3zM9.4 8.7H7.3v8.6H5.2V6.6h4.2c1.4 0 2.4.3 3.1 1 .7.6 1 1.5 1 2.6 0 1.2-.4 2.1-1.1 2.8-.7.7-1.8 1.1-3 1.1V8.7zm0-0.3c.7 0 1.2-.1 1.5-.4.3-.3.5-.7.5-1.3 0-.6-.2-1-.5-1.3-.3-.3-.8-.4-1.5-.4H7.3v3.4h2.1z"/></svg>
           <span class="text-sm font-bold text-slate-800 dark:text-slate-200">Photoshop</span>
         </div>
 
-        <div class="skill-card hover-wobble p-6 sm:p-7 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-4 hover:border-sky-500 transition duration-300 group shadow-sm cursor-pointer">
+        <!-- Illustrator -->
+        <div class="skill-card p-6 sm:p-7 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-4 hover:border-sky-500 hover:-translate-y-2 transition duration-300 group shadow-sm cursor-pointer">
           <svg class="w-10 h-10 text-amber-500 group-hover:scale-110 transition" fill="currentColor" viewBox="0 0 24 24"><path d="M0 3v18h24V3H0zm10.7 14.3H8.5l-.8-2.6H4.3l-.8 2.6H1.3l3.8-10.7h2.2l3.4 10.7zm6.9 0h-2.1v-7.3h2.1v7.3zm-.1-8.7h-1.9V6.6h1.9v2zM6 9.8l-1.3 4h2.5L6 9.8z"/></svg>
           <span class="text-sm font-bold text-slate-800 dark:text-slate-200">Illustrator</span>
         </div>
 
-        <div class="skill-card hover-wobble p-6 sm:p-7 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-4 hover:border-sky-500 transition duration-300 group shadow-sm cursor-pointer">
+        <!-- Microsoft Word -->
+        <div class="skill-card p-6 sm:p-7 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-4 hover:border-sky-500 hover:-translate-y-2 transition duration-300 group shadow-sm cursor-pointer">
           <svg class="w-10 h-10 text-blue-600 group-hover:scale-110 transition" fill="currentColor" viewBox="0 0 24 24"><path d="M21.5 3h-19C1.1 3 0 4.1 0 5.5v13C0 19.9 1.1 21 2.5 21h19c1.4 0 2.5-1.1 2.5-2.5v-13C24 4.1 22.9 3 21.5 3zm-6.2 13.5l-2.1-7.2-2.1 7.2h-1.8L6.2 7.5h2.1l2 6.5 2-6.5h1.9l2 6.5 2-6.5h2.1l-3 9h-2z"/></svg>
           <span class="text-sm font-bold text-slate-800 dark:text-slate-200">Microsoft Word</span>
         </div>
 
-        <div class="skill-card hover-wobble p-6 sm:p-7 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-4 hover:border-sky-500 transition duration-300 group shadow-sm cursor-pointer">
+        <!-- Blogger -->
+        <div class="skill-card p-6 sm:p-7 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-4 hover:border-sky-500 hover:-translate-y-2 transition duration-300 group shadow-sm cursor-pointer">
           <svg class="w-10 h-10 text-orange-500 group-hover:scale-110 transition" fill="currentColor" viewBox="0 0 24 24"><path d="M21.5 0h-19C1.1 0 0 1.1 0 2.5v19C0 22.9 1.1 24 2.5 24h19c1.4 0 2.5-1.1 2.5-2.5v-19C24 1.1 22.9 0 21.5 0zM14 6h3.5C18.9 6 20 7.1 20 8.5v.5c0 1.4-1.1 2.5-2.5 2.5h-.5v.5c0 1.4 1.1 2.5 2.5 2.5v1c0 1.4-1.1 2.5-2.5 2.5H8.5C7.1 18 6 16.9 6 15.5V8.5C6 7.1 7.1 6 8.5 6H14z"/></svg>
           <span class="text-sm font-bold text-slate-800 dark:text-slate-200">Blogger</span>
         </div>
 
-        <div class="skill-card hover-wobble p-6 sm:p-7 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-4 hover:border-sky-500 transition duration-300 group shadow-sm cursor-pointer">
+        <!-- Tailwind CSS -->
+        <div class="skill-card p-6 sm:p-7 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-4 hover:border-sky-500 hover:-translate-y-2 transition duration-300 group shadow-sm cursor-pointer">
           <svg class="w-10 h-10 text-sky-400 group-hover:scale-110 transition" fill="currentColor" viewBox="0 0 24 24"><path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"/></svg>
           <span class="text-sm font-bold text-slate-800 dark:text-slate-200">Tailwind CSS</span>
         </div>
 
-        <div class="skill-card hover-wobble p-6 sm:p-7 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-4 hover:border-sky-500 transition duration-300 group shadow-sm cursor-pointer">
+        <!-- Google Sheets DB -->
+        <div class="skill-card p-6 sm:p-7 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-4 hover:border-sky-500 hover:-translate-y-2 transition duration-300 group shadow-sm cursor-pointer">
           <svg class="w-10 h-10 text-emerald-500 group-hover:scale-110 transition" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 14H6v-3h4v3zm0-5H6V9h4v3zm6 5h-4v-3h4v3zm0-5h-4V9h4v3zm3 5h-1v-3h1v3zm0-5h-1V9h1v3z"/></svg>
           <span class="text-sm font-bold text-slate-800 dark:text-slate-200">Google Sheets DB</span>
         </div>
       </div>
     </section>
 
+    <!-- ==================== SEKSI 4: BLOG / CATATAN ==================== -->
     <section id="sec-blog" class="hidden space-y-10 py-10">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-5">
         <div>
@@ -421,6 +448,7 @@
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Rilisan Terbaru -->
         <div class="lg:col-span-2 space-y-6">
           <div class="flex items-center gap-2 text-lg font-black text-slate-900 dark:text-white">
             <svg class="w-5 h-5 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
@@ -429,6 +457,7 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" id="blog-container"></div>
         </div>
 
+        <!-- Terpopuler -->
         <div class="space-y-6">
           <div class="flex items-center gap-2 text-lg font-black text-slate-900 dark:text-white">
             <svg class="w-5 h-5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"></path></svg>
@@ -439,6 +468,7 @@
       </div>
     </section>
 
+    <!-- ==================== SEKSI 5: EKSPLOR HUB ==================== -->
     <section id="sec-eksplor" class="hidden space-y-10 py-10">
       <div class="text-center max-w-3xl mx-auto space-y-2">
         <span class="px-4 py-1 rounded-full bg-sky-100 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 text-xs font-black uppercase tracking-wider">Eksplorasi</span>
@@ -447,19 +477,21 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- MODUL 1: AL-QURAN DIGITAL -->
         <div class="p-7 rounded-3xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col justify-between shadow-sm hover:border-sky-500 transition">
           <div class="space-y-3">
             <div class="w-12 h-12 rounded-2xl bg-sky-500/10 text-sky-500 flex items-center justify-center">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
             </div>
             <h3 class="text-lg font-bold text-slate-900 dark:text-white">Al-Qur'an Digital</h3>
-            <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Akses 114 surah lengkap 30 juz, terjemahan resmi, transliterasi latin, audio tilawah qari, dan pilihan mode baca.</p>
+            <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Akses 114 surah lengkap 30 juz, terjemahan resmi, transliterasi latin, audio qari, dan pilihan mode baca.</p>
           </div>
           <button onclick="bukaAlquranDigital()" class="mt-6 w-full py-3.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-white text-sm font-extrabold transition shadow-sm">
             Buka Al-Qur'an 30 Juz
           </button>
         </div>
 
+        <!-- MODUL 2: TUGAS KULIAH -->
         <div class="p-7 rounded-3xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col justify-between shadow-sm hover:border-sky-500 transition">
           <div class="space-y-3">
             <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center">
@@ -473,6 +505,7 @@
           </button>
         </div>
 
+        <!-- MODUL 3: PEMBELAJARAN N3 -->
         <div class="p-7 rounded-3xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col justify-between shadow-sm hover:border-sky-500 transition">
           <div class="space-y-3">
             <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center">
@@ -492,6 +525,7 @@
 
   </main>
 
+  <!-- MODAL BACA ARTIKEL BLOG -->
   <div id="modal-reader" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-md hidden flex items-center justify-center p-4">
     <div class="bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 rounded-3xl w-full max-w-2xl max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
       <div class="p-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
@@ -507,6 +541,7 @@
     </div>
   </div>
 
+  <!-- FLOATING AUDIO MUSIC PLAYER -->
   <div class="fixed bottom-6 right-6 z-40">
     <div class="bg-white/90 dark:bg-cardDark/90 backdrop-blur-md px-4 py-2.5 rounded-2xl flex items-center gap-3 shadow-xl border border-slate-200 dark:border-slate-800">
       <button onclick="toggleAudio()" id="btn-audio" class="w-9 h-9 rounded-xl bg-sky-500 hover:bg-sky-400 text-white flex items-center justify-center font-bold text-xs transition">
@@ -520,10 +555,12 @@
     </div>
   </div>
 
+  <!-- FOOTER -->
   <footer class="border-t border-slate-200 dark:border-slate-900 py-8 text-center text-xs text-slate-400 dark:text-slate-500">
     © 2026 I'lal Jalalludin Syahputra
   </footer>
 
+  <!-- SCRIPT LOGIKA UTAMA -->
   <script>
     const APPS_SCRIPT_API_URL = "https://script.google.com/macros/s/AKfycbxMWYQleNrSNuVLqjWW7_fGL6B2MGiKaRqD2aFISSXblkxtI7zImpV8dqodem2BFw17mg/exec";
 
@@ -615,7 +652,7 @@
       { nomor: 51, nama_latin: "Az-Zariyat", nama: "الذاريات", arti: "Angin Menerbangkan", jumlah_ayat: 60 },
       { nomor: 52, nama_latin: "At-Tur", nama: "الطور", arti: "Bukit Tursina", jumlah_ayat: 49 },
       { nomor: 53, nama_latin: "An-Najm", nama: "النجم", arti: "Bintang", jumlah_ayat: 62 },
-      { nomor: 54, nama_latin: "Al-Qamar", nama: "القmer", arti: "Bulan", jumlah_ayat: 55 },
+      { nomor: 54, nama_latin: "Al-Qamar", nama: "القمر", arti: "Bulan", jumlah_ayat: 55 },
       { nomor: 55, nama_latin: "Ar-Rahman", nama: "الرحمن", arti: "Maha Pemurah", jumlah_ayat: 78 },
       { nomor: 56, nama_latin: "Al-Waqi'ah", nama: "الواقعة", arti: "Hari Kiamat", jumlah_ayat: 96 },
       { nomor: 57, nama_latin: "Al-Hadid", nama: "الحديد", arti: "Besi", jumlah_ayat: 29 },
@@ -687,7 +724,7 @@
       indicator.style.top = `${activeButton.offsetTop}px`;
     }
 
-    // PINDAH TAB DENGAN RESET AUDIO & ANIMASI
+    // PINDAH TAB DENGAN RESET AUDIO & KONTROL SCROLL OBSERVER
     function pindahTab(nama, el) {
       const seksi = ['beranda', 'tentang', 'skills', 'blog', 'eksplor'];
       seksi.forEach(s => {
@@ -695,7 +732,7 @@
         if (s === nama) {
           secEl.classList.remove('hidden');
           secEl.classList.remove('page-section-active');
-          void secEl.offsetWidth; // trigger reflow
+          void secEl.offsetWidth;
           secEl.classList.add('page-section-active');
         } else {
           secEl.classList.add('hidden');
@@ -711,7 +748,7 @@
 
       updateNavIndicator(el);
 
-      // Trigger Animasi Skills Muncul Bertahap
+      // Trigger Animasi Skills
       if (nama === 'skills') {
         const cards = document.querySelectorAll('.skill-card');
         cards.forEach((c, idx) => {
@@ -722,8 +759,10 @@
         });
       }
 
-      // Aktifkan Pengamatan Scroll Wobble
-      setTimeout(inisialisasiScrollObserver, 100);
+      // Refresh Scroll Observer di Tab Tentang
+      if (nama === 'tentang') {
+        setTimeout(inisialisasiScrollObserver, 150);
+      }
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -815,7 +854,7 @@
         return;
       }
       blogBox.innerHTML = list.map((b, idx) => `
-        <article onclick="bukaModalBlog(${idx})" class="hover-wobble p-6 rounded-3xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 cursor-pointer group flex flex-col justify-between space-y-4 shadow-sm hover:border-sky-500 transition duration-300">
+        <article onclick="bukaModalBlog(${idx})" class="p-6 rounded-3xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 cursor-pointer group flex flex-col justify-between space-y-4 shadow-sm hover:border-sky-500 transition duration-300 hover:-translate-y-1.5">
           <div class="space-y-3">
             <div class="flex items-center justify-between text-xs">
               <span class="px-3 py-1 rounded-full bg-sky-50 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 font-bold">${b.Kategori || 'Esai'}</span>
@@ -836,7 +875,7 @@
       const popBox = document.getElementById('blog-populer-container');
       if (!list || list.length === 0) return;
       popBox.innerHTML = list.slice(0, 4).map((b, idx) => `
-        <div onclick="bukaModalBlog(${idx})" class="hover-wobble p-4 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 hover:border-sky-500 cursor-pointer transition duration-300 flex items-center justify-between gap-4 shadow-sm group">
+        <div onclick="bukaModalBlog(${idx})" class="p-4 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 hover:border-sky-500 cursor-pointer transition duration-300 flex items-center justify-between gap-4 shadow-sm group hover:-translate-y-1">
           <div class="space-y-1">
             <span class="text-[10px] font-bold text-sky-500 uppercase">${b.Kategori || 'Esai'}</span>
             <h4 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-sky-500 line-clamp-1">${b['Judul Artikel'] || ''}</h4>
@@ -900,9 +939,8 @@
       type();
     }
 
-    // ==================== AL-QUR'AN DIGITAL (FIX AUDIO GANTI OTOMATIS & MUSHAF RAPI) ====================
+    // ==================== AL-QUR'AN DIGITAL (FIX TOTAL MUSHAF TIDAK MEPET) ====================
     async function bukaAlquranDigital() {
-      // Hentikan audio lama jika ada yang berputar
       hentikanAudioQari();
 
       const display = document.getElementById('eksplor-detail-display');
@@ -954,7 +992,7 @@
         return;
       }
       grid.innerHTML = list.map(s => `
-        <div onclick="bacaDetailSurah(${s.nomor})" class="hover-wobble p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 hover:border-sky-500 cursor-pointer flex items-center justify-between transition group shadow-sm">
+        <div onclick="bacaDetailSurah(${s.nomor})" class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 hover:border-sky-500 cursor-pointer flex items-center justify-between transition group shadow-sm hover:-translate-y-1">
           <div class="flex items-center gap-3">
             <span class="w-9 h-9 rounded-xl bg-sky-500/10 text-sky-500 text-xs font-black flex items-center justify-center">${s.nomor}</span>
             <div>
@@ -962,13 +1000,12 @@
               <p class="text-[11px] text-slate-400">${s.arti} • ${s.jumlah_ayat} Ayat</p>
             </div>
           </div>
-          <span class="quran-font text-xl text-slate-800 dark:text-slate-200">${s.nama}</span>
+          <span class="mushaf-font text-2xl text-slate-800 dark:text-slate-200">${s.nama}</span>
         </div>
       `).join('');
     }
 
     async function bacaDetailSurah(nomor) {
-      // HENTIKAN TOTAL AUDIO SURAH SEBELUMNYA
       hentikanAudioQari();
 
       const display = document.getElementById('eksplor-detail-display');
@@ -1007,7 +1044,7 @@
         } catch (e) {
           display.innerHTML = `
             <div class="py-12 text-center space-y-3">
-              <p class="text-sm text-rose-500 font-bold">Gagal memuat isi surah. Silakan periksa jaringan.</p>
+              <p class="text-sm text-rose-500 font-bold">Gagal memuat surah. Silakan periksa jaringan.</p>
               <button onclick="bukaAlquranDigital()" class="px-5 py-2.5 bg-sky-500 text-white rounded-xl text-xs font-bold">Kembali</button>
             </div>
           `;
@@ -1035,6 +1072,7 @@
             </div>
 
             <div class="flex flex-wrap items-center gap-3">
+              <!-- Audio Player Murottal Mandiri -->
               <button onclick="toggleQariAudio('${audioUrl}')" id="btn-qari-audio" class="px-4 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-white text-xs font-bold flex items-center gap-2 shadow-sm transition active:scale-95">
                 <span id="qari-audio-icon">▶</span>
                 <span id="qari-audio-label">Putar Murottal</span>
@@ -1066,11 +1104,11 @@
       return `
         <div class="space-y-6 max-h-[620px] overflow-y-auto pr-2">
           ${data.verses.map(v => `
-            <div class="hover-wobble p-5 sm:p-6 rounded-3xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 space-y-4 shadow-sm">
+            <div class="p-5 sm:p-6 rounded-3xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 space-y-4 shadow-sm hover:border-sky-500/40 transition">
               <div class="flex justify-between items-center text-xs font-bold text-sky-500">
                 <span class="w-8 h-8 rounded-xl bg-sky-500/10 flex items-center justify-center font-black">${v.number.inSurah}</span>
               </div>
-              <p class="text-right text-3xl sm:text-4xl quran-font text-slate-900 dark:text-slate-100 leading-[2.5] tracking-wide">${v.text.arab}</p>
+              <p class="text-right text-3xl sm:text-4xl mushaf-font text-slate-900 dark:text-slate-100 leading-[3.2rem] tracking-normal">${v.text.arab}</p>
               <p class="text-sm text-sky-700 dark:text-sky-300 font-semibold">${v.text.transliteration.en}</p>
               <p class="text-sm text-slate-600 dark:text-slate-400 italic leading-relaxed">${v.translation.id}</p>
             </div>
@@ -1079,24 +1117,23 @@
       `;
     }
 
-    // MODE MUSHAF BUKU RAPI & TIDAK MEPET
+    // MODE MUSHAF BUKU RAPI, LEGA & TIDAK BERTUMPUK HARAKAT
     function renderModeBuku(data) {
       return `
-        <div class="p-8 sm:p-14 rounded-3xl bg-[#fdfbf7] dark:bg-slate-900/80 border-2 border-amber-200/50 dark:border-slate-800 max-h-[640px] overflow-y-auto space-y-8 shadow-inner">
+        <div class="p-8 sm:p-14 rounded-3xl bg-[#fefcf8] dark:bg-slate-900/90 border-2 border-amber-200/50 dark:border-slate-800 max-h-[640px] overflow-y-auto space-y-8 shadow-inner">
           <div class="text-center pb-6 border-b border-amber-200/60 dark:border-slate-800">
-            <p class="text-3xl quran-font text-slate-800 dark:text-slate-200 leading-loose">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+            <p class="text-3xl sm:text-4xl mushaf-font text-slate-800 dark:text-slate-200 leading-[3.5rem]">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
           </div>
-          <div class="text-right text-2xl sm:text-3xl quran-font text-slate-900 dark:text-slate-100 leading-[2.8] tracking-wide text-justify" dir="rtl">
+          <div class="text-right text-2xl sm:text-3xl mushaf-font text-slate-900 dark:text-slate-100 leading-[3.8rem] text-justify" dir="rtl">
             ${data.verses.map(v => `
-              <span class="inline mx-1">${v.text.arab}</span>
-              <span class="inline-flex items-center justify-center w-8 h-8 text-xs font-sans text-amber-600 dark:text-sky-400 border border-amber-400/50 dark:border-sky-400/40 rounded-full mx-1.5 align-middle select-none font-bold">﴿${v.number.inSurah}﴾</span>
+              <span class="inline leading-[3.8rem]">${v.text.arab}</span>
+              <span class="inline-flex items-center justify-center w-8 h-8 text-[11px] font-sans font-black text-amber-700 dark:text-sky-400 border border-amber-500/50 dark:border-sky-400/50 rounded-full mx-2 align-middle select-none bg-amber-50 dark:bg-slate-800">﴿${v.number.inSurah}﴾</span>
             `).join('')}
           </div>
         </div>
       `;
     }
 
-    // AUDIO QARI CONTROLLER DENGAN GANTI OTOMATIS
     function toggleQariAudio(url) {
       const btn = document.getElementById('btn-qari-audio');
       const icon = document.getElementById('qari-audio-icon');
@@ -1147,7 +1184,7 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
           ${(localDB.tugas || []).map(t => `
-            <div class="hover-wobble p-6 rounded-3xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 flex flex-col justify-between space-y-4 shadow-sm hover:border-sky-500 transition">
+            <div class="p-6 rounded-3xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 flex flex-col justify-between space-y-4 shadow-sm hover:border-sky-500 transition hover:-translate-y-1">
               <div class="space-y-2">
                 <span class="px-3 py-1 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold">${t.Semester || 'Ilmu Hukum'}</span>
                 <h4 class="text-base font-bold text-slate-900 dark:text-white pt-1">${t['Judul Makalah / Tugas'] || ''}</h4>
@@ -1196,18 +1233,18 @@
       document.getElementById('eksplor-detail-display').classList.add('hidden');
     }
 
-    // PENGAMAT SCROLL ANIMASI WOBBLE (INTERSECTION OBSERVER)
+    // PENGAMAT SCROLL SMOOTH (ANTI-HILANG & SELALU STABIL)
     function inisialisasiScrollObserver() {
-      const items = document.querySelectorAll('.scroll-item');
+      const cards = document.querySelectorAll('.smooth-scroll-card');
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('scroll-visible');
+            entry.target.classList.add('revealed');
           }
         });
-      }, { threshold: 0.15 });
+      }, { threshold: 0.1 });
 
-      items.forEach(item => observer.observe(item));
+      cards.forEach(card => observer.observe(card));
     }
 
     function toggleAudio() {
@@ -1233,7 +1270,7 @@
       const firstTab = document.querySelector('.tab-item');
       if (firstTab) updateNavIndicator(firstTab);
 
-      setTimeout(inisialisasiScrollObserver, 200);
+      setTimeout(inisialisasiScrollObserver, 150);
     };
 
     window.onresize = function() {

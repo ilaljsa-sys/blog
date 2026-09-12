@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ilaljsa • Personal Space</title>
+  <title>ilaljsa • Workspace</title>
   
-  <!-- Tailwind CSS & Google Fonts -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -46,7 +45,6 @@
       background-size: 26px 26px;
     }
 
-    /* Animasi mengambang santai (Slow Float) */
     @keyframes slowFloat {
       0%, 100% { transform: translateY(0px); }
       50% { transform: translateY(-8px); }
@@ -55,7 +53,6 @@
       animation: slowFloat 4.5s ease-in-out infinite;
     }
 
-    /* Kapsul geser menu */
     #nav-indicator {
       position: absolute;
       transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
@@ -78,46 +75,79 @@
 
   <!-- NAVBAR ATAS -->
   <nav class="sticky top-0 z-50 backdrop-blur-xl border-b border-slate-200/80 dark:border-slate-800/80 bg-white/80 dark:bg-neutralDark/80 px-6 py-4 transition-colors">
-    <div class="max-w-6xl mx-auto flex items-center justify-between">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
       
-      <!-- LOGO: ilaljsa -->
-      <a href="#" onclick="pindahTab('beranda', this); return false;" class="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 dark:text-white">
+      <!-- LOGO -->
+      <a href="#" onclick="pindahTabByName('beranda'); return false;" class="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 dark:text-white">
         ilal<span class="text-sky-500 font-extrabold">jsa</span>
       </a>
 
-      <!-- MENU TABS DENGAN ANIMASI KAPSUL -->
+      <!-- MENU DENGAN IKON DEVELOPER MINIMALIS -->
       <div class="relative hidden md:flex items-center bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 p-1.5 rounded-2xl shadow-inner" id="nav-container">
         <div id="nav-indicator" class="rounded-xl bg-white dark:bg-slate-800 shadow-sm"></div>
 
-        <button onclick="pindahTab('beranda', this)" class="tab-item px-5 py-2 rounded-xl text-sm font-bold text-sky-600 dark:text-sky-400 transition">Beranda</button>
-        <button onclick="pindahTab('tentang', this)" class="tab-item px-5 py-2 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">Tentang</button>
-        <button onclick="pindahTab('skills', this)" class="tab-item px-5 py-2 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">Keahlian</button>
-        <button onclick="pindahTab('blog', this)" class="tab-item px-5 py-2 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">Catatan</button>
-        <button onclick="pindahTab('eksplor', this)" class="tab-item px-5 py-2 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">Eksplor</button>
+        <button onclick="pindahTab('beranda', this)" class="tab-item px-4 py-2 rounded-xl text-xs font-bold text-sky-600 dark:text-sky-400 flex items-center gap-2 transition">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+          Beranda
+        </button>
+        <button onclick="pindahTab('tentang', this)" class="tab-item px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-2 transition">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+          Tentang
+        </button>
+        <button onclick="pindahTab('skills', this)" class="tab-item px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-2 transition">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+          Keahlian
+        </button>
+        <button onclick="pindahTab('blog', this)" class="tab-item px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-2 transition">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+          Catatan
+        </button>
+        <button onclick="pindahTab('eksplor', this)" class="tab-item px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-2 transition">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"></path></svg>
+          Eksplor
+        </button>
       </div>
 
-      <!-- TOGGLE THEME MINIMALIS & ELEGAN -->
+      <!-- SWITCH TEMA MINIMALIS -->
       <div class="flex items-center gap-3">
         <button onclick="toggleTheme()" class="w-10 h-10 rounded-2xl flex items-center justify-center bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-sky-500 transition shadow-sm" title="Ubah Tema">
-          <svg id="theme-sun" class="w-5 h-5 hidden dark:block text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-          <svg id="theme-moon" class="w-5 h-5 block dark:hidden text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+          <svg id="theme-sun" class="w-4 h-4 hidden dark:block text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+          <svg id="theme-moon" class="w-4 h-4 block dark:hidden text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
         </button>
       </div>
     </div>
   </nav>
 
-  <!-- WRAPPER UTAMA -->
-  <main class="max-w-6xl mx-auto w-full px-6 flex-grow flex flex-col justify-center">
+  <!-- WRAPPER UTAMA LEBIH LEBAR & PROPORSIONAL -->
+  <main class="max-w-7xl mx-auto w-full px-6 flex-grow flex flex-col justify-center">
     
     <!-- ==================== SEKSI 1: BERANDA ==================== -->
     <section id="sec-beranda" class="w-full py-10 md:py-16 flex items-center">
       <div class="w-full flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-16">
         
-        <!-- Info Teks -->
         <div class="space-y-6 max-w-xl text-center lg:text-left">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-50 dark:bg-sky-950/60 border border-sky-200 dark:border-sky-800 text-sky-600 dark:text-sky-400 text-xs font-bold tracking-wide">
-            <span class="w-2 h-2 rounded-full bg-sky-500 animate-pulse"></span>
-            Personal Space & Notes
+          
+          <!-- IKON MEDIA SOSIAL RESMI + STATUS -->
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">
+            <div class="flex items-center gap-2">
+              <!-- Instagram -->
+              <a href="https://instagram.com" target="_blank" class="w-8 h-8 rounded-xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-sky-500 hover:border-sky-500 transition shadow-sm" title="Instagram">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              </a>
+              <!-- X (Twitter) -->
+              <a href="https://x.com" target="_blank" class="w-8 h-8 rounded-xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-sky-500 hover:border-sky-500 transition shadow-sm" title="X">
+                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              </a>
+              <!-- Threads -->
+              <a href="https://threads.net" target="_blank" class="w-8 h-8 rounded-xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-sky-500 hover:border-sky-500 transition shadow-sm" title="Threads">
+                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.186 24C5.454 24 0 18.634 0 12.012 0 5.39 5.454 0 12.186 0c6.643 0 11.966 5.224 12.184 11.836h-2.673c-.21-5.184-4.372-9.25-9.511-9.25-5.32 0-9.61 4.298-9.61 9.426 0 5.128 4.29 9.426 9.61 9.426 3.652 0 6.83-2.052 8.39-5.068l2.33 1.344C20.89 21.24 16.828 24 12.186 24zm4.184-11.836c0-2.31-1.874-4.185-4.184-4.185-2.31 0-4.185 1.875-4.185 4.185s1.875 4.184 4.185 4.184c1.155 0 2.198-.47 2.955-1.226l1.888 1.888c-1.242 1.242-2.95 2.01-4.843 2.01-3.79 0-6.857-3.067-6.857-6.856s3.067-6.857 6.857-6.857 6.856 3.067 6.856 6.857h-2.672z"/></svg>
+              </a>
+            </div>
+
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 dark:bg-sky-950/60 border border-sky-200 dark:border-sky-800 text-sky-600 dark:text-sky-400 text-xs font-bold tracking-wide">
+              <span class="w-2 h-2 rounded-full bg-sky-500 animate-pulse"></span>
+              Personal Space & Notes
+            </div>
           </div>
           
           <h1 id="hero-nama" class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.1]">
@@ -130,11 +160,14 @@
             <span class="cursor-blink bg-sky-500 h-5"></span>
           </div>
 
-          <div class="p-5 rounded-2xl bg-white dark:bg-cardDark border-l-4 border-sky-500 border border-slate-200 dark:border-slate-800 text-sm text-slate-700 dark:text-slate-300 italic shadow-sm">
-            "<span id="hero-quote">Keadilan adalah fondasi akal, konsistensi adalah kunci keberhasilan.</span>"
+          <!-- KATA-KATA BIJAK DENGAN NAMA PENULIS -->
+          <div class="p-5 rounded-2xl bg-white dark:bg-cardDark border-l-4 border-sky-500 border border-slate-200 dark:border-slate-800 text-sm text-slate-700 dark:text-slate-300 shadow-sm space-y-1">
+            <p class="italic leading-relaxed">"<span id="hero-quote">Keadilan adalah fondasi akal, konsistensi adalah kunci keberhasilan.</span>"</p>
+            <p class="text-[11px] font-bold text-sky-600 dark:text-sky-400 text-right">— I'lal Jalalludin Syahputra</p>
           </div>
 
           <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
+            <!-- Menuju langsung ke Catatan/Blog -->
             <button onclick="pindahTabByName('blog')" class="px-6 py-3.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-white font-bold text-xs shadow-lg shadow-sky-500/20 transition active:scale-95">
               Jelajahi Catatan →
             </button>
@@ -144,14 +177,12 @@
           </div>
         </div>
 
-        <!-- FOTO PERSEGI KOTAK (SQUARE 1:1) + LINK DRIVE HD + GLOW BIRU -->
+        <!-- FOTO PERSEGI KOTAK HD DRIVE + GLOW BIRU -->
         <div class="relative flex items-center justify-center">
-          <!-- Pendaran Cahaya Remang Biru -->
           <div class="absolute w-72 h-72 sm:w-84 sm:h-84 bg-sky-500/25 dark:bg-sky-500/15 blur-[90px] rounded-full pointer-events-none -z-10"></div>
           
           <div class="text-8xl md:text-9xl font-black text-slate-300 dark:text-slate-800 select-none -mr-4 mono-font">{</div>
           
-          <!-- Box Bingkai Kotak Presisi -->
           <div class="animate-slow-float">
             <div class="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 aspect-square rounded-3xl bg-white dark:bg-cardDark border-2 border-sky-100 dark:border-slate-800 p-2.5 flex items-center justify-center shadow-2xl overflow-hidden group">
               <img 
@@ -183,6 +214,7 @@
         <p>Bagi saya, hukum adalah pondasi keteraturan dan keadilan masyarakat, sedangkan teknologi adalah sarana otomasi yang mempercepat kebaikan dan efisiensi kerja. Website portofolio ini dibangun sebagai ruang catatan digital, pembuktian eksplorasi, serta arsip karya independen.</p>
       </div>
 
+      <!-- RIWAYAT PENDIDIKAN DENGAN TK LENGKAP -->
       <div class="space-y-6 pt-4">
         <div class="text-center space-y-2">
           <span class="px-3 py-1 rounded-full bg-sky-100 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 text-xs font-bold uppercase tracking-wider">Linimasa Akademik</span>
@@ -190,9 +222,26 @@
         </div>
 
         <div class="space-y-4 max-w-3xl mx-auto" id="pendidikan-container">
+          <!-- TK -->
           <div class="p-5 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 hover:border-sky-500/50 hover:-translate-y-1 transition duration-300 shadow-sm flex items-center justify-between">
             <div class="flex items-center gap-4">
-              <div class="w-12 h-12 rounded-xl bg-sky-500/10 text-sky-500 flex items-center justify-center font-bold text-lg">🏫</div>
+              <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center font-bold">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              </div>
+              <div>
+                <h4 class="text-base font-bold text-slate-900 dark:text-white">Taman Kanak-Kanak (TK)</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Pendidikan Anak Usia Dini</p>
+              </div>
+            </div>
+            <span class="text-xs font-bold text-slate-500">2010 - 2012</span>
+          </div>
+
+          <!-- SD -->
+          <div class="p-5 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 hover:border-sky-500/50 hover:-translate-y-1 transition duration-300 shadow-sm flex items-center justify-between">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl bg-sky-500/10 text-sky-500 flex items-center justify-center font-bold">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+              </div>
               <div>
                 <h4 class="text-base font-bold text-slate-900 dark:text-white">SD Negeri</h4>
                 <p class="text-xs text-slate-500 dark:text-slate-400">Pendidikan Dasar</p>
@@ -201,9 +250,12 @@
             <span class="text-xs font-bold text-slate-500">2012 - 2018</span>
           </div>
 
+          <!-- SMP -->
           <div class="p-5 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 hover:border-sky-500/50 hover:-translate-y-1 transition duration-300 shadow-sm flex items-center justify-between">
             <div class="flex items-center gap-4">
-              <div class="w-12 h-12 rounded-xl bg-teal-500/10 text-teal-500 flex items-center justify-center font-bold text-lg">🏛️</div>
+              <div class="w-12 h-12 rounded-xl bg-teal-500/10 text-teal-500 flex items-center justify-center font-bold">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path></svg>
+              </div>
               <div>
                 <h4 class="text-base font-bold text-slate-900 dark:text-white">SMP Negeri / MTs</h4>
                 <p class="text-xs text-slate-500 dark:text-slate-400">Pendidikan Menengah Pertama</p>
@@ -212,9 +264,12 @@
             <span class="text-xs font-bold text-slate-500">2018 - 2021</span>
           </div>
 
+          <!-- SMK -->
           <div class="p-5 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 hover:border-sky-500/50 hover:-translate-y-1 transition duration-300 shadow-sm flex items-center justify-between">
             <div class="flex items-center gap-4">
-              <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center font-bold text-lg">🎓</div>
+              <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center font-bold">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"></path></svg>
+              </div>
               <div>
                 <h4 class="text-base font-bold text-slate-900 dark:text-white">SMK / SMA Negeri</h4>
                 <p class="text-xs text-slate-500 dark:text-slate-400">Pendidikan Menengah Atas</p>
@@ -223,9 +278,12 @@
             <span class="text-xs font-bold text-slate-500">2021 - 2024</span>
           </div>
 
+          <!-- KAMPUS -->
           <div class="p-5 rounded-2xl bg-white dark:bg-cardDark border-2 border-sky-500/30 hover:border-sky-500 hover:-translate-y-1 transition duration-300 shadow-sm flex items-center justify-between">
             <div class="flex items-center gap-4">
-              <div class="w-12 h-12 rounded-xl bg-sky-500 text-white flex items-center justify-center font-bold text-lg">⚖️</div>
+              <div class="w-12 h-12 rounded-xl bg-sky-500 text-white flex items-center justify-center font-bold">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg>
+              </div>
               <div>
                 <h4 class="text-base font-bold text-slate-900 dark:text-white">Universitas Terbuka</h4>
                 <p class="text-xs text-sky-600 dark:text-sky-400 font-semibold">Ilmu Hukum • Program Sarjana (S1)</p>
@@ -237,51 +295,66 @@
       </div>
     </section>
 
-    <!-- ==================== SEKSI 3: KEAHLIAN (SKILLS) ==================== -->
+    <!-- ==================== SEKSI 3: KEAHLIAN (SKILLS) LOGO ASLI ==================== -->
     <section id="sec-skills" class="hidden space-y-10 py-8">
       <div class="text-center max-w-2xl mx-auto space-y-3">
         <span class="px-3 py-1 rounded-full bg-sky-100 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 text-xs font-bold uppercase tracking-wider">Keahlian</span>
         <h2 class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white">Teknologi & Perangkat Lunak</h2>
-        <p class="text-sm text-slate-600 dark:text-slate-400">Peralatan desain grafis, produktivitas naskah, dan instrumen yang aktif digunakan.</p>
+        <p class="text-sm text-slate-600 dark:text-slate-400">Peralatan desain grafis, produktivitas, dan instrumen yang aktif digunakan.</p>
       </div>
 
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-        <div class="p-5 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 hover:border-sky-500 hover:-translate-y-1.5 transition duration-300 group shadow-sm">
-          <span class="text-3xl group-hover:scale-110 transition">🎨</span>
-          <span class="text-sm font-bold text-slate-800 dark:text-slate-200">Canva</span>
+        <!-- Canva -->
+        <div class="p-6 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 hover:border-sky-500 hover:-translate-y-1.5 transition duration-300 group shadow-sm">
+          <svg class="w-8 h-8 text-sky-500 group-hover:scale-110 transition" fill="currentColor" viewBox="0 0 24 24"><path d="M12.012 0C5.388 0 0 5.388 0 12.012s5.388 12.012 12.012 12.012c6.624 0 12.012-5.388 12.012-12.012S18.636 0 12.012 0zm3.882 17.518c-1.393.596-3.08.621-4.484.072-2.18-.853-3.642-3.132-3.642-5.679 0-3.324 2.536-6.046 5.86-6.046 1.83 0 3.447.818 4.542 2.115l-1.637 1.487c-.742-.878-1.782-1.428-2.905-1.428-2.146 0-3.791 1.764-3.791 3.872 0 1.631.961 3.107 2.404 3.694.978.398 2.176.365 3.15-.098l.503 1.991z"/></svg>
+          <span class="text-xs font-bold text-slate-800 dark:text-slate-200">Canva</span>
         </div>
-        <div class="p-5 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 hover:border-sky-500 hover:-translate-y-1.5 transition duration-300 group shadow-sm">
-          <span class="text-3xl group-hover:scale-110 transition">🖌️</span>
-          <span class="text-sm font-bold text-slate-800 dark:text-slate-200">CorelDraw</span>
+
+        <!-- CorelDraw -->
+        <div class="p-6 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 hover:border-sky-500 hover:-translate-y-1.5 transition duration-300 group shadow-sm">
+          <svg class="w-8 h-8 text-emerald-500 group-hover:scale-110 transition" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.93V18h-2v-1.07c-2.83-.48-5-2.94-5-5.93s2.17-5.45 5-5.93V4h2v1.07c2.83.48 5 2.94 5 5.93s-2.17 5.45-5 5.93zM12 6.5C9.51 6.5 7.5 8.51 7.5 11s2.01 4.5 4.5 4.5 4.5-2.01 4.5-4.5S14.49 6.5 12 6.5z"/></svg>
+          <span class="text-xs font-bold text-slate-800 dark:text-slate-200">CorelDraw</span>
         </div>
-        <div class="p-5 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 hover:border-sky-500 hover:-translate-y-1.5 transition duration-300 group shadow-sm">
-          <span class="text-3xl group-hover:scale-110 transition">📸</span>
-          <span class="text-sm font-bold text-slate-800 dark:text-slate-200">Photoshop</span>
+
+        <!-- Photoshop -->
+        <div class="p-6 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 hover:border-sky-500 hover:-translate-y-1.5 transition duration-300 group shadow-sm">
+          <svg class="w-8 h-8 text-blue-500 group-hover:scale-110 transition" fill="currentColor" viewBox="0 0 24 24"><path d="M0 3v18h24V3H0zm18.9 14.3c-.6.4-1.4.6-2.4.6-1.5 0-2.6-.5-3.3-1.4-.7-.9-1.1-2.2-1.1-3.9 0-1.8.4-3.1 1.2-4 .8-.9 1.9-1.3 3.3-1.3 1 0 1.7.2 2.3.5v2.1c-.6-.4-1.3-.6-2-.6-1.6 0-2.4 1.1-2.4 3.3 0 1.2.2 2.1.6 2.6.4.6 1 .8 1.8.8.7 0 1.4-.2 2-.5v2.3zM9.4 8.7H7.3v8.6H5.2V6.6h4.2c1.4 0 2.4.3 3.1 1 .7.6 1 1.5 1 2.6 0 1.2-.4 2.1-1.1 2.8-.7.7-1.8 1.1-3 1.1V8.7zm0-0.3c.7 0 1.2-.1 1.5-.4.3-.3.5-.7.5-1.3 0-.6-.2-1-.5-1.3-.3-.3-.8-.4-1.5-.4H7.3v3.4h2.1z"/></svg>
+          <span class="text-xs font-bold text-slate-800 dark:text-slate-200">Photoshop</span>
         </div>
-        <div class="p-5 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 hover:border-sky-500 hover:-translate-y-1.5 transition duration-300 group shadow-sm">
-          <span class="text-3xl group-hover:scale-110 transition">📐</span>
-          <span class="text-sm font-bold text-slate-800 dark:text-slate-200">Illustrator</span>
+
+        <!-- Illustrator -->
+        <div class="p-6 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 hover:border-sky-500 hover:-translate-y-1.5 transition duration-300 group shadow-sm">
+          <svg class="w-8 h-8 text-amber-500 group-hover:scale-110 transition" fill="currentColor" viewBox="0 0 24 24"><path d="M0 3v18h24V3H0zm10.7 14.3H8.5l-.8-2.6H4.3l-.8 2.6H1.3l3.8-10.7h2.2l3.4 10.7zm6.9 0h-2.1v-7.3h2.1v7.3zm-.1-8.7h-1.9V6.6h1.9v2zM6 9.8l-1.3 4h2.5L6 9.8z"/></svg>
+          <span class="text-xs font-bold text-slate-800 dark:text-slate-200">Illustrator</span>
         </div>
-        <div class="p-5 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 hover:border-sky-500 hover:-translate-y-1.5 transition duration-300 group shadow-sm">
-          <span class="text-3xl group-hover:scale-110 transition">📄</span>
-          <span class="text-sm font-bold text-slate-800 dark:text-slate-200">Microsoft Word</span>
+
+        <!-- Microsoft Word -->
+        <div class="p-6 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 hover:border-sky-500 hover:-translate-y-1.5 transition duration-300 group shadow-sm">
+          <svg class="w-8 h-8 text-blue-600 group-hover:scale-110 transition" fill="currentColor" viewBox="0 0 24 24"><path d="M21.5 3h-19C1.1 3 0 4.1 0 5.5v13C0 19.9 1.1 21 2.5 21h19c1.4 0 2.5-1.1 2.5-2.5v-13C24 4.1 22.9 3 21.5 3zm-6.2 13.5l-2.1-7.2-2.1 7.2h-1.8L6.2 7.5h2.1l2 6.5 2-6.5h1.9l2 6.5 2-6.5h2.1l-3 9h-2z"/></svg>
+          <span class="text-xs font-bold text-slate-800 dark:text-slate-200">Microsoft Word</span>
         </div>
-        <div class="p-5 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 hover:border-sky-500 hover:-translate-y-1.5 transition duration-300 group shadow-sm">
-          <span class="text-3xl group-hover:scale-110 transition">✍️</span>
-          <span class="text-sm font-bold text-slate-800 dark:text-slate-200">Blogger</span>
+
+        <!-- Blogger -->
+        <div class="p-6 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 hover:border-sky-500 hover:-translate-y-1.5 transition duration-300 group shadow-sm">
+          <svg class="w-8 h-8 text-orange-500 group-hover:scale-110 transition" fill="currentColor" viewBox="0 0 24 24"><path d="M21.5 0h-19C1.1 0 0 1.1 0 2.5v19C0 22.9 1.1 24 2.5 24h19c1.4 0 2.5-1.1 2.5-2.5v-19C24 1.1 22.9 0 21.5 0zM14 6h3.5C18.9 6 20 7.1 20 8.5v.5c0 1.4-1.1 2.5-2.5 2.5h-.5v.5c0 1.4 1.1 2.5 2.5 2.5v1c0 1.4-1.1 2.5-2.5 2.5H8.5C7.1 18 6 16.9 6 15.5V8.5C6 7.1 7.1 6 8.5 6H14z"/></svg>
+          <span class="text-xs font-bold text-slate-800 dark:text-slate-200">Blogger</span>
         </div>
-        <div class="p-5 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 hover:border-sky-500 hover:-translate-y-1.5 transition duration-300 group shadow-sm">
-          <span class="text-3xl group-hover:scale-110 transition">⚡</span>
-          <span class="text-sm font-bold text-slate-800 dark:text-slate-200">Tailwind CSS</span>
+
+        <!-- Tailwind CSS -->
+        <div class="p-6 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 hover:border-sky-500 hover:-translate-y-1.5 transition duration-300 group shadow-sm">
+          <svg class="w-8 h-8 text-sky-400 group-hover:scale-110 transition" fill="currentColor" viewBox="0 0 24 24"><path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"/></svg>
+          <span class="text-xs font-bold text-slate-800 dark:text-slate-200">Tailwind CSS</span>
         </div>
-        <div class="p-5 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 hover:border-sky-500 hover:-translate-y-1.5 transition duration-300 group shadow-sm">
-          <span class="text-3xl group-hover:scale-110 transition">📊</span>
-          <span class="text-sm font-bold text-slate-800 dark:text-slate-200">Google Sheets DB</span>
+
+        <!-- Google Sheets DB -->
+        <div class="p-6 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 hover:border-sky-500 hover:-translate-y-1.5 transition duration-300 group shadow-sm">
+          <svg class="w-8 h-8 text-emerald-500 group-hover:scale-110 transition" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 14H6v-3h4v3zm0-5H6V9h4v3zm6 5h-4v-3h4v3zm0-5h-4V9h4v3zm3 5h-1v-3h1v3zm0-5h-1V9h1v3z"/></svg>
+          <span class="text-xs font-bold text-slate-800 dark:text-slate-200">Google Sheets DB</span>
         </div>
       </div>
     </section>
 
-    <!-- ==================== SEKSI 4: BLOG / CATATAN ==================== -->
+    <!-- ==================== SEKSI 4: BLOG / CATATAN (TERKONEKSI SHEETS) ==================== -->
     <section id="sec-blog" class="hidden space-y-10 py-8">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-4">
         <div>
@@ -313,9 +386,11 @@
         <!-- MODUL 1: AL-QURAN DIGITAL LENGKAP -->
         <div class="p-6 rounded-3xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col justify-between shadow-sm hover:border-sky-500 transition">
           <div class="space-y-3">
-            <span class="text-3xl">📖</span>
+            <div class="w-10 h-10 rounded-2xl bg-sky-500/10 text-sky-500 flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+            </div>
             <h3 class="text-base font-bold text-slate-900 dark:text-white">Al-Qur'an Digital</h3>
-            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Akses 114 surah lengkap 30 juz, terjemahan resmi, transliterasi latin, dan audio tilawah.</p>
+            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Akses 114 surah lengkap 30 juz, terjemahan resmi, transliterasi latin, dan audio.</p>
           </div>
           <button onclick="bukaAlquranDigital()" class="mt-6 w-full py-3 rounded-xl bg-sky-500 hover:bg-sky-400 text-white text-xs font-bold transition shadow-sm">
             Buka Al-Qur'an 30 Juz
@@ -325,7 +400,9 @@
         <!-- MODUL 2: TUGAS KULIAH -->
         <div class="p-6 rounded-3xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col justify-between shadow-sm hover:border-sky-500 transition">
           <div class="space-y-3">
-            <span class="text-3xl">⚖️</span>
+            <div class="w-10 h-10 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            </div>
             <h3 class="text-base font-bold text-slate-900 dark:text-white">Arsip Tugas Kuliah</h3>
             <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Kumpulan makalah hukum, resume asas legalitas, dan berkas tugas kuliah siap unduh.</p>
           </div>
@@ -337,7 +414,9 @@
         <!-- MODUL 3: PEMBELAJARAN N3 -->
         <div class="p-6 rounded-3xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col justify-between shadow-sm hover:border-sky-500 transition">
           <div class="space-y-3">
-            <span class="text-3xl">🎌</span>
+            <div class="w-10 h-10 rounded-2xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+            </div>
             <h3 class="text-base font-bold text-slate-900 dark:text-white">Modul Pembelajaran N3</h3>
             <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Bank soal latihan, tata bahasa (bunpou), dan hafalan kanji tingkat menengah.</p>
           </div>
@@ -422,6 +501,124 @@
 
     let daftarSurahCache = [];
 
+    // DATA CADANGAN 114 SURAH LENGKAP
+    const masterSurahList = [
+      { nomor: 1, nama_latin: "Al-Fatihah", nama: "الفاتحة", arti: "Pembukaan", jumlah_ayat: 7 },
+      { nomor: 2, nama_latin: "Al-Baqarah", nama: "البقرة", arti: "Sapi Betina", jumlah_ayat: 286 },
+      { nomor: 3, nama_latin: "Ali 'Imran", nama: "آل عمران", arti: "Keluarga Imran", jumlah_ayat: 200 },
+      { nomor: 4, nama_latin: "An-Nisa'", nama: "النساء", arti: "Wanita", jumlah_ayat: 176 },
+      { nomor: 5, nama_latin: "Al-Ma'idah", nama: "المائدة", arti: "Hidangan", jumlah_ayat: 120 },
+      { nomor: 6, nama_latin: "Al-An'am", nama: "الأنعام", arti: "Binatang Ternak", jumlah_ayat: 165 },
+      { nomor: 7, nama_latin: "Al-A'raf", nama: "الأعراف", arti: "Tempat Tertinggi", jumlah_ayat: 206 },
+      { nomor: 8, nama_latin: "Al-Anfal", nama: "الأنفال", arti: "Rampasan Perang", jumlah_ayat: 75 },
+      { nomor: 9, nama_latin: "At-Taubah", nama: "التوبة", arti: "Pengampunan", jumlah_ayat: 129 },
+      { nomor: 10, nama_latin: "Yunus", nama: "يونس", arti: "Nabi Yunus", jumlah_ayat: 109 },
+      { nomor: 11, nama_latin: "Hud", nama: "هود", arti: "Nabi Hud", jumlah_ayat: 123 },
+      { nomor: 12, nama_latin: "Yusuf", nama: "يوسف", arti: "Nabi Yusuf", jumlah_ayat: 111 },
+      { nomor: 13, nama_latin: "Ar-Ra'd", nama: "الرعد", arti: "Guruh", jumlah_ayat: 43 },
+      { nomor: 14, nama_latin: "Ibrahim", nama: "إبراهيم", arti: "Nabi Ibrahim", jumlah_ayat: 52 },
+      { nomor: 15, nama_latin: "Al-Hijr", nama: "الحجر", arti: "Bukit Hijr", jumlah_ayat: 99 },
+      { nomor: 16, nama_latin: "An-Nahl", nama: "النحل", arti: "Lebah", jumlah_ayat: 128 },
+      { nomor: 17, nama_latin: "Al-Isra'", nama: "الإسراء", arti: "Perjalanan Malam", jumlah_ayat: 111 },
+      { nomor: 18, nama_latin: "Al-Kahf", nama: "الكهف", arti: "Gua", jumlah_ayat: 110 },
+      { nomor: 19, nama_latin: "Maryam", nama: "مريم", arti: "Maryam", jumlah_ayat: 98 },
+      { nomor: 20, nama_latin: "Taha", nama: "طه", arti: "Taha", jumlah_ayat: 135 },
+      { nomor: 21, nama_latin: "Al-Anbiya'", nama: "الأنبياء", arti: "Para Nabi", jumlah_ayat: 112 },
+      { nomor: 22, nama_latin: "Al-Hajj", nama: "الحج", arti: "Haji", jumlah_ayat: 78 },
+      { nomor: 23, nama_latin: "Al-Mu'minun", nama: "المؤمنون", arti: "Orang Mukmin", jumlah_ayat: 118 },
+      { nomor: 24, nama_latin: "An-Nur", nama: "النور", arti: "Cahaya", jumlah_ayat: 64 },
+      { nomor: 25, nama_latin: "Al-Furqan", nama: "الفرقان", arti: "Pembeda", jumlah_ayat: 77 },
+      { nomor: 26, nama_latin: "Asy-Syu'ara'", nama: "الشعراء", arti: "Penyair", jumlah_ayat: 227 },
+      { nomor: 27, nama_latin: "An-Naml", nama: "النمل", arti: "Semut", jumlah_ayat: 93 },
+      { nomor: 28, nama_latin: "Al-Qasas", nama: "القصص", arti: "Kisah-Kisah", jumlah_ayat: 88 },
+      { nomor: 29, nama_latin: "Al-'Ankabut", nama: "العنكبوت", arti: "Laba-Laba", jumlah_ayat: 69 },
+      { nomor: 30, nama_latin: "Ar-Rum", nama: "الروم", arti: "Bangsa Romawi", jumlah_ayat: 60 },
+      { nomor: 31, nama_latin: "Luqman", nama: "لقمان", arti: "Keluarga Luqman", jumlah_ayat: 34 },
+      { nomor: 32, nama_latin: "As-Sajdah", nama: "السجدة", arti: "Sujud", jumlah_ayat: 30 },
+      { nomor: 33, nama_latin: "Al-Ahzab", nama: "الأحزاب", arti: "Golongan Bersekutu", jumlah_ayat: 73 },
+      { nomor: 34, nama_latin: "Saba'", nama: "سبأ", arti: "Kaum Saba'", jumlah_ayat: 54 },
+      { nomor: 35, nama_latin: "Fatir", nama: "فاطر", arti: "Pencipta", jumlah_ayat: 45 },
+      { nomor: 36, nama_latin: "Yasin", nama: "يس", arti: "Yasin", jumlah_ayat: 83 },
+      { nomor: 37, nama_latin: "As-Saffat", nama: "الصافات", arti: "Barisan-Barisan", jumlah_ayat: 182 },
+      { nomor: 38, nama_latin: "Sad", nama: "ص", arti: "Sad", jumlah_ayat: 88 },
+      { nomor: 39, nama_latin: "Az-Zumar", nama: "الزمر", arti: "Rombongan", jumlah_ayat: 75 },
+      { nomor: 40, nama_latin: "Gafir", nama: "غافر", arti: "Maha Pengampun", jumlah_ayat: 85 },
+      { nomor: 41, nama_latin: "Fussilat", nama: "فصلت", arti: "Dijelaskan", jumlah_ayat: 54 },
+      { nomor: 42, nama_latin: "Asy-Syura", nama: "الشورى", arti: "Musyawarah", jumlah_ayat: 53 },
+      { nomor: 43, nama_latin: "Az-Zukhruf", nama: "الزخرف", arti: "Perhiasan", jumlah_ayat: 89 },
+      { nomor: 44, nama_latin: "Ad-Dukhan", nama: "الدخان", arti: "Kabut", jumlah_ayat: 59 },
+      { nomor: 45, nama_latin: "Al-Jasiyah", nama: "الجاثية", arti: "Yang Berlutut", jumlah_ayat: 37 },
+      { nomor: 46, nama_latin: "Al-Ahqaf", nama: "الأحقاف", arti: "Bukit Pasir", jumlah_ayat: 35 },
+      { nomor: 47, nama_latin: "Muhammad", nama: "محمد", arti: "Nabi Muhammad", jumlah_ayat: 38 },
+      { nomor: 48, nama_latin: "Al-Fath", nama: "الفتح", arti: "Kemenangan", jumlah_ayat: 29 },
+      { nomor: 49, nama_latin: "Al-Hujurat", nama: "الحجرات", arti: "Kamar-Kamar", jumlah_ayat: 18 },
+      { nomor: 50, nama_latin: "Qaf", nama: "ق", arti: "Qaf", jumlah_ayat: 45 },
+      { nomor: 51, nama_latin: "Az-Zariyat", nama: "الذاريات", arti: "Angin Menerbangkan", jumlah_ayat: 60 },
+      { nomor: 52, nama_latin: "At-Tur", nama: "الطور", arti: "Bukit Tursina", jumlah_ayat: 49 },
+      { nomor: 53, nama_latin: "An-Najm", nama: "النجم", arti: "Bintang", jumlah_ayat: 62 },
+      { nomor: 54, nama_latin: "Al-Qamar", nama: "القمر", arti: "Bulan", jumlah_ayat: 55 },
+      { nomor: 55, nama_latin: "Ar-Rahman", nama: "الرحمن", arti: "Maha Pemurah", jumlah_ayat: 78 },
+      { nomor: 56, nama_latin: "Al-Waqi'ah", nama: "الواقعة", arti: "Hari Kiamat", jumlah_ayat: 96 },
+      { nomor: 57, nama_latin: "Al-Hadid", nama: "الحديد", arti: "Besi", jumlah_ayat: 29 },
+      { nomor: 58, nama_latin: "Al-Mujadilah", nama: "المجادلة", arti: "Gugatan", jumlah_ayat: 22 },
+      { nomor: 59, nama_latin: "Al-Hasyr", nama: "الحشر", arti: "Pengusiran", jumlah_ayat: 24 },
+      { nomor: 60, nama_latin: "Al-Mumtahanah", nama: "الممتحنة", arti: "Wanita Diuji", jumlah_ayat: 13 },
+      { nomor: 61, nama_latin: "As-Saff", nama: "الصف", arti: "Barisan", jumlah_ayat: 14 },
+      { nomor: 62, nama_latin: "Al-Jumu'ah", nama: "الجمعة", arti: "Hari Jumat", jumlah_ayat: 11 },
+      { nomor: 63, nama_latin: "Al-Munafiqun", nama: "المنافقون", arti: "Orang Munafik", jumlah_ayat: 11 },
+      { nomor: 64, nama_latin: "At-Tagabun", nama: "التغابن", arti: "Hari Ditampakkan", jumlah_ayat: 18 },
+      { nomor: 65, nama_latin: "At-Talaq", nama: "الطلاق", arti: "Perceraian", jumlah_ayat: 12 },
+      { nomor: 66, nama_latin: "At-Tahrim", nama: "التحريم", arti: "Pengharaman", jumlah_ayat: 12 },
+      { nomor: 67, nama_latin: "Al-Mulk", nama: "الملك", arti: "Kerajaan", jumlah_ayat: 30 },
+      { nomor: 68, nama_latin: "Al-Qalam", nama: "القلم", arti: "Pena", jumlah_ayat: 52 },
+      { nomor: 69, nama_latin: "Al-Haqqah", nama: "الحاقة", arti: "Hari Kiamat Pasti", jumlah_ayat: 52 },
+      { nomor: 70, nama_latin: "Al-Ma'arij", nama: "المعارج", arti: "Tempat Naik", jumlah_ayat: 44 },
+      { nomor: 71, nama_latin: "Nuh", nama: "نوح", arti: "Nabi Nuh", jumlah_ayat: 28 },
+      { nomor: 72, nama_latin: "Al-Jinn", nama: "الجن", arti: "Jin", jumlah_ayat: 28 },
+      { nomor: 73, nama_latin: "Al-Muzzammil", nama: "المزمل", arti: "Orang Berselimut", jumlah_ayat: 20 },
+      { nomor: 74, nama_latin: "Al-Muddassir", nama: "المدثر", arti: "Orang Berkemul", jumlah_ayat: 56 },
+      { nomor: 75, nama_latin: "Al-Qiyamah", nama: "القيامة", arti: "Hari Berbangkit", jumlah_ayat: 40 },
+      { nomor: 76, nama_latin: "Al-Insan", nama: "الإنسان", arti: "Manusia", jumlah_ayat: 31 },
+      { nomor: 77, nama_latin: "Al-Mursalat", nama: "المرسلات", arti: "Malaikat Dikirim", jumlah_ayat: 50 },
+      { nomor: 78, nama_latin: "An-Naba'", nama: "النبأ", arti: "Berita Besar", jumlah_ayat: 40 },
+      { nomor: 79, nama_latin: "An-Nazi'at", nama: "النازعات", arti: "Malaikat Mencabut", jumlah_ayat: 46 },
+      { nomor: 80, nama_latin: "'Abasa", nama: "عبس", arti: "Bermuka Masam", jumlah_ayat: 42 },
+      { nomor: 81, nama_latin: "At-Takwir", nama: "التكوير", arti: "Menggulung", jumlah_ayat: 29 },
+      { nomor: 82, nama_latin: "Al-Infitar", nama: "الانفطار", arti: "Terbelah", jumlah_ayat: 19 },
+      { nomor: 83, nama_latin: "Al-Mutaffifin", nama: "المطففين", arti: "Orang Curang", jumlah_ayat: 36 },
+      { nomor: 84, nama_latin: "Al-Insyiqaq", nama: "الانشقاق", arti: "Terbelah", jumlah_ayat: 25 },
+      { nomor: 85, nama_latin: "Al-Buruj", nama: "البروج", arti: "Gugusan Bintang", jumlah_ayat: 22 },
+      { nomor: 86, nama_latin: "At-Tariq", nama: "الطارق", arti: "Yang Datang Malam", jumlah_ayat: 17 },
+      { nomor: 87, nama_latin: "Al-A'la", nama: "الأعلى", arti: "Maha Tinggi", jumlah_ayat: 19 },
+      { nomor: 88, nama_latin: "Al-Gasyiyah", nama: "الغاشية", arti: "Hari Pembalasan", jumlah_ayat: 26 },
+      { nomor: 89, nama_latin: "Al-Fajr", nama: "الفجر", arti: "Fajar", jumlah_ayat: 30 },
+      { nomor: 90, nama_latin: "Al-Balad", nama: "البلد", arti: "Negeri", jumlah_ayat: 20 },
+      { nomor: 91, nama_latin: "Asy-Syams", nama: "الشمس", arti: "Matahari", jumlah_ayat: 15 },
+      { nomor: 92, nama_latin: "Al-Lail", nama: "الليل", arti: "Malam", jumlah_ayat: 21 },
+      { nomor: 93, nama_latin: "Ad-Duha", nama: "الضحى", arti: "Waktu Duha", jumlah_ayat: 11 },
+      { nomor: 94, nama_latin: "Asy-Syarh", nama: "الشرح", arti: "Kelapangan", jumlah_ayat: 8 },
+      { nomor: 95, nama_latin: "At-Tin", nama: "التين", arti: "Buah Tin", jumlah_ayat: 8 },
+      { nomor: 96, nama_latin: "Al-'Alaq", nama: "العلق", arti: "Segumpal Darah", jumlah_ayat: 19 },
+      { nomor: 97, nama_latin: "Al-Qadr", nama: "القدر", arti: "Kemuliaan", jumlah_ayat: 5 },
+      { nomor: 98, nama_latin: "Al-Bayyinah", nama: "البينة", arti: "Bukti Nyata", jumlah_ayat: 8 },
+      { nomor: 99, nama_latin: "Az-Zalzalah", nama: "الزلزلة", arti: "Keguncangan", jumlah_ayat: 8 },
+      { nomor: 100, nama_latin: "Al-'Adiyat", nama: "العاديات", arti: "Kuda Perang", jumlah_ayat: 11 },
+      { nomor: 101, nama_latin: "Al-Qari'ah", nama: "القارعة", arti: "Hari Kiamat", jumlah_ayat: 11 },
+      { nomor: 102, nama_latin: "At-Takasur", nama: "التكاثر", arti: "Bermegah-Megahan", jumlah_ayat: 8 },
+      { nomor: 103, nama_latin: "Al-'Asr", nama: "العصر", arti: "Masa", jumlah_ayat: 3 },
+      { nomor: 104, nama_latin: "Al-Humazah", nama: "الهمزة", arti: "Pengumpat", jumlah_ayat: 9 },
+      { nomor: 105, nama_latin: "Al-Fil", nama: "الفيل", arti: "Gajah", jumlah_ayat: 5 },
+      { nomor: 106, nama_latin: "Quraisy", nama: "قريش", arti: "Suku Quraisy", jumlah_ayat: 4 },
+      { nomor: 107, nama_latin: "Al-Ma'un", nama: "الماعون", arti: "Barang Berguna", jumlah_ayat: 7 },
+      { nomor: 108, nama_latin: "Al-Kausar", nama: "الكوثر", arti: "Nikmat Banyak", jumlah_ayat: 3 },
+      { nomor: 109, nama_latin: "Al-Kafirun", nama: "الكافرون", arti: "Orang Kafir", jumlah_ayat: 6 },
+      { nomor: 110, nama_latin: "An-Nasr", nama: "النصر", arti: "Pertolongan", jumlah_ayat: 3 },
+      { nomor: 111, nama_latin: "Al-Lahab", nama: "اللهب", arti: "Gejolak Api", jumlah_ayat: 5 },
+      { nomor: 112, nama_latin: "Al-Ikhlas", nama: "الإخلاص", arti: "Keesaan Allah", jumlah_ayat: 4 },
+      { nomor: 113, nama_latin: "Al-Falaq", nama: "الفلق", arti: "Waktu Subuh", jumlah_ayat: 5 },
+      { nomor: 114, nama_latin: "An-Nas", nama: "الناس", arti: "Manusia", jumlah_ayat: 6 }
+    ];
+
     function updateNavIndicator(activeButton) {
       const indicator = document.getElementById('nav-indicator');
       if (!indicator || !activeButton) return;
@@ -495,7 +692,7 @@
             localDB = data;
           }
         } catch (err) {
-          console.log("Menggunakan data fallback:", err);
+          console.log("Menggunakan data cadangan:", err);
         }
       }
       terapkanData();
@@ -505,16 +702,12 @@
       if (localDB.profil.nama_lengkap) document.getElementById('hero-nama').innerText = localDB.profil.nama_lengkap;
       if (localDB.profil.quote) document.getElementById('hero-quote').innerText = localDB.profil.quote;
 
-      // PARSER CERDAS UNTUK FOTO GOOGLE DRIVE HD
       const imgEl = document.getElementById('hero-avatar');
       if (localDB.profil && localDB.profil.foto_avatar) {
         let url = localDB.profil.foto_avatar.trim();
         let fileId = '';
-        if (url.includes('/d/')) {
-          fileId = url.split('/d/')[1].split('/')[0].split('?')[0];
-        } else if (url.includes('id=')) {
-          fileId = url.split('id=')[1].split('&')[0];
-        }
+        if (url.includes('/d/')) fileId = url.split('/d/')[1].split('/')[0].split('?')[0];
+        else if (url.includes('id=')) fileId = url.split('id=')[1].split('&')[0];
 
         if (fileId) {
           imgEl.src = `https://lh3.googleusercontent.com/d/${fileId}`;
@@ -607,7 +800,7 @@
       type();
     }
 
-    // ==================== MODUL EKSPLOR ====================
+    // ==================== AL-QURAN DIGITAL LENGKAP ANTI-ERROR ====================
     async function bukaAlquranDigital() {
       const display = document.getElementById('eksplor-detail-display');
       display.classList.remove('hidden');
@@ -615,38 +808,44 @@
         <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
           <div>
             <h3 class="text-xl font-bold text-slate-900 dark:text-white">Al-Qur'an Digital 30 Juz</h3>
-            <p class="text-xs text-slate-500">Pilih surah untuk membaca teks Arab, transliterasi latin, dan terjemahan bahasa Indonesia.</p>
+            <p class="text-xs text-slate-500">Pilih surah untuk membaca teks Arab, transliterasi latin, dan arti bahasa Indonesia.</p>
           </div>
           <button onclick="tutupDisplayEksplor()" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 font-bold">Tutup</button>
         </div>
-        <div id="quran-grid-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 max-h-[500px] overflow-y-auto p-1">
-          <p class="text-xs text-slate-400 py-6 text-center col-span-3">Memuat daftar 114 Surah...</p>
-        </div>
+        <div id="quran-grid-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 max-h-[500px] overflow-y-auto p-1"></div>
       `;
       display.scrollIntoView({ behavior: 'smooth' });
 
+      daftarSurahCache = masterSurahList;
+      renderDaftarSurah(daftarSurahCache);
+
       try {
-        if (daftarSurahCache.length === 0) {
-          const res = await fetch('https://equran.nos.wjv-1.neo.id/api/surat');
-          daftarSurahCache = await res.json();
+        const res = await fetch('https://equran.nos.wjv-1.neo.id/api/surat');
+        const data = await res.json();
+        if (data && data.length > 0) {
+          daftarSurahCache = data;
+          renderDaftarSurah(daftarSurahCache);
         }
-        
-        const grid = document.getElementById('quran-grid-container');
-        grid.innerHTML = daftarSurahCache.map(s => `
-          <div onclick="bacaDetailSurah(${s.nomor})" class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 hover:border-sky-500 cursor-pointer flex items-center justify-between transition group">
-            <div class="flex items-center gap-3">
-              <span class="w-8 h-8 rounded-xl bg-sky-500/10 text-sky-500 text-xs font-black flex items-center justify-center">${s.nomor}</span>
-              <div>
-                <h4 class="text-xs font-bold text-slate-900 dark:text-white group-hover:text-sky-500 transition">${s.nama_latin}</h4>
-                <p class="text-[10px] text-slate-400">${s.arti} • ${s.jumlah_ayat} Ayat</p>
-              </div>
-            </div>
-            <span class="quran-font text-lg text-slate-800 dark:text-slate-200">${s.nama}</span>
-          </div>
-        `).join('');
-      } catch (err) {
-        document.getElementById('quran-grid-container').innerHTML = `<p class="text-xs text-rose-500 col-span-3 text-center">Gagal memuat surah. Periksa jaringan internet.</p>`;
+      } catch (e) {
+        // Fallback ke masterSurahList jika koneksi luar lambat
       }
+    }
+
+    function renderDaftarSurah(list) {
+      const grid = document.getElementById('quran-grid-container');
+      if (!grid) return;
+      grid.innerHTML = list.map(s => `
+        <div onclick="bacaDetailSurah(${s.nomor})" class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 hover:border-sky-500 cursor-pointer flex items-center justify-between transition group shadow-sm">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-xl bg-sky-500/10 text-sky-500 text-xs font-black flex items-center justify-center">${s.nomor}</span>
+            <div>
+              <h4 class="text-xs font-bold text-slate-900 dark:text-white group-hover:text-sky-500 transition">${s.nama_latin}</h4>
+              <p class="text-[10px] text-slate-400">${s.arti} • ${s.jumlah_ayat} Ayat</p>
+            </div>
+          </div>
+          <span class="quran-font text-lg text-slate-800 dark:text-slate-200">${s.nama}</span>
+        </div>
+      `).join('');
     }
 
     async function bacaDetailSurah(nomor) {
@@ -680,7 +879,12 @@
         `;
         display.scrollIntoView({ behavior: 'smooth' });
       } catch (err) {
-        display.innerHTML = `<p class="text-xs text-rose-500 text-center py-6">Gagal memuat isi ayat.</p>`;
+        display.innerHTML = `
+          <div class="text-center py-8 space-y-3">
+            <p class="text-xs text-rose-500 font-bold">Gagal memuat isi ayat dari server.</p>
+            <button onclick="bukaAlquranDigital()" class="px-4 py-2 bg-sky-500 text-white rounded-xl text-xs font-bold">Kembali ke Daftar Surah</button>
+          </div>
+        `;
       }
     }
 
@@ -725,8 +929,8 @@
           <button onclick="tutupDisplayEksplor()" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 font-bold">Tutup</button>
         </div>
         <div class="py-12 flex flex-col items-center justify-center text-center space-y-4">
-          <div class="w-16 h-16 rounded-2xl bg-sky-500/10 text-sky-500 flex items-center justify-center text-3xl animate-bounce">
-            ⏳
+          <div class="w-16 h-16 rounded-2xl bg-sky-500/10 text-sky-500 flex items-center justify-center animate-bounce">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           </div>
           <span class="px-3 py-1 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold tracking-wider uppercase border border-amber-500/20">
             Sedang Dalam Tahap Pengembangan

@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ilaljsa</title>
+  <title>ilaljsa • Personal Space</title>
   
+  <!-- Tailwind CSS & Google Fonts -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -12,36 +13,52 @@
       theme: {
         extend: {
           colors: {
-            neutralDark: '#090d16',
-            cardDark: '#111726',
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              500: '#0ea5e9',
+              600: '#0284c7',
+            },
+            neutralDark: '#080d1a',
+            cardDark: '#0f172a',
+            borderDark: '#1e293b'
           }
         }
       }
     }
   </script>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Amiri&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   
   <style>
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       transition: background-color 0.3s ease, color 0.3s ease;
     }
-    .mono-font {
-      font-family: 'JetBrains Mono', monospace;
-    }
+    .mono-font { font-family: 'JetBrains Mono', monospace; }
+    .quran-font { font-family: 'Amiri', serif; }
 
     .bg-dots-dark {
-      background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+      background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
       background-size: 26px 26px;
     }
     .bg-dots-light {
-      background-image: radial-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+      background-image: radial-gradient(rgba(14, 165, 233, 0.08) 1px, transparent 1px);
       background-size: 26px 26px;
     }
 
+    /* Animasi mengambang santai (Slow Float) */
+    @keyframes slowFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    .animate-slow-float {
+      animation: slowFloat 4.5s ease-in-out infinite;
+    }
+
+    /* Kapsul geser menu */
     #nav-indicator {
       position: absolute;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
       z-index: 0;
     }
     .tab-item {
@@ -54,67 +71,52 @@
       width: 2px;
       animation: blink 1s infinite;
     }
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
-
-    /* Animasi goyang santai mengikuti irama musik */
-    @keyframes chillBeat {
-      0% { transform: translateY(0px) rotate(0deg); }
-      25% { transform: translateY(-4px) rotate(-1.5deg) scale(1.01); }
-      50% { transform: translateY(0px) rotate(0deg); }
-      75% { transform: translateY(-3px) rotate(1.5deg) scale(1.01); }
-      100% { transform: translateY(0px) rotate(0deg); }
-    }
-
-    .music-vibing {
-      animation: chillBeat 2.2s ease-in-out infinite !important;
-    }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
   </style>
 </head>
-<body class="bg-slate-50 dark:bg-neutralDark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col justify-between selection:bg-slate-300 selection:text-black bg-dots-light dark:bg-dots-dark" id="body-root">
+<body class="bg-slate-50 dark:bg-neutralDark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col justify-between selection:bg-sky-500 selection:text-white bg-dots-light dark:bg-dots-dark" id="body-root">
 
-  <!-- TOP NAVBAR -->
-  <nav class="sticky top-0 z-50 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800/80 bg-white/80 dark:bg-neutralDark/80 px-6 py-4 transition-colors duration-300">
+  <!-- NAVBAR ATAS -->
+  <nav class="sticky top-0 z-50 backdrop-blur-xl border-b border-slate-200/80 dark:border-slate-800/80 bg-white/80 dark:bg-neutralDark/80 px-6 py-4 transition-colors">
     <div class="max-w-6xl mx-auto flex items-center justify-between">
       
-      <!-- LOGO BESAR: ilaljsa -->
+      <!-- LOGO: ilaljsa -->
       <a href="#" onclick="pindahTab('beranda', this); return false;" class="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 dark:text-white">
-        ilal<span class="text-slate-500 dark:text-slate-400 font-extrabold">jsa</span>
+        ilal<span class="text-sky-500 font-extrabold">jsa</span>
       </a>
 
-      <!-- MENU DENGAN KAPSUL GESER -->
+      <!-- MENU TABS DENGAN ANIMASI KAPSUL -->
       <div class="relative hidden md:flex items-center bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 p-1.5 rounded-2xl shadow-inner" id="nav-container">
         <div id="nav-indicator" class="rounded-xl bg-white dark:bg-slate-800 shadow-sm"></div>
 
-        <button onclick="pindahTab('beranda', this)" class="tab-item px-5 py-2 rounded-xl text-sm font-bold text-slate-900 dark:text-white transition">Beranda</button>
-        <button onclick="pindahTab('tentang', this)" class="tab-item px-5 py-2 rounded-xl text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">Tentang</button>
-        <button onclick="pindahTab('skills', this)" class="tab-item px-5 py-2 rounded-xl text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">Keahlian</button>
-        <button onclick="pindahTab('blog', this)" class="tab-item px-5 py-2 rounded-xl text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">Catatan</button>
-        <button onclick="pindahTab('eksplor', this)" class="tab-item px-5 py-2 rounded-xl text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">Eksplor</button>
+        <button onclick="pindahTab('beranda', this)" class="tab-item px-5 py-2 rounded-xl text-sm font-bold text-sky-600 dark:text-sky-400 transition">Beranda</button>
+        <button onclick="pindahTab('tentang', this)" class="tab-item px-5 py-2 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">Tentang</button>
+        <button onclick="pindahTab('skills', this)" class="tab-item px-5 py-2 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">Keahlian</button>
+        <button onclick="pindahTab('blog', this)" class="tab-item px-5 py-2 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">Catatan</button>
+        <button onclick="pindahTab('eksplor', this)" class="tab-item px-5 py-2 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">Eksplor</button>
       </div>
 
-      <!-- Action: Toggle Dark/Light Mode -->
+      <!-- TOGGLE THEME MINIMALIS & ELEGAN -->
       <div class="flex items-center gap-3">
-        <button onclick="toggleTheme()" id="btn-theme" class="w-10 h-10 rounded-2xl flex items-center justify-center bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-slate-400 dark:hover:border-slate-600 transition shadow-sm" title="Ubah Tema">
-          <span id="theme-icon" class="text-base">☀️</span>
+        <button onclick="toggleTheme()" class="w-10 h-10 rounded-2xl flex items-center justify-center bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-sky-500 transition shadow-sm" title="Ubah Tema">
+          <svg id="theme-sun" class="w-5 h-5 hidden dark:block text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+          <svg id="theme-moon" class="w-5 h-5 block dark:hidden text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
         </button>
       </div>
     </div>
   </nav>
 
-  <!-- MAIN WRAPPER (Rata Tengah Vertikal Presisi) -->
+  <!-- WRAPPER UTAMA -->
   <main class="max-w-6xl mx-auto w-full px-6 flex-grow flex flex-col justify-center">
     
     <!-- ==================== SEKSI 1: BERANDA ==================== -->
     <section id="sec-beranda" class="w-full py-10 md:py-16 flex items-center">
       <div class="w-full flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-16">
         
-        <!-- Kolom Teks Kiri -->
+        <!-- Info Teks -->
         <div class="space-y-6 max-w-xl text-center lg:text-left">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 text-xs font-semibold">
-            <span class="w-2 h-2 rounded-full bg-slate-900 dark:bg-slate-300 animate-pulse"></span>
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-50 dark:bg-sky-950/60 border border-sky-200 dark:border-sky-800 text-sky-600 dark:text-sky-400 text-xs font-bold tracking-wide">
+            <span class="w-2 h-2 rounded-full bg-sky-500 animate-pulse"></span>
             Personal Space & Notes
           </div>
           
@@ -122,18 +124,18 @@
             I'lal Jalalludin Syahputra
           </h1>
 
-          <div class="text-lg font-semibold text-slate-700 dark:text-slate-300 flex items-center justify-center lg:justify-start gap-2 h-8">
+          <div class="text-lg font-semibold text-slate-600 dark:text-slate-300 flex items-center justify-center lg:justify-start gap-2 h-8">
             <span class="text-slate-400 dark:text-slate-500 font-normal">Fokus:</span>
-            <span id="typewriter-text" class="text-slate-900 dark:text-white font-bold"></span>
-            <span class="cursor-blink bg-slate-900 dark:bg-white h-5"></span>
+            <span id="typewriter-text" class="text-sky-600 dark:text-sky-400 font-bold"></span>
+            <span class="cursor-blink bg-sky-500 h-5"></span>
           </div>
 
-          <div class="p-5 rounded-2xl bg-white dark:bg-cardDark/80 border-l-4 border-slate-900 dark:border-slate-400 border border-slate-200 dark:border-slate-800 text-sm text-slate-700 dark:text-slate-300 italic shadow-sm">
+          <div class="p-5 rounded-2xl bg-white dark:bg-cardDark border-l-4 border-sky-500 border border-slate-200 dark:border-slate-800 text-sm text-slate-700 dark:text-slate-300 italic shadow-sm">
             "<span id="hero-quote">Keadilan adalah fondasi akal, konsistensi adalah kunci keberhasilan.</span>"
           </div>
 
           <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
-            <button onclick="pindahTabByName('blog')" class="px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-200 text-white dark:text-slate-950 font-bold text-xs shadow-md transition active:scale-95">
+            <button onclick="pindahTabByName('blog')" class="px-6 py-3.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-white font-bold text-xs shadow-lg shadow-sky-500/20 transition active:scale-95">
               Jelajahi Catatan →
             </button>
             <button onclick="pindahTabByName('tentang')" class="px-6 py-3.5 rounded-xl bg-white dark:bg-cardDark hover:bg-slate-50 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 font-bold text-xs transition active:scale-95 shadow-sm">
@@ -142,22 +144,27 @@
           </div>
         </div>
 
-        <!-- Frame Foto Berjas dengan Kurung Kurawal Minimalis -->
+        <!-- FOTO PERSEGI KOTAK (SQUARE 1:1) + LINK DRIVE HD + GLOW BIRU -->
         <div class="relative flex items-center justify-center">
-          <div class="text-8xl md:text-9xl font-black text-slate-300 dark:text-slate-700 select-none -mr-4 mono-font">{</div>
+          <!-- Pendaran Cahaya Remang Biru -->
+          <div class="absolute w-72 h-72 sm:w-84 sm:h-84 bg-sky-500/25 dark:bg-sky-500/15 blur-[90px] rounded-full pointer-events-none -z-10"></div>
           
-          <div id="photo-vibe-box" class="relative transition duration-300">
-            <div class="w-60 h-72 sm:w-64 sm:h-80 md:w-72 md:h-96 rounded-3xl bg-white dark:bg-cardDark border-2 border-slate-200 dark:border-slate-800 p-2.5 flex items-center justify-center shadow-xl overflow-hidden">
+          <div class="text-8xl md:text-9xl font-black text-slate-300 dark:text-slate-800 select-none -mr-4 mono-font">{</div>
+          
+          <!-- Box Bingkai Kotak Presisi -->
+          <div class="animate-slow-float">
+            <div class="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 aspect-square rounded-3xl bg-white dark:bg-cardDark border-2 border-sky-100 dark:border-slate-800 p-2.5 flex items-center justify-center shadow-2xl overflow-hidden group">
               <img 
                 id="hero-avatar" 
-                src="https://lh3.googleusercontent.com/d/12TJ5Lb7erKUp6mV6hmAzpz09MuQUDOlS" 
+                src="https://lh3.googleusercontent.com/d/1Yulw-uNtRaOhin1uxctkrEXMhCW-ekSs" 
+                onerror="this.onerror=null; this.src='https://drive.google.com/thumbnail?id=1Yulw-uNtRaOhin1uxctkrEXMhCW-ekSs&sz=w2500';" 
                 alt="Foto I'lal Jalalludin Syahputra" 
-                class="w-full h-full object-cover object-top rounded-2xl shadow-inner transition duration-500"
+                class="w-full h-full object-cover object-top rounded-2xl transition duration-500 group-hover:scale-105"
               >
             </div>
           </div>
 
-          <div class="text-8xl md:text-9xl font-black text-slate-300 dark:text-slate-700 select-none -ml-4 mono-font">}</div>
+          <div class="text-8xl md:text-9xl font-black text-slate-300 dark:text-slate-800 select-none -ml-4 mono-font">}</div>
         </div>
 
       </div>
@@ -165,89 +172,182 @@
 
     <!-- ==================== SEKSI 2: TENTANG ==================== -->
     <section id="sec-tentang" class="hidden space-y-12 py-8">
-      <div class="border-b border-slate-200 dark:border-slate-800 pb-4">
-        <h2 class="text-2xl font-black text-slate-900 dark:text-white">Tentang Saya & Refleksi</h2>
-        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Eksplorasi ilmu hukum, otomasi sistem, dan catatan perjalanan studi.</p>
+      <div class="text-center max-w-2xl mx-auto space-y-3">
+        <span class="px-3 py-1 rounded-full bg-sky-100 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 text-xs font-bold uppercase tracking-wider">Tentang Saya</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white">Refleksi Diri & Perjalanan</h2>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Mendalami ilmu hukum, otomasi digital, dan catatan proses belajar.</p>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="tentang-narasi-container"></div>
-      <div class="space-y-4">
-        <h3 class="text-xs font-bold text-slate-500 dark:text-slate-400 tracking-wider uppercase">Linimasa Pendidikan</h3>
-        <div class="space-y-3" id="pendidikan-container"></div>
+
+      <div class="p-8 rounded-3xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 shadow-sm space-y-5 text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+        <p>Nama saya <b>I'lal Jalalludin Syahputra</b>. Saat ini saya mendedikasikan waktu saya untuk menempuh studi di bidang <b>Ilmu Hukum</b> sembari aktif mengeksplorasi integrasi teknologi modern dan pengelolaan arsip digital.</p>
+        <p>Bagi saya, hukum adalah pondasi keteraturan dan keadilan masyarakat, sedangkan teknologi adalah sarana otomasi yang mempercepat kebaikan dan efisiensi kerja. Website portofolio ini dibangun sebagai ruang catatan digital, pembuktian eksplorasi, serta arsip karya independen.</p>
+      </div>
+
+      <div class="space-y-6 pt-4">
+        <div class="text-center space-y-2">
+          <span class="px-3 py-1 rounded-full bg-sky-100 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 text-xs font-bold uppercase tracking-wider">Linimasa Akademik</span>
+          <h3 class="text-2xl font-black text-slate-900 dark:text-white">Riwayat Pendidikan</h3>
+        </div>
+
+        <div class="space-y-4 max-w-3xl mx-auto" id="pendidikan-container">
+          <div class="p-5 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 hover:border-sky-500/50 hover:-translate-y-1 transition duration-300 shadow-sm flex items-center justify-between">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl bg-sky-500/10 text-sky-500 flex items-center justify-center font-bold text-lg">🏫</div>
+              <div>
+                <h4 class="text-base font-bold text-slate-900 dark:text-white">SD Negeri</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Pendidikan Dasar</p>
+              </div>
+            </div>
+            <span class="text-xs font-bold text-slate-500">2012 - 2018</span>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 hover:border-sky-500/50 hover:-translate-y-1 transition duration-300 shadow-sm flex items-center justify-between">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl bg-teal-500/10 text-teal-500 flex items-center justify-center font-bold text-lg">🏛️</div>
+              <div>
+                <h4 class="text-base font-bold text-slate-900 dark:text-white">SMP Negeri / MTs</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Pendidikan Menengah Pertama</p>
+              </div>
+            </div>
+            <span class="text-xs font-bold text-slate-500">2018 - 2021</span>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 hover:border-sky-500/50 hover:-translate-y-1 transition duration-300 shadow-sm flex items-center justify-between">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center font-bold text-lg">🎓</div>
+              <div>
+                <h4 class="text-base font-bold text-slate-900 dark:text-white">SMK / SMA Negeri</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Pendidikan Menengah Atas</p>
+              </div>
+            </div>
+            <span class="text-xs font-bold text-slate-500">2021 - 2024</span>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white dark:bg-cardDark border-2 border-sky-500/30 hover:border-sky-500 hover:-translate-y-1 transition duration-300 shadow-sm flex items-center justify-between">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl bg-sky-500 text-white flex items-center justify-center font-bold text-lg">⚖️</div>
+              <div>
+                <h4 class="text-base font-bold text-slate-900 dark:text-white">Universitas Terbuka</h4>
+                <p class="text-xs text-sky-600 dark:text-sky-400 font-semibold">Ilmu Hukum • Program Sarjana (S1)</p>
+              </div>
+            </div>
+            <span class="px-3 py-1 rounded-full bg-sky-500/10 text-sky-600 dark:text-sky-400 text-xs font-bold">Aktif</span>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- ==================== SEKSI 3: SKILLS ==================== -->
-    <section id="sec-skills" class="hidden space-y-8 py-8">
-      <div class="border-b border-slate-200 dark:border-slate-800 pb-4">
-        <h2 class="text-2xl font-black text-slate-900 dark:text-white">Keahlian & Bidang Studi</h2>
-        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Bidang kajian hukum, teknologi, dan bahasa yang aktif didalami.</p>
+    <!-- ==================== SEKSI 3: KEAHLIAN (SKILLS) ==================== -->
+    <section id="sec-skills" class="hidden space-y-10 py-8">
+      <div class="text-center max-w-2xl mx-auto space-y-3">
+        <span class="px-3 py-1 rounded-full bg-sky-100 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 text-xs font-bold uppercase tracking-wider">Keahlian</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white">Teknologi & Perangkat Lunak</h2>
+        <p class="text-sm text-slate-600 dark:text-slate-400">Peralatan desain grafis, produktivitas naskah, dan instrumen yang aktif digunakan.</p>
       </div>
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4" id="skills-container"></div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+        <div class="p-5 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 hover:border-sky-500 hover:-translate-y-1.5 transition duration-300 group shadow-sm">
+          <span class="text-3xl group-hover:scale-110 transition">🎨</span>
+          <span class="text-sm font-bold text-slate-800 dark:text-slate-200">Canva</span>
+        </div>
+        <div class="p-5 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 hover:border-sky-500 hover:-translate-y-1.5 transition duration-300 group shadow-sm">
+          <span class="text-3xl group-hover:scale-110 transition">🖌️</span>
+          <span class="text-sm font-bold text-slate-800 dark:text-slate-200">CorelDraw</span>
+        </div>
+        <div class="p-5 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 hover:border-sky-500 hover:-translate-y-1.5 transition duration-300 group shadow-sm">
+          <span class="text-3xl group-hover:scale-110 transition">📸</span>
+          <span class="text-sm font-bold text-slate-800 dark:text-slate-200">Photoshop</span>
+        </div>
+        <div class="p-5 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 hover:border-sky-500 hover:-translate-y-1.5 transition duration-300 group shadow-sm">
+          <span class="text-3xl group-hover:scale-110 transition">📐</span>
+          <span class="text-sm font-bold text-slate-800 dark:text-slate-200">Illustrator</span>
+        </div>
+        <div class="p-5 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 hover:border-sky-500 hover:-translate-y-1.5 transition duration-300 group shadow-sm">
+          <span class="text-3xl group-hover:scale-110 transition">📄</span>
+          <span class="text-sm font-bold text-slate-800 dark:text-slate-200">Microsoft Word</span>
+        </div>
+        <div class="p-5 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 hover:border-sky-500 hover:-translate-y-1.5 transition duration-300 group shadow-sm">
+          <span class="text-3xl group-hover:scale-110 transition">✍️</span>
+          <span class="text-sm font-bold text-slate-800 dark:text-slate-200">Blogger</span>
+        </div>
+        <div class="p-5 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 hover:border-sky-500 hover:-translate-y-1.5 transition duration-300 group shadow-sm">
+          <span class="text-3xl group-hover:scale-110 transition">⚡</span>
+          <span class="text-sm font-bold text-slate-800 dark:text-slate-200">Tailwind CSS</span>
+        </div>
+        <div class="p-5 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 hover:border-sky-500 hover:-translate-y-1.5 transition duration-300 group shadow-sm">
+          <span class="text-3xl group-hover:scale-110 transition">📊</span>
+          <span class="text-sm font-bold text-slate-800 dark:text-slate-200">Google Sheets DB</span>
+        </div>
+      </div>
     </section>
 
-    <!-- ==================== SEKSI 4: BLOG ==================== -->
-    <section id="sec-blog" class="hidden space-y-8 py-8">
+    <!-- ==================== SEKSI 4: BLOG / CATATAN ==================== -->
+    <section id="sec-blog" class="hidden space-y-10 py-8">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-4">
         <div>
-          <h2 class="text-2xl font-black text-slate-900 dark:text-white">Catatan & Esai</h2>
-          <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Rangkuman perkuliahan, esai gagasan, dan eksperimen teknologi.</p>
+          <span class="px-3 py-1 rounded-full bg-sky-100 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 text-xs font-bold uppercase tracking-wider">Artikel</span>
+          <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mt-2">Rilisan Catatan Terbaru</h2>
         </div>
-        <div class="relative w-full sm:w-64">
+        <div class="relative w-full sm:w-72">
           <input 
             type="text" 
             id="blog-search" 
             oninput="cariBlog()"
-            placeholder="Cari catatan..." 
-            class="w-full bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-2.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-slate-400 transition shadow-sm"
+            placeholder="Cari judul catatan..." 
+            class="w-full bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-2.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-sky-500 transition shadow-sm"
           >
         </div>
       </div>
+
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="blog-container"></div>
     </section>
 
     <!-- ==================== SEKSI 5: EKSPLOR HUB ==================== -->
     <section id="sec-eksplor" class="hidden space-y-8 py-8">
-      <div class="border-b border-slate-200 dark:border-slate-800 pb-4">
-        <h2 class="text-2xl font-black text-slate-900 dark:text-white">Eksplor Hub</h2>
-        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Modul baca Al-Qur'an, berkas tugas hukum, dan catatan materi studi.</p>
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <span class="px-3 py-1 rounded-full bg-sky-100 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 text-xs font-bold uppercase tracking-wider">Eksplorasi</span>
+        <h2 class="text-3xl font-black text-slate-900 dark:text-white">Arsip & Modul Khusus</h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="p-6 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col justify-between shadow-sm">
+        <!-- MODUL 1: AL-QURAN DIGITAL LENGKAP -->
+        <div class="p-6 rounded-3xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col justify-between shadow-sm hover:border-sky-500 transition">
           <div class="space-y-3">
-            <span class="text-2xl">📖</span>
-            <h3 class="text-sm font-bold text-slate-900 dark:text-white">Al-Qur'an Digital</h3>
-            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Membaca surah pilihan harian lengkap dengan transliterasi dan makna.</p>
+            <span class="text-3xl">📖</span>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Al-Qur'an Digital</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Akses 114 surah lengkap 30 juz, terjemahan resmi, transliterasi latin, dan audio tilawah.</p>
           </div>
-          <button onclick="bukaFiturEksplor('quran')" class="mt-6 w-full py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs font-bold transition">
-            Buka Surah Pilihan
+          <button onclick="bukaAlquranDigital()" class="mt-6 w-full py-3 rounded-xl bg-sky-500 hover:bg-sky-400 text-white text-xs font-bold transition shadow-sm">
+            Buka Al-Qur'an 30 Juz
           </button>
         </div>
 
-        <div class="p-6 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col justify-between shadow-sm">
+        <!-- MODUL 2: TUGAS KULIAH -->
+        <div class="p-6 rounded-3xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col justify-between shadow-sm hover:border-sky-500 transition">
           <div class="space-y-3">
-            <span class="text-2xl">⚖️</span>
-            <h3 class="text-sm font-bold text-slate-900 dark:text-white">Tugas & Resume Hukum</h3>
-            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Koleksi resume asas hukum dan berkas tugas kuliah format PDF.</p>
+            <span class="text-3xl">⚖️</span>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Arsip Tugas Kuliah</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Kumpulan makalah hukum, resume asas legalitas, dan berkas tugas kuliah siap unduh.</p>
           </div>
-          <button onclick="bukaFiturEksplor('tugas')" class="mt-6 w-full py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs font-bold transition">
+          <button onclick="bukaTugasKuliah()" class="mt-6 w-full py-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-bold transition">
             Lihat Berkas Tugas
           </button>
         </div>
 
-        <div class="p-6 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col justify-between shadow-sm">
+        <!-- MODUL 3: PEMBELAJARAN N3 -->
+        <div class="p-6 rounded-3xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col justify-between shadow-sm hover:border-sky-500 transition">
           <div class="space-y-3">
-            <span class="text-2xl">📚</span>
-            <h3 class="text-sm font-bold text-slate-900 dark:text-white">Modul Pembelajaran</h3>
-            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Catatan konsep, ringkasan materi, dan bahan studi mandiri.</p>
+            <span class="text-3xl">🎌</span>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Modul Pembelajaran N3</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Bank soal latihan, tata bahasa (bunpou), dan hafalan kanji tingkat menengah.</p>
           </div>
-          <button onclick="bukaFiturEksplor('n3')" class="mt-6 w-full py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs font-bold transition">
-            Akses Materi Belajar
+          <button onclick="bukaModulN3()" class="mt-6 w-full py-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-bold transition">
+            Cek Modul N3
           </button>
         </div>
       </div>
 
-      <div id="eksplor-detail-box" class="hidden p-6 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 mt-8 shadow-sm"></div>
+      <div id="eksplor-detail-display" class="hidden p-6 sm:p-8 rounded-3xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 shadow-sm mt-8 space-y-6"></div>
     </section>
 
   </main>
@@ -256,22 +356,22 @@
   <div id="modal-reader" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-md hidden flex items-center justify-center p-4">
     <div class="bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 rounded-3xl w-full max-w-2xl max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
       <div class="p-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
-        <span id="modal-cat" class="text-xs font-bold px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300"></span>
+        <span id="modal-cat" class="text-xs font-bold px-3 py-1 rounded-full bg-sky-500/10 text-sky-600 dark:text-sky-400"></span>
         <button onclick="tutupModal()" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center text-slate-500 font-bold transition">✕</button>
       </div>
       <div class="p-6 md:p-8 overflow-y-auto space-y-4">
         <p id="modal-tgl" class="text-xs text-slate-400"></p>
         <h2 id="modal-judul" class="text-2xl font-black text-slate-900 dark:text-white leading-tight"></h2>
-        <div class="h-0.5 w-12 bg-slate-900 dark:bg-white rounded-full my-4"></div>
+        <div class="h-0.5 w-12 bg-sky-500 rounded-full my-4"></div>
         <div id="modal-isi" class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-line"></div>
       </div>
     </div>
   </div>
 
-  <!-- FLOATING AUDIO MUSIC PLAYER -->
+  <!-- FLOATING AUDIO PLAYER -->
   <div class="fixed bottom-6 right-6 z-40">
     <div class="bg-white/90 dark:bg-cardDark/90 backdrop-blur-md px-4 py-2.5 rounded-2xl flex items-center gap-3 shadow-xl border border-slate-200 dark:border-slate-800">
-      <button onclick="toggleAudio()" id="btn-audio" class="w-8 h-8 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-200 text-white dark:text-slate-950 flex items-center justify-center font-bold text-xs transition">
+      <button onclick="toggleAudio()" id="btn-audio" class="w-8 h-8 rounded-xl bg-sky-500 hover:bg-sky-400 text-white flex items-center justify-center font-bold text-xs transition">
         ▶
       </button>
       <div class="text-[11px] pr-2">
@@ -296,47 +396,31 @@
         nama_lengkap: "I'lal Jalalludin Syahputra",
         teks_ketik: "Mahasiswa Hukum, Tech Explorer, Book Enthusiast",
         quote: "Keadilan adalah fondasi akal, konsistensi adalah kunci keberhasilan.",
-        foto_avatar: "https://lh3.googleusercontent.com/d/12TJ5Lb7erKUp6mV6hmAzpz09MuQUDOlS"
+        foto_avatar: "https://lh3.googleusercontent.com/d/1Yulw-uNtRaOhin1uxctkrEXMhCW-ekSs"
       },
-      tentang: [
-        { "Judul / Keterangan": "Refleksi & Minat", "Konten / Link Drive": "Menjalani studi di bidang ilmu hukum sembari mengeksplorasi sistem digital mandiri." },
-        { "Judul / Keterangan": "Fokus Saat Ini", "Konten / Link Drive": "Konsisten memperdalam pemahaman hukum, analisis regulasi, dan eksplorasi otomasi data." }
-      ],
-      pendidikan: [
-        { "Nama Instansi": "SD Negeri", "Jurusan / Tingkat": "Pendidikan Dasar", Tahun: "2012 - 2018", Status: "Lulus" },
-        { "Nama Instansi": "SMP Negeri", "Jurusan / Tingkat": "Pendidikan Menengah", Tahun: "2018 - 2021", Status: "Lulus" },
-        { "Nama Instansi": "SMK / SMA", "Jurusan / Tingkat": "Pendidikan Atas", Tahun: "2021 - 2024", Status: "Lulus" },
-        { "Nama Instansi": "Universitas Terbuka", "Jurusan / Tingkat": "Ilmu Hukum", Tahun: "2024 - Sekarang", Status: "Aktif" }
-      ],
-      skills: [
-        { "Nama Keahlian / Tool": "Tailwind CSS & Web UI", Kategori: "Tech" },
-        { "Nama Keahlian / Tool": "Google Sheets Database", Kategori: "Tech" },
-        { "Nama Keahlian / Tool": "Analisis Asas Hukum", Kategori: "Law" },
-        { "Nama Keahlian / Tool": "Legal Drafting Dasar", Kategori: "Law" }
-      ],
       blog: [
         {
-          "Judul Artikel": "Membangun Web Mandiri dengan Google Apps Script",
-          Kategori: "Tech",
+          "Judul Artikel": "Membangun Personal Web dengan Google Sheets & Apps Script",
+          Kategori: "Teknologi",
           Tanggal: "12 September 2026",
-          "Ringkasan Cuplikan": "Pemanfaatan Spreadsheet sebagai basis data headless tanpa biaya langganan bulanan.",
-          "Isi Lengkap Artikel": "Dengan memanfaatkan Apps Script sebagai backend API JSON, kita bisa membuat website portofolio interaktif yang sepenuhnya gratis dan langsung terkoneksi dengan Google Sheets."
+          "Ringkasan Cuplikan": "Mekanisme memanfaatkan spreadsheet gratis sebagai database headless tanpa server berbayar.",
+          "Isi Lengkap Artikel": "Website ini dibangun menggunakan Tailwind CSS dan memanfaatkan Google Sheets sebagai sistem Content Management System (CMS) mandiri."
         },
         {
-          "Judul Artikel": "Memahami Asas Kepastian Hukum dalam Konteks Digital",
+          "Judul Artikel": "Meninjau Asas Kepastian Hukum di Era Otomasi Digital",
           Kategori: "Hukum",
           Tanggal: "10 September 2026",
-          "Ringkasan Cuplikan": "Tinjauan singkat bagaimana kepastian hukum beradaptasi dengan era sistem informasi.",
-          "Isi Lengkap Artikel": "Perkembangan transaksi di era digital membutuhkan interpretasi hukum yang adaptif namun tetap memegang teguh asas legalitas."
+          "Ringkasan Cuplikan": "Kajian teoritis terhadap perkembangan regulasi cyber law dan integritas sistem informasi.",
+          "Isi Lengkap Artikel": "Tantangan hukum di era modern membutuhkan pemahaman interdisipliner antara doktrin hukum formal dan pemahaman struktur logis sistem digital."
         }
       ],
       tugas: [
-        { "Mata Kuliah": "Pengantar Ilmu Hukum", "Judul Makalah / Tugas": "Asas Kepastian Hukum Pidana", Semester: "Semester 1", "Link PDF Drive": "#" }
-      ],
-      materi_n3: [
-        { "Topik Materi": "Catatan Materi Studi 1", Jenis: "Resume", Level: "Modul 1", "Link Berkas Drive / Catatan": "#" }
+        { "Mata Kuliah": "Pengantar Ilmu Hukum", "Judul Makalah / Tugas": "Asas Kepastian Hukum Pidana", Semester: "Semester 1", "Link PDF Drive": "#" },
+        { "Mata Kuliah": "Hukum Tata Negara", "Judul Makalah / Tugas": "Analisis Asas Legalitas Regulasi", Semester: "Semester 1", "Link PDF Drive": "#" }
       ]
     };
+
+    let daftarSurahCache = [];
 
     function updateNavIndicator(activeButton) {
       const indicator = document.getElementById('nav-indicator');
@@ -351,19 +435,16 @@
       const seksi = ['beranda', 'tentang', 'skills', 'blog', 'eksplor'];
       seksi.forEach(s => {
         const secEl = document.getElementById(`sec-${s}`);
-        if (s === nama) {
-          secEl.classList.remove('hidden');
-        } else {
-          secEl.classList.add('hidden');
-        }
+        if (s === nama) secEl.classList.remove('hidden');
+        else secEl.classList.add('hidden');
       });
 
       document.querySelectorAll('.tab-item').forEach(btn => {
-        btn.classList.remove('text-slate-900', 'dark:text-white', 'font-bold');
-        btn.classList.add('text-slate-500', 'dark:text-slate-400', 'font-medium');
+        btn.classList.remove('text-sky-600', 'dark:text-sky-400', 'font-bold');
+        btn.classList.add('text-slate-600', 'dark:text-slate-400', 'font-semibold');
       });
-      el.classList.remove('text-slate-500', 'dark:text-slate-400', 'font-medium');
-      el.classList.add('text-slate-900', 'dark:text-white', 'font-bold');
+      el.classList.remove('text-slate-600', 'dark:text-slate-400', 'font-semibold');
+      el.classList.add('text-sky-600', 'dark:text-sky-400', 'font-bold');
 
       updateNavIndicator(el);
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -377,19 +458,16 @@
     function toggleTheme() {
       const html = document.documentElement;
       const body = document.getElementById('body-root');
-      const icon = document.getElementById('theme-icon');
 
       if (html.classList.contains('dark')) {
         html.classList.remove('dark');
         body.classList.remove('bg-neutralDark', 'text-slate-100', 'bg-dots-dark');
         body.classList.add('bg-slate-50', 'text-slate-900', 'bg-dots-light');
-        icon.innerText = '🌙';
         localStorage.setItem('theme', 'light');
       } else {
         html.classList.add('dark');
         body.classList.remove('bg-slate-50', 'text-slate-900', 'bg-dots-light');
         body.classList.add('bg-neutralDark', 'text-slate-100', 'bg-dots-dark');
-        icon.innerText = '☀️';
         localStorage.setItem('theme', 'dark');
       }
     }
@@ -398,16 +476,13 @@
       const savedTheme = localStorage.getItem('theme') || 'dark';
       const html = document.documentElement;
       const body = document.getElementById('body-root');
-      const icon = document.getElementById('theme-icon');
 
       if (savedTheme === 'light') {
         html.classList.remove('dark');
         body.classList.remove('bg-neutralDark', 'text-slate-100', 'bg-dots-dark');
         body.classList.add('bg-slate-50', 'text-slate-900', 'bg-dots-light');
-        icon.innerText = '🌙';
       } else {
         html.classList.add('dark');
-        icon.innerText = '☀️';
       }
     }
 
@@ -420,26 +495,33 @@
             localDB = data;
           }
         } catch (err) {
-          console.log("Memakai data fallback:", err);
+          console.log("Menggunakan data fallback:", err);
         }
       }
-      terapkanDataKeTampilan();
+      terapkanData();
     }
 
-    function terapkanDataKeTampilan() {
+    function terapkanData() {
       if (localDB.profil.nama_lengkap) document.getElementById('hero-nama').innerText = localDB.profil.nama_lengkap;
       if (localDB.profil.quote) document.getElementById('hero-quote').innerText = localDB.profil.quote;
 
-      // PARSING & PENYAMBUNGAN FOTO GOOGLE DRIVE
+      // PARSER CERDAS UNTUK FOTO GOOGLE DRIVE HD
       const imgEl = document.getElementById('hero-avatar');
-      if (localDB.profil.foto_avatar) {
+      if (localDB.profil && localDB.profil.foto_avatar) {
         let url = localDB.profil.foto_avatar.trim();
-        if (url.includes('id=')) {
-          const id = url.split('id=')[1].split('&')[0];
-          imgEl.src = `https://lh3.googleusercontent.com/d/${id}`;
-        } else if (url.includes('/d/')) {
-          const id = url.split('/d/')[1].split('/')[0];
-          imgEl.src = `https://lh3.googleusercontent.com/d/${id}`;
+        let fileId = '';
+        if (url.includes('/d/')) {
+          fileId = url.split('/d/')[1].split('/')[0].split('?')[0];
+        } else if (url.includes('id=')) {
+          fileId = url.split('id=')[1].split('&')[0];
+        }
+
+        if (fileId) {
+          imgEl.src = `https://lh3.googleusercontent.com/d/${fileId}`;
+          imgEl.onerror = function() {
+            this.onerror = null;
+            this.src = `https://drive.google.com/thumbnail?id=${fileId}&sz=w2500`;
+          };
         } else if (url.startsWith('http')) {
           imgEl.src = url;
         }
@@ -448,60 +530,26 @@
       const keywords = localDB.profil.teks_ketik ? localDB.profil.teks_ketik.split(',') : ["Mahasiswa Hukum", "Tech Explorer"];
       mulaiTypewriter(keywords.map(k => k.trim()));
 
-      // Tentang
-      const narasiBox = document.getElementById('tentang-narasi-container');
-      narasiBox.innerHTML = (localDB.tentang || []).map(t => `
-        <div class="p-6 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 space-y-2 shadow-sm">
-          <h4 class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">${t['Judul / Keterangan'] || t.Judul || 'Kisah'}</h4>
-          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">${t['Konten / Link Drive'] || t.Konten || ''}</p>
-        </div>
-      `).join('');
-
-      // Pendidikan
-      const pendBox = document.getElementById('pendidikan-container');
-      pendBox.innerHTML = (localDB.pendidikan || []).map(p => `
-        <div class="p-4 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex items-center justify-between shadow-sm">
-          <div>
-            <h4 class="text-xs font-bold text-slate-900 dark:text-white">${p['Nama Instansi'] || ''}</h4>
-            <p class="text-[11px] text-slate-500 dark:text-slate-400">${p['Jurusan / Tingkat'] || ''}</p>
-          </div>
-          <div class="text-right">
-            <span class="text-[10px] px-2.5 py-0.5 rounded-full ${p.Status === 'Aktif' ? 'bg-slate-900 text-white dark:bg-slate-700 font-bold' : 'bg-slate-100 dark:bg-slate-900 text-slate-500'}">${p.Status || 'Lulus'}</span>
-            <p class="text-[10px] text-slate-400 dark:text-slate-500 mt-1">${p.Tahun || ''}</p>
-          </div>
-        </div>
-      `).join('');
-
-      // Skills
-      const skillsBox = document.getElementById('skills-container');
-      skillsBox.innerHTML = (localDB.skills || []).map(s => `
-        <div class="p-4 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col items-center text-center space-y-2 shadow-sm">
-          <span class="text-xl">⚡</span>
-          <h4 class="text-xs font-bold text-slate-900 dark:text-white">${s['Nama Keahlian / Tool'] || ''}</h4>
-          <span class="text-[9px] px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400 font-semibold">${s.Kategori || 'General'}</span>
-        </div>
-      `).join('');
-
       renderBlogCards(localDB.blog || []);
     }
 
     function renderBlogCards(list) {
       const blogBox = document.getElementById('blog-container');
-      if (list.length === 0) {
-        blogBox.innerHTML = `<p class="text-xs text-slate-500 col-span-2 text-center py-8">Belum ada tulisan yang cocok.</p>`;
+      if (!list || list.length === 0) {
+        blogBox.innerHTML = `<p class="text-xs text-slate-500 col-span-2 text-center py-8">Belum ada catatan.</p>`;
         return;
       }
       blogBox.innerHTML = list.map((b, idx) => `
-        <article onclick="bukaModalBlog(${idx})" class="p-6 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 cursor-pointer group flex flex-col justify-between space-y-4 shadow-sm hover:border-slate-400 dark:hover:border-slate-600 hover:-translate-y-1 transition duration-300">
-          <div class="space-y-2">
-            <div class="flex items-center justify-between text-[11px]">
-              <span class="px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold">${b.Kategori || 'Esai'}</span>
-              <span class="text-slate-400 dark:text-slate-500">${b.Tanggal || ''}</span>
+        <article onclick="bukaModalBlog(${idx})" class="p-6 sm:p-7 rounded-3xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 cursor-pointer group flex flex-col justify-between space-y-4 shadow-sm hover:border-sky-500 hover:-translate-y-1.5 transition duration-300">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between text-xs">
+              <span class="px-3 py-1 rounded-full bg-sky-50 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 font-bold">${b.Kategori || 'Esai'}</span>
+              <span class="text-slate-400">${b.Tanggal || ''}</span>
             </div>
-            <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-slate-600 dark:group-hover:text-slate-300 transition">${b['Judul Artikel'] || ''}</h3>
-            <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed">${b['Ringkasan Cuplikan'] || ''}</p>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-sky-500 transition">${b['Judul Artikel'] || ''}</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">${b['Ringkasan Cuplikan'] || ''}</p>
           </div>
-          <span class="text-xs font-semibold text-slate-900 dark:text-slate-300 flex items-center gap-1 group-hover:translate-x-1 transition">Baca tulisan →</span>
+          <span class="text-xs font-bold text-sky-500 flex items-center gap-1 group-hover:translate-x-1 transition">Baca catatan lengkap →</span>
         </article>
       `).join('');
     }
@@ -559,76 +607,156 @@
       type();
     }
 
-    function bukaFiturEksplor(fitur) {
-      const box = document.getElementById('eksplor-detail-box');
-      box.classList.remove('hidden');
+    // ==================== MODUL EKSPLOR ====================
+    async function bukaAlquranDigital() {
+      const display = document.getElementById('eksplor-detail-display');
+      display.classList.remove('hidden');
+      display.innerHTML = `
+        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
+          <div>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Al-Qur'an Digital 30 Juz</h3>
+            <p class="text-xs text-slate-500">Pilih surah untuk membaca teks Arab, transliterasi latin, dan terjemahan bahasa Indonesia.</p>
+          </div>
+          <button onclick="tutupDisplayEksplor()" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 font-bold">Tutup</button>
+        </div>
+        <div id="quran-grid-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 max-h-[500px] overflow-y-auto p-1">
+          <p class="text-xs text-slate-400 py-6 text-center col-span-3">Memuat daftar 114 Surah...</p>
+        </div>
+      `;
+      display.scrollIntoView({ behavior: 'smooth' });
 
-      if (fitur === 'quran') {
-        box.innerHTML = `
-          <div class="space-y-4">
-            <h3 class="text-sm font-bold text-slate-900 dark:text-white">Al-Qur'an Digital</h3>
-            <p class="text-xs text-slate-500 dark:text-slate-400">Surah Pilihan Harian: <b>QS. Al-Insyirah (Kelapangan)</b></p>
-            <div class="p-5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
-              <p class="text-right text-2xl font-serif text-slate-900 dark:text-slate-200 leading-loose">فَإِنَّ مَعَ الْعُسْرِ يُسْرًا • إِنَّ مَعَ الْعُسْرِ يُسْرًا</p>
-              <p class="text-xs text-slate-600 dark:text-slate-400 italic">"Maka sesungguhnya beserta kesulitan ada kemudahan, sesungguhnya beserta kesulitan ada kemudahan." (QS. 94:5-6)</p>
+      try {
+        if (daftarSurahCache.length === 0) {
+          const res = await fetch('https://equran.nos.wjv-1.neo.id/api/surat');
+          daftarSurahCache = await res.json();
+        }
+        
+        const grid = document.getElementById('quran-grid-container');
+        grid.innerHTML = daftarSurahCache.map(s => `
+          <div onclick="bacaDetailSurah(${s.nomor})" class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 hover:border-sky-500 cursor-pointer flex items-center justify-between transition group">
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-xl bg-sky-500/10 text-sky-500 text-xs font-black flex items-center justify-center">${s.nomor}</span>
+              <div>
+                <h4 class="text-xs font-bold text-slate-900 dark:text-white group-hover:text-sky-500 transition">${s.nama_latin}</h4>
+                <p class="text-[10px] text-slate-400">${s.arti} • ${s.jumlah_ayat} Ayat</p>
+              </div>
             </div>
+            <span class="quran-font text-lg text-slate-800 dark:text-slate-200">${s.nama}</span>
           </div>
-        `;
-      } else if (fitur === 'tugas') {
-        box.innerHTML = `
-          <div class="space-y-4">
-            <h3 class="text-sm font-bold text-slate-900 dark:text-white">Berkas Tugas & Analisis Hukum</h3>
-            <div class="space-y-2">
-              ${(localDB.tugas || []).map(t => `
-                <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between text-xs">
-                  <div>
-                    <p class="font-bold text-white">${t['Mata Kuliah'] || 'Hukum'}</p>
-                    <p class="text-slate-400 text-[11px]">${t['Judul Makalah / Tugas'] || ''}</p>
-                  </div>
-                  <a href="${t['Link PDF Drive'] || '#'}" target="_blank" class="px-3 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-[10px] font-bold">Buka Berkas</a>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-        `;
-      } else if (fitur === 'n3') {
-        box.innerHTML = `
-          <div class="space-y-4">
-            <h3 class="text-sm font-bold text-slate-900 dark:text-white">Modul Pembelajaran</h3>
-            <div class="space-y-2">
-              ${(localDB.materi_n3 || []).map(m => `
-                <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between text-xs">
-                  <div>
-                    <p class="font-bold text-white">${m['Topik Materi'] || ''}</p>
-                    <span class="text-[10px] text-slate-400 font-semibold">${m.Jenis || 'Resume'}</span>
-                  </div>
-                  <a href="${m['Link Berkas Drive / Catatan'] || '#'}" target="_blank" class="px-3 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-[10px] font-medium">Akses Catatan</a>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-        `;
+        `).join('');
+      } catch (err) {
+        document.getElementById('quran-grid-container').innerHTML = `<p class="text-xs text-rose-500 col-span-3 text-center">Gagal memuat surah. Periksa jaringan internet.</p>`;
       }
-      box.scrollIntoView({ behavior: 'smooth' });
     }
 
-    // Pemutar Audio + Animasi Goyang Santai
+    async function bacaDetailSurah(nomor) {
+      const display = document.getElementById('eksplor-detail-display');
+      display.innerHTML = `<p class="text-xs text-slate-400 py-12 text-center">Memuat ayat surah...</p>`;
+      try {
+        const res = await fetch(`https://equran.nos.wjv-1.neo.id/api/surat/${nomor}`);
+        const data = await res.json();
+
+        display.innerHTML = `
+          <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
+            <div>
+              <button onclick="bukaAlquranDigital()" class="text-xs text-sky-500 font-bold mb-1">← Kembali ke Daftar Surah</button>
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white">${data.nama_latin} (${data.nama})</h3>
+              <p class="text-xs text-slate-400">${data.tempat_turun} • ${data.arti} • ${data.jumlah_ayat} Ayat</p>
+            </div>
+            <button onclick="tutupDisplayEksplor()" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 font-bold">Tutup</button>
+          </div>
+          <div class="space-y-6 max-h-[600px] overflow-y-auto pr-2">
+            ${data.ayat.map(a => `
+              <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 space-y-3">
+                <div class="flex justify-between items-center text-xs font-bold text-sky-500">
+                  <span class="w-7 h-7 rounded-lg bg-sky-500/10 flex items-center justify-center">${a.nomor}</span>
+                </div>
+                <p class="text-right text-2xl quran-font text-slate-900 dark:text-slate-100 leading-loose">${a.ar}</p>
+                <p class="text-xs text-sky-700 dark:text-sky-300 font-medium">${a.tr}</p>
+                <p class="text-xs text-slate-600 dark:text-slate-400 italic">${a.idn}</p>
+              </div>
+            `).join('')}
+          </div>
+        `;
+        display.scrollIntoView({ behavior: 'smooth' });
+      } catch (err) {
+        display.innerHTML = `<p class="text-xs text-rose-500 text-center py-6">Gagal memuat isi ayat.</p>`;
+      }
+    }
+
+    function bukaTugasKuliah() {
+      const display = document.getElementById('eksplor-detail-display');
+      display.classList.remove('hidden');
+      display.innerHTML = `
+        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
+          <div>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Arsip Berkas & Tugas Kuliah</h3>
+            <p class="text-xs text-slate-500">Kumpulan makalah hukum, resume asas, dan berkas tugas kuliah.</p>
+          </div>
+          <button onclick="tutupDisplayEksplor()" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 font-bold">Tutup</button>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          ${(localDB.tugas || []).map(t => `
+            <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 flex flex-col justify-between space-y-4">
+              <div class="space-y-1">
+                <span class="px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 text-[10px] font-bold">${t.Semester || 'Ilmu Hukum'}</span>
+                <h4 class="text-sm font-bold text-slate-900 dark:text-white pt-1">${t['Judul Makalah / Tugas'] || ''}</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400">${t['Mata Kuliah'] || 'Hukum'}</p>
+              </div>
+              <a href="${t['Link PDF Drive'] || '#'}" target="_blank" class="w-full py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-white text-xs font-bold text-center transition">
+                Buka Berkas PDF
+              </a>
+            </div>
+          `).join('')}
+        </div>
+      `;
+      display.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function bukaModulN3() {
+      const display = document.getElementById('eksplor-detail-display');
+      display.classList.remove('hidden');
+      display.innerHTML = `
+        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
+          <div>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Modul Pembelajaran N3</h3>
+            <p class="text-xs text-slate-500">Status penyusunan materi studi.</p>
+          </div>
+          <button onclick="tutupDisplayEksplor()" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 font-bold">Tutup</button>
+        </div>
+        <div class="py-12 flex flex-col items-center justify-center text-center space-y-4">
+          <div class="w-16 h-16 rounded-2xl bg-sky-500/10 text-sky-500 flex items-center justify-center text-3xl animate-bounce">
+            ⏳
+          </div>
+          <span class="px-3 py-1 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold tracking-wider uppercase border border-amber-500/20">
+            Sedang Dalam Tahap Pengembangan
+          </span>
+          <h4 class="text-lg font-bold text-slate-900 dark:text-white max-w-md">Modul N3 Sedang Disusun & Dioptimalkan</h4>
+          <p class="text-xs text-slate-500 dark:text-slate-400 max-w-sm leading-relaxed">
+            Bank materi tata bahasa (bunpou) dan ringkasan kanji sedang dirapikan ke database Google Sheets agar dapat diakses secara interaktif.
+          </p>
+        </div>
+      `;
+      display.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function tutupDisplayEksplor() {
+      document.getElementById('eksplor-detail-display').classList.add('hidden');
+    }
+
     function toggleAudio() {
       const audio = document.getElementById('bg-audio');
       const btn = document.getElementById('btn-audio');
       const status = document.getElementById('audio-status');
-      const vibeBox = document.getElementById('photo-vibe-box');
 
       if (audio.paused) {
         audio.play();
         btn.innerText = "❚❚";
         status.innerText = "Sedang berputar ♫";
-        if (vibeBox) vibeBox.classList.add('music-vibing');
       } else {
         audio.pause();
         btn.innerText = "▶";
         status.innerText = "Jeda (Klik putar)";
-        if (vibeBox) vibeBox.classList.remove('music-vibing');
       }
     }
 

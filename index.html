@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ilaljsa • Workspace</title>
   
-  <!-- FAVICON ICON -->
+  <!-- FAVICON KUCING -->
   <link rel="icon" type="image/png" href="favicon-kucing.png">
   
   <script src="https://cdn.tailwindcss.com"></script>
@@ -39,7 +39,13 @@
     @keyframes slowFloat { 0%, 100% { transform: translate3d(0, 0, 0); } 50% { transform: translate3d(0, -9px, 0); } }
     .animate-slow-float { animation: slowFloat 4.5s ease-in-out infinite; will-change: transform; }
 
-    @keyframes movingGlowFast { 0% { transform: translate3d(0,0,0) scale(1); opacity: 0.4; } 50% { transform: translate3d(16px,-14px,0) scale(1.1); opacity: 0.7; } 100% { transform: translate3d(0,0,0) scale(1); opacity: 0.4; } }
+    /* EFEK REMANG-REMANG BIRU ALA GEMINI KEMBALI */
+    @keyframes movingGlowFast { 
+      0% { transform: translate3d(0,0,0) scale(1); opacity: 0.5; } 
+      33% { transform: translate3d(18px,-16px,0) scale(1.12); opacity: 0.8; } 
+      66% { transform: translate3d(-16px,14px,0) scale(0.92); opacity: 0.6; } 
+      100% { transform: translate3d(0,0,0) scale(1); opacity: 0.5; } 
+    }
     .animate-moving-glow { animation: movingGlowFast 6s ease-in-out infinite; will-change: transform, opacity; }
 
     @keyframes tabSpringEnter { 0% { opacity: 0; transform: translate3d(0, 14px, 0) scale(0.99); } 100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); } }
@@ -59,8 +65,6 @@
   <!-- NAVBAR ATAS -->
   <nav class="sticky top-0 z-50 backdrop-blur-xl border-b border-slate-200/80 dark:border-slate-800/80 bg-white/85 dark:bg-neutralDark/85 px-6 py-4">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
-      
-      <!-- KIRI: LOGO + TOMBOL PESAN RAHASIA SELALU MUNCUL -->
       <div class="flex items-center gap-3 sm:gap-5">
         <a href="#" onclick="pindahTabByName('beranda'); return false;" class="text-3xl font-black tracking-tight text-slate-900 dark:text-white group">
           ilal<span class="text-sky-500 font-black">jsa</span>
@@ -71,7 +75,6 @@
         </button>
       </div>
 
-      <!-- DESKTOP MENU -->
       <div class="relative hidden md:flex items-center bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 p-1.5 rounded-2xl shadow-inner mr-4" id="nav-container">
         <div id="nav-indicator" class="rounded-xl bg-white dark:bg-slate-800 shadow-sm"></div>
         <button onclick="pindahTab('beranda', this)" class="tab-item px-5 py-2.5 rounded-xl text-sm font-bold text-sky-600 dark:text-sky-400 transition">Beranda</button>
@@ -81,7 +84,6 @@
         <button onclick="pindahTab('eksplor', this)" class="tab-item px-5 py-2.5 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 transition">Eksplor</button>
       </div>
 
-      <!-- KANAN: TEMA & HAMBURGER MOBILE -->
       <div class="flex items-center gap-3">
         <button onclick="toggleTheme()" class="w-11 h-11 rounded-2xl flex items-center justify-center bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
           <svg id="theme-sun" class="w-5 h-5 hidden dark:block text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
@@ -93,7 +95,7 @@
       </div>
     </div>
 
-    <!-- DROPDOWN MOBILE (TANPA PESAN RAHASIA KARENA SUDAH DI ATAS) -->
+    <!-- DROPDOWN MOBILE -->
     <div id="mobile-menu" class="hidden md:hidden pt-4 pb-2 border-t border-slate-200 dark:border-slate-800 mt-4 space-y-2">
       <button onclick="pindahTabByName('beranda'); toggleMobileMenu();" class="w-full text-left px-4 py-2.5 rounded-xl font-bold text-sm">Beranda</button>
       <button onclick="pindahTabByName('tentang'); toggleMobileMenu();" class="w-full text-left px-4 py-2.5 rounded-xl font-bold text-sm">Tentang</button>
@@ -116,51 +118,88 @@
             <span id="typewriter-text" class="text-sky-600 dark:text-sky-400 font-extrabold"></span>
             <span class="cursor-blink bg-sky-500 h-6"></span>
           </div>
-          <div class="p-6 rounded-2xl bg-white/95 dark:bg-cardDark/95 border-l-4 border-sky-500 border border-slate-200 dark:border-slate-800 text-base shadow-md space-y-2">
-            <p class="italic leading-relaxed">"<span id="hero-quote">Keadilan adalah fondasi akal, konsistensi adalah kunci keberhasilan.</span>"</p>
+
+          <!-- KUTIPAN DENGAN EFEK REMANG-REMANG BIRU -->
+          <div class="relative group">
+            <div class="absolute -inset-1.5 bg-gradient-to-r from-sky-500/35 via-blue-600/25 to-sky-400/35 rounded-3xl blur-xl animate-moving-glow -z-10"></div>
+            <div class="p-6 rounded-2xl bg-white/95 dark:bg-cardDark/95 border-l-4 border-sky-500 border border-slate-200 dark:border-slate-800 text-base shadow-md space-y-2 backdrop-blur-sm">
+              <p class="italic leading-relaxed">"<span id="hero-quote">Keadilan adalah fondasi akal, konsistensi adalah kunci keberhasilan.</span>"</p>
+              <p class="text-xs font-black text-sky-600 dark:text-sky-400 text-left pt-1">— I'lal Jalalludin Syahputra</p>
+            </div>
           </div>
+
           <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-3">
             <button onclick="pindahTabByName('catatan')" class="px-7 py-3.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-white font-extrabold text-sm shadow-lg shadow-sky-500/25 transition active:scale-95">Jelajahi Catatan →</button>
             <button onclick="pindahTabByName('tentang')" class="px-7 py-3.5 rounded-xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 font-bold text-sm transition shadow-sm">Perjalanan & Linimasa</button>
           </div>
         </div>
 
+        <!-- FOTO AVATAR DENGAN EFEK REMANG-REMANG -->
         <div class="relative flex items-center justify-center">
-          <div class="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 aspect-square rounded-3xl bg-white dark:bg-cardDark border-2 border-sky-100 dark:border-slate-800 p-3 shadow-2xl overflow-hidden group">
-            <img id="hero-avatar" src="https://lh3.googleusercontent.com/d/1Yulw-uNtRaOhin1uxctkrEXMhCW-ekSs=w2500" alt="Avatar" class="w-full h-full object-cover object-top rounded-2xl">
+          <div class="absolute w-80 h-80 sm:w-96 sm:h-96 bg-sky-500/30 dark:bg-sky-500/25 blur-[90px] rounded-full pointer-events-none -z-10 animate-moving-glow"></div>
+          <div class="text-8xl md:text-9xl font-black text-slate-300 dark:text-slate-800 select-none -mr-4 mono-font">{</div>
+          <div class="animate-slow-float">
+            <div class="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 aspect-square rounded-3xl bg-white dark:bg-cardDark border-2 border-sky-100 dark:border-slate-800 p-3 shadow-2xl overflow-hidden group">
+              <img id="hero-avatar" src="https://lh3.googleusercontent.com/d/1Yulw-uNtRaOhin1uxctkrEXMhCW-ekSs=w2500" alt="Avatar" class="w-full h-full object-cover object-top rounded-2xl">
+            </div>
           </div>
+          <div class="text-8xl md:text-9xl font-black text-slate-300 dark:text-slate-800 select-none -ml-4 mono-font">}</div>
         </div>
       </div>
     </section>
 
-    <!-- TENTANG -->
+    <!-- TENTANG (BIOGRAFI LENGKAP KEMBALI) -->
     <section id="sec-tentang" class="hidden space-y-12 py-10">
       <div class="text-center max-w-3xl mx-auto space-y-3">
+        <span class="px-4 py-1 rounded-full bg-sky-100 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 text-xs font-black uppercase tracking-wider">Tentang Saya</span>
         <h2 class="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white">Refleksi Diri & Perjalanan</h2>
+        <p class="text-base text-slate-600 dark:text-slate-400 leading-relaxed">Mendalami ilmu hukum, otomasi digital, peternakan modern, dan eksplorasi lintas disiplin.</p>
       </div>
+
       <div class="max-w-4xl mx-auto space-y-6">
-        <div id="tentang-deskripsi" class="p-8 sm:p-10 rounded-3xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 shadow-sm space-y-5 text-base sm:text-lg leading-relaxed">
-          <p>Nama saya <b>I'lal Jalalludin Syahputra</b>. Saat ini saya menjalani kehidupan di Jepang dan bekerja di bidang <b>poultry farming</b>, khususnya dalam lingkungan peternakan ayam.</p>
+        <div class="smooth-zoom-card p-8 sm:p-10 rounded-3xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 shadow-sm space-y-5 text-base sm:text-lg leading-relaxed cursor-default">
+          <p>Nama saya <b>I'lal Jalalludin Syahputra</b>. Saat ini saya menjalani kehidupan di Jepang dan bekerja di bidang <b>poultry farming</b>, khususnya dalam lingkungan peternakan ayam. Pengalaman ini menjadi bagian penting dari perjalanan saya karena mengajarkan banyak hal tentang <i>discipline, responsibility, teamwork</i>, dan bagaimana pekerjaan sederhana sekalipun membutuhkan ketelitian dan konsistensi.</p>
+          <p>Di sisi lain, saya memiliki background <b>Desain Komunikasi Visual (DKV)</b> yang membuat saya tetap dekat dengan dunia kreatif. <i>Graphic design, photography, visual communication</i>, hingga <i>digital content</i> menjadi beberapa bidang yang saya sukai dan terus saya kembangkan. Saya juga tertarik pada data processing, computer operation, dan pemanfaatan teknologi modern untuk membuat pekerjaan menjadi lebih efektif.</p>
+          <p>Bagi saya, teknologi bukan sekadar sesuatu untuk digunakan, tetapi juga ruang untuk terus belajar. Saya mulai mengeksplorasi berbagai digital tools dan AI sebagai bagian dari daily workflow, baik untuk pekerjaan, kreativitas, maupun proses belajar.</p>
+          <p>Selain bekerja dan mengembangkan skill, saya juga sedang menempuh pendidikan <b>Ilmu Hukum di Universitas Terbuka</b>. Saya melihat hukum sebagai bidang yang berbeda dari dunia kreatif dan peternakan yang saya jalani, tetapi justru dari perbedaan itulah saya mendapatkan perspektif baru.</p>
+          <p>Perjalanan ini mungkin terlihat seperti kumpulan bidang yang berbeda—<i>poultry farming</i>, DKV, digital technology, Japanese language, dan law. Namun, semuanya menjadi bagian dari proses yang sama: terus belajar, mencoba hal baru, dan membangun kemampuan sedikit demi sedikit.</p>
+        </div>
+
+        <div class="smooth-zoom-card p-8 rounded-3xl bg-sky-50/70 dark:bg-sky-950/30 border-l-8 border-sky-500 border border-sky-100 dark:border-sky-900 text-slate-800 dark:text-slate-200 space-y-2 cursor-default">
+          <p class="italic text-base sm:text-lg font-medium leading-relaxed">
+            "Waktu akan terus berjalan, namun kenangan masa lalu dan ilmu yang kita tanam hari ini adalah warisan abadi yang akan memandu kita di masa depan. Jangan pernah takut untuk belajar hal baru, dan jangan pernah lupa untuk sesekali menengok ke belakang."
+          </p>
+          <p class="text-xs font-black text-sky-600 dark:text-sky-400">— I'lal Jalalludin Syahputra</p>
         </div>
       </div>
+
       <div class="space-y-6 pt-6">
-        <div class="text-center"><h3 class="text-2xl sm:text-3xl font-black">Riwayat Pendidikan</h3></div>
+        <div class="text-center space-y-2">
+          <span class="px-4 py-1 rounded-full bg-sky-100 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 text-xs font-black uppercase tracking-wider">Linimasa Akademik</span>
+          <h3 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">Riwayat Pendidikan</h3>
+        </div>
         <div class="space-y-4 max-w-3xl mx-auto" id="pendidikan-container"></div>
       </div>
     </section>
 
-    <!-- KEAHLIAN -->
+    <!-- KEAHLIAN (KOTAK GRID LENGKAP DENGAN IKONNYA) -->
     <section id="sec-skills" class="hidden space-y-10 py-10">
       <div class="text-center max-w-3xl mx-auto space-y-3">
+        <span class="px-4 py-1 rounded-full bg-sky-100 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 text-xs font-black uppercase tracking-wider">Keahlian</span>
         <h2 class="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white">Teknologi & Perangkat Lunak</h2>
+        <p class="text-base text-slate-600 dark:text-slate-400">Peralatan desain grafis, produktivitas, dan otomasi instrumen.</p>
       </div>
+
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5 max-w-5xl mx-auto" id="skills-grid-container"></div>
     </section>
 
     <!-- CATATAN -->
     <section id="sec-blog" class="hidden space-y-10 py-10">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-5">
-        <h2 class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white">Pikiran, Gagasan, & Esai</h2>
+        <div>
+          <span class="px-4 py-1 rounded-full bg-sky-100 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 text-xs font-black uppercase tracking-wider">Artikel & Catatan</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white mt-2">Pikiran, Gagasan, & Esai</h2>
+        </div>
         <input type="text" id="blog-search" oninput="cariBlog()" placeholder="Cari artikel..." class="w-full sm:w-80 bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 rounded-2xl px-5 py-3 text-sm focus:outline-none focus:border-sky-500 shadow-sm">
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -172,6 +211,7 @@
     <!-- EKSPLOR -->
     <section id="sec-eksplor" class="hidden space-y-10 py-10">
       <div class="text-center max-w-3xl mx-auto space-y-2">
+        <span class="px-4 py-1 rounded-full bg-sky-100 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 text-xs font-black uppercase tracking-wider">Eksplorasi</span>
         <h2 class="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white">Arsip & Modul Khusus</h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -219,6 +259,18 @@
       <textarea id="anon-pesan-input" rows="4" placeholder="Tulis pesan rahasia di sini..." class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 text-sm focus:outline-none focus:border-sky-500 resize-none"></textarea>
       <div id="anon-status" class="text-xs font-bold text-center hidden"></div>
       <button onclick="kirimPesanAnonim()" class="w-full py-3.5 rounded-xl bg-sky-500 text-white font-extrabold text-sm">Kirim Pesan Rahasia</button>
+    </div>
+  </div>
+
+  <!-- FLOATING AUDIO PLAYER (MUSIK KEMBALI AKTIF) -->
+  <div class="fixed bottom-6 right-6 z-40">
+    <div class="bg-white/90 dark:bg-cardDark/90 backdrop-blur-md px-4 py-2.5 rounded-2xl flex items-center gap-3 shadow-xl border border-slate-200 dark:border-slate-800">
+      <button onclick="toggleAudio()" id="btn-audio" class="w-9 h-9 rounded-xl bg-sky-500 hover:bg-sky-400 text-white flex items-center justify-center font-bold text-xs transition">▶</button>
+      <div class="text-xs pr-2">
+        <span class="block font-bold text-slate-900 dark:text-white">Ambient Chill</span>
+        <span id="audio-status" class="text-slate-400">Jeda (Klik putar)</span>
+      </div>
+      <audio id="bg-audio" loop src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3"></audio>
     </div>
   </div>
 
@@ -872,8 +924,17 @@
 
     function toggleAudio() {
       const audio = document.getElementById('bg-audio');
-      if (audio.paused) { audio.play(); document.getElementById('btn-audio').innerText = "❚❚"; document.getElementById('audio-status').innerText = "Memutar ♫"; }
-      else { audio.pause(); document.getElementById('btn-audio').innerText = "▶"; document.getElementById('audio-status').innerText = "Jeda"; }
+      const btn = document.getElementById('btn-audio');
+      const status = document.getElementById('audio-status');
+      if (audio.paused) {
+        audio.play();
+        btn.innerText = "❚❚";
+        status.innerText = "Memutar ♫";
+      } else {
+        audio.pause();
+        btn.innerText = "▶";
+        status.innerText = "Jeda (Klik putar)";
+      }
     }
 
     window.onload = function() { initTheme(); muatDataSheets(); const firstTab = document.querySelector('.tab-item'); if (firstTab) updateNavIndicator(firstTab); };

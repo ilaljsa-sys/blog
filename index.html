@@ -137,19 +137,16 @@
 
         <div class="relative flex items-center justify-center">
           <div class="absolute w-80 h-80 sm:w-96 sm:h-96 bg-sky-500/30 dark:bg-sky-500/25 blur-[90px] rounded-full pointer-events-none -z-10 animate-moving-glow"></div>
-          <div class="text-8xl md:text-9xl font-black text-slate-300 dark:text-slate-800 select-none -mr-4 mono-font">{</div>
+          
           <div class="animate-slow-float">
-            
             <div class="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 aspect-square rounded-3xl bg-white dark:bg-cardDark border-2 border-sky-100 dark:border-slate-800 p-3 shadow-2xl overflow-hidden group relative cursor-pointer">
               
-              <img id="hero-avatar" src="" alt="Avatar Utama" style="mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%); -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%);" class="w-full h-full object-cover object-top rounded-2xl transition-all duration-500 group-hover:opacity-0 group-hover:scale-105 absolute inset-3 w-[calc(100%-1.5rem)] h-[calc(100%-1.5rem)]">
+              <img id="hero-avatar" src="" alt="Avatar Utama" class="absolute inset-3 w-[calc(100%-1.5rem)] h-[calc(100%-1.5rem)] object-cover object-top rounded-2xl transition-all duration-700 group-hover:opacity-0 group-hover:scale-105">
               
-              <img id="hero-avatar-anim" src="" alt="Avatar Animasi" style="mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%); -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%);" class="w-full h-full object-cover object-top rounded-2xl transition-all duration-500 opacity-0 group-hover:opacity-100 group-hover:scale-105 absolute inset-3 w-[calc(100%-1.5rem)] h-[calc(100%-1.5rem)]">
+              <img id="hero-spiderman" src="" alt="Avatar Spiderman" class="absolute inset-3 w-[calc(100%-1.5rem)] h-[calc(100%-1.5rem)] object-cover object-top rounded-2xl transition-all duration-700 opacity-0 group-hover:opacity-100 group-hover:scale-105">
 
             </div>
-
           </div>
-          <div class="text-8xl md:text-9xl font-black text-slate-300 dark:text-slate-800 select-none -ml-4 mono-font">}</div>
         </div>
       </div>
     </section>
@@ -347,13 +344,7 @@
     const APPS_SCRIPT_API_URL = "https://script.google.com/macros/s/AKfycbzelb8A39t38A_oYlNut4MVfsO5KzcbaWm7Azt3Gl3qqlAg79J4CsVWygQ5zhJu93dz1g/exec";
 
     let localDB = {
-      profil: { 
-        nama_lengkap: "I'lal Jalalludin Syahputra", 
-        teks_ketik: "Mahasiswa Hukum, Japanese Learner, Livestock Farm", 
-        quote: "Keadilan adalah fondasi akal, konsistensi adalah kunci keberhasilan.",
-        foto_avatar: "https://i.postimg.cc/hXpRSM0J/fektor.png",
-        foto_animasi: "https://i.postimg.cc/hXpRSM0J/fektor.png"
-      },
+      profil: { nama_lengkap: "I'lal Jalalludin Syahputra", teks_ketik: "Mahasiswa Hukum, Japanese Learner, Livestock Farm", quote: "Keadilan adalah fondasi akal, konsistensi adalah kunci keberhasilan." },
       pendidikan: [
         { "Nama Instansi": "TK Roudhotul Ilmi", "Jurusan / Tingkat": "Pendidikan Kanak", "Tahun": "2011-2013", "Status": "Lulus", "IconSVG": `<svg class="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>` },
         { "Nama Instansi": "MI Mathala'ul Anwar", "Jurusan / Tingkat": "Pendidikan Dasar", "Tahun": "2013-2018", "Status": "Lulus", "IconSVG": `<svg class="w-6 h-6 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>` },
@@ -663,7 +654,22 @@
       }
     }
 
-    function muatDataSheets() {
+    async function muatDataSheets() {
+      if (APPS_SCRIPT_API_URL) {
+        try {
+          const res = await fetch(APPS_SCRIPT_API_URL);
+          const data = await res.json();
+          if (data && data.status === "success") {
+            if (data.profil && Object.keys(data.profil).length > 0) localDB.profil = data.profil;
+            if (data.pendidikan && data.pendidikan.length > 0) localDB.pendidikan = data.pendidikan;
+            if (data.skills && data.skills.length > 0) localDB.skills = data.skills;
+            if (data.blog && data.blog.length > 0) localDB.blog = data.blog;
+            if (data.tugas && data.tugas.length > 0) localDB.tugas = data.tugas;
+          }
+        } catch (err) {
+          console.log("Menggunakan data lokal cadangan:", err);
+        }
+      }
       terapkanData();
     }
 
@@ -671,16 +677,16 @@
       if (localDB.profil.nama_lengkap) document.getElementById('hero-nama').innerText = localDB.profil.nama_lengkap;
       if (localDB.profil.quote) document.getElementById('hero-quote').innerText = localDB.profil.quote;
       
-      const avatarEl = document.getElementById('hero-avatar');
-      if (localDB.profil.foto_avatar && avatarEl) {
-        avatarEl.src = localDB.profil.foto_avatar.trim();
+      // SINKRONISASI FOTO UTAMA DARI SHEET
+      if (localDB.profil.foto_avatar) {
+        const avatarImg = document.getElementById('hero-avatar');
+        if (avatarImg) avatarImg.src = localDB.profil.foto_avatar;
       }
 
-      const avatarAnimEl = document.getElementById('hero-avatar-anim');
-      if (localDB.profil.foto_animasi && avatarAnimEl) {
-        avatarAnimEl.src = localDB.profil.foto_animasi.trim();
-      } else if (avatarAnimEl && localDB.profil.foto_avatar) {
-        avatarAnimEl.src = localDB.profil.foto_avatar.trim();
+      // SINKRONISASI FOTO SPIDERMAN DARI SHEET
+      if (localDB.profil.foto_spiderman) {
+        const spidermanImg = document.getElementById('hero-spiderman');
+        if (spidermanImg) spidermanImg.src = localDB.profil.foto_spiderman;
       }
 
       mulaiTypewriter(["Mahasiswa Hukum", "Japanese Learner", "Livestock Farm"]);
@@ -969,15 +975,15 @@
     }
 
     function toggleAudio() {
-      const audio = document.getElementById('bg-audio');
+      const audioEl = document.getElementById('bg-audio');
       const btn = document.getElementById('btn-audio');
       const status = document.getElementById('audio-status');
-      if (audio.paused) {
-        audio.play();
+      if (audioEl.paused) {
+        audioEl.play();
         btn.innerText = "❚❚";
         status.innerText = "Memutar ♫";
       } else {
-        audio.pause();
+        audioEl.pause();
         btn.innerText = "▶";
         status.innerText = "Jeda (Klik putar)";
       }

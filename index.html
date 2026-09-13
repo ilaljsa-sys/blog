@@ -57,14 +57,51 @@
     .cursor-blink { display: inline-block; width: 2px; animation: blink 1s infinite; }
     @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-    /* GAYA FOTO PROFIL BULAT TANPA KOTAK CARD ALA EKA */
-    .avatar-area { position: relative; width: 280px; height: 280px; display: flex; align-items: center; justify-content: center; }
-    .avatar-circle { position: relative; width: 220px; height: 220px; border-radius: 50%; overflow: hidden; }
-    .avatar-img, .spidey-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 50%; }
+    /* STYLE FOTO KOTAK MELENGKUNG ALA EKA WAHYU MAULIDAN */
+    .eka-avatar-box {
+      position: relative;
+      width: 340px;
+      height: 340px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .eka-avatar-wrapper {
+      position: relative;
+      width: 280px;
+      height: 280px;
+      border-radius: 2.5rem;
+      overflow: hidden;
+    }
+    .eka-img-base, .eka-img-spidey {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      border-radius: 2.5rem;
+      transition: opacity 0.8s ease-in-out;
+    }
+    /* Animasi pergantian otomatis ala Eka */
+    @keyframes ekaAutoSwitch {
+      0%, 42% { opacity: 1; }
+      50%, 92% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    .eka-img-base { animation: ekaAutoSwitch 6s infinite; }
     
-    /* ANIMASI GLITCH/TRANSISI SPIDER-MAN OTOMATIS BERPUTAR/BERGANTI */
-    @keyframes spideyFade { 0%, 45% { opacity: 0; transform: scale(1); } 50%, 95% { opacity: 1; transform: scale(1.03); } 100% { opacity: 0; transform: scale(1); } }
-    .spidey-img { animation: spideyFade 6s ease-in-out infinite; }
+    @keyframes ekaAutoSwitchReverse {
+      0%, 42% { opacity: 0; }
+      50%, 92% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+    .eka-img-spidey { animation: ekaAutoSwitchReverse 6s infinite; }
+
+    @media (max-width: 1023px) {
+      .eka-avatar-box { width: 280px; height: 280px; margin: 0 auto; }
+      .eka-avatar-wrapper { width: 220px; height: 220px; }
+    }
   </style>
 </head>
 <body class="bg-slate-50 dark:bg-neutralDark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col justify-between selection:bg-sky-500 selection:text-white bg-dots-light dark:bg-dots-dark text-base antialiased pb-28 md:pb-0" id="body-root">
@@ -147,10 +184,10 @@
         <div class="relative flex items-center justify-center">
           <div class="absolute w-80 h-80 sm:w-96 sm:h-96 bg-sky-500/30 dark:bg-sky-500/25 blur-[90px] rounded-full pointer-events-none -z-10 animate-moving-glow"></div>
           
-          <div class="animate-slow-float avatar-area">
-            <div class="avatar-wrapper">
-              <img id="hero-avatar" src="" alt="Avatar Utama" class="avatar-img">
-              <img id="hero-spiderman" src="" alt="Avatar Spiderman" class="spidey-img">
+          <div class="animate-slow-float eka-avatar-box">
+            <div class="eka-avatar-wrapper">
+              <img id="hero-avatar" src="" alt="Avatar Utama" class="eka-img-base">
+              <img id="hero-spiderman" src="" alt="Avatar Spiderman" class="eka-img-spidey">
             </div>
           </div>
         </div>
@@ -363,7 +400,7 @@
         { "Judul Artikel": "Bill Gates dan Revolusi Perangkat Lunak: Kisah Berdirinya Microsoft", Kategori: "Sejarah Bisnis", Tanggal: "22 Agu 2026", "Ringkasan Cuplikan": "Kisah drop-out Harvard yang sukses mendominasi ekosistem komputer pribadi global.", "Isi Lengkap Artikel": "Bersama Paul Allen, Bill Gates mendedikasikan masa mudanya di ruang komputer kampus hingga mendirikan Microsoft tahun 1975...", "SumberURL": "https://id.wikipedia.org/wiki/Bill_Gates" },
         { "Judul Artikel": "Investor Institusional vs Investor Ritel di Pasar Modal", Kategori: "Finansial", Tanggal: "15 Agu 2026", "Ringkasan Cuplikan": "Perbedaan kekuatan modal, analisis fundamental, dan cara gerak antara dana institusi dan individu.", "Isi Lengkap Artikel": "Di bursa saham, kita berhadapan dengan dua pelaku utama...", "SumberURL": "https://www.investopedia.com/terms/i/institutionalinvestor.asp" },
         { "Judul Artikel": "Kisah Henry Ford dan Lini Produksi Massal Mobil Ford Model T", Kategori: "Sejarah Bisnis", Tanggal: "08 Agu 2026", "Ringkasan Cuplikan": "Bagaimana inovasi pabrik konveyor mengubah mobil dari barang mewah menjadi alat transportasi umum.", "Isi Lengkap Artikel": "Henry Ford tidak hanya membuat mobil; ia merevolusi industri manufaktur global...", "SumberURL": "https://id.wikipedia.org/wiki/Henry_Ford" },
-        { "Judul Artikel": "Passive Investor vs Active Trader: Mana yang Lebih Efektif?", Kategori: "Finansial", Tanggal: "02 Agu 2026", "Ringkasan Cuplikan": "Analisis waktu, mentalitas, dan imbal hasil jangka panjang antara investasi pasif dan trading.", "Isi Lengkap Artikel": "Perdebatan abadi di kalangan pelaku pasar adalah antara melakukan buy-and-hold jangka panjang...", "SumberURL": "https://id.wikipedia.org/wiki/articles/investing/092815/active-vs-passive-investing.asp" },
+        { "Judul Artikel": "Passive Investor vs Active Trader: Mana yang Lebih Efektif?", Kategori: "Finansial", Tanggal: "02 Agu 2026", "Ringkasan Cuplikan": "Analisis waktu, mentalitas, dan imbal hasil jangka panjang antara investasi pasif dan trading.", "Isi Lengkap Artikel": "Perdebatan abadi di kalangan pelaku pasar adalah antara melakukan buy-and-hold jangka panjang...", "SumberURL": "https://www.investopedia.com/articles/investing/092815/active-vs-passive-investing.asp" },
         { "Judul Artikel": "Kisah Mark Zuckerberg & Facebook dari Asrama Harvard", Kategori: "Sejarah Bisnis", Tanggal: "25 Jul 2026", "Ringkasan Cuplikan": "Proyek kamar kos mahasiswa psikologi dan ilmu komputer yang menjelma menjadi jejaring sosial.", "Isi Lengkap Artikel": "Dimulai dari situs direktori kampus sederhana bernama TheFacebook...", "SumberURL": "https://id.wikipedia.org/wiki/Mark_Zuckerberg" },
         { "Judul Artikel": "Pentingnya Memahami Valuasi Saham bagi Pemula", Kategori: "Finansial", Tanggal: "18 Jul 2026", "Ringkasan Cuplikan": "Belajar membedakan perusahaan bagus dan harga wajar agar terhindar dari jebakan spekulasi.", "Isi Lengkap Artikel": "Banyak investor pemula terjebak membeli saham hanya karena sedang tren di media sosial...", "SumberURL": "https://www.ojk.go.id/id/kanal/pasar-modal/Pages/Produk-Pasar-Modal.aspx" }
       ],
@@ -650,7 +687,6 @@
     function renderBlogCards(list) {
       const blogBox = document.getElementById('blog-container');
       if (!blogBox) return;
-      // Menampilkan 10 catatan secara vertikal ke bawah
       blogBox.innerHTML = list.slice(0, 10).map((b, idx) => `
         <article onclick="bukaModalBlog(${idx})" class="smooth-zoom-card p-6 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 cursor-pointer group flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm hover:border-sky-500 transition duration-300">
           <div class="flex items-start gap-4">

@@ -64,7 +64,7 @@
       gap: 3.5rem;
     }
 
-    /* STYLE FOTO EKA WAHYU (FADE BAWAH + TRANSISI HOVER HALUS PERSIS VIDEO) */
+    /* FOTO EKA WAHYU (EFEK MASKING INTERAKTIF KENCENG DI KURSOR + IDLE SLOW) */
     .eka-avatar-box {
       position: relative;
       width: 320px;
@@ -72,7 +72,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
+      cursor: crosshair;
     }
     .eka-avatar-wrapper {
       position: relative;
@@ -90,7 +90,6 @@
       object-position: top;
       -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 92%);
       mask-image: linear-gradient(to bottom, black 55%, transparent 92%);
-      transition: opacity 0.5s ease-in-out;
     }
     .eka-img-spidey {
       position: absolute;
@@ -99,18 +98,17 @@
       height: 100%;
       object-fit: cover;
       object-position: top;
-      opacity: 0;
       -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 92%);
       mask-image: linear-gradient(to bottom, black 55%, transparent 92%);
-      transition: opacity 0.5s ease-in-out;
-    }
-
-    /* Kursor disentuh (Hover): Foto asli pudar halus, Spiderman muncul penuh */
-    .eka-avatar-wrapper:hover .eka-img-base {
-      opacity: 0;
-    }
-    .eka-avatar-wrapper:hover .eka-img-spidey {
-      opacity: 1;
+      mix-blend-mode: normal;
+      /* Default tertutup mask lingkaran kosong */
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-size: 0px 0px;
+      mask-size: 0px 0px;
+      -webkit-mask-position: -1000px -1000px;
+      mask-position: -1000px -1000px;
+      transition: -webkit-mask-size 0.2s ease, mask-size 0.2s ease;
     }
 
     @media (max-width: 1023px) {
@@ -199,10 +197,10 @@
         <div class="relative flex items-center justify-center">
           <div class="absolute w-80 h-80 sm:w-96 sm:h-96 bg-sky-500/30 dark:bg-sky-500/25 blur-[90px] rounded-full pointer-events-none -z-10 animate-moving-glow"></div>
           
-          <div class="animate-slow-float eka-avatar-box">
+          <div class="animate-slow-float eka-avatar-box" id="avatarBox">
             <div class="eka-avatar-wrapper">
               <img id="hero-avatar" src="https://i.postimg.cc/rwY03HQz/ga-ada-bacgrond.png" alt="Avatar Utama" class="eka-img-base">
-              <img id="hero-spiderman" src="https://i.postimg.cc/Kv0R3VXs/Spiderman-pas.png" alt="Avatar Spiderman" class="eka-img-spidey">
+              <img id="hero-spiderman" src="https://i.postimg.cc/Kv0R3VXs/Spiderman-pas.png" alt="Avatar Spiderman" class="eka-img-spidey" id="spideyImg">
             </div>
           </div>
         </div>
@@ -510,7 +508,7 @@
       { nomor: 77, nama_latin: "Al-Mursalat", nama: "المرسلات", arti: "Malaikat Dikirim", jumlah_ayat: 50 },
       { nomor: 78, nama_latin: "An-Naba'", nama: "النبأ", arti: "Berita Besar", jumlah_ayat: 40 },
       { nomor: 79, nama_latin: "An-Nazi'at", nama: "النازعات", arti: "Malaikat Mencabut", jumlah_ayat: 46 },
-      { nomor: 80, nama_latin: "'Abasa", nama: "عبس", arti: "Bermuka Masam", jumlah_ayat: 42 },
+      { nomor: 80, nama_latin: "'Abasa", nama: "عبs", arti: "Bermuka Masam", jumlah_ayat: 42 },
       { nomor: 81, nama_latin: "At-Takwir", nama: "التكوير", arti: "Menggulung", jumlah_ayat: 29 },
       { nomor: 82, nama_latin: "Al-Infitar", nama: "الانفطار", arti: "Terbelah", jumlah_ayat: 19 },
       { nomor: 83, nama_latin: "Al-Mutaffifin", nama: "المطففين", arti: "Orang Curang", jumlah_ayat: 36 },
@@ -627,6 +625,7 @@
     }
 
     function initTheme() {
+      // DEFAULT KINI GELAP (DARK) SECARA MUTLAK
       const savedTheme = localStorage.getItem('theme') || 'dark';
       const html = document.documentElement;
       const body = document.getElementById('body-root');
@@ -769,7 +768,7 @@
       type();
     }
 
-    // ==================== AL-QUR'ان DIGITAL ====================
+    // ==================== AL-QUR'AN DIGITAL ====================
     async function bukaAlquranDigital() {
       hentikanAudioQari();
       const display = document.getElementById('eksplor-detail-display');
@@ -957,6 +956,38 @@
         status.innerText = "Jeda (Klik putar)";
       }
     }
+
+    // INTERAKTIF MASKING SPIDER-MAN MENGIKUTI KURSOR (PERSIS EKA WAHYU)
+    const avatarBox = document.getElementById('avatarBox');
+    const spideyImg = document.getElementById('hero-spiderman');
+
+    if(avatarBox && spideyImg) {
+      avatarBox.addEventListener('mousemove', (e) => {
+        const rect = avatarBox.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        // Buat masking lingkaran ukuran 130px mengikut kursor
+        spideyImg.style.webkitMaskImage = `radial-gradient(circle 90px at ${x}px ${y}px, black 100%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%)`;
+        spideyImg.style.maskImage = `radial-gradient(circle 90px at ${x}px ${y}px, black 100%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%)`;
+      });
+
+      avatarBox.addEventListener('mouseleave', () => {
+        // Balikin ke default (tertutup saat kursor keluar)
+        spideyImg.style.webkitMaskImage = 'linear-gradient(to bottom, black 55%, transparent 92%)';
+        spideyImg.style.maskImage = 'linear-gradient(to bottom, black 55%, transparent 92%)';
+      });
+    }
+
+    // Efek idle otomatis jalan pelan berganti saat tidak disentuh
+    setInterval(() => {
+      if(!avatarBox.matches(':hover')) {
+        const randomX = Math.random() * 280;
+        const randomY = Math.random() * 370;
+        spideyImg.style.webkitMaskImage = `radial-gradient(circle 70px at ${randomX}px ${randomY}px, black 100%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%)`;
+        spideyImg.style.maskImage = `radial-gradient(circle 70px at ${randomX}px ${randomY}px, black 100%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%)`;
+      }
+    }, 3500);
 
     window.onload = function() { initTheme(); muatDataSheets(); };
   </script>

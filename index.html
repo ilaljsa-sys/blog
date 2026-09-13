@@ -57,21 +57,21 @@
     .cursor-blink { display: inline-block; width: 2px; animation: blink 1s infinite; }
     @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-    /* STYLE FOTO KOTAK DENGAN GRADASI FADE BAWAH (PERSIS EKA WAHYU) */
+    /* STYLE FOTO PERSIS EKA WAHYU (FADE BAWAH HALUS, TIDAK KOTAK KAKU) */
     .eka-avatar-box {
       position: relative;
-      width: 360px;
-      height: 450px;
+      width: 320px;
+      height: 400px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-top: -50px;
     }
     .eka-avatar-wrapper {
       position: relative;
-      width: 300px;
-      height: 400px;
+      width: 270px;
+      height: 360px;
       overflow: hidden;
+      border-radius: 1.5rem;
     }
     .eka-img-base {
       position: absolute;
@@ -80,8 +80,8 @@
       height: 100%;
       object-fit: cover;
       object-position: top;
-      -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 95%);
-      mask-image: linear-gradient(to bottom, black 50%, transparent 95%);
+      -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 92%);
+      mask-image: linear-gradient(to bottom, black 55%, transparent 92%);
     }
     .eka-img-spidey {
       position: absolute;
@@ -91,8 +91,8 @@
       object-fit: cover;
       object-position: top;
       opacity: 0;
-      -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 95%);
-      mask-image: linear-gradient(to bottom, black 50%, transparent 95%);
+      -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 92%);
+      mask-image: linear-gradient(to bottom, black 55%, transparent 92%);
       mix-blend-mode: screen;
       animation: ekaComplexGlitch 5s infinite step-end;
       will-change: transform, opacity;
@@ -100,28 +100,28 @@
 
     @keyframes ekaComplexGlitch {
       0%, 40%, 100% { opacity: 0; transform: none; filter: none; }
-      42% { opacity: 1; transform: translate3d(5px, 0, 0); filter: hue-rotate(90deg); }
-      43% { transform: translate3d(-5px, 0, 0); filter: hue-rotate(-90deg); }
+      42% { opacity: 1; transform: translate3d(4px, 0, 0); filter: hue-rotate(90deg); }
+      43% { transform: translate3d(-4px, 0, 0); filter: hue-rotate(-90deg); }
       44% { transform: none; filter: none; }
-      46% { opacity: 0.7; transform: translate3d(0, 3px, 0); }
-      47% { transform: translate3d(0, -3px, 0); }
+      46% { opacity: 0.7; transform: translate3d(0, 2px, 0); }
+      47% { transform: translate3d(0, -2px, 0); }
       48% { transform: none; opacity: 1; }
       49% { opacity: 0; }
-      82% { opacity: 1; transform: translate3d(10px, 0, 0) scaleX(1.1); }
-      83% { transform: translate3d(-10px, 0, 0) scaleX(0.9); }
+      82% { opacity: 1; transform: translate3d(8px, 0, 0) scaleX(1.05); }
+      83% { transform: translate3d(-8px, 0, 0) scaleX(0.95); }
       84% { transform: none; opacity: 1; }
     }
 
     @media (max-width: 1023px) {
-      .eka-avatar-box { width: 280px; height: 350px; margin: 0 auto; }
-      .eka-avatar-wrapper { width: 200px; height: 280px; }
+      .eka-avatar-box { width: 260px; height: 330px; margin: 0 auto; }
+      .eka-avatar-wrapper { width: 210px; height: 280px; }
     }
   </style>
 </head>
 <body class="bg-slate-50 dark:bg-neutralDark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col justify-between selection:bg-sky-500 selection:text-white bg-dots-light dark:bg-dots-dark text-base antialiased pb-28 md:pb-0" id="body-root">
 
   <nav class="sticky top-0 z-50 backdrop-blur-xl border-b border-slate-200/80 dark:border-slate-800/80 bg-white/85 dark:bg-neutralDark/85 px-6 py-4">
-    <div class="max-w-[1400px] mx-auto flex items-center justify-between">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
       <div class="flex items-center gap-3 sm:gap-5">
         <a href="#" onclick="pindahTabByName('beranda'); return false;" class="text-3xl font-black tracking-tight text-slate-900 dark:text-white group">
           ilal<span class="text-sky-500 font-black">jsa</span>
@@ -150,7 +150,7 @@
     </div>
   </nav>
 
-  <main class="max-w-[1400px] mx-auto w-full px-6 flex-grow flex flex-col justify-center">
+  <main class="max-w-7xl mx-auto w-full px-6 flex-grow flex flex-col justify-center">
     
     <section id="sec-beranda" class="w-full py-12 md:py-20 flex items-center page-tab-enter">
       <div class="w-full flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-16">
@@ -201,7 +201,7 @@
           <div class="animate-slow-float eka-avatar-box">
             <div class="eka-avatar-wrapper">
               <img id="hero-avatar" src="" alt="Avatar Utama" class="eka-img-base">
-              <img id="hero-spiderman" src="" alt="Avatar Animasi" class="eka-img-spidey">
+              <img id="hero-spiderman" src="" alt="Avatar Spiderman" class="eka-img-spidey">
             </div>
           </div>
         </div>
@@ -666,9 +666,9 @@
         if (avatarImg) avatarImg.src = localDB.profil.foto_avatar;
       }
 
-      if (localDB.profil.foto_animasi) {
+      if (localDB.profil.foto_spiderman) {
         const spidermanImg = document.getElementById('hero-spiderman');
-        if (spidermanImg) spidermanImg.src = localDB.profil.foto_animasi;
+        if (spidermanImg) spidermanImg.src = localDB.profil.foto_spiderman;
       }
 
       mulaiTypewriter(["Mahasiswa Hukum", "Japanese Learner", "Livestock Farm"]);

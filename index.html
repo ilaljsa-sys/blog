@@ -56,6 +56,15 @@
     .tab-item { position: relative; z-index: 1; }
     .cursor-blink { display: inline-block; width: 2px; animation: blink 1s infinite; }
     @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+    /* GAYA FOTO PROFIL BULAT TANPA KOTAK CARD ALA EKA */
+    .avatar-area { position: relative; width: 280px; height: 280px; display: flex; align-items: center; justify-content: center; }
+    .avatar-circle { position: relative; width: 220px; height: 220px; border-radius: 50%; overflow: hidden; }
+    .avatar-img, .spidey-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 50%; }
+    
+    /* ANIMASI GLITCH/TRANSISI SPIDER-MAN OTOMATIS BERPUTAR/BERGANTI */
+    @keyframes spideyFade { 0%, 45% { opacity: 0; transform: scale(1); } 50%, 95% { opacity: 1; transform: scale(1.03); } 100% { opacity: 0; transform: scale(1); } }
+    .spidey-img { animation: spideyFade 6s ease-in-out infinite; }
   </style>
 </head>
 <body class="bg-slate-50 dark:bg-neutralDark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col justify-between selection:bg-sky-500 selection:text-white bg-dots-light dark:bg-dots-dark text-base antialiased pb-28 md:pb-0" id="body-root">
@@ -138,13 +147,10 @@
         <div class="relative flex items-center justify-center">
           <div class="absolute w-80 h-80 sm:w-96 sm:h-96 bg-sky-500/30 dark:bg-sky-500/25 blur-[90px] rounded-full pointer-events-none -z-10 animate-moving-glow"></div>
           
-          <div class="animate-slow-float">
-            <div class="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 aspect-square rounded-3xl bg-white dark:bg-cardDark border-2 border-sky-100 dark:border-slate-800 p-3 shadow-2xl overflow-hidden group relative cursor-pointer">
-              
-              <img id="hero-avatar" src="" alt="Avatar Utama" class="absolute inset-3 w-[calc(100%-1.5rem)] h-[calc(100%-1.5rem)] object-cover object-top rounded-2xl transition-all duration-700 group-hover:opacity-0 group-hover:scale-105">
-              
-              <img id="hero-spiderman" src="" alt="Avatar Spiderman" class="absolute inset-3 w-[calc(100%-1.5rem)] h-[calc(100%-1.5rem)] object-cover object-top rounded-2xl transition-all duration-700 opacity-0 group-hover:opacity-100 group-hover:scale-105">
-
+          <div class="animate-slow-float avatar-area">
+            <div class="avatar-wrapper">
+              <img id="hero-avatar" src="" alt="Avatar Utama" class="avatar-img">
+              <img id="hero-spiderman" src="" alt="Avatar Spiderman" class="spidey-img">
             </div>
           </div>
         </div>
@@ -235,10 +241,7 @@
         </div>
         <input type="text" id="blog-search" oninput="cariBlog()" placeholder="Cari artikel..." class="w-full sm:w-80 bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 rounded-2xl px-5 py-3 text-sm focus:outline-none focus:border-sky-500 shadow-sm">
       </div>
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div class="lg:col-span-2 space-y-6"><div class="grid grid-cols-1 sm:grid-cols-2 gap-6" id="blog-container"></div></div>
-        <div class="space-y-6"><div class="space-y-4" id="blog-populer-container"></div></div>
-      </div>
+      <div class="max-w-4xl mx-auto space-y-4" id="blog-container"></div>
     </section>
 
     <section id="sec-eksplor" class="hidden space-y-10 py-10">
@@ -353,86 +356,16 @@
         { "Nama Instansi": "Universitas Terbuka", "Jurusan / Tingkat": "Ilmu Hukum • S1", "Tahun": "Aktif", "Status": "Aktif", "IconSVG": `<svg class="w-6 h-6 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14v7"></path></svg>` }
       ],
       blog: [
-        { 
-          "Judul Artikel": "Kisah Steve Jobs & Garasi Apple: Dari Hobi Otak-Atik Menjadi Imperium Teknologi", 
-          Kategori: "Sejarah Bisnis", 
-          Tanggal: "12 Sep 2026", 
-          "Ringkasan Cuplikan": "Bagaimana ketekunan Steve Jobs dan Steve Wozniak mengubah komputer pribadi menjadi barang revolusioner.", 
-          "Isi Lengkap Artikel": "Apple Inc. bukan lahir dari garasi mewah ber-AC, melainkan dari garasi sempit di Los Altos, California pada tahun 1976. Steve Jobs yang sempat keluar dari kuliah bersama Wozniak membuktikan bahwa kegigihan, visi estetika, serta keyakinan produk mampu melahirkan sejarah besar peradaban digital.\n\nDalam perjalanannya, Apple mengalami fase jatuh bangun termasuk ketika Jobs sempat disingkirkan dari perusahaan yang ia dirikan sendiri. Namun kepulangannya pada tahun 1997 menyelamatkan Apple lewat inovasi ikonik seperti iMac, iPod, dan iPhone.",
-          "SumberURL": "https://id.wikipedia.org/wiki/Steve_Jobs"
-        },
-        { 
-          "Judul Artikel": "Mengenal Berbagai Jenis Investor Saham: Panduan & Profil Risiko", 
-          Kategori: "Finansial", 
-          Tanggal: "10 Sep 2026", 
-          "Ringkasan Cuplikan": "Membahas tuntas profil dan tipe investor mulai dari Value Investor, Growth Investor, hingga Day Trader.", 
-          "Isi Lengkap Artikel": "Dalam dunia investasi, tipe investor dibagi berdasarkan gaya dan profil risiko:\n1. Value Investor: Mencari saham yang harganya di bawah nilai intrinsik ( undervalued ), dipelopori oleh Warren Buffett.\n2. Growth Investor: Berfokus pada perusahaan dengan pertumbuhan pendapatan di atas rata-rata industri, seperti perusahaan teknologi.\n3. Income Investor: Mengincar dividen stabil untuk arus kas pasif.\n4. Day Trader / Spekulan: Memanfaatkan volatilitas jangka pendek harian.\n\nMemilih gaya yang tepat menentukan ketenangan mental dan performa portofolio jangka panjang.",
-          "SumberURL": "https://www.investopedia.com/investing/investing-101-the-basics/"
-        },
-        { 
-          "Judul Artikel": "Jeff Bezos & Perjalanan Panjang Amazon: Menjual Buku dari Garasi Rumah", 
-          Kategori: "Sejarah Bisnis", 
-          Tanggal: "04 Sep 2026", 
-          "Ringkasan Cuplikan": "Perjuangan Jeff Bezos meninggalkan pekerjaan mapan di Wall Street demi membangun toko buku online.", 
-          "Isi Lengkap Artikel": "Tahun 1994, Jeff Bezos menyetir mobil lintas negara sambil merancang model bisnis Amazon di atas kertas. Berawal dari garasi kecil di Seattle yang hanya menjual buku fisik, Amazon bertransformasi menjadi raksasa e-commerce dan cloud computing global (AWS) yang mendominasi perekonomian modern.",
-          "SumberURL": "https://id.wikipedia.org/wiki/Jeff_Bezos"
-        },
-        { 
-          "Judul Artikel": "Tipe Investor: Konservatif, Moderat, hingga Agresif", 
-          Kategori: "Finansial", 
-          Tanggal: "28 Agu 2026", 
-          "Ringkasan Cuplikan": "Menilai tingkat kenyamanan psikologis dalam menghadapi fluktuasi pasar modal dan instrumen yang cocok.", 
-          "Isi Lengkap Artikel": "Perdebatan klasik soal portofolio sering berpusat pada profil risiko:\n- Konservatif: Menghindari volatilitas tinggi, menyukai deposito dan SBN.\n- Moderat: Mengombinasikan obligasi dan reksa dana pendapatan tetap serta saham blue-chip.\n- Agresif: Menempatkan porsi besar pada saham pertumbuhan, saham small-cap, maupun aset digital demi imbal hasil maksimal.",
-          "SumberURL": "https://www.ojk.go.id/id/kanal/edukasi-dan-perlindungan-konsumen/Pages/Profil-Risiko.aspx"
-        },
-        { 
-          "Judul Artikel": "Bill Gates dan Revolusi Perangkat Lunak: Kisah Berdirinya Microsoft", 
-          Kategori: "Sejarah Bisnis", 
-          Tanggal: "22 Agu 2026", 
-          "Ringkasan Cuplikan": "Kisah drop-out Harvard yang sukses mendominasi ekosistem komputer pribadi global.", 
-          "Isi Lengkap Artikel": "Bersama Paul Allen, Bill Gates mendedikasikan masa mudanya di ruang komputer kampus hingga mendirikan Microsoft tahun 1975. Visi mereka sederhana namun revolusioner: 'sebuah komputer di setiap rumah dan di setiap meja kerja'.",
-          "SumberURL": "https://id.wikipedia.org/wiki/Bill_Gates"
-        },
-        { 
-          "Judul Artikel": "Investor Institusional vs Investor Ritel di Pasar Modal", 
-          Kategori: "Finansial", 
-          Tanggal: "15 Agu 2026", 
-          "Ringkasan Cuplikan": "Perbedaan kekuatan modal, analisis fundamental, dan cara gerak antara dana institusi dan individu.", 
-          "Isi Lengkap Artikel": "Di bursa saham, kita berhadapan dengan dua pelaku utama. Investor ritel mengelola dana pribadi dengan fleksibilitas tinggi. Sementara investor institusional (seperti dana pensiun, manajer investasi, dan perusahaan asuransi) menggerakkan modal triliunan rupiah dengan analisis fundamental berlapis.",
-          "SumberURL": "https://www.investopedia.com/terms/i/institutionalinvestor.asp"
-        },
-        { 
-          "Judul Artikel": "Kisah Henry Ford dan Lini Produksi Massal Mobil Ford Model T", 
-          Kategori: "Sejarah Bisnis", 
-          Tanggal: "08 Agu 2026", 
-          "Ringkasan Cuplikan": "Bagaimana inovasi pabrik konveyor mengubah mobil dari barang mewah menjadi alat transportasi umum.", 
-          "Isi Lengkap Artikel": "Henry Ford tidak hanya membuat mobil; ia merevolusi industri manufaktur global melalui sistem lini perakitan massal. Efisiensi ini memangkas waktu produksi dari belasan jam menjadi hanya hitungan menit, membuat mobil terjangkau oleh kaum pekerja.",
-          "SumberURL": "https://id.wikipedia.org/wiki/Henry_Ford"
-        },
-        { 
-          "Judul Artikel": "Passive Investor vs Active Trader: Mana yang Lebih Efektif?", 
-          Kategori: "Finansial", 
-          Tanggal: "02 Agu 2026", 
-          "Ringkasan Cuplikan": "Analisis waktu, mentalitas, dan imbal hasil jangka panjang antara investasi pasif dan trading.", 
-          "Isi Lengkap Artikel": "Perdebatan abadi di kalangan pelaku pasar adalah antara melakukan buy-and-hold jangka panjang (investor pasif) atau trading aktif harian. Statistik menunjukkan bahwa bagi pekerja profesional yang memiliki kesibukan harian, investasi pasif cenderung memberikan hasil yang lebih konsisten.",
-          "SumberURL": "https://www.investopedia.com/articles/investing/092815/active-vs-passive-investing.asp"
-        },
-        { 
-          "Judul Artikel": "Kisah Mark Zuckerberg & Facebook dari Asrama Harvard", 
-          Kategori: "Sejarah Bisnis", 
-          Tanggal: "25 Jul 2026", 
-          "Ringkasan Cuplikan": "Proyek kamar kos mahasiswa psikologi dan ilmu komputer yang menjelma menjadi jejaring sosial.", 
-          "Isi Lengkap Artikel": "Dimulai dari situs direktori kampus sederhana bernama TheFacebook di Universitas Harvard pada tahun 2004, Mark Zuckerberg membangun Meta yang kini menaungi miliaran pengguna aktif di seluruh dunia.",
-          "SumberURL": "https://id.wikipedia.org/wiki/Mark_Zuckerberg"
-        },
-        { 
-          "Judul Artikel": "Pentingnya Memahami Valuasi Saham bagi Pemula", 
-          Kategori: "Finansial", 
-          Tanggal: "18 Jul 2026", 
-          "Ringkasan Cuplikan": "Belajar membedakan perusahaan bagus dan harga wajar agar terhindar dari jebakan spekulasi.", 
-          "Isi Lengkap Artikel": "Banyak investor pemula terjebak membeli saham hanya karena sedang tren di media sosial tanpa menelaah laporan keuangan. Memahami rasio seperti PER dan PBV adalah kunci agar tidak membeli aset di harga yang terlampau mahal.",
-          "SumberURL": "https://www.ojk.go.id/id/kanal/pasar-modal/Pages/Produk-Pasar-Modal.aspx"
-        }
+        { "Judul Artikel": "Kisah Steve Jobs & Garasi Apple: Dari Hobi Otak-Atik Menjadi Imperium Teknologi", Kategori: "Sejarah Bisnis", Tanggal: "12 Sep 2026", "Ringkasan Cuplikan": "Bagaimana ketekunan Steve Jobs dan Steve Wozniak mengubah komputer pribadi menjadi barang revolusioner.", "Isi Lengkap Artikel": "Apple Inc. bukan lahir dari garasi mewah ber-AC, melainkan dari garasi sempit di Los Altos, California pada tahun 1976...", "SumberURL": "https://id.wikipedia.org/wiki/Steve_Jobs" },
+        { "Judul Artikel": "Mengenal Berbagai Jenis Investor Saham: Panduan & Profil Risiko", Kategori: "Finansial", Tanggal: "10 Sep 2026", "Ringkasan Cuplikan": "Membahas tuntas profil dan tipe investor mulai dari Value Investor, Growth Investor, hingga Day Trader.", "Isi Lengkap Artikel": "Dalam dunia investasi, tipe investor dibagi berdasarkan gaya dan profil risiko...", "SumberURL": "https://www.investopedia.com/investing/investing-101-the-basics/" },
+        { "Judul Artikel": "Jeff Bezos & Perjalanan Panjang Amazon: Menjual Buku dari Garasi Rumah", Kategori: "Sejarah Bisnis", Tanggal: "04 Sep 2026", "Ringkasan Cuplikan": "Perjuangan Jeff Bezos meninggalkan pekerjaan mapan di Wall Street demi membangun toko buku online.", "Isi Lengkap Artikel": "Tahun 1994, Jeff Bezos menyetir mobil lintas negara sambil merancang model bisnis Amazon di atas kertas...", "SumberURL": "https://id.wikipedia.org/wiki/Jeff_Bezos" },
+        { "Judul Artikel": "Tipe Investor: Konservatif, Moderat, hingga Agresif", Kategori: "Finansial", Tanggal: "28 Agu 2026", "Ringkasan Cuplikan": "Menilai tingkat kenyamanan psikologis dalam menghadapi fluktuasi pasar modal dan instrumen yang cocok.", "Isi Lengkap Artikel": "Perdebatan klasik soal portofolio sering berpusat pada profil risiko...", "SumberURL": "https://www.ojk.go.id/id/kanal/edukasi-dan-perlindungan-konsumen/Pages/Profil-Risiko.aspx" },
+        { "Judul Artikel": "Bill Gates dan Revolusi Perangkat Lunak: Kisah Berdirinya Microsoft", Kategori: "Sejarah Bisnis", Tanggal: "22 Agu 2026", "Ringkasan Cuplikan": "Kisah drop-out Harvard yang sukses mendominasi ekosistem komputer pribadi global.", "Isi Lengkap Artikel": "Bersama Paul Allen, Bill Gates mendedikasikan masa mudanya di ruang komputer kampus hingga mendirikan Microsoft tahun 1975...", "SumberURL": "https://id.wikipedia.org/wiki/Bill_Gates" },
+        { "Judul Artikel": "Investor Institusional vs Investor Ritel di Pasar Modal", Kategori: "Finansial", Tanggal: "15 Agu 2026", "Ringkasan Cuplikan": "Perbedaan kekuatan modal, analisis fundamental, dan cara gerak antara dana institusi dan individu.", "Isi Lengkap Artikel": "Di bursa saham, kita berhadapan dengan dua pelaku utama...", "SumberURL": "https://www.investopedia.com/terms/i/institutionalinvestor.asp" },
+        { "Judul Artikel": "Kisah Henry Ford dan Lini Produksi Massal Mobil Ford Model T", Kategori: "Sejarah Bisnis", Tanggal: "08 Agu 2026", "Ringkasan Cuplikan": "Bagaimana inovasi pabrik konveyor mengubah mobil dari barang mewah menjadi alat transportasi umum.", "Isi Lengkap Artikel": "Henry Ford tidak hanya membuat mobil; ia merevolusi industri manufaktur global...", "SumberURL": "https://id.wikipedia.org/wiki/Henry_Ford" },
+        { "Judul Artikel": "Passive Investor vs Active Trader: Mana yang Lebih Efektif?", Kategori: "Finansial", Tanggal: "02 Agu 2026", "Ringkasan Cuplikan": "Analisis waktu, mentalitas, dan imbal hasil jangka panjang antara investasi pasif dan trading.", "Isi Lengkap Artikel": "Perdebatan abadi di kalangan pelaku pasar adalah antara melakukan buy-and-hold jangka panjang...", "SumberURL": "https://id.wikipedia.org/wiki/articles/investing/092815/active-vs-passive-investing.asp" },
+        { "Judul Artikel": "Kisah Mark Zuckerberg & Facebook dari Asrama Harvard", Kategori: "Sejarah Bisnis", Tanggal: "25 Jul 2026", "Ringkasan Cuplikan": "Proyek kamar kos mahasiswa psikologi dan ilmu komputer yang menjelma menjadi jejaring sosial.", "Isi Lengkap Artikel": "Dimulai dari situs direktori kampus sederhana bernama TheFacebook...", "SumberURL": "https://id.wikipedia.org/wiki/Mark_Zuckerberg" },
+        { "Judul Artikel": "Pentingnya Memahami Valuasi Saham bagi Pemula", Kategori: "Finansial", Tanggal: "18 Jul 2026", "Ringkasan Cuplikan": "Belajar membedakan perusahaan bagus dan harga wajar agar terhindar dari jebakan spekulasi.", "Isi Lengkap Artikel": "Banyak investor pemula terjebak membeli saham hanya karena sedang tren di media sosial...", "SumberURL": "https://www.ojk.go.id/id/kanal/pasar-modal/Pages/Produk-Pasar-Modal.aspx" }
       ],
       tugas: [
         { "Mata Kuliah": "Pengantar Ilmu Hukum", "Judul Makalah / Tugas": "Asas Kepastian Hukum Pidana", Semester: "Semester 1", "Link PDF Drive": "#" },
@@ -677,13 +610,11 @@
       if (localDB.profil.nama_lengkap) document.getElementById('hero-nama').innerText = localDB.profil.nama_lengkap;
       if (localDB.profil.quote) document.getElementById('hero-quote').innerText = localDB.profil.quote;
       
-      // SINKRONISASI FOTO UTAMA DARI SHEET
       if (localDB.profil.foto_avatar) {
         const avatarImg = document.getElementById('hero-avatar');
         if (avatarImg) avatarImg.src = localDB.profil.foto_avatar;
       }
 
-      // SINKRONISASI FOTO SPIDERMAN DARI SHEET
       if (localDB.profil.foto_spiderman) {
         const spidermanImg = document.getElementById('hero-spiderman');
         if (spidermanImg) spidermanImg.src = localDB.profil.foto_spiderman;
@@ -692,7 +623,6 @@
       mulaiTypewriter(["Mahasiswa Hukum", "Japanese Learner", "Livestock Farm"]);
       renderPendidikan(localDB.pendidikan || []);
       renderBlogCards(localDB.blog || []);
-      renderBlogPopuler(localDB.blog || []);
     }
 
     function renderPendidikan(list) {
@@ -720,36 +650,22 @@
     function renderBlogCards(list) {
       const blogBox = document.getElementById('blog-container');
       if (!blogBox) return;
-      blogBox.innerHTML = list.map((b, idx) => `
-        <article onclick="bukaModalBlog(${idx})" class="smooth-zoom-card p-6 rounded-3xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 cursor-pointer group flex flex-col justify-between space-y-4 shadow-sm hover:border-sky-500 transition duration-300">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between text-xs">
-              <span class="px-3 py-1 rounded-full bg-sky-50 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 font-bold">${b.Kategori}</span>
-              <span class="text-slate-400">${b.Tanggal}</span>
+      // Menampilkan 10 catatan secara vertikal ke bawah
+      blogBox.innerHTML = list.slice(0, 10).map((b, idx) => `
+        <article onclick="bukaModalBlog(${idx})" class="smooth-zoom-card p-6 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 cursor-pointer group flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm hover:border-sky-500 transition duration-300">
+          <div class="flex items-start gap-4">
+            <span class="w-8 h-8 rounded-xl bg-sky-500/10 text-sky-500 font-black text-xs flex items-center justify-center shrink-0 mt-0.5">${idx + 1}</span>
+            <div class="space-y-1">
+              <div class="flex items-center gap-3 text-xs">
+                <span class="px-2.5 py-0.5 rounded-full bg-sky-50 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 font-bold">${b.Kategori}</span>
+                <span class="text-slate-400">${b.Tanggal}</span>
+              </div>
+              <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-sky-500 transition leading-snug">${b['Judul Artikel']}</h3>
+              <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 line-clamp-1">${b['Ringkasan Cuplikan']}</p>
             </div>
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-sky-500 transition leading-snug">${b['Judul Artikel']}</h3>
-            <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">${b['Ringkasan Cuplikan']}</p>
           </div>
-          <div class="pt-2 flex items-center justify-between border-t border-slate-100 dark:border-slate-800/80">
-            <span class="text-xs font-bold text-sky-500 flex items-center gap-1 group-hover:translate-x-1 transition">Baca catatan lengkap →</span>
-            <span class="text-[11px] text-slate-400 font-semibold">I'lal Jalalludin</span>
-          </div>
+          <span class="text-xs font-bold text-sky-500 shrink-0 group-hover:translate-x-1 transition">Baca →</span>
         </article>
-      `).join('');
-    }
-
-    function renderBlogPopuler(list) {
-      const popBox = document.getElementById('blog-populer-container');
-      if (!list || list.length === 0) return;
-      popBox.innerHTML = list.slice(0, 4).map((b, idx) => `
-        <div onclick="bukaModalBlog(${idx})" class="smooth-zoom-card p-4 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 hover:border-sky-500 cursor-pointer transition duration-300 flex items-center justify-between gap-4 shadow-sm group">
-          <div class="space-y-1">
-            <span class="text-[10px] font-bold text-sky-500 uppercase">${b.Kategori}</span>
-            <h4 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-sky-500 line-clamp-1">${b['Judul Artikel']}</h4>
-            <p class="text-[11px] text-slate-400">${b.Tanggal}</p>
-          </div>
-          <span class="text-xs text-slate-400 font-bold group-hover:text-sky-500">→</span>
-        </div>
       `).join('');
     }
 

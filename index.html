@@ -64,11 +64,11 @@
       gap: 3.5rem;
     }
 
-    /* FOTO EKA WAHYU (PRESISI 100% + MASKING EFEK BRUSH ALAMI) */
+    /* FOTO EKA WAHYU (PRESISI 100%, SPIDERMAN LEBIH BESAR, PUNDAK PAS) */
     .eka-avatar-box {
       position: relative;
-      width: 320px;
-      height: 400px;
+      width: 340px;
+      height: 420px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -76,8 +76,8 @@
     }
     .eka-avatar-wrapper {
       position: relative;
-      width: 280px;
-      height: 370px;
+      width: 300px;
+      height: 390px;
       overflow: hidden;
       border-radius: 1.5rem;
     }
@@ -98,9 +98,11 @@
       height: 100%;
       object-fit: cover;
       object-position: top;
-      /* EFEK BRUSH: Pake radial-gradient dengan feathering transparan yang lebar di pinggirnya */
-      -webkit-mask-image: radial-gradient(circle 120px at -1000px -1000px, black 30%, rgba(0,0,0,0.5) 65%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%);
-      mask-image: radial-gradient(circle 120px at -1000px -1000px, black 30%, rgba(0,0,0,0.5) 65%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%);
+      /* Spiderman sedikit lebih besar (scale 1.05) agar menutupi seluruh tubuh asli pas bertransisi */
+      transform: scale(1.05);
+      transform-origin: top center;
+      -webkit-mask-image: radial-gradient(circle 0px at -1000px -1000px, black 40%, rgba(0,0,0,0.5) 75%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%);
+      mask-image: radial-gradient(circle 0px at -1000px -1000px, black 40%, rgba(0,0,0,0.5) 75%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%);
       -webkit-mask-composite: source-in;
       mask-composite: intersect;
       transition: -webkit-mask-image 0.08s ease-out, mask-image 0.08s ease-out;
@@ -108,7 +110,7 @@
 
     @media (max-width: 1023px) {
       .eka-avatar-box { width: 260px; height: 330px; margin: 0 auto; }
-      .eka-avatar-wrapper { width: 220px; height: 290px; }
+      .eka-avatar-wrapper { width: 230px; height: 300px; }
     }
   </style>
 </head>
@@ -286,7 +288,7 @@
         </div>
         <input type="text" id="blog-search" oninput="cariBlog()" placeholder="Cari artikel..." class="w-full sm:w-80 bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 rounded-2xl px-5 py-3 text-sm focus:outline-none focus:border-sky-500 shadow-sm">
       </div>
-      <div class="max-w-4xl mx-auto space-y-4" id="blog-container"></div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto" id="blog-container"></div>
     </section>
 
     <section id="sec-eksplor" class="hidden space-y-10 py-10">
@@ -618,7 +620,7 @@
     }
 
     function initTheme() {
-      // SELALU SET DEFAULT GELAP (DARK) SAAT HALAMAN DIBUKA ATAU DIREFRESH MUTLAK
+      // SELALU SET DEFAULT GELAP (DARK) SAAT PERTAMA KALI DIBUKA ATAU DI-REFRESH
       const html = document.documentElement;
       const body = document.getElementById('body-root');
       html.classList.add('dark');
@@ -689,20 +691,21 @@
     function renderBlogCards(list) {
       const blogBox = document.getElementById('blog-container');
       if (!blogBox) return;
+      // TAMPILAN CATATAN ALA IBNUSTA (GRID CARD 2 KOLOM DENGAN THUMBNAIL)
       blogBox.innerHTML = list.slice(0, 10).map((b, idx) => `
-        <article onclick="bukaModalBlog(${idx})" class="smooth-zoom-card p-6 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 cursor-pointer group flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm hover:border-sky-500 transition duration-300">
-          <div class="flex items-start gap-4">
-            <span class="w-8 h-8 rounded-xl bg-sky-500/10 text-sky-500 font-black text-xs flex items-center justify-center shrink-0 mt-0.5">${idx + 1}</span>
-            <div class="space-y-1">
-              <div class="flex items-center gap-3 text-xs">
-                <span class="px-2.5 py-0.5 rounded-full bg-sky-50 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 font-bold">${b.Kategori}</span>
-                <span class="text-slate-400">${b.Tanggal}</span>
-              </div>
-              <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-sky-500 transition leading-snug">${b['Judul Artikel']}</h3>
-              <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 line-clamp-1">${b['Ringkasan Cuplikan']}</p>
+        <article onclick="bukaModalBlog(${idx})" class="smooth-zoom-card p-6 rounded-3xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 cursor-pointer group flex flex-col justify-between shadow-sm hover:border-sky-500 transition duration-300 space-y-4">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between text-xs">
+              <span class="px-3 py-1 rounded-full bg-sky-50 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 font-bold">${b.Kategori}</span>
+              <span class="text-slate-400">${b.Tanggal}</span>
             </div>
+            <h3 class="text-lg font-black text-slate-900 dark:text-white group-hover:text-sky-500 transition leading-snug">${b['Judul Artikel']}</h3>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 line-clamp-2">${b['Ringkasan Cuplikan']}</p>
           </div>
-          <span class="text-xs font-bold text-sky-500 shrink-0 group-hover:translate-x-1 transition">Baca →</span>
+          <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-xs font-bold text-sky-500">
+            <span>Baca Selengkapnya</span>
+            <span class="group-hover:translate-x-1 transition">→</span>
+          </div>
         </article>
       `).join('');
     }
@@ -943,7 +946,7 @@
       }
     }
 
-    // ANIMASI MASKING BRUSH EKA WAHYU (KURSOR INTERAKTIF + IDLE OTOMATIS)
+    // ANIMASI MASKING BRUSH SPIDER-MAN (PRESISI 100% PUNDAK & KURSOR + IDLE OTOMATIS)
     const avatarBox = document.getElementById('avatarBox');
     const spideyImg = document.getElementById('hero-spiderman');
     let idleInterval;
@@ -954,9 +957,9 @@
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
         
-        // Brush dengan feathering lembut (radial-gradient berukuran 150px dengan pinggiran transparan)
-        spideyImg.style.webkitMaskImage = `radial-gradient(circle 130px at ${x}px ${y}px, black 30%, rgba(0,0,0,0.6) 70%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%)`;
-        spideyImg.style.maskImage = `radial-gradient(circle 130px at ${x}px ${y}px, black 30%, rgba(0,0,0,0.6) 70%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%)`;
+        // Brush dengan feathering lembut (radial-gradient berukuran 160px dengan pinggiran feather transparan)
+        spideyImg.style.webkitMaskImage = `radial-gradient(circle 160px at ${x}px ${y}px, black 35%, rgba(0,0,0,0.4) 75%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%)`;
+        spideyImg.style.maskImage = `radial-gradient(circle 160px at ${x}px ${y}px, black 35%, rgba(0,0,0,0.4) 75%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%)`;
       });
 
       avatarBox.addEventListener('mouseleave', () => {
@@ -964,19 +967,19 @@
         spideyImg.style.maskImage = 'radial-gradient(circle 0px at -1000px -1000px, black 100%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%)';
       });
 
-      // IDLE SWEEP: Jalan otomatis slow menyapu perlahan saat diam
-      let idleX = 140, idleY = 185, dx = 1, dy = 0.7;
+      // IDLE SWEEP OTOMATIS: Jalan menyapu perlahan saat kursor tidak di atas gambar
+      let idleX = 150, idleY = 190, dx = 1, dy = 0.6;
       idleInterval = setInterval(() => {
         if(!avatarBox.matches(':hover')) {
-          idleX += dx * 12;
-          idleY += dy * 12;
-          if(idleX < 60 || idleX > 220) dx *= -1;
-          if(idleY < 100 || idleY > 270) dy *= -1;
+          idleX += dx * 14;
+          idleY += dy * 14;
+          if(idleX < 70 || idleX > 230) dx *= -1;
+          if(idleY < 90 || idleY > 280) dy *= -1;
           
-          spideyImg.style.webkitMaskImage = `radial-gradient(circle 90px at ${idleX}px ${idleY}px, black 30%, rgba(0,0,0,0.5) 70%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%)`;
-          spideyImg.style.maskImage = `radial-gradient(circle 90px at ${idleX}px ${idleY}px, black 30%, rgba(0,0,0,0.5) 70%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%)`;
+          spideyImg.style.webkitMaskImage = `radial-gradient(circle 100px at ${idleX}px ${idleY}px, black 35%, rgba(0,0,0,0.4) 75%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%)`;
+          spideyImg.style.maskImage = `radial-gradient(circle 100px at ${idleX}px ${idleY}px, black 35%, rgba(0,0,0,0.4) 75%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%)`;
         }
-      }, 2800);
+      }, 2400);
     }
 
     window.onload = function() { initTheme(); muatDataSheets(); };

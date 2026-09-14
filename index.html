@@ -64,7 +64,7 @@
       gap: 3.5rem;
     }
 
-    /* FOTO EKA WAHYU (MASKING SPIDERMAN INTERAKTIF) */
+    /* FOTO EKA WAHYU (PRESISI 100% + MASKING EFEK BRUSH ALAMI) */
     .eka-avatar-box {
       position: relative;
       width: 320px;
@@ -98,11 +98,12 @@
       height: 100%;
       object-fit: cover;
       object-position: top;
-      -webkit-mask-image: radial-gradient(circle 0px at -1000px -1000px, black 100%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%);
-      mask-image: radial-gradient(circle 0px at -1000px -1000px, black 100%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%);
+      /* EFEK BRUSH: Pake radial-gradient dengan feathering transparan yang lebar di pinggirnya */
+      -webkit-mask-image: radial-gradient(circle 120px at -1000px -1000px, black 30%, rgba(0,0,0,0.5) 65%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%);
+      mask-image: radial-gradient(circle 120px at -1000px -1000px, black 30%, rgba(0,0,0,0.5) 65%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%);
       -webkit-mask-composite: source-in;
       mask-composite: intersect;
-      transition: -webkit-mask-image 0.1s ease, mask-image 0.1s ease;
+      transition: -webkit-mask-image 0.08s ease-out, mask-image 0.08s ease-out;
     }
 
     @media (max-width: 1023px) {
@@ -617,13 +618,12 @@
     }
 
     function initTheme() {
-      // SETEL DEFAULT GELAP (DARK) SETIAP KALI DI-REFRESH ATAU DIAKSES BARU
+      // SELALU SET DEFAULT GELAP (DARK) SAAT HALAMAN DIBUKA ATAU DIREFRESH MUTLAK
       const html = document.documentElement;
       const body = document.getElementById('body-root');
       html.classList.add('dark');
       body.classList.remove('bg-slate-50', 'text-slate-900', 'bg-dots-light');
       body.classList.add('bg-neutralDark', 'text-slate-100', 'bg-dots-dark');
-      localStorage.removeItem('theme'); // Reset penyimpanan manual agar selalu balik ke gelap
     }
 
     async function muatDataSheets() {
@@ -943,7 +943,7 @@
       }
     }
 
-    // ANIMASI MASKING SPIDER-MAN INTERAKTIF & IDLE OTOMATIS SLOW
+    // ANIMASI MASKING BRUSH EKA WAHYU (KURSOR INTERAKTIF + IDLE OTOMATIS)
     const avatarBox = document.getElementById('avatarBox');
     const spideyImg = document.getElementById('hero-spiderman');
     let idleInterval;
@@ -954,30 +954,29 @@
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
         
-        // Munculkan topeng Spider-Man mengikuti posisi kursor (radius 100px)
-        spideyImg.style.webkitMaskImage = `radial-gradient(circle 100px at ${x}px ${y}px, black 100%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%)`;
-        spideyImg.style.maskImage = `radial-gradient(circle 100px at ${x}px ${y}px, black 100%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%)`;
+        // Brush dengan feathering lembut (radial-gradient berukuran 150px dengan pinggiran transparan)
+        spideyImg.style.webkitMaskImage = `radial-gradient(circle 130px at ${x}px ${y}px, black 30%, rgba(0,0,0,0.6) 70%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%)`;
+        spideyImg.style.maskImage = `radial-gradient(circle 130px at ${x}px ${y}px, black 30%, rgba(0,0,0,0.6) 70%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%)`;
       });
 
       avatarBox.addEventListener('mouseleave', () => {
-        // Kursor keluar: Tutup kembali
         spideyImg.style.webkitMaskImage = 'radial-gradient(circle 0px at -1000px -1000px, black 100%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%)';
         spideyImg.style.maskImage = 'radial-gradient(circle 0px at -1000px -1000px, black 100%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%)';
       });
 
-      // IDLE ANIMATION: Jalan sendiri otomatis slow pelan berganti posisi
-      let idleX = 140, idleY = 185, dx = 1, dy = 0.8;
+      // IDLE SWEEP: Jalan otomatis slow menyapu perlahan saat diam
+      let idleX = 140, idleY = 185, dx = 1, dy = 0.7;
       idleInterval = setInterval(() => {
         if(!avatarBox.matches(':hover')) {
-          idleX += dx * 15;
-          idleY += dy * 15;
-          if(idleX < 50 || idleX > 230) dx *= -1;
-          if(idleY < 80 || idleY > 290) dy *= -1;
+          idleX += dx * 12;
+          idleY += dy * 12;
+          if(idleX < 60 || idleX > 220) dx *= -1;
+          if(idleY < 100 || idleY > 270) dy *= -1;
           
-          spideyImg.style.webkitMaskImage = `radial-gradient(circle 75px at ${idleX}px ${idleY}px, black 100%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%)`;
-          spideyImg.style.maskImage = `radial-gradient(circle 75px at ${idleX}px ${idleY}px, black 100%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%)`;
+          spideyImg.style.webkitMaskImage = `radial-gradient(circle 90px at ${idleX}px ${idleY}px, black 30%, rgba(0,0,0,0.5) 70%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%)`;
+          spideyImg.style.maskImage = `radial-gradient(circle 90px at ${idleX}px ${idleY}px, black 30%, rgba(0,0,0,0.5) 70%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%)`;
         }
-      }, 2500);
+      }, 2800);
     }
 
     window.onload = function() { initTheme(); muatDataSheets(); };

@@ -64,7 +64,7 @@
       gap: 3.5rem;
     }
 
-    /* FOTO EKA WAHYU (TRANSISI OTOMATIS CROSSFADE + PRESISI PUNDAK) */
+    /* FOTO EKA WAHYU (PRESISI 100% + MASKING BRUSH HALUS + CROSSFADE OTOMATIS) */
     .eka-avatar-box {
       position: relative;
       width: 340px;
@@ -72,7 +72,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
+      cursor: crosshair;
     }
     .eka-avatar-wrapper {
       position: relative;
@@ -90,7 +90,6 @@
       object-position: top;
       -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 92%);
       mask-image: linear-gradient(to bottom, black 55%, transparent 92%);
-      transition: opacity 1.2s ease-in-out;
     }
     .eka-img-spidey {
       position: absolute;
@@ -101,10 +100,11 @@
       object-position: top;
       transform: scale(1.04);
       transform-origin: top center;
-      -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 92%);
-      mask-image: linear-gradient(to bottom, black 55%, transparent 92%);
-      opacity: 0;
-      transition: opacity 1.2s ease-in-out;
+      -webkit-mask-image: radial-gradient(circle 0px at -1000px -1000px, black 35%, rgba(0,0,0,0.5) 75%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%);
+      mask-image: radial-gradient(circle 0px at -1000px -1000px, black 35%, rgba(0,0,0,0.5) 75%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%);
+      -webkit-mask-composite: source-in;
+      mask-composite: intersect;
+      transition: -webkit-mask-image 0.1s ease-out, mask-image 0.1s ease-out, opacity 1.2s ease-in-out;
     }
 
     @media (max-width: 1023px) {
@@ -619,7 +619,7 @@
     }
 
     function initTheme() {
-      // SELALU SET DEFAULT GELAP (DARK) SAAT HALAMAN DIBUKA ATAU DI-REFRESH
+      // DEFAULT KINI GELAP MUTLAK SETIAP KALI DIBUKA ATAU DI-REFRESH
       const html = document.documentElement;
       const body = document.getElementById('body-root');
       html.classList.add('dark');
@@ -699,286 +699,4 @@
               <span class="text-slate-400">${b.Tanggal}</span>
             </div>
             <h3 class="text-lg font-black text-slate-900 dark:text-white group-hover:text-sky-500 transition leading-snug">${b['Judul Artikel']}</h3>
-            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 line-clamp-2">${b['Ringkasan Cuplikan']}</p>
-          </div>
-          <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-xs font-bold text-sky-500">
-            <span>Baca Selengkapnya</span>
-            <span class="group-hover:translate-x-1 transition">→</span>
-          </div>
-        </article>
-      `).join('');
-    }
-
-    function cariBlog() {
-      const q = document.getElementById('blog-search').value.toLowerCase();
-      const hasil = localDB.blog.filter(b => b['Judul Artikel'].toLowerCase().includes(q) || b['Ringkasan Cuplikan'].toLowerCase().includes(q));
-      renderBlogCards(hasil);
-    }
-
-    function bukaModalBlog(idx) {
-      const b = localDB.blog[idx];
-      if (!b) return;
-      document.getElementById('modal-cat').innerText = b.Kategori;
-      document.getElementById('modal-tgl').innerText = b.Tanggal;
-      document.getElementById('modal-judul').innerText = b['Judul Artikel'];
-      document.getElementById('modal-isi').innerText = b['Isi Lengkap Artikel'];
-      
-      const sumberEl = document.getElementById('modal-sumber');
-      if (b.SumberURL) {
-        sumberEl.innerHTML = `Referensi & Sumber Literasi: <a href="${b.SumberURL}" target="_blank" class="text-sky-500 underline font-semibold ml-1">${b.SumberURL}</a>`;
-      } else {
-        sumberEl.innerHTML = "";
-      }
-
-      document.getElementById('modal-reader').classList.remove('hidden');
-    }
-
-    function tutupModal() { document.getElementById('modal-reader').classList.add('hidden'); }
-
-    function mulaiTypewriter(words) {
-      let wordIdx = 0, charIdx = 0, isDeleting = false;
-      const el = document.getElementById('typewriter-text');
-      if (!el) return;
-      function type() {
-        const current = words[wordIdx];
-        if (isDeleting) {
-          el.innerText = current.substring(0, charIdx - 1);
-          charIdx--;
-        } else {
-          el.innerText = current.substring(0, charIdx + 1);
-          charIdx++;
-        }
-        let delay = isDeleting ? 60 : 140;
-        if (!isDeleting && charIdx === current.length) { delay = 2500; isDeleting = true; }
-        else if (isDeleting && charIdx === 0) { isDeleting = false; wordIdx = (wordIdx + 1) % words.length; delay = 600; }
-        setTimeout(type, delay);
-      }
-      type();
-    }
-
-    // ==================== AL-QUR'AN DIGITAL ====================
-    async function bukaAlquranDigital() {
-      hentikanAudioQari();
-      const display = document.getElementById('eksplor-detail-display');
-      display.classList.remove('hidden');
-      display.innerHTML = `
-        <div class="space-y-4">
-          <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-5">
-            <h3 class="text-xl font-black">Al-Qur'an Digital 30 Juz</h3>
-            <button onclick="tutupDisplayEksplor()" class="text-xs font-bold px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800">Tutup</button>
-          </div>
-          <input type="text" id="quran-search-input" oninput="filterDaftarSurah()" placeholder="Cari surah (misal: Yasin, Al-Kahf)..." class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl px-5 py-3 text-sm focus:outline-none focus:border-sky-500">
-          <div id="quran-grid-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5 max-h-[540px] overflow-y-auto p-1"></div>
-        </div>
-      `;
-      display.scrollIntoView({ behavior: 'smooth' });
-      renderDaftarSurah(masterSurahList);
-    }
-
-    function filterDaftarSurah() {
-      const keyword = document.getElementById('quran-search-input').value.toLowerCase();
-      const filtered = masterSurahList.filter(s => s.nama_latin.toLowerCase().includes(keyword) || s.arti.toLowerCase().includes(keyword) || String(s.nomor).includes(keyword));
-      renderDaftarSurah(filtered);
-    }
-
-    function renderDaftarSurah(list) {
-      const grid = document.getElementById('quran-grid-container');
-      if (!grid) return;
-      grid.innerHTML = list.map(s => `
-        <div onclick="bacaDetailSurah(${s.nomor})" class="smooth-zoom-card p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center justify-between shadow-sm">
-          <div class="flex items-center gap-3">
-            <span class="w-9 h-9 rounded-xl bg-sky-500/10 text-sky-500 text-xs font-black flex items-center justify-center">${s.nomor}</span>
-            <div><h4 class="text-sm font-bold">${s.nama_latin}</h4><p class="text-[11px] text-slate-400">${s.arti} • ${s.jumlah_ayat} Ayat</p></div>
-          </div>
-          <span class="mushaf-font text-2xl">${s.nama}</span>
-        </div>
-      `).join('');
-    }
-
-    async function bacaDetailSurah(nomor) {
-      hentikanAudioQari();
-      const display = document.getElementById('eksplor-detail-display');
-      display.innerHTML = `<div class="py-16 text-center"><div class="w-9 h-9 border-4 border-sky-500 border-t-transparent rounded-full animate-spin mx-auto"></div><p class="text-sm font-bold text-slate-500 mt-3">Menyiapkan surah & audio...</p></div>`;
-      try {
-        let res = await fetch(`https://api.quran.gading.dev/surah/${nomor}`);
-        let json = await res.json();
-        surahAktifData = json.data;
-        renderHalamanBacaSurah();
-      } catch (e) {
-        display.innerHTML = `<p class="text-xs text-rose-500 text-center py-6">Gagal memuat ayat.</p>`;
-      }
-    }
-
-    function renderHalamanBacaSurah() {
-      const display = document.getElementById('eksplor-detail-display');
-      const data = surahAktifData;
-      const audioUrl = (data.audio && data.audio.primary) ? data.audio.primary : `https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/${data.number}.mp3`;
-
-      display.innerHTML = `
-        <div class="space-y-6">
-          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-5">
-            <div>
-              <button onclick="bukaAlquranDigital()" class="text-xs font-bold text-sky-500 mb-2">← Kembali ke Daftar Surah</button>
-              <h3 class="text-2xl font-black">${data.name.transliteration.id} (${data.name.short})</h3>
-              <p class="text-xs text-slate-400 mt-1">${data.revelation.id} • ${data.numberOfVerses} Ayat</p>
-            </div>
-            <div class="flex flex-wrap items-center gap-3">
-              <button onclick="toggleQariAudio('${audioUrl}')" id="btn-qari-audio" class="px-4 py-2.5 rounded-xl bg-sky-500 text-white text-xs font-bold shadow-sm">▶ Putar Murottal</button>
-              <div class="bg-slate-100 dark:bg-slate-800 p-1 rounded-xl flex gap-1 border border-slate-200 dark:border-slate-700 text-xs font-bold">
-                <button onclick="ubahModeBacaQuran('ayat')" class="px-3.5 py-1.5 rounded-lg transition ${modeBacaQurans === 'ayat' ? 'bg-white dark:bg-cardDark text-sky-500 shadow-sm' : 'text-slate-500'}">Mode Ayat</button>
-                <button onclick="ubahModeBacaQuran('buku')" class="px-3.5 py-1.5 rounded-lg transition ${modeBacaQurans === 'buku' ? 'bg-white dark:bg-cardDark text-sky-500 shadow-sm' : 'text-slate-500'}">Mode Mushaf Buku</button>
-              </div>
-              <button onclick="tutupDisplayEksplor()" class="text-xs font-bold px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800">Tutup</button>
-            </div>
-          </div>
-          <div id="quran-read-body">
-            ${modeBacaQurans === 'ayat' ? renderModeAyat(data) : renderModeBuku(data)}
-          </div>
-        </div>
-      `;
-      display.scrollIntoView({ behavior: 'smooth' });
-    }
-
-    function ubahModeBacaQuran(mode) {
-      modeBacaQurans = mode;
-      renderHalamanBacaSurah();
-    }
-
-    function renderModeAyat(data) {
-      return `
-        <div class="space-y-6 max-h-[620px] overflow-y-auto pr-2">
-          ${data.verses.map(v => `
-            <div class="p-5 rounded-3xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 space-y-3">
-              <span class="w-8 h-8 rounded-xl bg-sky-500/10 text-sky-500 flex items-center justify-center font-black text-xs">${v.number.inSurah}</span>
-              <p class="text-right text-3xl mushaf-font leading-[3.2rem]">${v.text.arab}</p>
-              <p class="text-sm text-sky-600 dark:text-sky-400 font-semibold">${v.text.transliteration.en}</p>
-              <p class="text-sm text-slate-500 italic">${v.translation.id}</p>
-            </div>
-          `).join('')}
-        </div>
-      `;
-    }
-
-    function renderModeBuku(data) {
-      return `
-        <div class="p-8 sm:p-14 rounded-3xl bg-[#fefcf8] dark:bg-slate-900/90 border-2 border-amber-200/50 dark:border-slate-800 max-h-[640px] overflow-y-auto space-y-8 shadow-inner">
-          <div class="text-center pb-6 border-b border-amber-200/60 dark:border-slate-800">
-            <p class="text-3xl sm:text-4xl mushaf-font text-slate-800 dark:text-slate-200 leading-[3.5rem]">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
-          </div>
-          <div class="text-right text-2xl sm:text-3xl mushaf-font text-slate-900 dark:text-slate-100 leading-[3.8rem] text-justify" dir="rtl">
-            ${data.verses.map(v => `
-              <span class="inline leading-[3.8rem]">${v.text.arab}</span>
-              <span class="inline-flex items-center justify-center w-8 h-8 text-[11px] font-sans font-black text-amber-700 dark:text-sky-400 border border-amber-500/50 dark:border-sky-400/50 rounded-full mx-2 align-middle select-none bg-amber-50 dark:bg-slate-800">﴿${v.number.inSurah}﴾</span>
-            `).join('')}
-          </div>
-        </div>
-      `;
-    }
-
-    function toggleQariAudio(url) {
-      if (!audioQariPlayer) { audioQariPlayer = new Audio(url); }
-      if (audioQariPlayer.paused) { audioQariPlayer.play(); document.getElementById('btn-qari-audio').innerText = "❚❚ Jeda Murottal"; }
-      else { audioQariPlayer.pause(); document.getElementById('btn-qari-audio').innerText = "▶ Lanjut Murottal"; }
-    }
-
-    function hentikanAudioQari() {
-      if (audioQariPlayer) { audioQariPlayer.pause(); audioQariPlayer.currentTime = 0; audioQariPlayer = null; }
-    }
-
-    function bukaTugasKuliah() {
-      hentikanAudioQari();
-      const display = document.getElementById('eksplor-detail-display');
-      display.classList.remove('hidden');
-      display.innerHTML = `<div class="flex justify-between border-b pb-4"><h3 class="font-bold">Arsip Tugas Kuliah</h3><button onclick="tutupDisplayEksplor()" class="text-xs">Tutup</button></div><div class="grid gap-3">${localDB.tugas.map(t => `<div class="p-4 bg-slate-50 dark:bg-slate-900 rounded-xl"><h4 class="font-bold text-sm">${t['Judul Makalah / Tugas']}</h4><p class="text-xs text-slate-400">${t['Mata Kuliah']}</p></div>`).join('')}</div>`;
-      display.scrollIntoView({ behavior: 'smooth' });
-    }
-
-    function bukaModulN3() {
-      hentikanAudioQari();
-      const display = document.getElementById('eksplor-detail-display');
-      display.classList.remove('hidden');
-      display.innerHTML = `
-        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-5">
-          <h3 class="text-xl font-black">Modul Pembelajaran N3</h3>
-          <button onclick="tutupDisplayEksplor()" class="text-xs font-bold px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800">Tutup</button>
-        </div>
-        <div class="py-16 flex flex-col items-center justify-center text-center space-y-4">
-          <div class="w-16 h-16 rounded-2xl bg-sky-500/10 text-sky-500 flex items-center justify-center animate-bounce">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-          </div>
-          <span class="px-4 py-1.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold uppercase border border-amber-500/20">Sedang Dalam Tahap Pengembangan</span>
-          <h4 class="text-xl font-bold">Modul N3 Sedang Disusun oleh Developer</h4>
-          <p class="text-sm text-slate-400 max-w-md">Bank materi tata bahasa (bunpou) dan ringkasan kanji sedang dirapikan ke database ilaljsa agar dapat diakses secara interaktif.</p>
-        </div>
-      `;
-      display.scrollIntoView({ behavior: 'smooth' });
-    }
-
-    function tutupDisplayEksplor() { hentikanAudioQari(); document.getElementById('eksplor-detail-display').classList.add('hidden'); }
-
-    // PESAN ANONIM
-    function bukaModalAnon() { document.getElementById('anon-pesan-input').value = ""; document.getElementById('anon-status').classList.add('hidden'); document.getElementById('modal-anon').classList.remove('hidden'); }
-    function tutupModalAnon() { document.getElementById('modal-anon').classList.add('hidden'); }
-    async function kirimPesanAnonim() {
-      const pesan = document.getElementById('anon-pesan-input').value.trim();
-      const status = document.getElementById('anon-status');
-      if (!pesan) { status.classList.remove('hidden'); status.innerText = "Tulis pesan dulu!"; return; }
-      try {
-        await fetch(APPS_SCRIPT_API_URL, { method: "POST", mode: "no-cors", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ pesan: pesan }) });
-        status.classList.remove('hidden'); status.classList.add('text-emerald-500'); status.innerText = "✓ Pesan rahasia terkirim ke database ilaljsa!";
-        setTimeout(() => tutupModalAnon(), 1500);
-      } catch (e) { status.classList.remove('hidden'); status.innerText = "Gagal kirim."; }
-    }
-
-    function toggleAudio() {
-      const audioEl = document.getElementById('bg-audio');
-      const btn = document.getElementById('btn-audio');
-      const status = document.getElementById('audio-status');
-      if (audioEl.paused) {
-        audioEl.play();
-        btn.innerText = "❚❚";
-        status.innerText = "Memutar ♫";
-      } else {
-        audioEl.pause();
-        btn.innerText = "▶";
-        status.innerText = "Jeda (Klik putar)";
-      }
-    }
-
-    // TRANSISI OTOMATIS CROSSFADE (EFEK EKA WAHYU MURNI: IDLE BERUBAH BOLAK-BALIK + HOVER SPIDERMAN)
-    const avatarBox = document.getElementById('avatarBox');
-    const spideyImg = document.getElementById('hero-spiderman');
-    let autoTransInterval;
-    let isSpideyVisible = false;
-
-    if(avatarBox && spideyImg) {
-      // Saat kursor masuk (Hover) -> Langsung tampilkan Spider-Man secara halus
-      avatarBox.addEventListener('mouseenter', () => {
-        clearInterval(autoTransInterval);
-        spideyImg.style.opacity = "1";
-        isSpideyVisible = true;
-      });
-
-      // Saat kursor keluar -> Kembali ke foto asli, lalu mulai transisi otomatis bolak-balik
-      avatarBox.addEventListener('mouseleave', () => {
-        spideyImg.style.opacity = "0";
-        isSpideyVisible = false;
-        
-        // Mulai transisi otomatis bolak-balik tiap 3.5 detik
-        autoTransInterval = setInterval(() => {
-          isSpideyVisible = !isSpideyVisible;
-          spideyImg.style.opacity = isSpideyVisible ? "1" : "0";
-        }, 3500);
-      });
-
-      // Jalan otomatis pertama kali saat halaman dimuat
-      autoTransInterval = setInterval(() => {
-        isSpideyVisible = !isSpideyVisible;
-        spideyImg.style.opacity = isSpideyVisible ? "1" : "0";
-      }, 3500);
-    }
-
-    window.onload = function() { initTheme(); muatDataSheets(); };
-  </script>
-</body>
-</html>
+            <p class="text-xs sm:

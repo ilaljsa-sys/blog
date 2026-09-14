@@ -64,7 +64,7 @@
       gap: 3.5rem;
     }
 
-    /* FOTO EKA WAHYU (PRESISI 100%, SPIDERMAN LEBIH BESAR, PUNDAK PAS) */
+    /* FOTO EKA WAHYU (TRANSISI OTOMATIS CROSSFADE + PRESISI PUNDAK) */
     .eka-avatar-box {
       position: relative;
       width: 340px;
@@ -72,7 +72,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: crosshair;
+      cursor: pointer;
     }
     .eka-avatar-wrapper {
       position: relative;
@@ -90,6 +90,7 @@
       object-position: top;
       -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 92%);
       mask-image: linear-gradient(to bottom, black 55%, transparent 92%);
+      transition: opacity 1.2s ease-in-out;
     }
     .eka-img-spidey {
       position: absolute;
@@ -98,14 +99,12 @@
       height: 100%;
       object-fit: cover;
       object-position: top;
-      /* Spiderman sedikit lebih besar (scale 1.05) agar menutupi seluruh tubuh asli pas bertransisi */
-      transform: scale(1.05);
+      transform: scale(1.04);
       transform-origin: top center;
-      -webkit-mask-image: radial-gradient(circle 0px at -1000px -1000px, black 40%, rgba(0,0,0,0.5) 75%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%);
-      mask-image: radial-gradient(circle 0px at -1000px -1000px, black 40%, rgba(0,0,0,0.5) 75%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%);
-      -webkit-mask-composite: source-in;
-      mask-composite: intersect;
-      transition: -webkit-mask-image 0.08s ease-out, mask-image 0.08s ease-out;
+      -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 92%);
+      mask-image: linear-gradient(to bottom, black 55%, transparent 92%);
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
     }
 
     @media (max-width: 1023px) {
@@ -620,7 +619,7 @@
     }
 
     function initTheme() {
-      // SELALU SET DEFAULT GELAP (DARK) SAAT PERTAMA KALI DIBUKA ATAU DI-REFRESH
+      // SELALU SET DEFAULT GELAP (DARK) SAAT HALAMAN DIBUKA ATAU DI-REFRESH
       const html = document.documentElement;
       const body = document.getElementById('body-root');
       html.classList.add('dark');
@@ -691,7 +690,7 @@
     function renderBlogCards(list) {
       const blogBox = document.getElementById('blog-container');
       if (!blogBox) return;
-      // TAMPILAN CATATAN ALA IBNUSTA (GRID CARD 2 KOLOM DENGAN THUMBNAIL)
+      // TAMPILAN CATATAN GAYA GRID CARD 2 KOLOM ALA IBNUSTA
       blogBox.innerHTML = list.slice(0, 10).map((b, idx) => `
         <article onclick="bukaModalBlog(${idx})" class="smooth-zoom-card p-6 rounded-3xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 cursor-pointer group flex flex-col justify-between shadow-sm hover:border-sky-500 transition duration-300 space-y-4">
           <div class="space-y-2">
@@ -946,40 +945,37 @@
       }
     }
 
-    // ANIMASI MASKING BRUSH SPIDER-MAN (PRESISI 100% PUNDAK & KURSOR + IDLE OTOMATIS)
+    // TRANSISI OTOMATIS CROSSFADE (EFEK EKA WAHYU MURNI: IDLE BERUBAH BOLAK-BALIK + HOVER SPIDERMAN)
     const avatarBox = document.getElementById('avatarBox');
     const spideyImg = document.getElementById('hero-spiderman');
-    let idleInterval;
+    let autoTransInterval;
+    let isSpideyVisible = false;
 
     if(avatarBox && spideyImg) {
-      avatarBox.addEventListener('mousemove', (e) => {
-        const rect = avatarBox.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        // Brush dengan feathering lembut (radial-gradient berukuran 160px dengan pinggiran feather transparan)
-        spideyImg.style.webkitMaskImage = `radial-gradient(circle 160px at ${x}px ${y}px, black 35%, rgba(0,0,0,0.4) 75%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%)`;
-        spideyImg.style.maskImage = `radial-gradient(circle 160px at ${x}px ${y}px, black 35%, rgba(0,0,0,0.4) 75%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%)`;
+      // Saat kursor masuk (Hover) -> Langsung tampilkan Spider-Man secara halus
+      avatarBox.addEventListener('mouseenter', () => {
+        clearInterval(autoTransInterval);
+        spideyImg.style.opacity = "1";
+        isSpideyVisible = true;
       });
 
+      // Saat kursor keluar -> Kembali ke foto asli, lalu mulai transisi otomatis bolak-balik
       avatarBox.addEventListener('mouseleave', () => {
-        spideyImg.style.webkitMaskImage = 'radial-gradient(circle 0px at -1000px -1000px, black 100%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%)';
-        spideyImg.style.maskImage = 'radial-gradient(circle 0px at -1000px -1000px, black 100%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%)';
+        spideyImg.style.opacity = "0";
+        isSpideyVisible = false;
+        
+        // Mulai transisi otomatis bolak-balik tiap 3.5 detik
+        autoTransInterval = setInterval(() => {
+          isSpideyVisible = !isSpideyVisible;
+          spideyImg.style.opacity = isSpideyVisible ? "1" : "0";
+        }, 3500);
       });
 
-      // IDLE SWEEP OTOMATIS: Jalan menyapu perlahan saat kursor tidak di atas gambar
-      let idleX = 150, idleY = 190, dx = 1, dy = 0.6;
-      idleInterval = setInterval(() => {
-        if(!avatarBox.matches(':hover')) {
-          idleX += dx * 14;
-          idleY += dy * 14;
-          if(idleX < 70 || idleX > 230) dx *= -1;
-          if(idleY < 90 || idleY > 280) dy *= -1;
-          
-          spideyImg.style.webkitMaskImage = `radial-gradient(circle 100px at ${idleX}px ${idleY}px, black 35%, rgba(0,0,0,0.4) 75%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%)`;
-          spideyImg.style.maskImage = `radial-gradient(circle 100px at ${idleX}px ${idleY}px, black 35%, rgba(0,0,0,0.4) 75%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%)`;
-        }
-      }, 2400);
+      // Jalan otomatis pertama kali saat halaman dimuat
+      autoTransInterval = setInterval(() => {
+        isSpideyVisible = !isSpideyVisible;
+        spideyImg.style.opacity = isSpideyVisible ? "1" : "0";
+      }, 3500);
     }
 
     window.onload = function() { initTheme(); muatDataSheets(); };

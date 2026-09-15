@@ -57,7 +57,7 @@
 
     .beranda-container-grid { max-width: 1120px; margin: 0 auto; gap: 3.5rem; }
 
-    /* FOTO EKA WAHYU - PRESISI KUNCI KOORDINAT 100% SAMA */
+    /* FOTO EKA WAHYU - PRESISI MUTLAK 1:1 */
     .eka-avatar-box { 
       position: relative; 
       width: 340px; 
@@ -74,29 +74,39 @@
       height: 420px; 
       overflow: hidden; 
       border-radius: 1.5rem;
-      /* Gradasi bawah agar menyatu mulus dengan background gelap */
-      -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
-      mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+      /* Gradasi bawah agar menyatu mulus dengan background */
+      -webkit-mask-image: linear-gradient(to bottom, black 68%, transparent 98%);
+      mask-image: linear-gradient(to bottom, black 68%, transparent 98%);
     }
     
-    /* Foto Asli (Base) & Spiderman di-lock di posisi absolut yang PERSIS IDENTIK */
-    .eka-img-base, .eka-img-spidey {
+    /* Foto Asli (Base) */
+    .eka-img-base {
       position: absolute;
-      inset: 0;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: top center;
       display: block;
-    }
-
-    .eka-img-base {
       z-index: 1;
     }
 
+    /* Foto Spiderman (Tuning presisi agar pas di pundak & kepala tanpa jinjing) */
     .eka-img-spidey {
+      position: absolute;
+      top: 2px;
+      left: 50%;
+      transform: translateX(-50%) scale(1.12) translateY(-2px);
+      transform-origin: top center;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
       z-index: 2;
-      opacity: 0; /* Diatur via JS */
+      opacity: 0;
       pointer-events: none;
     }
 
@@ -599,7 +609,7 @@
     }
 
     // =========================================================================
-    // EFEK EKA WAHYU - TRANSISI IDLE FULL CROSSFADE & HOVER BRUSH LINGKARAN
+    // EFEK EKA WAHYU - FULL CROSSFADE IDLE & BRUSH HOVER (PRESISI MUTLAK)
     // =========================================================================
     const avatarBox = document.getElementById('avatarBox');
     const spideyImg = document.getElementById('spideyImg');
@@ -609,10 +619,10 @@
     let isSpideyVisible = false;
 
     function startIdleCrossfade() {
-      // Saat idle: Hapus mask brush, gunakan transisi opacity penuh (fade in/out halus)
+      // Saat idle: Murni fade in / fade out penuh halus seluruh badan (tanpa titik bulat)
       spideyImg.style.webkitMaskImage = 'none';
       spideyImg.style.maskImage = 'none';
-      spideyImg.style.transition = 'opacity 1.5s ease-in-out';
+      spideyImg.style.transition = 'opacity 1.6s ease-in-out';
       
       if (autoInterval) clearInterval(autoInterval);
       autoInterval = setInterval(() => {
@@ -657,6 +667,8 @@
       // Saat Kursor Keluar: Fade out, balik ke animasi idle otomatis penuh
       avatarBox.addEventListener('mouseleave', () => {
         isHovering = false;
+        spideyImg.style.webkitMaskImage = 'none';
+        spideyImg.style.maskImage = 'none';
         spideyImg.style.transition = 'opacity 0.8s ease-out';
         spideyImg.style.opacity = '0';
         isSpideyVisible = false;

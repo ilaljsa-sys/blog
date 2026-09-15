@@ -57,7 +57,7 @@
 
     .beranda-container-grid { max-width: 1120px; margin: 0 auto; gap: 3.5rem; }
 
-    /* FOTO EKA WAHYU - KUNCI PRESISI 1:1 SEJAJAR */
+    /* FOTO EKA WAHYU - KUNCI KOORDINAT PRESISI MUTLAK */
     .eka-avatar-box { 
       position: relative; 
       width: 340px; 
@@ -74,35 +74,31 @@
       height: 420px; 
       overflow: hidden; 
       border-radius: 1.5rem;
-      -webkit-mask-image: linear-gradient(to bottom, black 68%, transparent 98%);
-      mask-image: linear-gradient(to bottom, black 68%, transparent 98%);
+      -webkit-mask-image: linear-gradient(to bottom, black 72%, transparent 100%);
+      mask-image: linear-gradient(to bottom, black 72%, transparent 100%);
     }
     
-    /* Foto Asli */
+    /* Foto Asli Lu */
     .eka-img-base {
       position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: top center;
+      object-position: center 12%; /* Mengunci titik pusat kepala dan dada lu */
       display: block;
       z-index: 1;
     }
 
-    /* Foto Spiderman - Disetel absolut terpisah agar presisi tanpa jinjing */
+    /* Foto Spiderman - Dikunci posisinya agar sejajar 1:1 persis di atas muka dan pundak lu */
     .eka-img-spidey {
       position: absolute;
-      top: -38px;
-      left: 50%;
-      transform: translateX(-50%) scale(1.10);
-      transform-origin: top center;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: top center;
+      object-position: center 10%; /* Mengunci titik pusat topeng Spider-Man */
+      transform: scale(1.03); /* Sedikit disesuaikan biar pas di bingkai */
       display: block;
       z-index: 2;
       opacity: 0;
@@ -151,7 +147,7 @@
     
     <section id="sec-beranda" class="w-full py-12 md:py-20 flex items-center page-tab-enter">
       <div class="w-full flex flex-col-reverse lg:flex-row items-center justify-between beranda-container-grid">
-        <div class="space-y-6 max-w-xl text-center lg:text-left">
+        <div class="space-y-6 max-w-2xl text-center lg:text-left">
           
           <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">
             <div class="flex items-center gap-2.5">
@@ -999,7 +995,7 @@
       }
     }
 
-    // SINKRONISASI DATA GOOGLE SHEETS AMAN (MENJAGA 10 ARSIP LOKAL)
+    // SINKRONISASI DATA GOOGLE SHEETS AMAN
     async function muatDataSheets() {
       if (APPS_SCRIPT_API_URL) {
         try {

@@ -57,23 +57,28 @@
 
     .beranda-container-grid { max-width: 1120px; margin: 0 auto; gap: 3.5rem; }
 
-    .eka-avatar-box { position: relative; width: 340px; height: 420px; display: flex; align-items: center; justify-content: center; cursor: crosshair; }
-    .eka-avatar-wrapper { position: relative; width: 300px; height: 390px; overflow: hidden; border-radius: 1.5rem; }
+    /* FOTO EKA WAHYU - PRESISI MUTLAK */
+    .eka-avatar-box { position: relative; width: 340px; height: 430px; display: flex; align-items: center; justify-content: center; cursor: crosshair; }
+    .eka-avatar-wrapper { position: relative; width: 320px; height: 410px; overflow: hidden; border-radius: 1.5rem; }
+    
     .eka-img-base { 
-      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; 
-      -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 92%); 
-      mask-image: linear-gradient(to bottom, black 55%, transparent 92%); 
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center;
+      -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%); 
+      mask-image: linear-gradient(to bottom, black 70%, transparent 100%); 
     }
+    
     .eka-img-spidey { 
-      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top;
-      transform: scale(1.04);
-      transform-origin: top center;
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center;
+      top: -4px;
+      transform: scale(1.18);
+      transform-origin: 50% 10%;
       opacity: 0;
+      pointer-events: none;
     }
 
     @media (max-width: 1023px) { 
-      .eka-avatar-box { width: 260px; height: 330px; margin: 0 auto; } 
-      .eka-avatar-wrapper { width: 230px; height: 300px; } 
+      .eka-avatar-box { width: 280px; height: 350px; margin: 0 auto; } 
+      .eka-avatar-wrapper { width: 260px; height: 330px; } 
     }
   </style>
 </head>
@@ -170,8 +175,10 @@
       <div class="max-w-4xl mx-auto space-y-6">
         <div class="smooth-zoom-card p-8 sm:p-10 rounded-3xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 shadow-sm space-y-5 text-base sm:text-lg leading-relaxed cursor-default">
           <p>Nama saya <b>I'lal Jalalludin Syahputra</b>. Saat ini saya menjalani kehidupan di Jepang dan bekerja di bidang <b>poultry farming</b>, khususnya dalam lingkungan peternakan ayam. Pengalaman ini menjadi bagian penting dari perjalanan saya karena mengajarkan banyak hal tentang <i>discipline, responsibility, teamwork</i>, dan bagaimana pekerjaan sederhana sekalipun membutuhkan ketelitian dan konsistensi.</p>
-          <p>Di sisi lain, saya memiliki background <b>Desain Komunikasi Visual (DKV)</b> yang membuat saya tetap dekat dengan dunia kreatif. <i>Graphic design, photography, visual communication</i>, hingga <i>digital content</i> menjadi beberapa bidang yang saya sukai dan terus saya kembangkan.</p>
+          <p>Di sisi lain, saya memiliki background <b>Desain Komunikasi Visual (DKV)</b> yang membuat saya tetap dekat dengan dunia kreatif. <i>Graphic design, photography, visual communication</i>, hingga <i>digital content</i> menjadi beberapa bidang yang saya sukai dan terus saya kembangkan. Saya juga tertarik pada data processing, computer operation, dan pemanfaatan teknologi modern untuk membuat pekerjaan menjadi lebih efektif.</p>
+          <p>Bagi saya, teknologi bukan sekadar sesuatu untuk digunakan, tetapi juga ruang untuk terus belajar. Saya mulai mengeksplorasi berbagai digital tools dan AI sebagai bagian dari daily workflow, baik untuk pekerjaan, kreativitas, maupun proses belajar.</p>
           <p>Selain bekerja dan mengembangkan skill, saya sedang menempuh pendidikan <b>Ilmu Hukum di Universitas Terbuka</b>. Saya melihat hukum sebagai bidang yang berbeda dari dunia kreatif dan peternakan yang saya jalani, tetapi justru dari perbedaan itulah saya mendapatkan perspektif baru.</p>
+          <p>Perjalanan ini mungkin terlihat seperti kumpulan bidang yang berbeda—<i>poultry farming</i>, DKV, digital technology, Japanese language, dan law. Namun, semuanya menjadi bagian dari proses yang sama: terus belajar, mencoba hal baru, dan membangun kemampuan sedikit demi sedikit.</p>
         </div>
 
         <div class="smooth-zoom-card p-8 rounded-3xl bg-sky-50/70 dark:bg-sky-950/30 border-l-8 border-sky-500 border border-sky-100 dark:border-sky-900 text-slate-800 dark:text-slate-200 space-y-2 cursor-default">
@@ -328,7 +335,7 @@
       <button onclick="toggleAudio()" id="btn-audio" class="w-8 h-8 rounded-xl bg-sky-500 hover:bg-sky-400 text-white flex items-center justify-center font-bold text-xs transition">▶</button>
       <div class="text-[11px] pr-1">
         <span class="block font-bold text-slate-900 dark:text-white">Ambient Chill</span>
-        <span id="audio-status" class="text-slate-400">Jeda</span>
+        <span id="audio-status" class="text-slate-400">Jeda (Klik putar)</span>
       </div>
       <audio id="bg-audio" loop src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3"></audio>
     </div>
@@ -341,6 +348,15 @@
   <script>
     const APPS_SCRIPT_API_URL = "https://script.google.com/macros/s/AKfycbzelb8A39t38A_oYlNut4MVfsO5KzcbaWm7Azt3Gl3qqlAg79J4CsVWygQ5zhJu93dz1g/exec";
 
+    // Peta Ikon Permanen Riwayat Pendidikan (Mencegah Undefined dari Sheets)
+    const iconPendidikanPeta = {
+      "TK Roudhotul Ilmi": `<svg class="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`,
+      "MI Mathala'ul Anwar": `<svg class="w-6 h-6 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>`,
+      "Mts Negeri 2 Pringsewu": `<svg class="w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`,
+      "SMK Negeri Sukoharjo": `<svg class="w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path></svg>`,
+      "Universitas Terbuka": `<svg class="w-6 h-6 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14v7"></path></svg>`
+    };
+
     let localDB = {
       profil: { 
         nama_lengkap: "I'lal Jalalludin Syahputra", 
@@ -348,11 +364,11 @@
         quote: "Keadilan adalah fondasi akal, konsistensi adalah kunci keberhasilan." 
       },
       pendidikan: [
-        { "Nama Instansi": "TK Roudhotul Ilmi", "Jurusan / Tingkat": "Pendidikan Kanak", "Tahun": "2011-2013", "Status": "Lulus", "IconSVG": `<svg class="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>` },
-        { "Nama Instansi": "MI Mathala'ul Anwar", "Jurusan / Tingkat": "Pendidikan Dasar", "Tahun": "2013-2018", "Status": "Lulus", "IconSVG": `<svg class="w-6 h-6 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>` },
-        { "Nama Instansi": "Mts Negeri 2 Pringsewu", "Jurusan / Tingkat": "Pendidikan Menengah", "Tahun": "2018-2021", "Status": "Lulus", "IconSVG": `<svg class="w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>` },
-        { "Nama Instansi": "SMK Negeri Sukoharjo", "Jurusan / Tingkat": "Pendidikan Atas (DKV)", "Tahun": "2021-2024", "Status": "Lulus", "IconSVG": `<svg class="w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path></svg>` },
-        { "Nama Instansi": "Universitas Terbuka", "Jurusan / Tingkat": "Ilmu Hukum • S1", "Tahun": "Aktif", "Status": "Aktif", "IconSVG": `<svg class="w-6 h-6 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14v7"></path></svg>` }
+        { "Nama Instansi": "TK Roudhotul Ilmi", "Jurusan / Tingkat": "Pendidikan Kanak", "Tahun": "2011-2013", "Status": "Lulus" },
+        { "Nama Instansi": "MI Mathala'ul Anwar", "Jurusan / Tingkat": "Pendidikan Dasar", "Tahun": "2013-2018", "Status": "Lulus" },
+        { "Nama Instansi": "Mts Negeri 2 Pringsewu", "Jurusan / Tingkat": "Pendidikan Menengah", "Tahun": "2018-2021", "Status": "Lulus" },
+        { "Nama Instansi": "SMK Negeri Sukoharjo", "Jurusan / Tingkat": "Pendidikan Atas (DKV)", "Tahun": "2021-2024", "Status": "Lulus" },
+        { "Nama Instansi": "Universitas Terbuka", "Jurusan / Tingkat": "Ilmu Hukum • S1", "Tahun": "Aktif", "Status": "Aktif" }
       ],
       blog: [
         { "Judul Artikel": "Kisah Steve Jobs & Garasi Apple: Dari Hobi Menjadi Imperium", Kategori: "Sejarah Bisnis", Tanggal: "12 Sep 2026", "Ringkasan Cuplikan": "Bagaimana ketekunan Steve Jobs dan Steve Wozniak mengubah komputer pribadi jadi revolusi global.", "Isi Lengkap Artikel": "Apple Inc. bukan lahir dari gedung kantor mewah, melainkan garasi sempit di Los Altos, California pada tahun 1976...", "SumberURL": "https://id.wikipedia.org/wiki/Steve_Jobs" },
@@ -415,7 +431,7 @@
       { nomor: 36, nama_latin: "Yasin", nama: "يس", arti: "Yasin", jumlah_ayat: 83 },
       { nomor: 37, nama_latin: "As-Saffat", nama: "الصافات", arti: "Barisan-Barisan", jumlah_ayat: 182 },
       { nomor: 38, nama_latin: "Sad", nama: "ص", arti: "Sad", jumlah_ayat: 88 },
-      { nomor: 39, nama_latin: "Az-Zumar", nama: "الزmer", arti: "Rombongan", jumlah_ayat: 75 },
+      { nomor: 39, nama_latin: "Az-Zumar", nama: "الزمر", arti: "Rombongan", jumlah_ayat: 75 },
       { nomor: 40, nama_latin: "Gafir", nama: "غافر", arti: "Maha Pengampun", jumlah_ayat: 85 },
       { nomor: 41, nama_latin: "Fussilat", nama: "فصلت", arti: "Dijelaskan", jumlah_ayat: 54 },
       { nomor: 42, nama_latin: "Asy-Syura", nama: "الشورى", arti: "Musyawarah", jumlah_ayat: 53 },
@@ -462,7 +478,7 @@
       { nomor: 83, nama_latin: "Al-Mutaffifin", nama: "المطففين", arti: "Orang Curang", jumlah_ayat: 36 },
       { nomor: 84, nama_latin: "Al-Insyiqaq", nama: "الانشقاق", arti: "Terbelah", jumlah_ayat: 25 },
       { nomor: 85, nama_latin: "Al-Buruj", nama: "البروج", arti: "Gugusan Bintang", jumlah_ayat: 22 },
-      { nomor: 86, nama_latin: "At-Tariq", nama: "الطارق", arti: "Yang Datang Malam", jumlah_ayat: 17 },
+      { nomor: 86, nama_latin: "At-发挥", nama: "الطارق", arti: "Yang Datang Malam", jumlah_ayat: 17 },
       { nomor: 87, nama_latin: "Al-A'la", nama: "الأعلى", arti: "Maha Tinggi", jumlah_ayat: 19 },
       { nomor: 88, nama_latin: "Al-Gasyiyah", nama: "الغاشية", arti: "Hari Pembalasan", jumlah_ayat: 26 },
       { nomor: 89, nama_latin: "Al-Fajr", nama: "الفجر", arti: "Fajar", jumlah_ayat: 30 },
@@ -493,26 +509,155 @@
       { nomor: 114, nama_latin: "An-Nas", nama: "الناس", arti: "Manusia", jumlah_ayat: 6 }
     ];
 
+    function initTheme() {
+      const html = document.documentElement;
+      const body = document.getElementById('body-root');
+      html.classList.add('dark');
+      body.classList.remove('bg-slate-50', 'text-slate-900', 'bg-dots-light');
+      body.classList.add('bg-neutralDark', 'text-slate-100', 'bg-dots-dark');
+      localStorage.removeItem('theme');
+    }
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      const body = document.getElementById('body-root');
+      if (html.classList.contains('dark')) {
+        html.classList.remove('dark');
+        body.classList.remove('bg-neutralDark', 'text-slate-100', 'bg-dots-dark');
+        body.classList.add('bg-slate-50', 'text-slate-900', 'bg-dots-light');
+      } else {
+        html.classList.add('dark');
+        body.classList.remove('bg-slate-50', 'text-slate-900', 'bg-dots-light');
+        body.classList.add('bg-neutralDark', 'text-slate-100', 'bg-dots-dark');
+      }
+    }
+
+    function updateNavIndicator(activeButton) {
+      const indicator = document.getElementById('nav-indicator');
+      if (!indicator || !activeButton) return;
+      indicator.style.width = `${activeButton.offsetWidth}px`;
+      indicator.style.height = `${activeButton.offsetHeight}px`;
+      indicator.style.left = `${activeButton.offsetLeft}px`;
+      indicator.style.top = `${activeButton.offsetTop}px`;
+    }
+
+    function pindahTab(nama, el) {
+      const tabs = ['beranda', 'tentang', 'skills', 'blog', 'eksplor'];
+      tabs.forEach(s => {
+        const sec = document.getElementById(`sec-${s}`);
+        if(sec) {
+          if (s === nama) {
+            sec.classList.remove('hidden'); sec.classList.remove('page-tab-enter'); void sec.offsetWidth; sec.classList.add('page-tab-enter');
+          } else { sec.classList.add('hidden'); }
+        }
+      });
+      document.querySelectorAll('.tab-item').forEach(btn => {
+        btn.classList.remove('text-sky-600', 'dark:text-sky-400', 'font-black');
+        btn.classList.add('text-slate-600', 'dark:text-slate-400', 'font-bold');
+      });
+      if (el) {
+        el.classList.remove('text-slate-600', 'dark:text-slate-400');
+        el.classList.add('text-sky-600', 'dark:text-sky-400', 'font-black');
+        updateNavIndicator(el);
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function pindahTabByName(nama) {
+      const targetMap = { 'beranda': 'beranda', 'tentang': 'tentang', 'keahlian': 'skills', 'catatan': 'blog', 'eksplor': 'eksplor' };
+      const targetId = targetMap[nama.toLowerCase()] || nama.toLowerCase();
+      const targetBtn = Array.from(document.querySelectorAll('.tab-item')).find(b => b.innerText.toLowerCase().includes(nama.toLowerCase()));
+      if (targetBtn) {
+        pindahTab(targetId, targetBtn);
+      } else {
+        pindahTab(targetId, null);
+      }
+    }
+
+    // =========================================================================
+    // LOGIKA ANIMASI FOTO EKA WAHYU (PERSIS VIDEO REKAMAN LAYAR)
+    // =========================================================================
+    const avatarBox = document.getElementById('avatarBox');
+    const spideyImg = document.getElementById('spideyImg');
+    let isHovered = false;
+    let autoTransInterval = null;
+    let isSpideyVisible = false;
+
+    function startIdleAnimation() {
+      spideyImg.style.webkitMaskImage = 'linear-gradient(to bottom, black 70%, transparent 100%)';
+      spideyImg.style.maskImage = 'linear-gradient(to bottom, black 70%, transparent 100%)';
+      spideyImg.style.transition = 'opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+      
+      if (autoTransInterval) clearInterval(autoTransInterval);
+      autoTransInterval = setInterval(() => {
+        if (!isHovered) {
+          isSpideyVisible = !isSpideyVisible;
+          spideyImg.style.opacity = isSpideyVisible ? "1" : "0";
+        }
+      }, 3500);
+    }
+
+    if (avatarBox && spideyImg) {
+      startIdleAnimation();
+
+      avatarBox.addEventListener('mouseenter', (e) => {
+        isHovered = true;
+        if (autoTransInterval) clearInterval(autoTransInterval);
+        spideyImg.style.transition = 'none';
+        spideyImg.style.opacity = '1';
+        
+        const rect = avatarBox.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const spotMask = `radial-gradient(circle 110px at ${x}px ${y}px, black 40%, rgba(0,0,0,0.4) 75%, transparent 100%)`;
+        spideyImg.style.webkitMaskImage = spotMask;
+        spideyImg.style.maskImage = spotMask;
+      });
+
+      avatarBox.addEventListener('mousemove', (e) => {
+        if (!isHovered) return;
+        const rect = avatarBox.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const spotMask = `radial-gradient(circle 110px at ${x}px ${y}px, black 40%, rgba(0,0,0,0.4) 75%, transparent 100%)`;
+        spideyImg.style.webkitMaskImage = spotMask;
+        spideyImg.style.maskImage = spotMask;
+      });
+
+      avatarBox.addEventListener('mouseleave', () => {
+        isHovered = false;
+        spideyImg.style.webkitMaskImage = 'linear-gradient(to bottom, black 70%, transparent 100%)';
+        spideyImg.style.maskImage = 'linear-gradient(to bottom, black 70%, transparent 100%)';
+        spideyImg.style.transition = 'opacity 0.6s ease-out';
+        spideyImg.style.opacity = '0';
+        isSpideyVisible = false;
+        startIdleAnimation();
+      });
+    }
+
     function renderPendidikan(list) {
       const container = document.getElementById('pendidikan-container');
       if (!container) return;
-      container.innerHTML = list.map(p => `
-        <div class="smooth-zoom-card p-6 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between cursor-pointer">
-          <div class="flex items-center gap-4">
-            <div class="w-12 h-12 rounded-xl bg-sky-500/10 text-sky-500 flex items-center justify-center font-bold shadow-sm">
-              ${p.IconSVG}
+      container.innerHTML = list.map(p => {
+        const iconSVG = iconPendidikanPeta[p['Nama Instansi']] || `<svg class="w-6 h-6 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path></svg>`;
+        return `
+          <div class="smooth-zoom-card p-6 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between cursor-pointer">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl bg-sky-500/10 flex items-center justify-center font-bold shadow-sm">
+                ${iconSVG}
+              </div>
+              <div>
+                <h4 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white">${p['Nama Instansi']}</h4>
+                <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">${p['Jurusan / Tingkat']}</p>
+              </div>
             </div>
-            <div>
-              <h4 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white">${p['Nama Instansi']}</h4>
-              <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">${p['Jurusan / Tingkat']}</p>
+            <div class="text-right">
+              <span class="text-xs sm:text-sm font-bold text-slate-500 block">${p['Tahun']}</span>
+              <span class="text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400">${p['Status']}</span>
             </div>
           </div>
-          <div class="text-right">
-            <span class="text-xs sm:text-sm font-bold text-slate-500 block">${p['Tahun']}</span>
-            <span class="text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400">${p['Status']}</span>
-          </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
     }
 
     function renderBlogCards(list) {
@@ -818,7 +963,7 @@
       }
     }
 
-    // SINKRONISASI DATA GOOGLE SHEETS LIVE
+    // SINKRONISASI DATA GOOGLE SHEETS LIVE (AMAN & VALID)
     async function muatDataSheets() {
       if (APPS_SCRIPT_API_URL) {
         try {
@@ -831,7 +976,7 @@
             if (data.tugas && data.tugas.length > 0) localDB.tugas = data.tugas;
           }
         } catch (err) {
-          console.log("Menggunakan data cadangan:", err);
+          console.log("Menggunakan data lokal cadangan:", err);
         }
       }
       if (localDB.profil.nama_lengkap) document.getElementById('hero-nama').innerText = localDB.profil.nama_lengkap;

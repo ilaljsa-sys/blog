@@ -57,7 +57,7 @@
 
     .beranda-container-grid { max-width: 1120px; margin: 0 auto; gap: 3.5rem; }
 
-    /* FOTO EKA WAHYU - KUNCI PRESISI MUTLAK V2 (KUPING TERTUTUP & POSISI PAS) */
+    /* FOTO EKA WAHYU - SPIDER-MAN OVERSIZE DI DALAM CONTAINER */
     .eka-avatar-box { 
       position: relative; 
       width: 340px; 
@@ -78,7 +78,7 @@
       mask-image: linear-gradient(to bottom, black 72%, transparent 100%);
     }
     
-    /* Foto Asli Lu (Background) */
+    /* Foto Asli Lu (Pas di dalam wrapper) */
     .eka-img-base {
       position: absolute;
       inset: 0;
@@ -90,17 +90,15 @@
       z-index: 1;
     }
 
-    /* Foto Spiderman (Layer Atas) - Diperbesar (1.55) dan Ditarik ke Atas (-95px) */
+    /* Foto Spiderman - Dibuat oversize (130%) agar meluber dan nutupin semua kuping & kepala tanpa ngerusak pundak */
     .eka-img-spidey {
       position: absolute;
-      top: -95px;
-      left: 50%;
-      transform: translateX(-50%) scale(1.55);
-      transform-origin: top center;
-      width: 100%;
-      height: 100%;
+      top: -15%;   /* Tarik ke atas */
+      left: -15%;  /* Geser ke kiri biar center */
+      width: 130%; /* Ukuran lebih besar dari kontainer */
+      height: 130%;
       object-fit: cover;
-      object-position: center 10%;
+      object-position: center center;
       display: block;
       z-index: 2;
       opacity: 0;
@@ -110,7 +108,6 @@
     @media (max-width: 1023px) { 
       .eka-avatar-box { width: 280px; height: 360px; margin: 0 auto; } 
       .eka-avatar-wrapper { width: 260px; height: 340px; } 
-      .eka-img-spidey { top: -75px; transform: translateX(-50%) scale(1.55); }
     }
   </style>
 </head>
@@ -607,7 +604,7 @@
     }
 
     // =========================================================================
-    // EFEK EKA WAHYU - IDLE CROSSFADE FULL & BRUSH HOVER (PRESISI MUTLAK)
+    // EFEK EKA WAHYU - IDLE CROSSFADE FULL & BRUSH HOVER (SPIDER-MAN OVERSIZE 130%)
     // =========================================================================
     const avatarBox = document.getElementById('avatarBox');
     const spideyImg = document.getElementById('spideyImg');

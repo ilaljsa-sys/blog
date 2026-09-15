@@ -57,7 +57,7 @@
 
     .beranda-container-grid { max-width: 1120px; margin: 0 auto; gap: 3.5rem; }
 
-    /* FOTO EKA WAHYU - SPIDER-MAN OVERSIZE DI DALAM CONTAINER */
+    /* FOTO EKA WAHYU - SKALA SPIDER-MAN LEBIH BESAR & PAS DI KUPING/PUNDAK */
     .eka-avatar-box { 
       position: relative; 
       width: 340px; 
@@ -78,7 +78,7 @@
       mask-image: linear-gradient(to bottom, black 72%, transparent 100%);
     }
     
-    /* Foto Asli Lu (Pas di dalam wrapper) */
+    /* Foto Asli Lu */
     .eka-img-base {
       position: absolute;
       inset: 0;
@@ -90,15 +90,17 @@
       z-index: 1;
     }
 
-    /* Foto Spiderman - Dibuat oversize (130%) agar meluber dan nutupin semua kuping & kepala tanpa ngerusak pundak */
+    /* Foto Spiderman - Ditinggikan (top: -34px) dan dibesarkan (scale: 1.28) agar kuping tertutup rapat */
     .eka-img-spidey {
       position: absolute;
-      top: -15%;   /* Tarik ke atas */
-      left: -15%;  /* Geser ke kiri biar center */
-      width: 130%; /* Ukuran lebih besar dari kontainer */
-      height: 130%;
+      top: -34px;
+      left: 50%;
+      transform: translateX(-50%) scale(1.28);
+      transform-origin: top center;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      object-position: center center;
+      object-position: center 10%;
       display: block;
       z-index: 2;
       opacity: 0;
@@ -604,7 +606,7 @@
     }
 
     // =========================================================================
-    // EFEK EKA WAHYU - IDLE CROSSFADE FULL & BRUSH HOVER (SPIDER-MAN OVERSIZE 130%)
+    // EFEK EKA WAHYU - IDLE CROSSFADE FULL & BRUSH HOVER (PRESISI MUTLAK)
     // =========================================================================
     const avatarBox = document.getElementById('avatarBox');
     const spideyImg = document.getElementById('spideyImg');

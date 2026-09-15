@@ -57,28 +57,57 @@
 
     .beranda-container-grid { max-width: 1120px; margin: 0 auto; gap: 3.5rem; }
 
-    /* FOTO EKA WAHYU - PRESISI MUTLAK */
-    .eka-avatar-box { position: relative; width: 340px; height: 430px; display: flex; align-items: center; justify-content: center; cursor: crosshair; }
-    .eka-avatar-wrapper { position: relative; width: 320px; height: 410px; overflow: hidden; border-radius: 1.5rem; }
+    /* FOTO EKA WAHYU - STRUKTUR LAYER SOLID & PRESISI */
+    .eka-avatar-box { 
+      position: relative; 
+      width: 340px; 
+      height: 440px; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      cursor: crosshair; 
+    }
+    .eka-avatar-wrapper { 
+      position: relative; 
+      width: 320px; 
+      height: 420px; 
+      overflow: hidden; 
+      border-radius: 1.5rem; 
+      background: transparent;
+    }
     
     .eka-img-base { 
-      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center;
+      position: absolute; 
+      inset: 0; 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+      object-position: top center;
       -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%); 
       mask-image: linear-gradient(to bottom, black 70%, transparent 100%); 
+      z-index: 1;
     }
     
     .eka-img-spidey { 
-      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center;
-      top: -4px;
-      transform: scale(1.18);
-      transform-origin: 50% 10%;
-      opacity: 0;
+      position: absolute; 
+      inset: 0; 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+      object-position: top center;
+      transform: scale(1.22) translateY(6px);
+      transform-origin: top center;
+      z-index: 2;
+      opacity: 1; /* Selalu solid pekat */
       pointer-events: none;
+      -webkit-mask-image: radial-gradient(circle 0px at center, black 100%, transparent 100%);
+      mask-image: radial-gradient(circle 0px at center, black 100%, transparent 100%);
+      transition: -webkit-mask-image 0.2s ease, mask-image 0.2s ease;
     }
 
     @media (max-width: 1023px) { 
-      .eka-avatar-box { width: 280px; height: 350px; margin: 0 auto; } 
-      .eka-avatar-wrapper { width: 260px; height: 330px; } 
+      .eka-avatar-box { width: 280px; height: 360px; margin: 0 auto; } 
+      .eka-avatar-wrapper { width: 260px; height: 340px; } 
     }
   </style>
 </head>
@@ -348,7 +377,7 @@
   <script>
     const APPS_SCRIPT_API_URL = "https://script.google.com/macros/s/AKfycbzelb8A39t38A_oYlNut4MVfsO5KzcbaWm7Azt3Gl3qqlAg79J4CsVWygQ5zhJu93dz1g/exec";
 
-    // Peta Ikon Permanen Riwayat Pendidikan (Mencegah Undefined dari Sheets)
+    // Peta Ikon Paten Riwayat Pendidikan
     const iconPendidikanPeta = {
       "TK Roudhotul Ilmi": `<svg class="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`,
       "MI Mathala'ul Anwar": `<svg class="w-6 h-6 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>`,
@@ -400,7 +429,7 @@
       { nomor: 5, nama_latin: "Al-Ma'idah", nama: "المائدة", arti: "Hidangan", jumlah_ayat: 120 },
       { nomor: 6, nama_latin: "Al-An'am", nama: "الأنعام", arti: "Binatang Ternak", jumlah_ayat: 165 },
       { nomor: 7, nama_latin: "Al-A'raf", nama: "الأعراف", arti: "Tempat Tertinggi", jumlah_ayat: 206 },
-      { nomor: 8, nama_latin: "Al-Anfal", nama: "الأنفال", arti: "Rampasan Perang", jumlah_ayat: 75 },
+      { nomor: 8, nama_latin: "Al-Anfal", nama: "الأنفal", arti: "Rampasan Perang", jumlah_ayat: 75 },
       { nomor: 9, nama_latin: "At-Taubah", nama: "التوبة", arti: "Pengampunan", jumlah_ayat: 129 },
       { nomor: 10, nama_latin: "Yunus", nama: "يونس", arti: "Nabi Yunus", jumlah_ayat: 109 },
       { nomor: 11, nama_latin: "Hud", nama: "هود", arti: "Nabi Hud", jumlah_ayat: 123 },
@@ -478,7 +507,7 @@
       { nomor: 83, nama_latin: "Al-Mutaffifin", nama: "المطففين", arti: "Orang Curang", jumlah_ayat: 36 },
       { nomor: 84, nama_latin: "Al-Insyiqaq", nama: "الانشقاق", arti: "Terbelah", jumlah_ayat: 25 },
       { nomor: 85, nama_latin: "Al-Buruj", nama: "البروج", arti: "Gugusan Bintang", jumlah_ayat: 22 },
-      { nomor: 86, nama_latin: "At-发挥", nama: "الطارق", arti: "Yang Datang Malam", jumlah_ayat: 17 },
+      { nomor: 86, nama_latin: "At-Tariq", nama: "الطارق", arti: "Yang Datang Malam", jumlah_ayat: 17 },
       { nomor: 87, nama_latin: "Al-A'la", nama: "الأعلى", arti: "Maha Tinggi", jumlah_ayat: 19 },
       { nomor: 88, nama_latin: "Al-Gasyiyah", nama: "الغاشية", arti: "Hari Pembalasan", jumlah_ayat: 26 },
       { nomor: 89, nama_latin: "Al-Fajr", nama: "الفجر", arti: "Fajar", jumlah_ayat: 30 },
@@ -583,16 +612,23 @@
     let autoTransInterval = null;
     let isSpideyVisible = false;
 
+    // Saat Idle: Bergantian transisi otomatis solid penuh
     function startIdleAnimation() {
-      spideyImg.style.webkitMaskImage = 'linear-gradient(to bottom, black 70%, transparent 100%)';
-      spideyImg.style.maskImage = 'linear-gradient(to bottom, black 70%, transparent 100%)';
-      spideyImg.style.transition = 'opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+      spideyImg.style.transition = '-webkit-mask-image 1.2s cubic-bezier(0.4, 0, 0.2, 1), mask-image 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
       
       if (autoTransInterval) clearInterval(autoTransInterval);
       autoTransInterval = setInterval(() => {
         if (!isHovered) {
           isSpideyVisible = !isSpideyVisible;
-          spideyImg.style.opacity = isSpideyVisible ? "1" : "0";
+          if (isSpideyVisible) {
+            // Tampilkan Spider-Man Solid Penuh
+            spideyImg.style.webkitMaskImage = `radial-gradient(circle 500px at center, black 100%, transparent 100%)`;
+            spideyImg.style.maskImage = `radial-gradient(circle 500px at center, black 100%, transparent 100%)`;
+          } else {
+            // Kembali ke Foto Asli Penuh
+            spideyImg.style.webkitMaskImage = `radial-gradient(circle 0px at center, black 100%, transparent 100%)`;
+            spideyImg.style.maskImage = `radial-gradient(circle 0px at center, black 100%, transparent 100%)`;
+          }
         }
       }, 3500);
     }
@@ -600,36 +636,37 @@
     if (avatarBox && spideyImg) {
       startIdleAnimation();
 
+      // Saat Kursor Masuk (Hover): Matikan idle, aktifkan efek brush kursor
       avatarBox.addEventListener('mouseenter', (e) => {
         isHovered = true;
         if (autoTransInterval) clearInterval(autoTransInterval);
-        spideyImg.style.transition = 'none';
-        spideyImg.style.opacity = '1';
+        spideyImg.style.transition = 'none'; // Langsung responsif tanpa delay
         
         const rect = avatarBox.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        const spotMask = `radial-gradient(circle 110px at ${x}px ${y}px, black 40%, rgba(0,0,0,0.4) 75%, transparent 100%)`;
+        const spotMask = `radial-gradient(circle 115px at ${x}px ${y}px, black 40%, rgba(0,0,0,0.5) 75%, transparent 100%)`;
         spideyImg.style.webkitMaskImage = spotMask;
         spideyImg.style.maskImage = spotMask;
       });
 
+      // Gerak Kursor: Hanya area lingkaran kursor saja yang menyingkap Spider-Man Solid
       avatarBox.addEventListener('mousemove', (e) => {
         if (!isHovered) return;
         const rect = avatarBox.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        const spotMask = `radial-gradient(circle 110px at ${x}px ${y}px, black 40%, rgba(0,0,0,0.4) 75%, transparent 100%)`;
+        const spotMask = `radial-gradient(circle 115px at ${x}px ${y}px, black 40%, rgba(0,0,0,0.5) 75%, transparent 100%)`;
         spideyImg.style.webkitMaskImage = spotMask;
         spideyImg.style.maskImage = spotMask;
       });
 
+      // Saat Kursor Keluar: Reset ke foto asli, mulai kembali siklus idle
       avatarBox.addEventListener('mouseleave', () => {
         isHovered = false;
-        spideyImg.style.webkitMaskImage = 'linear-gradient(to bottom, black 70%, transparent 100%)';
-        spideyImg.style.maskImage = 'linear-gradient(to bottom, black 70%, transparent 100%)';
-        spideyImg.style.transition = 'opacity 0.6s ease-out';
-        spideyImg.style.opacity = '0';
+        spideyImg.style.transition = '-webkit-mask-image 0.6s ease-out, mask-image 0.6s ease-out';
+        spideyImg.style.webkitMaskImage = `radial-gradient(circle 0px at center, black 100%, transparent 100%)`;
+        spideyImg.style.maskImage = `radial-gradient(circle 0px at center, black 100%, transparent 100%)`;
         isSpideyVisible = false;
         startIdleAnimation();
       });
@@ -963,7 +1000,7 @@
       }
     }
 
-    // SINKRONISASI DATA GOOGLE SHEETS LIVE (AMAN & VALID)
+    // SINKRONISASI DATA GOOGLE SHEETS LIVE (AMAN DARI DATA TERTUKAR)
     async function muatDataSheets() {
       if (APPS_SCRIPT_API_URL) {
         try {

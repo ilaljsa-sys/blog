@@ -57,7 +57,6 @@
 
     .beranda-container-grid { max-width: 1120px; margin: 0 auto; gap: 3.5rem; }
 
-    /* FOTO EKA WAHYU */
     .eka-avatar-box { position: relative; width: 340px; height: 420px; display: flex; align-items: center; justify-content: center; cursor: crosshair; }
     .eka-avatar-wrapper { position: relative; width: 300px; height: 390px; overflow: hidden; border-radius: 1.5rem; }
     .eka-img-base { 
@@ -416,7 +415,7 @@
       { nomor: 36, nama_latin: "Yasin", nama: "يس", arti: "Yasin", jumlah_ayat: 83 },
       { nomor: 37, nama_latin: "As-Saffat", nama: "الصافات", arti: "Barisan-Barisan", jumlah_ayat: 182 },
       { nomor: 38, nama_latin: "Sad", nama: "ص", arti: "Sad", jumlah_ayat: 88 },
-      { nomor: 39, nama_latin: "Az-Zumar", nama: "الزمر", arti: "Rombongan", jumlah_ayat: 75 },
+      { nomor: 39, nama_latin: "Az-Zumar", nama: "الزmer", arti: "Rombongan", jumlah_ayat: 75 },
       { nomor: 40, nama_latin: "Gafir", nama: "غافر", arti: "Maha Pengampun", jumlah_ayat: 85 },
       { nomor: 41, nama_latin: "Fussilat", nama: "فصلت", arti: "Dijelaskan", jumlah_ayat: 54 },
       { nomor: 42, nama_latin: "Asy-Syura", nama: "الشورى", arti: "Musyawarah", jumlah_ayat: 53 },
@@ -493,122 +492,6 @@
       { nomor: 113, nama_latin: "Al-Falaq", nama: "الفلق", arti: "Waktu Subuh", jumlah_ayat: 5 },
       { nomor: 114, nama_latin: "An-Nas", nama: "الناس", arti: "Manusia", jumlah_ayat: 6 }
     ];
-
-    function initTheme() {
-      const html = document.documentElement;
-      const body = document.getElementById('body-root');
-      html.classList.add('dark');
-      body.classList.remove('bg-slate-50', 'text-slate-900', 'bg-dots-light');
-      body.classList.add('bg-neutralDark', 'text-slate-100', 'bg-dots-dark');
-      localStorage.removeItem('theme');
-    }
-
-    function toggleTheme() {
-      const html = document.documentElement;
-      const body = document.getElementById('body-root');
-      if (html.classList.contains('dark')) {
-        html.classList.remove('dark');
-        body.classList.remove('bg-neutralDark', 'text-slate-100', 'bg-dots-dark');
-        body.classList.add('bg-slate-50', 'text-slate-900', 'bg-dots-light');
-      } else {
-        html.classList.add('dark');
-        body.classList.remove('bg-slate-50', 'text-slate-900', 'bg-dots-light');
-        body.classList.add('bg-neutralDark', 'text-slate-100', 'bg-dots-dark');
-      }
-    }
-
-    function updateNavIndicator(activeButton) {
-      const indicator = document.getElementById('nav-indicator');
-      if (!indicator || !activeButton) return;
-      indicator.style.width = `${activeButton.offsetWidth}px`;
-      indicator.style.height = `${activeButton.offsetHeight}px`;
-      indicator.style.left = `${activeButton.offsetLeft}px`;
-      indicator.style.top = `${activeButton.offsetTop}px`;
-    }
-
-    function pindahTab(nama, el) {
-      const tabs = ['beranda', 'tentang', 'skills', 'blog', 'eksplor'];
-      tabs.forEach(s => {
-        const sec = document.getElementById(`sec-${s}`);
-        if(sec) {
-          if (s === nama) {
-            sec.classList.remove('hidden'); sec.classList.remove('page-tab-enter'); void sec.offsetWidth; sec.classList.add('page-tab-enter');
-          } else { sec.classList.add('hidden'); }
-        }
-      });
-      document.querySelectorAll('.tab-item').forEach(btn => {
-        btn.classList.remove('text-sky-600', 'dark:text-sky-400', 'font-black');
-        btn.classList.add('text-slate-600', 'dark:text-slate-400', 'font-bold');
-      });
-      if (el) {
-        el.classList.remove('text-slate-600', 'dark:text-slate-400');
-        el.classList.add('text-sky-600', 'dark:text-sky-400', 'font-black');
-        updateNavIndicator(el);
-      }
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function pindahTabByName(nama) {
-      const targetMap = { 'beranda': 'beranda', 'tentang': 'tentang', 'keahlian': 'skills', 'catatan': 'blog', 'eksplor': 'eksplor' };
-      const targetId = targetMap[nama.toLowerCase()] || nama.toLowerCase();
-      const targetBtn = Array.from(document.querySelectorAll('.tab-item')).find(b => b.innerText.toLowerCase().includes(nama.toLowerCase()));
-      if (targetBtn) {
-        pindahTab(targetId, targetBtn);
-      } else {
-        pindahTab(targetId, null);
-      }
-    }
-
-    // =====================================
-    // LOGIKA FOTO EKA WAHYU (IDLE & HOVER)
-    // =====================================
-    const avatarBox = document.getElementById('avatarBox');
-    const spideyImg = document.getElementById('spideyImg');
-    let isHovered = false;
-    let autoTransInterval = null;
-    let isSpideyVisible = false;
-
-    function startIdleAnimation() {
-      spideyImg.style.webkitMaskImage = 'linear-gradient(to bottom, black 55%, transparent 92%)';
-      spideyImg.style.maskImage = 'linear-gradient(to bottom, black 55%, transparent 92%)';
-      spideyImg.style.transition = 'opacity 1.5s ease-in-out';
-      
-      if (autoTransInterval) clearInterval(autoTransInterval);
-      autoTransInterval = setInterval(() => {
-        if (!isHovered) {
-          isSpideyVisible = !isSpideyVisible;
-          spideyImg.style.opacity = isSpideyVisible ? "1" : "0";
-        }
-      }, 3000);
-    }
-
-    if (avatarBox && spideyImg) {
-      startIdleAnimation();
-
-      avatarBox.addEventListener('mouseenter', () => {
-        isHovered = true;
-        if (autoTransInterval) clearInterval(autoTransInterval);
-        spideyImg.style.transition = 'none';
-        spideyImg.style.opacity = '1';
-        spideyImg.style.webkitMaskImage = `radial-gradient(circle 0px at center, black 100%, transparent 100%)`;
-      });
-
-      avatarBox.addEventListener('mousemove', (e) => {
-        if (!isHovered) return;
-        const rect = avatarBox.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        spideyImg.style.webkitMaskImage = `radial-gradient(circle 130px at ${x}px ${y}px, black 35%, rgba(0,0,0,0.5) 70%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%)`;
-        spideyImg.style.maskImage = `radial-gradient(circle 130px at ${x}px ${y}px, black 35%, rgba(0,0,0,0.5) 70%, transparent 100%), linear-gradient(to bottom, black 55%, transparent 92%)`;
-      });
-
-      avatarBox.addEventListener('mouseleave', () => {
-        isHovered = false;
-        spideyImg.style.opacity = '0';
-        isSpideyVisible = false;
-        startIdleAnimation();
-      });
-    }
 
     function renderPendidikan(list) {
       const container = document.getElementById('pendidikan-container');

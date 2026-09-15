@@ -57,7 +57,7 @@
 
     .beranda-container-grid { max-width: 1120px; margin: 0 auto; gap: 3.5rem; }
 
-    /* FOTO REVEAL EKA WAHYU - PRESISI MUTLAK */
+    /* FOTO EKA WAHYU - PRESISI KUNCI KOORDINAT 100% SAMA */
     .eka-avatar-box { 
       position: relative; 
       width: 340px; 
@@ -73,42 +73,31 @@
       width: 320px; 
       height: 420px; 
       overflow: hidden; 
-      /* Gradasi lembut bawah agar menyatu sempurna tanpa kotak */
-      -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 96%);
-      mask-image: linear-gradient(to bottom, black 65%, transparent 96%);
+      border-radius: 1.5rem;
+      /* Gradasi bawah agar menyatu mulus dengan background gelap */
+      -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+      mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
     }
     
-    /* Foto Asli (Base Layer) */
-    .eka-img-base {
+    /* Foto Asli (Base) & Spiderman di-lock di posisi absolut yang PERSIS IDENTIK */
+    .eka-img-base, .eka-img-spidey {
       position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: top center;
       display: block;
+    }
+
+    .eka-img-base {
       z-index: 1;
     }
 
-    /* Foto Spiderman (Reveal Layer) - Presisi Sejajar Pundak */
     .eka-img-spidey {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      /* Skala 1.16 dan offset -4px mengunci persis di lekuk pundak jas */
-      transform: translateX(-50%) scale(1.16) translateY(-4px);
-      transform-origin: top center;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top center;
-      display: block;
       z-index: 2;
-      opacity: 0; /* Dikendalikan JS */
+      opacity: 0; /* Diatur via JS */
       pointer-events: none;
-      will-change: opacity, -webkit-mask-image;
     }
 
     @media (max-width: 1023px) { 
@@ -191,7 +180,7 @@
         <div class="relative flex items-center justify-center">
           <div class="absolute w-80 h-80 sm:w-96 sm:h-96 bg-sky-500/30 dark:bg-sky-500/25 blur-[90px] rounded-full pointer-events-none -z-10 animate-moving-glow"></div>
           <div class="animate-slow-float eka-avatar-box" id="avatarBox">
-            <div class="eka-avatar-wrapper" id="avatarWrapper">
+            <div class="eka-avatar-wrapper">
               <img id="hero-avatar" src="https://i.postimg.cc/rwY03HQz/ga-ada-bacgrond.png" alt="Avatar Utama" class="eka-img-base">
               <img id="spideyImg" src="https://i.postimg.cc/Kv0R3VXs/Spiderman-pas.png" alt="Spiderman" class="eka-img-spidey">
             </div>
@@ -383,7 +372,7 @@
   <script>
     const APPS_SCRIPT_API_URL = "https://script.google.com/macros/s/AKfycbzelb8A39t38A_oYlNut4MVfsO5KzcbaWm7Azt3Gl3qqlAg79J4CsVWygQ5zhJu93dz1g/exec";
 
-    // Peta Ikon Permanen Riwayat Pendidikan (Bebas 'undefined')
+    // Peta Ikon Paten Riwayat Pendidikan (Bebas 'undefined')
     const iconPendidikanPeta = {
       "TK Roudhotul Ilmi": `<svg class="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`,
       "MI Mathala'ul Anwar": `<svg class="w-6 h-6 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>`,
@@ -610,7 +599,7 @@
     }
 
     // =========================================================================
-    // MESIN TRANSISI EKA WAHYU (IDLE CROSSFADE PENUH & HOVER BRUSH LINGKARAN)
+    // EFEK EKA WAHYU - TRANSISI IDLE FULL CROSSFADE & HOVER BRUSH LINGKARAN
     // =========================================================================
     const avatarBox = document.getElementById('avatarBox');
     const spideyImg = document.getElementById('spideyImg');
@@ -619,12 +608,11 @@
     let autoInterval = null;
     let isSpideyVisible = false;
 
-    // Saat Diam (Idle): Crossfade Solid Otomatis Penuh (0 ke 1) bergantian halus
     function startIdleCrossfade() {
-      // Hapus masking brush kursor biar layer penuh
+      // Saat idle: Hapus mask brush, gunakan transisi opacity penuh (fade in/out halus)
       spideyImg.style.webkitMaskImage = 'none';
       spideyImg.style.maskImage = 'none';
-      spideyImg.style.transition = 'opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1)';
+      spideyImg.style.transition = 'opacity 1.5s ease-in-out';
       
       if (autoInterval) clearInterval(autoInterval);
       autoInterval = setInterval(() => {
@@ -632,47 +620,43 @@
           isSpideyVisible = !isSpideyVisible;
           spideyImg.style.opacity = isSpideyVisible ? "1" : "0";
         }
-      }, 3500);
+      }, 4000);
     }
 
     if (avatarBox && spideyImg) {
       startIdleCrossfade();
 
-      // Saat Kursor Masuk (Hover): Matikan crossfade idle, aktifkan efek brush kursor
+      // Saat Kursor Masuk: Matikan idle, aktifkan masking brush lingkaran di kursor
       avatarBox.addEventListener('mouseenter', (e) => {
         isHovering = true;
         if (autoInterval) clearInterval(autoInterval);
-        
-        spideyImg.style.transition = 'none'; // Langsung responsif mengikuti kursor
-        spideyImg.style.opacity = '1';       // Spiderman solid pekat
+        spideyImg.style.transition = 'none';
+        spideyImg.style.opacity = '1';
 
         const rect = avatarBox.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
 
-        // Masking radial lembut di titik kursor
-        const maskStyle = `radial-gradient(circle 120px at ${x}px ${y}px, black 40%, rgba(0,0,0,0.5) 75%, transparent 100%)`;
-        spideyImg.style.webkitMaskImage = maskStyle;
-        spideyImg.style.maskImage = maskStyle;
+        const brushMask = `radial-gradient(circle 120px at ${x}px ${y}px, black 35%, rgba(0,0,0,0.5) 70%, transparent 100%)`;
+        spideyImg.style.webkitMaskImage = brushMask;
+        spideyImg.style.maskImage = brushMask;
       });
 
-      // Gerak Kursor: Hanya area lingkaran kursor saja yang menyingkap Spider-Man Solid
+      // Gerak Kursor: Brush ngikutin mouse lu dengan presisi
       avatarBox.addEventListener('mousemove', (e) => {
         if (!isHovering) return;
         const rect = avatarBox.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
 
-        const maskStyle = `radial-gradient(circle 120px at ${x}px ${y}px, black 40%, rgba(0,0,0,0.5) 75%, transparent 100%)`;
-        spideyImg.style.webkitMaskImage = maskStyle;
-        spideyImg.style.maskImage = maskStyle;
+        const brushMask = `radial-gradient(circle 120px at ${x}px ${y}px, black 35%, rgba(0,0,0,0.5) 70%, transparent 100%)`;
+        spideyImg.style.webkitMaskImage = brushMask;
+        spideyImg.style.maskImage = brushMask;
       });
 
-      // Saat Kursor Keluar: Reset ke foto asli, lalu lanjutkan crossfade idle penuh
+      // Saat Kursor Keluar: Fade out, balik ke animasi idle otomatis penuh
       avatarBox.addEventListener('mouseleave', () => {
         isHovering = false;
-        spideyImg.style.webkitMaskImage = 'none';
-        spideyImg.style.maskImage = 'none';
         spideyImg.style.transition = 'opacity 0.8s ease-out';
         spideyImg.style.opacity = '0';
         isSpideyVisible = false;

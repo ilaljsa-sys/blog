@@ -1,66 +1,107 @@
-// pages/catatan.js - Modul Blog & Catatan
+// Variabel penyimpan data artikel aktif
+let dataBlogAktif = [];
 
-function renderCatatan() {
-  const container = document.getElementById('sec-blog');
+// Fungsi render kartu-kartu artikel catatan
+function renderCatatan(daftarArtikel = null) {
+  const container = document.getElementById('wadah-catatan') || document.querySelector('#sec-blog .grid');
   if (!container) return;
 
-  container.innerHTML = `
-    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-5">
-      <div>
-        <span class="px-4 py-1 rounded-full bg-sky-100 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 text-xs font-black uppercase tracking-wider">Artikel & Catatan</span>
-        <h2 class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white mt-2">Pikiran, Gagasan, & Esai</h2>
+  // Prioritaskan data yang dikirim, atau fallback ke localDB
+  const list = daftarArtikel || (typeof localDB !== 'undefined' ? localDB.blog : []);
+  dataBlogAktif = list;
+
+  if (!list || list.length === 0) {
+    container.innerHTML = `
+      <div class="col-span-full py-12 text-center text-slate-400 text-sm">
+        Belum ada catatan yang tersedia.
       </div>
-      <input type="text" id="blog-search" oninput="cariBlog()" placeholder="Cari artikel..." class="w-full sm:w-80 bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 rounded-2xl px-5 py-3 text-sm focus:outline-none focus:border-sky-500 shadow-sm">
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto" id="blog-container"></div>
-  `;
-
-  renderBlogCards(localDB.blog);
-}
-
-function renderBlogCards(list) {
-  const blogBox = document.getElementById('blog-container');
-  if (!blogBox || !list) return;
-  blogBox.innerHTML = list.map((b, idx) => `
-    <article onclick="bukaModalBlog(${idx})" class="smooth-zoom-card p-6 rounded-3xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 cursor-pointer group flex flex-col justify-between shadow-sm hover:border-sky-500 transition duration-300 space-y-4">
-      <div class="space-y-2">
-        <div class="flex items-center justify-between text-xs">
-          <span class="px-3 py-1 rounded-full bg-sky-50 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 font-bold">${b.Kategori}</span>
-          <span class="text-slate-400">${b.Tanggal}</span>
-        </div>
-        <h3 class="text-lg font-black text-slate-900 dark:text-white group-hover:text-sky-500 transition leading-snug">${b['Judul Artikel']}</h3>
-        <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 line-clamp-2">${b['Ringkasan Cuplikan']}</p>
-      </div>
-      <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-xs font-bold text-sky-500">
-        <span>Baca Selengkapnya</span>
-        <span class="group-hover:translate-x-1 transition">→</span>
-      </div>
-    </article>
-  `).join('');
-}
-
-function cariBlog() {
-  const q = document.getElementById('blog-search').value.toLowerCase();
-  const hasil = localDB.blog.filter(b => b['Judul Artikel'].toLowerCase().includes(q) || b['Ringkasan Cuplikan'].toLowerCase().includes(q));
-  renderBlogCards(hasil);
-}
-
-function bukaModalBlog(idx) {
-  const b = localDB.blog[idx];
-  if (!b) return;
-  document.getElementById('modal-cat').innerText = b.Kategori;
-  document.getElementById('modal-tgl').innerText = b.Tanggal;
-  document.getElementById('modal-judul').innerText = b['Judul Artikel'];
-  document.getElementById('modal-isi').innerText = b['Isi Lengkap Artikel'] || b['Ringkasan Cuplikan'];
-  const sumberEl = document.getElementById('modal-sumber');
-  if (b.SumberURL) {
-    sumberEl.innerHTML = `Referensi: <a href="${b.SumberURL}" target="_blank" class="text-sky-500 underline font-semibold ml-1">${b.SumberURL}</a>`;
-  } else {
-    sumberEl.innerHTML = "";
+    `;
+    return;
   }
-  document.getElementById('modal-reader').classList.remove('hidden');
+
+  container.innerHTML = list.map(item => {
+    // Penanganan fleksibel nama properti (localDB vs Google Sheets)
+    const kategori = item.kategori || item.category || 'Catatan';
+    const tanggal = item.tanggal || item.date || item.tgl || '';
+    const judul = item.judul || item.title || 'Tanpa Judul';
+    const cuplikan = item.cuplikan || item.snippet || item.ringkasan || item.deskripsi || '';
+    const id = item.id !== undefined ? item.id : 0;
+
+    return `
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 hover:border-sky-500/50 transition-all flex flex-col justify-between group">
+        <div>
+          <div class="flex items-center justify-between text-xs mb-3">
+            <span class="px-2.5 py-1 rounded-full bg-sky-500/10 text-sky-400 font-medium">${kategori}</span>
+            <span class="text-slate-400">${tanggal}</span>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2 line-clamp-2 group-hover:text-sky-400 transition-colors">${judul}</h3>
+          <p class="text-slate-300 text-sm line-clamp-3 leading-relaxed">${cuplikan}</p>
+        </div>
+        <button onclick="bukaModalBlog(${id})" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-sky-400 hover:text-sky-300 transition-colors">
+          Baca Selengkapnya <span>→</span>
+        </button>
+      </div>
+    `;
+  }).join('');
 }
 
-function tutupModal() { 
-  document.getElementById('modal-reader').classList.add('hidden'); 
+// Fungsi buka modal baca isi artikel lengkap
+function bukaModalBlog(id) {
+  const modal = document.getElementById('modal-reader');
+  if (!modal) return;
+
+  const item = dataBlogAktif.find(b => String(b.id) === String(id));
+  if (!item) return;
+
+  const kategori = item.kategori || item.category || 'Catatan';
+  const tanggal = item.tanggal || item.date || item.tgl || '';
+  const judul = item.judul || item.title || 'Tanpa Judul';
+  const isi = item.isi || item.content || item.cuplikan || item.ringkasan || '';
+  const link = item.linkSumber || item.link || '';
+
+  const elKat = document.getElementById('modal-kategori');
+  const elTgl = document.getElementById('modal-tgl');
+  const elJdl = document.getElementById('modal-judul');
+  const elIsi = document.getElementById('modal-isi');
+  const elLink = document.getElementById('modal-link-sumber');
+
+  if (elKat) elKat.innerText = kategori;
+  if (elTgl) elTgl.innerText = tanggal;
+  if (elJdl) elJdl.innerText = judul;
+  if (elIsi) elIsi.innerHTML = isi.replace(/\n/g, '<br><br>');
+
+  if (elLink) {
+    if (link) {
+      elLink.href = link;
+      elLink.classList.remove('hidden');
+    } else {
+      elLink.classList.add('hidden');
+    }
+  }
+
+  modal.classList.remove('hidden');
+}
+
+// Fungsi tutup modal reader
+function tutupModalBlog() {
+  const modal = document.getElementById('modal-reader');
+  if (modal) modal.classList.add('hidden');
+}
+
+// Fungsi filter pencarian catatan
+function cariCatatan() {
+  const input = document.getElementById('input-cari-blog') || document.querySelector('#sec-blog input');
+  if (!input) return;
+
+  const query = input.value.toLowerCase();
+  const listSumber = (typeof localDB !== 'undefined' && localDB.blog) ? localDB.blog : dataBlogAktif;
+
+  const hasilFilter = listSumber.filter(item => {
+    const judul = (item.judul || item.title || '').toLowerCase();
+    const cuplikan = (item.cuplikan || item.snippet || item.ringkasan || '').toLowerCase();
+    const kat = (item.kategori || item.category || '').toLowerCase();
+    return judul.includes(query) || cuplikan.includes(query) || kat.includes(query);
+  });
+
+  renderCatatan(hasilFilter);
 }

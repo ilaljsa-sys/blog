@@ -1,12 +1,11 @@
 // Variabel penyimpan data artikel aktif
 let dataBlogAktif = [];
 
-// Fungsi render kartu-kartu artikel catatan
+// Render kartu catatan sesuai struktur database asli
 function renderCatatan(daftarArtikel = null) {
   const container = document.getElementById('wadah-catatan') || document.querySelector('#sec-blog .grid');
   if (!container) return;
 
-  // Prioritaskan data yang dikirim, atau fallback ke localDB
   const list = daftarArtikel || (typeof localDB !== 'undefined' ? localDB.blog : []);
   dataBlogAktif = list;
 
@@ -19,13 +18,12 @@ function renderCatatan(daftarArtikel = null) {
     return;
   }
 
-  container.innerHTML = list.map(item => {
-    // Penanganan fleksibel nama properti (localDB vs Google Sheets)
-    const kategori = item.kategori || item.category || 'Catatan';
-    const tanggal = item.tanggal || item.date || item.tgl || '';
-    const judul = item.judul || item.title || 'Tanpa Judul';
-    const cuplikan = item.cuplikan || item.snippet || item.ringkasan || item.deskripsi || '';
-    const id = item.id !== undefined ? item.id : 0;
+  container.innerHTML = list.map((item, index) => {
+    // Membaca kunci asli dari script.js / Google Sheets
+    const judul = item["Judul Artikel"] || item.judul || "Tanpa Judul";
+    const kategori = item["Kategori"] || item.kategori || "Catatan";
+    const tanggal = item["Tanggal"] || item.tanggal || "";
+    const cuplikan = item["Ringkasan Cuplikan"] || item.cuplikan || "";
 
     return `
       <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 hover:border-sky-500/50 transition-all flex flex-col justify-between group">
@@ -37,7 +35,7 @@ function renderCatatan(daftarArtikel = null) {
           <h3 class="text-lg font-bold text-white mb-2 line-clamp-2 group-hover:text-sky-400 transition-colors">${judul}</h3>
           <p class="text-slate-300 text-sm line-clamp-3 leading-relaxed">${cuplikan}</p>
         </div>
-        <button onclick="bukaModalBlog(${id})" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-sky-400 hover:text-sky-300 transition-colors">
+        <button onclick="bukaModalBlog(${index})" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-sky-400 hover:text-sky-300 transition-colors">
           Baca Selengkapnya <span>→</span>
         </button>
       </div>
@@ -45,19 +43,19 @@ function renderCatatan(daftarArtikel = null) {
   }).join('');
 }
 
-// Fungsi buka modal baca isi artikel lengkap
-function bukaModalBlog(id) {
+// Buka modal baca isi artikel
+function bukaModalBlog(index) {
   const modal = document.getElementById('modal-reader');
   if (!modal) return;
 
-  const item = dataBlogAktif.find(b => String(b.id) === String(id));
+  const item = dataBlogAktif[index];
   if (!item) return;
 
-  const kategori = item.kategori || item.category || 'Catatan';
-  const tanggal = item.tanggal || item.date || item.tgl || '';
-  const judul = item.judul || item.title || 'Tanpa Judul';
-  const isi = item.isi || item.content || item.cuplikan || item.ringkasan || '';
-  const link = item.linkSumber || item.link || '';
+  const judul = item["Judul Artikel"] || item.judul || "Tanpa Judul";
+  const kategori = item["Kategori"] || item.kategori || "Catatan";
+  const tanggal = item["Tanggal"] || item.tanggal || "";
+  const isi = item["Isi Lengkap Artikel"] || item.isi || item["Ringkasan Cuplikan"] || "";
+  const link = item["SumberURL"] || item.linkSumber || "";
 
   const elKat = document.getElementById('modal-kategori');
   const elTgl = document.getElementById('modal-tgl');
@@ -82,13 +80,13 @@ function bukaModalBlog(id) {
   modal.classList.remove('hidden');
 }
 
-// Fungsi tutup modal reader
+// Tutup modal
 function tutupModalBlog() {
   const modal = document.getElementById('modal-reader');
   if (modal) modal.classList.add('hidden');
 }
 
-// Fungsi filter pencarian catatan
+// Fitur pencarian artikel
 function cariCatatan() {
   const input = document.getElementById('input-cari-blog') || document.querySelector('#sec-blog input');
   if (!input) return;
@@ -97,9 +95,9 @@ function cariCatatan() {
   const listSumber = (typeof localDB !== 'undefined' && localDB.blog) ? localDB.blog : dataBlogAktif;
 
   const hasilFilter = listSumber.filter(item => {
-    const judul = (item.judul || item.title || '').toLowerCase();
-    const cuplikan = (item.cuplikan || item.snippet || item.ringkasan || '').toLowerCase();
-    const kat = (item.kategori || item.category || '').toLowerCase();
+    const judul = (item["Judul Artikel"] || item.judul || "").toLowerCase();
+    const cuplikan = (item["Ringkasan Cuplikan"] || item.cuplikan || "").toLowerCase();
+    const kat = (item["Kategori"] || item.kategori || "").toLowerCase();
     return judul.includes(query) || cuplikan.includes(query) || kat.includes(query);
   });
 

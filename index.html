@@ -57,7 +57,7 @@
 
     .beranda-container-grid { max-width: 1120px; margin: 0 auto; gap: 3.5rem; }
 
-    /* FOTO EKA WAHYU - SKALA SPIDER-MAN LEBIH BESAR & PAS DI KUPING/PUNDAK */
+    /* FOTO EKA WAHYU - KALIBRASI NAIK & TUTUP KUPING */
     .eka-avatar-box { 
       position: relative; 
       width: 340px; 
@@ -78,7 +78,6 @@
       mask-image: linear-gradient(to bottom, black 72%, transparent 100%);
     }
     
-    /* Foto Asli Lu */
     .eka-img-base {
       position: absolute;
       inset: 0;
@@ -90,17 +89,17 @@
       z-index: 1;
     }
 
-    /* Foto Spiderman - Ditinggikan (top: -34px) dan dibesarkan (scale: 1.28) agar kuping tertutup rapat */
+    /* Spider-Man ditarik ke top: -56px & scale 1.34 */
     .eka-img-spidey {
       position: absolute;
-      top: -34px;
+      top: -56px;
       left: 50%;
-      transform: translateX(-50%) scale(1.28);
+      transform: translateX(-50%) scale(1.34);
       transform-origin: top center;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 10%;
+      object-position: top center;
       display: block;
       z-index: 2;
       opacity: 0;
@@ -110,6 +109,7 @@
     @media (max-width: 1023px) { 
       .eka-avatar-box { width: 280px; height: 360px; margin: 0 auto; } 
       .eka-avatar-wrapper { width: 260px; height: 340px; } 
+      .eka-img-spidey { top: -46px; transform: translateX(-50%) scale(1.34); }
     }
   </style>
 </head>
@@ -379,7 +379,6 @@
   <script>
     const APPS_SCRIPT_API_URL = "https://script.google.com/macros/s/AKfycbzelb8A39t38A_oYlNut4MVfsO5KzcbaWm7Azt3Gl3qqlAg79J4CsVWygQ5zhJu93dz1g/exec";
 
-    // Peta Ikon Paten Riwayat Pendidikan (Bebas 'undefined')
     const iconPendidikanPeta = {
       "TK Roudhotul Ilmi": `<svg class="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`,
       "MI Mathala'ul Anwar": `<svg class="w-6 h-6 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>`,
@@ -605,9 +604,6 @@
       }
     }
 
-    // =========================================================================
-    // EFEK EKA WAHYU - IDLE CROSSFADE FULL & BRUSH HOVER (PRESISI MUTLAK)
-    // =========================================================================
     const avatarBox = document.getElementById('avatarBox');
     const spideyImg = document.getElementById('spideyImg');
 
@@ -757,9 +753,6 @@
       type();
     }
 
-    // =====================================
-    // EKSPLOR: AL-QUR'AN & ARSIP & N3
-    // =====================================
     async function bukaAlquranDigital() {
       hentikanAudioQari();
       const display = document.getElementById('eksplor-detail-display');
@@ -962,7 +955,6 @@
       document.getElementById('eksplor-detail-display').classList.add('hidden');
     }
 
-    // PESAN ANONIM
     function bukaModalAnon() { 
       document.getElementById('anon-pesan-input').value = ""; 
       document.getElementById('anon-status').classList.add('hidden'); 
@@ -997,7 +989,6 @@
       }
     }
 
-    // SINKRONISASI DATA GOOGLE SHEETS AMAN
     async function muatDataSheets() {
       if (APPS_SCRIPT_API_URL) {
         try {

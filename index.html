@@ -57,7 +57,7 @@
 
     .beranda-container-grid { max-width: 1120px; margin: 0 auto; gap: 3.5rem; }
 
-    /* FOTO EKA WAHYU - KUNCI KOORDINAT PRESISI MUTLAK */
+    /* FOTO EKA WAHYU - SKALA SPIDER-MAN LEBIH BESAR & PAS DI KUPING/PUNDAK */
     .eka-avatar-box { 
       position: relative; 
       width: 340px; 
@@ -85,20 +85,22 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 12%; /* Mengunci titik pusat kepala dan dada lu */
+      object-position: center 12%;
       display: block;
       z-index: 1;
     }
 
-    /* Foto Spiderman - Dikunci posisinya agar sejajar 1:1 persis di atas muka dan pundak lu */
+    /* Foto Spiderman - Ditinggikan (top: -34px) dan dibesarkan (scale: 1.28) agar kuping tertutup rapat */
     .eka-img-spidey {
       position: absolute;
-      inset: 0;
+      top: -34px;
+      left: 50%;
+      transform: translateX(-50%) scale(1.28);
+      transform-origin: top center;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 10%; /* Mengunci titik pusat topeng Spider-Man */
-      transform: scale(1.03); /* Sedikit disesuaikan biar pas di bingkai */
+      object-position: center 10%;
       display: block;
       z-index: 2;
       opacity: 0;
@@ -604,7 +606,7 @@
     }
 
     // =========================================================================
-    // EFEK EKA WAHYU - IDLE CROSSFADE FULL & BRUSH HOVER (PRESISI SEJAJAR)
+    // EFEK EKA WAHYU - IDLE CROSSFADE FULL & BRUSH HOVER (PRESISI MUTLAK)
     // =========================================================================
     const avatarBox = document.getElementById('avatarBox');
     const spideyImg = document.getElementById('spideyImg');

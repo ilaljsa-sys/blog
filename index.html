@@ -69,14 +69,20 @@
       user-select: none;
     }
     .eka-avatar-wrapper { 
-      position: relative; 
-      width: 320px; 
-      height: 420px; 
-      overflow: hidden; 
-      border-radius: 1.5rem;
-      -webkit-mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 95%);
-      mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 95%);
-    }
+  position: relative; 
+  width: 340px; 
+  height: 420px; 
+  overflow: hidden; 
+  border-radius: 1.5rem;
+  -webkit-mask-image: 
+    linear-gradient(to bottom, black 0%, black 60%, transparent 95%),
+    linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image: 
+    linear-gradient(to bottom, black 0%, black 60%, transparent 95%),
+    linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+  mask-composite: intersect;
+}
     
     .eka-img-base {
       position: absolute;

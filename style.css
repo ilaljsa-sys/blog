@@ -1,0 +1,133 @@
+body { 
+  font-family: 'Plus Jakarta Sans', sans-serif; 
+  transition: background-color 0.2s ease, color 0.2s ease; 
+}
+.mono-font { 
+  font-family: 'JetBrains Mono', monospace; 
+}
+.mushaf-font { 
+  font-family: 'Scheherazade New', serif; 
+  word-spacing: 0.35rem; 
+}
+.bg-dots-dark { 
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px); 
+  background-size: 26px 26px; 
+}
+.bg-dots-light { 
+  background-image: radial-gradient(rgba(14, 165, 233, 0.1) 1px, transparent 1px); 
+  background-size: 26px 26px; 
+}
+
+@keyframes slowFloat { 
+  0%, 100% { transform: translate3d(0, 0, 0); } 
+  50% { transform: translate3d(0, -9px, 0); } 
+}
+.animate-slow-float { 
+  animation: slowFloat 4.5s ease-in-out infinite; 
+  will-change: transform; 
+}
+
+@keyframes movingGlowFast { 
+  0%, 100% { transform: translate3d(0,0,0) scale(1); opacity: 0.5; } 
+  33% { transform: translate3d(18px,-16px,0) scale(1.12); opacity: 0.8; } 
+  66% { transform: translate3d(-16px,14px,0) scale(0.92); opacity: 0.6; } 
+}
+.animate-moving-glow { 
+  animation: movingGlowFast 6s ease-in-out infinite; 
+  will-change: transform, opacity; 
+}
+
+@keyframes tabSpringEnter { 
+  0% { opacity: 0; transform: translate3d(0, 14px, 0) scale(0.99); } 
+  100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); } 
+}
+.page-tab-enter { 
+  animation: tabSpringEnter 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
+}
+
+.smooth-zoom-card { 
+  transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.25s cubic-bezier(0.25, 1, 0.5, 1); 
+}
+.smooth-zoom-card:hover { 
+  transform: translate3d(0, -5px, 0) scale(1.008); 
+  box-shadow: 0 16px 30px -10px rgba(14, 165, 233, 0.16); 
+}
+
+#nav-indicator { 
+  position: absolute; 
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); 
+  z-index: 0; 
+}
+.tab-item { 
+  position: relative; 
+  z-index: 1; 
+}
+.cursor-blink { 
+  display: inline-block; 
+  width: 2px; 
+  animation: blink 1s infinite; 
+}
+@keyframes blink { 
+  0%, 100% { opacity: 1; } 
+  50% { opacity: 0; } 
+}
+
+.beranda-container-grid { 
+  max-width: 1120px; 
+  margin: 0 auto; 
+  gap: 3.5rem; 
+}
+
+/* FOTO - PUNDAK RATA & UKURAN 1:1 */
+.eka-avatar-box {
+  position: relative;
+  width: 340px;
+  height: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: crosshair;
+  user-select: none;
+  filter: drop-shadow(0 20px 30px rgba(56, 189, 248, 0.18));
+}
+.eka-avatar-wrapper { 
+  position: relative; 
+  width: 340px; 
+  height: 420px; 
+  overflow: hidden; 
+  border-radius: 2rem;
+  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 98%);
+  mask-image: linear-gradient(to bottom, black 70%, transparent 98%);
+}
+
+.eka-img-base {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 12%;
+  display: block;
+  z-index: 1;
+}
+
+/* Ukuran 1:1 murni, dinaikkan dengan translateY */
+.eka-img-spidey {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transform: translateY(-33px);
+  display: block;
+  z-index: 2;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 1023px) { 
+  .eka-avatar-box { width: 280px; height: 360px; margin: 0 auto; } 
+  .eka-avatar-wrapper { width: 280px; height: 360px; } 
+  .eka-img-spidey { transform: translateY(-29px); }
+}

@@ -72,26 +72,30 @@
     <section id="sec-skills" class="hidden space-y-10 py-10"></section>
     <section id="sec-blog" class="hidden space-y-10 py-10"></section>
     
-    <section id="sec-eksplor" class="hidden space-y-10 py-10">
-      <div class="text-center max-w-3xl mx-auto space-y-2">
-        <span class="px-4 py-1 rounded-full bg-sky-100 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 text-xs font-black uppercase tracking-wider">Eksplorasi</span>
-        <h2 class="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white">Arsip & Modul Khusus</h2>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="smooth-zoom-card p-7 rounded-3xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col justify-between shadow-sm cursor-pointer">
-          <h3 class="text-lg font-bold">Al-Qur'an Digital</h3>
-          <p class="text-xs text-slate-500 mt-2">114 Surah 30 Juz lengkap dengan audio & mode mushaf.</p>
-          <button onclick="bukaAlquranDigital()" class="mt-6 w-full py-3.5 rounded-xl bg-sky-500 text-white text-sm font-extrabold shadow-sm">Buka Al-Qur'an 30 Juz</button>
+   <section id="sec-eksplor" class="hidden space-y-10 py-10">
+      <div id="eksplor-menu-utama" class="space-y-10">
+        <div class="text-center max-w-3xl mx-auto space-y-2">
+          <span class="px-4 py-1 rounded-full bg-sky-100 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 text-xs font-black uppercase tracking-wider">Eksplorasi</span>
+          <h2 class="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white">Arsip & Modul Khusus</h2>
         </div>
-        <div class="smooth-zoom-card p-7 rounded-3xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col justify-between shadow-sm cursor-pointer">
-          <h3 class="text-lg font-bold">Arsip Tugas Kuliah</h3>
-          <p class="text-xs text-slate-500 mt-2">Kumpulan makalah hukum dan berkas studi siap unduh.</p>
-          <button onclick="bukaTugasKuliah()" class="mt-6 w-full py-3.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-sm font-bold shadow-sm">Lihat Berkas Tugas</button>
-        </div>
-        <div class="smooth-zoom-card p-7 rounded-3xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col justify-between shadow-sm cursor-pointer">
-          <h3 class="text-lg font-bold">Modul Pembelajaran N3</h3>
-          <p class="text-xs text-slate-500 mt-2">Materi bahasa Jepang persiapan JLPT N3.</p>
-          <button onclick="bukaModulN3()" class="mt-6 w-full py-3.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-sm font-bold shadow-sm">Cek Modul N3</button>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="smooth-zoom-card p-7 rounded-3xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col justify-between shadow-sm cursor-pointer">
+            <h3 class="text-lg font-bold">Al-Qur'an Digital</h3>
+            <p class="text-xs text-slate-500 mt-2">114 Surah 30 Juz lengkap dengan audio & mode mushaf.</p>
+            <button onclick="bukaAlquranDigital()" class="mt-6 w-full py-3.5 rounded-xl bg-sky-500 text-white text-sm font-extrabold shadow-sm">Buka Al-Qur'an 30 Juz</button>
+          </div>
+          <div class="smooth-zoom-card p-7 rounded-3xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col justify-between shadow-sm cursor-pointer">
+            <h3 class="text-lg font-bold">Arsip Tugas Kuliah</h3>
+            <p class="text-xs text-slate-500 mt-2">Kumpulan makalah hukum dan berkas studi siap unduh.</p>
+            <button onclick="bukaModulTugas()" class="mt-6 w-full py-3.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-white text-sm font-bold shadow-sm transition">
+  Buka Arsip Tugas
+</button>
+          </div>
+          <div class="smooth-zoom-card p-7 rounded-3xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 flex flex-col justify-between shadow-sm cursor-pointer">
+            <h3 class="text-lg font-bold">Modul Pembelajaran N3</h3>
+            <p class="text-xs text-slate-500 mt-2">Materi bahasa Jepang persiapan JLPT N3.</p>
+            <button onclick="bukaModulN3()" class="mt-6 w-full py-3.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-white text-sm font-extrabold shadow-sm transition">Cek Modul N3</button>
+          </div>
         </div>
       </div>
       <div id="eksplor-detail-display" class="hidden p-6 sm:p-8 rounded-3xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 shadow-sm mt-8 space-y-6"></div>
@@ -99,7 +103,7 @@
   </main>
 
   <!-- BOTTOM NAVBAR MOBILE -->
-  <div class="fixed bottom-4 left-4 right-4 z-50 md:hidden">
+  <div id="bottom-navbar-mobile" class="fixed bottom-4 left-4 right-4 z-50 md:hidden transition-all duration-300">
     <div class="bg-white/90 dark:bg-cardDark/95 backdrop-blur-xl border border-slate-200 dark:border-slate-800 rounded-3xl shadow-2xl px-3 py-2 flex items-center justify-between">
       <button onclick="pindahTabByName('beranda')" class="flex flex-col items-center justify-center w-14 py-1 text-slate-500 dark:text-slate-400 hover:text-sky-500 transition">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
@@ -153,7 +157,7 @@
   </div>
 
   <!-- AMBIENT AUDIO -->
-  <div class="fixed bottom-24 right-4 md:bottom-6 md:right-6 z-40">
+  <div id="ambient-audio-widget" class="fixed bottom-24 right-4 md:bottom-6 md:right-6 z-40 transition-all duration-300">
     <div class="bg-white/90 dark:bg-cardDark/90 backdrop-blur-md px-3.5 py-2 rounded-2xl flex items-center gap-2.5 shadow-xl border border-slate-200 dark:border-slate-800">
       <button onclick="toggleAudio()" id="btn-audio" class="w-8 h-8 rounded-xl bg-sky-500 hover:bg-sky-400 text-white flex items-center justify-center font-bold text-xs transition">▶</button>
       <div class="text-[11px] pr-1">
@@ -176,8 +180,16 @@
 
   <script src="eksplor/alquran.js"></script>
   <script src="eksplor/tugas.js"></script>
-  <script src="eksplor/n3.js"></script>
+  <!-- Data Materi N3 -->
+  <script src="eksplor/n3_data/kanji.js"></script>
+  <script src="eksplor/n3_data/bunpou.js"></script>
+  <script src="eksplor/n3_data/kosakata/kata_benda.js"></script>
+  <script src="eksplor/n3_data/kosakata/kata_kerja.js"></script>
+  <script src="eksplor/n3_data/kosakata/sifat_i.js"></script>
+  <script src="eksplor/n3_data/kosakata/sifat_na.js"></script>
 
+  <script src="eksplor/n3.js"></script>
   <script src="script.js"></script>
+  
 </body>
 </html>

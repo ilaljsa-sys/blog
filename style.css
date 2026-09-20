@@ -90,14 +90,15 @@ body {
   user-select: none;
   filter: drop-shadow(0 20px 30px rgba(56, 189, 248, 0.18));
 }
+
 .eka-avatar-wrapper { 
   position: relative; 
   width: 340px; 
-  height: 420px; 
+  height: 435px; 
   overflow: hidden; 
   border-radius: 2rem;
-  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 98%);
-  mask-image: linear-gradient(to bottom, black 70%, transparent 98%);
+  -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
 }
 
 .eka-img-base {
@@ -111,15 +112,16 @@ body {
   z-index: 1;
 }
 
-/* Ukuran 1:1 murni, dinaikkan dengan translateY */
+/* GAMBAR SPIDEY KITA BIKIN TINGGINYA 112% BIAR BADAN BAWAHNYA NAIK/MELAR KETUTUP RATA SEJAJAR */
 .eka-img-spidey {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
+  height: 112%; /* Tingginya kita perlebar ke bawah jadi 112% */
   object-fit: cover;
   object-position: center top;
-  transform: translateY(-33px);
+  transform: translateY(-33px); /* Kepala atas tetap terkunci di posisi sreg lu */
   display: block;
   z-index: 2;
   opacity: 0;
@@ -128,6 +130,6 @@ body {
 
 @media (max-width: 1023px) { 
   .eka-avatar-box { width: 280px; height: 360px; margin: 0 auto; } 
-  .eka-avatar-wrapper { width: 280px; height: 360px; } 
-  .eka-img-spidey { transform: translateY(-29px); }
+  .eka-avatar-wrapper { width: 280px; height: 375px; } 
+  .eka-img-spidey { height: 112%; transform: translateY(-29px); }
 }

@@ -22,8 +22,28 @@ const DAFTAR_BERKAS_TUGAS = [
   }
 ];
 
+// Helper kontrol navigasi mobile & widget audio
+function kelolaNavigasiMobileTugas(sembunyikan) {
+  if (typeof window.aturVisibilitasNavigasiMobile === "function") {
+    window.aturVisibilitasNavigasiMobile(sembunyikan);
+    return;
+  }
+  const selectors = [
+    "#bottom-navbar-mobile",
+    "#ambient-audio-widget",
+    "nav.fixed.bottom-0",
+    "#bottom-nav"
+  ];
+  selectors.forEach(sel => {
+    const el = document.querySelector(sel);
+    if (el) el.style.display = sembunyikan ? "none" : "";
+  });
+}
+
 // 1. FUNGSI UTAMA PEMANGGIL ARSIP TUGAS
 window.bukaModulTugas = function() {
+  kelolaNavigasiMobileTugas(true);
+
   const display = document.getElementById("eksplor-detail-display");
   const menuUtama = document.getElementById("eksplor-menu-utama");
 
@@ -78,7 +98,6 @@ window.renderLayarKunciTugas = function() {
             autofocus
           >
         </div>
-        <!-- Pesan error bersih tanpa membocorkan pin -->
         <p id="pesan-error-pin" class="text-[11px] font-bold text-rose-500 hidden">Password salah! Silakan coba lagi.</p>
 
         <button 
@@ -160,6 +179,7 @@ window.renderDaftarTugas = function() {
 
 // 5. TUTUP DISPLAY
 window.tutupDisplayTugas = function() {
+  kelolaNavigasiMobileTugas(false);
   const display = document.getElementById("eksplor-detail-display");
   const menuUtama = document.getElementById("eksplor-menu-utama");
   if (display) display.classList.add("hidden");

@@ -1,4 +1,4 @@
-// eksplor/alquran.js - Modul Al-Qur'an Digital (Final Clean Version)
+// eksplor/alquran.js - Modul Al-Qur'an Digital (Final Responsive Mobile & Desktop)
 
 let audioQariPlayer = null;
 let modeBacaQurans = 'ayat';
@@ -121,8 +121,28 @@ const masterSurahList = [
   { nomor: 114, nama_latin: "An-Nas", nama: "الناس", arti: "Manusia", jumlah_ayat: 6 }
 ];
 
+// Helper kontrol navigasi mobile & widget audio
+function kelolaNavigasiMobileQuran(sembunyikan) {
+  if (typeof window.aturVisibilitasNavigasiMobile === "function") {
+    window.aturVisibilitasNavigasiMobile(sembunyikan);
+    return;
+  }
+  const selectors = [
+    "#bottom-navbar-mobile",
+    "#ambient-audio-widget",
+    "nav.fixed.bottom-0",
+    "#bottom-nav"
+  ];
+  selectors.forEach(sel => {
+    const el = document.querySelector(sel);
+    if (el) el.style.display = sembunyikan ? "none" : "";
+  });
+}
+
 async function bukaAlquranDigital() {
   hentikanAudioQari();
+  kelolaNavigasiMobileQuran(true);
+
   const menuUtama = document.getElementById('eksplor-menu-utama');
   if (menuUtama) menuUtama.classList.add('hidden');
 
@@ -131,24 +151,24 @@ async function bukaAlquranDigital() {
 
   display.classList.remove('hidden');
   display.innerHTML = `
-    <div class="space-y-6">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-5">
-        <div class="flex items-center gap-4">
+    <div class="space-y-4 sm:space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 border-b border-slate-200 dark:border-slate-800 pb-4 sm:pb-5">
+        <div class="flex items-center gap-3 sm:gap-4">
           <button onclick="tutupDisplayEksplor()" class="px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-sky-500 hover:text-white text-slate-700 dark:text-slate-200 font-bold transition flex items-center gap-1.5 text-xs shadow-sm">
             <span>←</span> <span>Kembali ke Menu</span>
           </button>
           <div>
-            <span class="px-3 py-1 rounded-full bg-sky-50 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 text-xs font-bold">Kalamullah</span>
-            <h3 class="text-2xl font-black mt-1 text-slate-900 dark:text-white">Al-Qur'an Digital 30 Juz</h3>
+            <span class="px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-sky-50 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 text-[10px] sm:text-xs font-bold">Kalamullah</span>
+            <h3 class="text-xl sm:text-2xl font-black mt-0.5 sm:mt-1 text-slate-900 dark:text-white">Al-Qur'an Digital 30 Juz</h3>
           </div>
         </div>
       </div>
 
       <div class="relative">
-        <input type="text" id="quran-search-input" oninput="filterDaftarSurah()" placeholder="Cari surah (misal: Yasin, Al-Kahf)..." class="w-full pl-4 pr-10 py-3 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-semibold focus:outline-none focus:border-sky-500 transition shadow-inner">
+        <input type="text" id="quran-search-input" oninput="filterDaftarSurah()" placeholder="Cari surah (misal: Yasin, Al-Kahf)..." class="w-full pl-4 pr-10 py-2.5 sm:py-3 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-semibold focus:outline-none focus:border-sky-500 transition shadow-inner">
       </div>
 
-      <div id="quran-grid-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5 max-h-[540px] overflow-y-auto p-1"></div>
+      <div id="quran-grid-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 sm:gap-3.5 max-h-[540px] overflow-y-auto p-0.5"></div>
     </div>
   `;
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -165,12 +185,15 @@ function renderDaftarSurah(list) {
   const grid = document.getElementById('quran-grid-container');
   if (!grid) return;
   grid.innerHTML = list.map(s => `
-    <div onclick="bacaDetailSurah(${s.nomor})" class="smooth-zoom-card p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center justify-between shadow-sm">
-      <div class="flex items-center gap-3">
-        <span class="w-9 h-9 rounded-xl bg-sky-500/10 text-sky-500 text-xs font-black flex items-center justify-center">${s.nomor}</span>
-        <div><h4 class="text-sm font-bold">${s.nama_latin}</h4><p class="text-[11px] text-slate-400">${s.arti} • ${s.jumlah_ayat} Ayat</p></div>
+    <div onclick="bacaDetailSurah(${s.nomor})" class="smooth-zoom-card p-3 sm:p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center justify-between gap-2 shadow-sm hover:border-sky-500/40 transition">
+      <div class="flex items-center gap-2.5 sm:gap-3 min-w-0">
+        <span class="w-7 h-7 sm:w-9 sm:h-9 rounded-xl bg-sky-500/10 text-sky-500 text-[11px] sm:text-xs font-black flex items-center justify-center shrink-0">${s.nomor}</span>
+        <div class="truncate">
+          <h4 class="text-xs sm:text-sm font-bold truncate">${s.nama_latin}</h4>
+          <p class="text-[10px] sm:text-[11px] text-slate-400 truncate">${s.arti} • ${s.jumlah_ayat} Ayat</p>
+        </div>
       </div>
-      <span class="mushaf-font text-2xl">${s.nama}</span>
+      <span class="mushaf-font text-base sm:text-2xl text-right shrink-0 whitespace-nowrap pl-1">${s.nama}</span>
     </div>
   `).join('');
 }
@@ -178,7 +201,7 @@ function renderDaftarSurah(list) {
 async function bacaDetailSurah(nomor) {
   hentikanAudioQari();
   const display = document.getElementById('eksplor-detail-display');
-  display.innerHTML = `<div class="py-16 text-center"><div class="w-9 h-9 border-4 border-sky-500 border-t-transparent rounded-full animate-spin mx-auto"></div><p class="text-sm font-bold text-slate-500 mt-3">Menyiapkan surah & audio...</p></div>`;
+  display.innerHTML = `<div class="py-16 text-center"><div class="w-8 h-8 sm:w-9 sm:h-9 border-4 border-sky-500 border-t-transparent rounded-full animate-spin mx-auto"></div><p class="text-xs sm:text-sm font-bold text-slate-500 mt-3">Menyiapkan surah & audio...</p></div>`;
   try {
     let res = await fetch(`https://api.quran.gading.dev/surah/${nomor}`);
     let json = await res.json();
@@ -199,42 +222,48 @@ function renderHalamanBacaSurah() {
     ? Object.values(data.audioFull)[0] 
     : `https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/${data.number}.mp3`;
 
+  // Tampilan mode ayat: Ringkas & padat di mobile, lega di desktop
   let kontenAyatHtml = data.verses ? data.verses.map(v => `
-    <div class="p-5 rounded-3xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 space-y-3">
-      <span class="w-8 h-8 rounded-xl bg-sky-500/10 text-sky-500 flex items-center justify-center font-black text-xs">${v.number.inSurah}</span>
-      <p class="text-right text-3xl mushaf-font leading-[3.2rem]">${v.text.arab}</p>
-      <p class="text-sm text-sky-600 dark:text-sky-400 font-semibold">${v.text.transliteration.en || ''}</p>
-      <p class="text-sm text-slate-500 italic">${v.translation.id || ''}</p>
+    <div class="p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 space-y-2 sm:space-y-3">
+      <div class="flex items-center justify-between">
+        <span class="w-6 h-6 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-sky-500/10 text-sky-500 flex items-center justify-center font-black text-[10px] sm:text-xs">${v.number.inSurah}</span>
+      </div>
+      <p class="text-right text-base sm:text-2xl md:text-3xl mushaf-font leading-[2.3] sm:leading-[3.0] tracking-normal text-slate-900 dark:text-slate-100" dir="rtl">${v.text.arab}</p>
+      <div class="pt-1.5 sm:pt-2 border-t border-slate-100 dark:border-slate-800/80 space-y-0.5 sm:space-y-1">
+        <p class="text-[11px] sm:text-sm text-sky-600 dark:text-sky-400 font-semibold leading-relaxed">${v.text.transliteration.en || ''}</p>
+        <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 italic leading-relaxed">${v.translation.id || ''}</p>
+      </div>
     </div>
   `).join('') : '';
 
+  // Tampilan mode mushaf buku: Proporsional dan rapi
   let kontenBukuHtml = data.verses ? `
-    <div class="p-6 sm:p-10 rounded-2xl bg-[#fefcf8] dark:bg-slate-900 border border-amber-200/50 dark:border-slate-800 shadow-xl mt-4 max-h-[620px] overflow-y-auto">
-      <div class="text-justify text-slate-900 dark:text-slate-100 mushaf-font text-[28px] sm:text-[34px] select-all px-2" dir="rtl" style="line-height: 2.8;">
-        ${data.verses.map(v => `${v.text.arab} <span class="inline-block text-base font-sans font-bold px-1.5 py-0.5 mx-1 rounded-full border border-amber-400/60 bg-amber-50/50 dark:bg-slate-800 text-amber-700 dark:text-amber-400 align-middle">${v.number.inSurah}</span>`).join(' ')}
+    <div class="p-4 sm:p-8 rounded-2xl bg-[#fefcf8] dark:bg-slate-900 border border-amber-200/50 dark:border-slate-800 shadow-xl mt-2 sm:mt-4 max-h-[620px] overflow-y-auto">
+      <div class="text-right sm:text-justify mushaf-font text-base sm:text-2xl md:text-3xl select-all px-1 sm:px-2 leading-[2.4] sm:leading-[3.0] text-slate-900 dark:text-slate-100" dir="rtl">
+        ${data.verses.map(v => `${v.text.arab} <span class="inline-block text-[11px] sm:text-sm font-sans font-bold px-1.5 py-0.5 mx-0.5 sm:mx-1 rounded-full border border-amber-400/60 bg-amber-50/50 dark:bg-slate-800 text-amber-700 dark:text-amber-400 align-middle leading-none">${v.number.inSurah}</span>`).join(' ')}
       </div>
     </div>
   ` : '';
 
   display.innerHTML = `
-    <div class="space-y-6">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-5">
+    <div class="space-y-4 sm:space-y-6">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4 border-b border-slate-200 dark:border-slate-800 pb-4 sm:pb-5">
         <div>
-          <button onclick="bukaAlquranDigital()" class="text-xs font-bold text-sky-500 mb-2">← Kembali ke Daftar Surah</button>
-          <h3 class="text-2xl font-black">${data.name.transliteration.id} (${data.name.short})</h3>
-          <p class="text-xs text-slate-400 mt-1">${data.revelation.id} • ${data.numberOfVerses} Ayat</p>
+          <button onclick="bukaAlquranDigital()" class="text-[11px] sm:text-xs font-bold text-sky-500 mb-1.5">← Kembali ke Daftar Surah</button>
+          <h3 class="text-lg sm:text-2xl font-black">${data.name.transliteration.id} (${data.name.short})</h3>
+          <p class="text-[11px] sm:text-xs text-slate-400 mt-0.5">${data.revelation.id} • ${data.numberOfVerses} Ayat</p>
         </div>
-        <div class="flex flex-wrap items-center gap-3">
-          <button onclick="toggleQariAudio('${audioUrl}')" id="btn-qari-audio" class="px-4 py-2.5 rounded-xl bg-sky-500 text-white text-xs font-bold shadow-sm">▶ Putar Murottal</button>
+        <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+          <button onclick="toggleQariAudio('${audioUrl}')" id="btn-qari-audio" class="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-sky-500 text-white text-xs font-bold shadow-sm">▶ Putar Murottal</button>
           <div class="bg-slate-100 dark:bg-slate-800 p-1 rounded-xl flex gap-1 border border-slate-200 dark:border-slate-700 text-xs font-bold">
-            <button onclick="ubahModeBacaQuran('ayat')" class="px-3.5 py-1.5 rounded-lg transition ${modeBacaQurans === 'ayat' ? 'bg-white dark:bg-cardDark text-sky-500 shadow-sm' : 'text-slate-500'}">Mode Ayat</button>
-            <button onclick="ubahModeBacaQuran('buku')" class="px-3.5 py-1.5 rounded-lg transition ${modeBacaQurans === 'buku' ? 'bg-white dark:bg-cardDark text-sky-500 shadow-sm' : 'text-slate-500'}">Mode Mushaf Buku</button>
+            <button onclick="ubahModeBacaQuran('ayat')" class="px-3 py-1.5 rounded-lg transition ${modeBacaQurans === 'ayat' ? 'bg-white dark:bg-cardDark text-sky-500 shadow-sm' : 'text-slate-500'}">Ayat</button>
+            <button onclick="ubahModeBacaQuran('buku')" class="px-3 py-1.5 rounded-lg transition ${modeBacaQurans === 'buku' ? 'bg-white dark:bg-cardDark text-sky-500 shadow-sm' : 'text-slate-500'}">Mushaf</button>
           </div>
-          <button onclick="tutupDisplayEksplor()" class="text-xs font-bold px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800">Tutup</button>
+          <button onclick="tutupDisplayEksplor()" class="text-xs font-bold px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800">Tutup</button>
         </div>
       </div>
       
-      <div class="space-y-6 max-h-[620px] overflow-y-auto pr-2">
+      <div class="space-y-2.5 sm:space-y-4 max-h-[620px] overflow-y-auto pr-1 sm:pr-2">
         ${modeBacaQurans === 'buku' ? kontenBukuHtml : kontenAyatHtml}
       </div>
     </div>
@@ -266,6 +295,7 @@ function hentikanAudioQari() {
 
 function tutupDisplayEksplor() {
   hentikanAudioQari();
+  kelolaNavigasiMobileQuran(false);
   const display = document.getElementById('eksplor-detail-display');
   if (display) display.classList.add('hidden');
   const menuUtama = document.getElementById('eksplor-menu-utama');

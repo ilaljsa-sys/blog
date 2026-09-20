@@ -28,6 +28,7 @@ const masterDataPendidikan = [
   {
     "Nama Instansi": "Universitas Terbuka",
     "Jurusan / Tingkat": "Ilmu Hukum",
+    "Tahun": "",
     "Status": "Aktif"
   }
 ];
@@ -89,16 +90,24 @@ function renderPendidikan(list) {
 
   container.innerHTML = list.map(p => {
     const iconSVG = iconPendidikanPeta[p['Nama Instansi']] || `<svg class="w-6 h-6 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path></svg>`;
-    
-    // Status style: jika Aktif dibuat highlight biru, jika Lulus bernuansa netral
-    const isAktif = (p['Status'] || '').toLowerCase().includes('aktif');
+
+    let rawTahun = (p['Tahun'] || '').trim();
+    let rawStatus = (p['Status'] || '').trim();
+
+    // Jika di sheet kolom Tahun tertulis "Aktif" (karena kolom tahun dikosongkan), ubah status jadi Aktif dan hapus teks tahunnya
+    if (rawTahun.toLowerCase() === 'aktif') {
+      rawStatus = 'Aktif';
+      rawTahun = '';
+    }
+
+    const isAktif = rawStatus.toLowerCase().includes('aktif');
     const badgeStyle = isAktif 
       ? 'bg-sky-500/15 text-sky-600 dark:text-sky-400 border border-sky-500/30' 
       : 'bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50';
 
     return `
       <div class="smooth-zoom-card p-4 sm:p-5 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between gap-3 cursor-default">
-        <!-- Bagian Kiri (Icon + Nama Instansi) -->
+        <!-- Kiri: Icon & Nama Instansi -->
         <div class="flex items-center gap-3.5 min-w-0 pr-1">
           <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-sky-500/10 flex items-center justify-center shrink-0 font-bold shadow-sm">
             ${iconSVG}
@@ -109,13 +118,15 @@ function renderPendidikan(list) {
           </div>
         </div>
 
-        <!-- Bagian Kanan (Tahun & Badge Status - Diproteksi agar tidak wrap) -->
+        <!-- Kanan: Tahun & Badge Status (Presisi, tidak wrap / patah ke bawah) -->
         <div class="text-right shrink-0 flex flex-col items-end justify-center">
-          <span class="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300 whitespace-nowrap tracking-tight">
-            ${p['Tahun']}
-          </span>
-          <span class="mt-1 text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full whitespace-nowrap ${badgeStyle}">
-            ${p['Status']}
+          ${rawTahun ? `
+            <span class="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300 whitespace-nowrap tracking-tight">
+              ${rawTahun}
+            </span>
+          ` : ''}
+          <span class="${rawTahun ? 'mt-1' : ''} text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full whitespace-nowrap ${badgeStyle}">
+            ${rawStatus || 'Lulus'}
           </span>
         </div>
       </div>

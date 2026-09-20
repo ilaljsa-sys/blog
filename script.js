@@ -182,3 +182,17 @@ window.onload = function() {
   const firstTab = document.querySelector('.tab-item');
   if (firstTab) updateNavIndicator(firstTab);
 };
+
+// --- ANTI INSPECT & BLOKIR KLIK KANAN ---
+document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+document.addEventListener('keydown', (e) => {
+  if (
+    e.key === 'F12' || 
+    ((e.ctrlKey || e.metaKey) && e.shiftKey && ['I', 'i', 'C', 'c', 'J', 'j'].includes(e.key)) ||
+    ((e.ctrlKey || e.metaKey) && (e.key === 'U' || e.key === 'u'))
+  ) {
+    e.preventDefault();
+    return false;
+  }
+});

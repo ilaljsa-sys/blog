@@ -4,6 +4,7 @@ const masterDataPendidikan = [
   {
     "Nama Instansi": "TK Roudhotul Ilmi",
     "Jurusan / Tingkat": "Taman Kanak-Kanak",
+    "Tahun": "2010 - 2012",
     "Status": "Lulus"
   },
   {
@@ -27,7 +28,6 @@ const masterDataPendidikan = [
   {
     "Nama Instansi": "Universitas Terbuka",
     "Jurusan / Tingkat": "Ilmu Hukum",
-    "Tahun": "2026 - Sekarang",
     "Status": "Aktif"
   }
 ];

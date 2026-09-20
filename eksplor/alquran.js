@@ -1,4 +1,4 @@
-// eksplor/alquran.js - Modul Al-Qur'an Digital
+// eksplor/alquran.js - Modul Al-Qur'an Digital (Final Clean Version)
 
 let audioQariPlayer = null;
 let modeBacaQurans = 'ayat';
@@ -123,19 +123,35 @@ const masterSurahList = [
 
 async function bukaAlquranDigital() {
   hentikanAudioQari();
+  const menuUtama = document.getElementById('eksplor-menu-utama');
+  if (menuUtama) menuUtama.classList.add('hidden');
+
   const display = document.getElementById('eksplor-detail-display');
+  if (!display) return;
+
   display.classList.remove('hidden');
   display.innerHTML = `
-    <div class="space-y-4">
-      <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-5">
-        <h3 class="text-xl font-black">Al-Qur'an Digital 30 Juz</h3>
-        <button onclick="tutupDisplayEksplor()" class="text-xs font-bold px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800">Tutup</button>
+    <div class="space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-5">
+        <div class="flex items-center gap-4">
+          <button onclick="tutupDisplayEksplor()" class="px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-sky-500 hover:text-white text-slate-700 dark:text-slate-200 font-bold transition flex items-center gap-1.5 text-xs shadow-sm">
+            <span>←</span> <span>Kembali ke Menu</span>
+          </button>
+          <div>
+            <span class="px-3 py-1 rounded-full bg-sky-50 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 text-xs font-bold">Kalamullah</span>
+            <h3 class="text-2xl font-black mt-1 text-slate-900 dark:text-white">Al-Qur'an Digital 30 Juz</h3>
+          </div>
+        </div>
       </div>
-      <input type="text" id="quran-search-input" oninput="filterDaftarSurah()" placeholder="Cari surah (misal: Yasin, Al-Kahf)..." class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl px-5 py-3 text-sm focus:outline-none focus:border-sky-500">
+
+      <div class="relative">
+        <input type="text" id="quran-search-input" oninput="filterDaftarSurah()" placeholder="Cari surah (misal: Yasin, Al-Kahf)..." class="w-full pl-4 pr-10 py-3 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-semibold focus:outline-none focus:border-sky-500 transition shadow-inner">
+      </div>
+
       <div id="quran-grid-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5 max-h-[540px] overflow-y-auto p-1"></div>
     </div>
   `;
-  display.scrollIntoView({ behavior: 'smooth' });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
   renderDaftarSurah(masterSurahList);
 }
 
@@ -167,6 +183,7 @@ async function bacaDetailSurah(nomor) {
     let res = await fetch(`https://api.quran.gading.dev/surah/${nomor}`);
     let json = await res.json();
     surahAktifData = json.data;
+    modeBacaQurans = 'ayat';
     renderHalamanBacaSurah();
   } catch (e) {
     display.innerHTML = `<p class="text-xs text-rose-500 text-center py-6">Gagal memuat surah. Periksa koneksi internet.</p>`;
@@ -175,8 +192,29 @@ async function bacaDetailSurah(nomor) {
 
 function renderHalamanBacaSurah() {
   const display = document.getElementById('eksplor-detail-display');
+  if (!display || !surahAktifData) return;
   const data = surahAktifData;
-  const audioUrl = (data.audio && data.audio.primary) ? data.audio.primary : `https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/${data.number}.mp3`;
+  
+  const audioUrl = (data.audioFull && Object.values(data.audioFull).length > 0) 
+    ? Object.values(data.audioFull)[0] 
+    : `https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/${data.number}.mp3`;
+
+  let kontenAyatHtml = data.verses ? data.verses.map(v => `
+    <div class="p-5 rounded-3xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 space-y-3">
+      <span class="w-8 h-8 rounded-xl bg-sky-500/10 text-sky-500 flex items-center justify-center font-black text-xs">${v.number.inSurah}</span>
+      <p class="text-right text-3xl mushaf-font leading-[3.2rem]">${v.text.arab}</p>
+      <p class="text-sm text-sky-600 dark:text-sky-400 font-semibold">${v.text.transliteration.en || ''}</p>
+      <p class="text-sm text-slate-500 italic">${v.translation.id || ''}</p>
+    </div>
+  `).join('') : '';
+
+  let kontenBukuHtml = data.verses ? `
+    <div class="p-6 sm:p-10 rounded-2xl bg-[#fefcf8] dark:bg-slate-900 border border-amber-200/50 dark:border-slate-800 shadow-xl mt-4 max-h-[620px] overflow-y-auto">
+      <div class="text-justify text-slate-900 dark:text-slate-100 mushaf-font text-[28px] sm:text-[34px] select-all px-2" dir="rtl" style="line-height: 2.8;">
+        ${data.verses.map(v => `${v.text.arab} <span class="inline-block text-base font-sans font-bold px-1.5 py-0.5 mx-1 rounded-full border border-amber-400/60 bg-amber-50/50 dark:bg-slate-800 text-amber-700 dark:text-amber-400 align-middle">${v.number.inSurah}</span>`).join(' ')}
+      </div>
+    </div>
+  ` : '';
 
   display.innerHTML = `
     <div class="space-y-6">
@@ -195,8 +233,9 @@ function renderHalamanBacaSurah() {
           <button onclick="tutupDisplayEksplor()" class="text-xs font-bold px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800">Tutup</button>
         </div>
       </div>
-      <div id="quran-read-body">
-        ${modeBacaQurans === 'ayat' ? renderModeAyat(data) : renderModeBuku(data)}
+      
+      <div class="space-y-6 max-h-[620px] overflow-y-auto pr-2">
+        ${modeBacaQurans === 'buku' ? kontenBukuHtml : kontenAyatHtml}
       </div>
     </div>
   `;
@@ -208,43 +247,28 @@ function ubahModeBacaQuran(mode) {
   renderHalamanBacaSurah();
 }
 
-function renderModeAyat(data) {
-  return `
-    <div class="space-y-6 max-h-[620px] overflow-y-auto pr-2">
-      ${data.verses.map(v => `
-        <div class="p-5 rounded-3xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 space-y-3">
-          <span class="w-8 h-8 rounded-xl bg-sky-500/10 text-sky-500 flex items-center justify-center font-black text-xs">${v.number.inSurah}</span>
-          <p class="text-right text-3xl mushaf-font leading-[3.2rem]">${v.text.arab}</p>
-          <p class="text-sm text-sky-600 dark:text-sky-400 font-semibold">${v.text.transliteration.en}</p>
-          <p class="text-sm text-slate-500 italic">${v.translation.id}</p>
-        </div>
-      `).join('')}
-    </div>
-  `;
-}
-
-function renderModeBuku(data) {
-  return `
-    <div class="p-8 sm:p-14 rounded-3xl bg-[#fefcf8] dark:bg-slate-900/90 border-2 border-amber-200/50 dark:border-slate-800 max-h-[640px] overflow-y-auto space-y-8 shadow-inner">
-      <div class="text-center pb-6 border-b border-amber-200/60 dark:border-slate-800">
-        <p class="text-3xl sm:text-4xl mushaf-font text-slate-800 dark:text-slate-200 leading-[3.5rem]">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
-      </div>
-      <div class="text-right text-2xl sm:text-3xl mushaf-font text-slate-900 dark:text-slate-100 leading-[3.8rem] text-justify" dir="rtl">
-        ${data.verses.map(v => `
-          <span class="inline leading-[3.8rem]">${v.text.arab}</span>
-          <span class="inline-flex items-center justify-center w-8 h-8 text-[11px] font-sans font-black text-amber-700 dark:text-sky-400 border border-amber-500/50 dark:border-sky-400/50 rounded-full mx-2 align-middle select-none bg-amber-50 dark:bg-slate-800">﴿${v.number.inSurah}﴾</span>
-        `).join('')}
-      </div>
-    </div>
-  `;
-}
-
 function toggleQariAudio(url) {
   if (!audioQariPlayer) { audioQariPlayer = new Audio(url); }
-  if (audioQariPlayer.paused) { audioQariPlayer.play(); document.getElementById('btn-qari-audio').innerText = "❚❚ Jeda Murottal"; }
-  else { audioQariPlayer.pause(); document.getElementById('btn-qari-audio').innerText = "▶ Lanjut Murottal"; }
+  if (audioQariPlayer.paused) { 
+    audioQariPlayer.play(); 
+    const btn = document.getElementById('btn-qari-audio');
+    if(btn) btn.innerText = "❚❚ Jeda Murottal"; 
+  } else { 
+    audioQariPlayer.pause(); 
+    const btn = document.getElementById('btn-qari-audio');
+    if(btn) btn.innerText = "▶ Lanjut Murottal"; 
+  }
 }
 
 function hentikanAudioQari() {
   if (audioQariPlayer) { audioQariPlayer.pause(); audioQariPlayer.currentTime = 0; audioQariPlayer = null; }
+}
+
+function tutupDisplayEksplor() {
+  hentikanAudioQari();
+  const display = document.getElementById('eksplor-detail-display');
+  if (display) display.classList.add('hidden');
+  const menuUtama = document.getElementById('eksplor-menu-utama');
+  if (menuUtama) menuUtama.classList.remove('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }

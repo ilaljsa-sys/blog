@@ -16,7 +16,7 @@ const masterDataPendidikan = [
   {
     "Nama Instansi": "Mts Negeri 2 Pringsewu",
     "Jurusan / Tingkat": "Sekolah Menengah Pertama",
-    "Tahun": "2018 - 202q",
+    "Tahun": "2018 - 2021",
     "Status": "Lulus"
   },
   {

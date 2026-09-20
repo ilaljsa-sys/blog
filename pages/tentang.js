@@ -2,21 +2,9 @@
 
 const masterDataPendidikan = [
   {
-    "Nama Instansi": "Universitas Terbuka",
-    "Jurusan / Tingkat": "Ilmu Hukum",
-    "Tahun": "2026 - Sekarang",
-    "Status": "Aktif"
-  },
-  {
-    "Nama Instansi": "SMK Negeri Sukoharjo",
-    "Jurusan / Tingkat": "Desain Komunikasi Visual (DKV)",
-    "Tahun": "2021 - 2024",
-    "Status": "Lulus"
-  },
-  {
-    "Nama Instansi": "Mts Negeri 2 Pringsewu",
-    "Jurusan / Tingkat": "Sekolah Menengah Pertama",
-    "Tahun": "2018 - 2021",
+    "Nama Instansi": "TK Roudhotul Ilmi",
+    "Jurusan / Tingkat": "Taman Kanak-Kanak",
+    "Tahun": "2010 - 2012",
     "Status": "Lulus"
   },
   {
@@ -26,10 +14,22 @@ const masterDataPendidikan = [
     "Status": "Lulus"
   },
   {
-    "Nama Instansi": "TK Roudhotul Ilmi",
-    "Jurusan / Tingkat": "Taman Kanak-Kanak",
-    "Tahun": "2010 - 2012",
+    "Nama Instansi": "Mts Negeri 2 Pringsewu",
+    "Jurusan / Tingkat": "Sekolah Menengah Pertama",
+    "Tahun": "2018 - 2021",
     "Status": "Lulus"
+  },
+  {
+    "Nama Instansi": "SMK Negeri Sukoharjo",
+    "Jurusan / Tingkat": "Desain Komunikasi Visual (DKV)",
+    "Tahun": "2021 - 2024",
+    "Status": "Lulus"
+  },
+  {
+    "Nama Instansi": "Universitas Terbuka",
+    "Jurusan / Tingkat": "Ilmu Hukum",
+    "Tahun": "2026 - Sekarang",
+    "Status": "Aktif"
   }
 ];
 
@@ -45,7 +45,7 @@ function renderTentang(listPendidikan) {
   const container = document.getElementById('sec-tentang');
   if (!container) return;
 
-  // Gunakan data dari parameter jika ada, jika tidak pakai data cadangan masterDataPendidikan
+  // Gunakan data dari Sheets jika ada, jika belum termuat gunakan fallback masterDataPendidikan
   const dataPendidikanFinal = (listPendidikan && listPendidikan.length > 0) ? listPendidikan : masterDataPendidikan;
 
   container.innerHTML = `
@@ -87,22 +87,37 @@ function renderTentang(listPendidikan) {
 function renderPendidikan(list) {
   const container = document.getElementById('pendidikan-container');
   if (!container || !list) return;
+
   container.innerHTML = list.map(p => {
     const iconSVG = iconPendidikanPeta[p['Nama Instansi']] || `<svg class="w-6 h-6 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path></svg>`;
+    
+    // Status style: jika Aktif dibuat highlight biru, jika Lulus bernuansa netral
+    const isAktif = (p['Status'] || '').toLowerCase().includes('aktif');
+    const badgeStyle = isAktif 
+      ? 'bg-sky-500/15 text-sky-600 dark:text-sky-400 border border-sky-500/30' 
+      : 'bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50';
+
     return `
-      <div class="smooth-zoom-card p-6 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between cursor-pointer">
-        <div class="flex items-center gap-4">
-          <div class="w-12 h-12 rounded-xl bg-sky-500/10 flex items-center justify-center font-bold shadow-sm">
+      <div class="smooth-zoom-card p-4 sm:p-5 rounded-2xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between gap-3 cursor-default">
+        <!-- Bagian Kiri (Icon + Nama Instansi) -->
+        <div class="flex items-center gap-3.5 min-w-0 pr-1">
+          <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-sky-500/10 flex items-center justify-center shrink-0 font-bold shadow-sm">
             ${iconSVG}
           </div>
-          <div>
-            <h4 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white">${p['Nama Instansi']}</h4>
-            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">${p['Jurusan / Tingkat']}</p>
+          <div class="min-w-0">
+            <h4 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white truncate">${p['Nama Instansi']}</h4>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 truncate">${p['Jurusan / Tingkat']}</p>
           </div>
         </div>
-        <div class="text-right">
-          <span class="text-xs sm:text-sm font-bold text-slate-500 block">${p['Tahun']}</span>
-          <span class="text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400">${p['Status']}</span>
+
+        <!-- Bagian Kanan (Tahun & Badge Status - Diproteksi agar tidak wrap) -->
+        <div class="text-right shrink-0 flex flex-col items-end justify-center">
+          <span class="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300 whitespace-nowrap tracking-tight">
+            ${p['Tahun']}
+          </span>
+          <span class="mt-1 text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full whitespace-nowrap ${badgeStyle}">
+            ${p['Status']}
+          </span>
         </div>
       </div>
     `;

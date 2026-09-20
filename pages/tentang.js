@@ -4,13 +4,13 @@ const masterDataPendidikan = [
   {
     "Nama Instansi": "TK Roudhotul Ilmi",
     "Jurusan / Tingkat": "Taman Kanak-Kanak",
-    "Tahun": "2010 - 2012",
+    "Tahun": "2011 - 2013",
     "Status": "Lulus"
   },
   {
     "Nama Instansi": "MI Mathala'ul Anwar",
     "Jurusan / Tingkat": "Madrasah Ibtidaiyah",
-    "Tahun": "2012 - 2018",
+    "Tahun": "2013 - 2018",
     "Status": "Lulus"
   },
   {

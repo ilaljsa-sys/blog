@@ -4,31 +4,31 @@ const masterDataPendidikan = [
   {
     "Nama Instansi": "Universitas Terbuka",
     "Jurusan / Tingkat": "Ilmu Hukum",
-    "Tahun": "2024 - Sekarang",
+    "Tahun": "2026 - Sekarang",
     "Status": "Aktif"
   },
   {
     "Nama Instansi": "SMK Negeri Sukoharjo",
     "Jurusan / Tingkat": "Desain Komunikasi Visual (DKV)",
-    "Tahun": "2020 - 2023",
+    "Tahun": "2021 - 2024",
     "Status": "Lulus"
   },
   {
     "Nama Instansi": "Mts Negeri 2 Pringsewu",
     "Jurusan / Tingkat": "Sekolah Menengah Pertama",
-    "Tahun": "2017 - 2020",
+    "Tahun": "2018 - 202q",
     "Status": "Lulus"
   },
   {
     "Nama Instansi": "MI Mathala'ul Anwar",
     "Jurusan / Tingkat": "Madrasah Ibtidaiyah",
-    "Tahun": "2011 - 2017",
+    "Tahun": "2012 - 2018",
     "Status": "Lulus"
   },
   {
     "Nama Instansi": "TK Roudhotul Ilmi",
     "Jurusan / Tingkat": "Taman Kanak-Kanak",
-    "Tahun": "2010 - 2011",
+    "Tahun": "2010 - 2012",
     "Status": "Lulus"
   }
 ];

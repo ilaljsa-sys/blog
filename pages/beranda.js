@@ -1,8 +1,17 @@
-// pages/beranda.js - Modul Halaman Beranda
+// pages/beranda.js - Modul Halaman Beranda Mandiri
+
+// 1. DATA PROFIL BERANDA MANDIRI
+const dataProfilBeranda = { 
+  nama_lengkap: "I'lal Jalalludin Syahputra", 
+  teks_ketik: "Mahasiswa Hukum, Japanese Learner, Livestock Farm", 
+  quote: "Kebodohan bukan ketika seseorang belum mengetahui, melainkan ketika ia menutup telinga karena terlalu yakin bahwa dirinya telah mengetahui."
+};
 
 function renderBeranda(profil) {
   const container = document.getElementById('sec-beranda');
   if (!container) return;
+
+  const data = profil || dataProfilBeranda;
 
   container.innerHTML = `
     <div class="w-full flex flex-col-reverse lg:flex-row items-center justify-between beranda-container-grid">
@@ -25,7 +34,7 @@ function renderBeranda(profil) {
           </div>
         </div>
 
-        <h1 id="hero-nama" class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.1]">${profil.nama_lengkap}</h1>
+        <h1 id="hero-nama" class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.1]">${data.nama_lengkap}</h1>
         <div class="text-xl font-bold text-slate-600 dark:text-slate-300 flex items-center justify-center lg:justify-start gap-2 h-8">
           <span class="text-slate-400 font-normal text-base">Fokus:</span>
           <span id="typewriter-text" class="text-sky-600 dark:text-sky-400 font-extrabold"></span>
@@ -35,7 +44,7 @@ function renderBeranda(profil) {
         <div class="relative group">
           <div class="absolute -inset-1.5 bg-gradient-to-r from-sky-500/35 via-blue-600/25 to-sky-400/35 rounded-3xl blur-xl animate-moving-glow -z-10"></div>
           <div class="p-6 rounded-2xl bg-white/95 dark:bg-cardDark/95 border-l-4 border-sky-500 border border-slate-200 dark:border-slate-800 text-base shadow-md space-y-2 backdrop-blur-sm">
-            <p class="italic leading-relaxed">"<span id="hero-quote">${profil.quote}</span>"</p>
+            <p class="italic leading-relaxed">"<span id="hero-quote">${data.quote}</span>"</p>
             <p class="text-xs font-black text-sky-600 dark:text-sky-400 text-left pt-1">— I'lal Jalalludin Syahputra</p>
           </div>
         </div>
@@ -59,6 +68,9 @@ function renderBeranda(profil) {
   `;
 
   inisialisasiAvatarHover();
+  
+  // Mesin tik otomatis memanggil data fokus miliknya sendiri
+  mulaiTypewriter(data.teks_ketik.split(', '));
 }
 
 function inisialisasiAvatarHover() {

@@ -1,4 +1,37 @@
-// pages/tentang.js - Modul Profil & Riwayat Pendidikan
+// pages/tentang.js - Modul Profil & Riwayat Pendidikan (Auto Data Fix)
+
+const masterDataPendidikan = [
+  {
+    "Nama Instansi": "Universitas Terbuka",
+    "Jurusan / Tingkat": "Ilmu Hukum",
+    "Tahun": "2024 - Sekarang",
+    "Status": "Aktif"
+  },
+  {
+    "Nama Instansi": "SMK Negeri Sukoharjo",
+    "Jurusan / Tingkat": "Desain Komunikasi Visual (DKV)",
+    "Tahun": "2020 - 2023",
+    "Status": "Lulus"
+  },
+  {
+    "Nama Instansi": "Mts Negeri 2 Pringsewu",
+    "Jurusan / Tingkat": "Sekolah Menengah Pertama",
+    "Tahun": "2017 - 2020",
+    "Status": "Lulus"
+  },
+  {
+    "Nama Instansi": "MI Mathala'ul Anwar",
+    "Jurusan / Tingkat": "Madrasah Ibtidaiyah",
+    "Tahun": "2011 - 2017",
+    "Status": "Lulus"
+  },
+  {
+    "Nama Instansi": "TK Roudhotul Ilmi",
+    "Jurusan / Tingkat": "Taman Kanak-Kanak",
+    "Tahun": "2010 - 2011",
+    "Status": "Lulus"
+  }
+];
 
 const iconPendidikanPeta = {
   "TK Roudhotul Ilmi": `<svg class="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`,
@@ -11,6 +44,9 @@ const iconPendidikanPeta = {
 function renderTentang(listPendidikan) {
   const container = document.getElementById('sec-tentang');
   if (!container) return;
+
+  // Gunakan data dari parameter jika ada, jika tidak pakai data cadangan masterDataPendidikan
+  const dataPendidikanFinal = (listPendidikan && listPendidikan.length > 0) ? listPendidikan : masterDataPendidikan;
 
   container.innerHTML = `
     <div class="text-center max-w-3xl mx-auto space-y-3">
@@ -45,7 +81,7 @@ function renderTentang(listPendidikan) {
     </div>
   `;
 
-  renderPendidikan(listPendidikan);
+  renderPendidikan(dataPendidikanFinal);
 }
 
 function renderPendidikan(list) {

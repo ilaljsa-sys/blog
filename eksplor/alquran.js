@@ -1,4 +1,4 @@
-// eksplor/alquran.js - Modul Al-Qur'an Digital (Final Responsive Mobile & Desktop)
+// eksplor/alquran.js - Modul Al-Qur'an Digital (Final Responsive Mobile & Desktop Perfect Spacing)
 
 let audioQariPlayer = null;
 let modeBacaQurans = 'ayat';
@@ -12,7 +12,7 @@ const masterSurahList = [
   { nomor: 5, nama_latin: "Al-Ma'idah", nama: "المائدة", arti: "Hidangan", jumlah_ayat: 120 },
   { nomor: 6, nama_latin: "Al-An'am", nama: "الأنعام", arti: "Binatang Ternak", jumlah_ayat: 165 },
   { nomor: 7, nama_latin: "Al-A'raf", nama: "الأعراف", arti: "Tempat Tertinggi", jumlah_ayat: 206 },
-  { nomor: 8, nama_latin: "Al-Anfal", nama: "الأنفال", arti: "Rampasan Perang", jumlah_ayat: 75 },
+  { nomor: 8, nama_latin: "Al-Anfal", nama: "الأنفal", arti: "Rampasan Perang", jumlah_ayat: 75 },
   { nomor: 9, nama_latin: "At-Taubah", nama: "التوبة", arti: "Pengampunan", jumlah_ayat: 129 },
   { nomor: 10, nama_latin: "Yunus", nama: "يونس", arti: "Nabi Yunus", jumlah_ayat: 109 },
   { nomor: 11, nama_latin: "Hud", nama: "هود", arti: "Nabi Hud", jumlah_ayat: 123 },
@@ -222,7 +222,7 @@ function renderHalamanBacaSurah() {
     ? Object.values(data.audioFull)[0] 
     : `https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/${data.number}.mp3`;
 
-  // Tampilan mode ayat: Ringkas & padat di mobile, lega di desktop
+  // Mode Ayat: Ringkas & padat di mobile, lega di desktop
   let kontenAyatHtml = data.verses ? data.verses.map(v => `
     <div class="p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 space-y-2 sm:space-y-3">
       <div class="flex items-center justify-between">
@@ -236,11 +236,11 @@ function renderHalamanBacaSurah() {
     </div>
   `).join('') : '';
 
-  // Tampilan mode mushaf buku: Proporsional dan rapi
+  // Mode Mushaf Buku: Rapi di mobile, lega dan berjarak lega di desktop (tidak dempet)
   let kontenBukuHtml = data.verses ? `
-    <div class="p-4 sm:p-8 rounded-2xl bg-[#fefcf8] dark:bg-slate-900 border border-amber-200/50 dark:border-slate-800 shadow-xl mt-2 sm:mt-4 max-h-[620px] overflow-y-auto">
-      <div class="text-right sm:text-justify mushaf-font text-base sm:text-2xl md:text-3xl select-all px-1 sm:px-2 leading-[2.4] sm:leading-[3.0] text-slate-900 dark:text-slate-100" dir="rtl">
-        ${data.verses.map(v => `${v.text.arab} <span class="inline-block text-[11px] sm:text-sm font-sans font-bold px-1.5 py-0.5 mx-0.5 sm:mx-1 rounded-full border border-amber-400/60 bg-amber-50/50 dark:bg-slate-800 text-amber-700 dark:text-amber-400 align-middle leading-none">${v.number.inSurah}</span>`).join(' ')}
+    <div class="p-4 sm:p-8 lg:p-10 rounded-2xl bg-[#fefcf8] dark:bg-slate-900 border border-amber-200/50 dark:border-slate-800 shadow-xl mt-2 sm:mt-4 max-h-[640px] overflow-y-auto">
+      <div class="text-right mushaf-font text-base sm:text-xl md:text-2xl lg:text-[26px] select-all px-2 sm:px-6 leading-[2.6] sm:leading-[3.2] md:leading-[3.6] text-slate-900 dark:text-slate-100" dir="rtl">
+        ${data.verses.map(v => `${v.text.arab} <span class="inline-block text-[11px] sm:text-xs md:text-sm font-sans font-bold px-2 py-0.5 mx-1 rounded-full border border-amber-400/60 bg-amber-50/50 dark:bg-slate-800 text-amber-700 dark:text-amber-400 align-middle leading-none">${v.number.inSurah}</span>`).join(' ')}
       </div>
     </div>
   ` : '';

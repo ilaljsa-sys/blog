@@ -1,6 +1,6 @@
 // pages/catatan.js - Modul Blog & Catatan Mandiri Terhubung Google Sheets
 
-const URL_GAS_BLOG = "MASUKKAN_URL_DEPLOY_APPS_SCRIPT_KAMU_DISINI";
+const URL_GAS_BLOG = "https://script.google.com/macros/s/AKfycbxGVt4Ag8mDtLsjRUet0m7L0b0Sn3H-6DAhr3nDbIHKpDdB7BP1tk-wDVf2olOOtZ-J-w/exec";
 
 // Data awal / cadangan (fallback jika internet offline / API loading)
 let dataCatatanBlog = [

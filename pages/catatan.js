@@ -1,20 +1,37 @@
-// pages/catatan.js - Modul Blog & Catatan Mandiri
+// pages/catatan.js - Modul Blog & Catatan Mandiri Terhubung Google Sheets
 
-// 1. DATA 10 ARTIKEL BLOG MANDIRI (Dipindahkan dari script.js)
-const dataCatatanBlog = [
-  { "Judul Artikel": "Kisah Steve Jobs & Garasi Apple: Dari Hobi Menjadi Imperium", Kategori: "Sejarah Bisnis", Tanggal: "12 Sep 2026", "Ringkasan Cuplikan": "Bagaimana ketekunan Steve Jobs dan Steve Wozniak mengubah komputer pribadi jadi revolusi global.", "Isi Lengkap Artikel": "Apple Inc. bukan lahir dari gedung kantor mewah, melainkan garasi sempit di Los Altos, California pada tahun 1976...", "SumberURL": "https://id.wikipedia.org/wiki/Steve_Jobs" },
-  { "Judul Artikel": "Mengenal Berbagai Jenis Investor Saham: Panduan Lengkap", Kategori: "Finansial", Tanggal: "10 Sep 2026", "Ringkasan Cuplikan": "Membahas tuntas profil dan gaya investor dari Value Investor, Growth, hingga Day Trader.", "Isi Lengkap Artikel": "Dalam dunia investasi saham, pembagian tipe investor sangat dipengaruhi oleh profil risiko dan tujuan finansial...", "SumberURL": "https://www.investopedia.com/investing/investing-101-the-basics/" },
-  { "Judul Artikel": "Jeff Bezos & Amazon: Menjual Buku dari Garasi Rumah", Kategori: "Sejarah Bisnis", Tanggal: "04 Sep 2026", "Ringkasan Cuplikan": "Perjuangan Jeff Bezos meninggalkan Wall Street demi merintis raksasa e-commerce global.", "Isi Lengkap Artikel": "Tahun 1994, Jeff Bezos menyetir mobil lintas negara sambil merancang skema bisnis buku daring pertama...", "SumberURL": "https://id.wikipedia.org/wiki/Jeff_Bezos" },
-  { "Judul Artikel": "Tipe Investor: Konservatif, Moderat, hingga Agresif", Kategori: "Finansial", Tanggal: "28 Agu 2026", "Ringkasan Cuplikan": "Menilai tingkat kenyamanan psikologis dalam menghadapi fluktuasi pasar modal modern.", "Isi Lengkap Artikel": "Sebelum menaruh modal, mengenali toleransi risiko pribadi adalah tameng utama agar tidak gegabah di bursa...", "SumberURL": "https://www.ojk.go.id" },
-  { "Judul Artikel": "Bill Gates dan Revolusi Perangkat Lunak Microsoft", Kategori: "Sejarah Bisnis", Tanggal: "22 Agu 2026", "Ringkasan Cuplikan": "Kisah drop-out Harvard yang sukses mendominasi sistem operasi komputer dunia.", "Isi Lengkap Artikel": "Bersama Paul Allen, Bill Gates mendedikasikan masa mudanya di ruang komputer kampus sebelum mendirikan Microsoft tahun 1975...", "SumberURL": "https://id.wikipedia.org/wiki/Bill_Gates" },
-  { "Judul Artikel": "Investor Institusional vs Investor Ritel di Pasar Modal", Kategori: "Finansial", Tanggal: "15 Agu 2026", "Ringkasan Cuplikan": "Perbedaan volume dana, analisa fundamental, dan manuver transaksi di lantai bursa.", "Isi Lengkap Artikel": "Pasar modal digerakkan oleh dua kubu besar: kekuatan dana raksasa institusi dan kelincahan investor perorangan...", "SumberURL": "https://www.investopedia.com" },
-  { "Judul Artikel": "Kisah Henry Ford dan Lini Produksi Massal Mobil", Kategori: "Sejarah Bisnis", Tanggal: "08 Agu 2026", "Ringkasan Cuplikan": "Revolusi konveyor pabrik yang mengubah mobil menjadi transportasi umum yang terjangkau.", "Isi Lengkap Artikel": "Henry Ford membuktikan bahwa efisiensi perakitan massal mampu menekan biaya produksi secara drastis...", "SumberURL": "https://id.wikipedia.org/wiki/Henry_Ford" },
-  { "Judul Artikel": "Passive Investor vs Active Trader: Mana yang Lebih Efektif?", Kategori: "Finansial", Tanggal: "02 Agu 2026", "Ringkasan Cuplikan": "Analisis waktu, disiplin emosi, dan performa imbal hasil portofolio jangka panjang.", "Isi Lengkap Artikel": "Strategi buy-and-hold indeks vs scalping harian membutuhkan kesiapan psikologi dan manajemen risiko yang sangat bertolak belakang...", "SumberURL": "https://www.investopedia.com" },
-  { "Judul Artikel": "Kisah Mark Zuckerberg & Facebook dari Kamar Asrama", Kategori: "Sejarah Bisnis", Tanggal: "25 Jul 2026", "Ringkasan Cuplikan": "Proyek coding mahasiswa Harvard yang menjelma menjadi platform media sosial global.", "Isi Lengkap Artikel": "Bermula dari direktori profil mahasiswa internal kampus yang diberi nama Facemash dan TheFacebook...", "SumberURL": "https://id.wikipedia.org/wiki/Mark_Zuckerberg" },
-  { "Judul Artikel": "Pentingnya Memahami Valuasi Saham bagi Pemula", Kategori: "Finansial", Tanggal: "18 Jul 2026", "Ringkasan Cuplikan": "Membedakan valuasi perusahaan yang sehat dengan tren spekulasi harga di pasar saham.", "Isi Lengkap Artikel": "Membeli saham sejatinya adalah membeli kepemilikan bisnis, bukan sekadar menebak naik-turunnya grafik lilin...", "SumberURL": "https://www.ojk.go.id" }
+// 1. MASUKKAN URL DEPLOY APPS SCRIPT KAMU DI SINI:
+const URL_GAS_BLOG = "MASUKKAN_URL_DEPLOY_APPS_SCRIPT_KAMU_DISINI";
+
+// Data awal / cadangan (fallback jika internet offline / API loading)
+let dataCatatanBlog = [
+  {
+    id: "blog_001",
+    "Tanggal": "12 Sep 2026",
+    "Judul Artikel": "Kisah Steve Jobs & Garasi Apple: Dari Hobi Menjadi Imperium",
+    "Kategori": "Sejarah Bisnis",
+    "Ringkasan Cuplikan": "Bagaimana visi produk Steve Jobs dan kejeniusan teknis Steve Wozniak mengubah komputer jadi kebutuhan personal.",
+    "Isi Lengkap Artikel": "Apple Inc. bukan berawal dari gedung megah Silicon Valley, melainkan garasi sempit keluarga Jobs di Los Altos pada tahun 1976.\n\nKunci sukses awal Apple terletak pada duet komplementer: Steve Wozniak adalah insinyur jenius yang merakit motherboard Apple I sendirian, sementara Steve Jobs memiliki kejelian luar biasa dalam melihat potensi pasar bahwa komputer bukan cuma mainan kaum hobi elektronik, melainkan produk konsumen massal.\n\nKetika Mike Markkula masuk sebagai investor perdana, Apple menanamkan filosofi marketing legendaris: Empathy (memahami kebutuhan user), Focus (eliminasi hal tak penting), dan Impute (cara produk dibungkus dan dipresentasikan menentukan nilainya di mata dunia).\n\nPelajaran penting: Keunggulan sistem atau teknologi hebat membutuhkan pengemasan dan komunikasi yang sama kuatnya agar bisa diterima oleh dunia luas.",
+    "SumberURL": "https://id.wikipedia.org/wiki/Steve_Jobs"
+  }
 ];
 
-// 2. FUNGSI RENDER WADAH CATATAN
+// 2. FUNGSI SINKRONISASI DATA DARI GOOGLE SHEETS
+async function sinkronkanBlogSheets() {
+  if (!URL_GAS_BLOG || URL_GAS_BLOG.includes("MASUKKAN_URL")) return;
+  try {
+    const res = await fetch(URL_GAS_BLOG);
+    const result = await res.json();
+    if (result.status === "success" && Array.isArray(result.data) && result.data.length > 0) {
+      dataCatatanBlog = result.data;
+      renderBlogCards(dataCatatanBlog);
+    }
+  } catch (err) {
+    console.warn("Gagal mengambil data dari Google Sheets, menggunakan data cadangan:", err);
+  }
+}
+
+// 3. FUNGSI RENDER WADAH UTAMA BLOG
 function renderCatatan() {
   const container = document.getElementById('sec-blog');
   if (!container) return;
@@ -27,27 +44,33 @@ function renderCatatan() {
       </div>
       <input type="text" id="blog-search" oninput="cariBlog()" placeholder="Cari artikel..." class="w-full sm:w-80 bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 rounded-2xl px-5 py-3 text-sm focus:outline-none focus:border-sky-500 shadow-sm">
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto" id="blog-container"></div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mt-6" id="blog-container"></div>
   `;
 
   renderBlogCards(dataCatatanBlog);
+  sinkronkanBlogSheets(); // Otomatis fetch data terbaru dari spreadsheet
 }
 
-// 3. FUNGSI RENDER KARTU ARTIKEL
+// 4. FUNGSI RENDER KARTU ARTIKEL
 function renderBlogCards(list) {
   const blogBox = document.getElementById('blog-container');
   const daftar = list || dataCatatanBlog;
   if (!blogBox || !daftar) return;
 
+  if (daftar.length === 0) {
+    blogBox.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400 text-sm">Tidak ada catatan yang ditemukan.</div>`;
+    return;
+  }
+
   blogBox.innerHTML = daftar.map((b, idx) => `
     <article onclick="bukaModalBlog(${idx})" class="smooth-zoom-card p-6 rounded-3xl bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 cursor-pointer group flex flex-col justify-between shadow-sm hover:border-sky-500 transition duration-300 space-y-4">
       <div class="space-y-2">
         <div class="flex items-center justify-between text-xs">
-          <span class="px-3 py-1 rounded-full bg-sky-50 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 font-bold">${b.Kategori}</span>
-          <span class="text-slate-400">${b.Tanggal}</span>
+          <span class="px-3 py-1 rounded-full bg-sky-50 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 font-bold">${b.Kategori || 'Umum'}</span>
+          <span class="text-slate-400">${b.Tanggal || ''}</span>
         </div>
         <h3 class="text-lg font-black text-slate-900 dark:text-white group-hover:text-sky-500 transition leading-snug">${b['Judul Artikel']}</h3>
-        <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 line-clamp-2">${b['Ringkasan Cuplikan']}</p>
+        <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 line-clamp-2">${b['Ringkasan Cuplikan'] || ''}</p>
       </div>
       <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-xs font-bold text-sky-500">
         <span>Baca Selengkapnya</span>
@@ -57,31 +80,94 @@ function renderBlogCards(list) {
   `).join('');
 }
 
-// 4. FUNGSI FILTER PENCARIAN
+// 5. FUNGSI FILTER PENCARIAN
 function cariBlog() {
   const q = document.getElementById('blog-search').value.toLowerCase();
   const hasil = dataCatatanBlog.filter(b => 
-    b['Judul Artikel'].toLowerCase().includes(q) || 
-    b['Ringkasan Cuplikan'].toLowerCase().includes(q)
+    (b['Judul Artikel'] && b['Judul Artikel'].toLowerCase().includes(q)) || 
+    (b['Ringkasan Cuplikan'] && b['Ringkasan Cuplikan'].toLowerCase().includes(q)) ||
+    (b.Kategori && b.Kategori.toLowerCase().includes(q))
   );
   renderBlogCards(hasil);
 }
 
-// 5. FUNGSI BACA ARTIKEL (MODAL POP-UP)
+// 6. FUNGSI BUKA MODAL DETAIL + MENU SHARE SOSMED
 function bukaModalBlog(idx) {
   const b = dataCatatanBlog[idx];
   if (!b) return;
-  document.getElementById('modal-cat').innerText = b.Kategori;
-  document.getElementById('modal-tgl').innerText = b.Tanggal;
-  document.getElementById('modal-judul').innerText = b['Judul Artikel'];
-  document.getElementById('modal-isi').innerText = b['Isi Lengkap Artikel'] || b['Ringkasan Cuplikan'];
+  
+  document.getElementById('modal-cat').innerText = b.Kategori || 'Umum';
+  document.getElementById('modal-tgl').innerText = b.Tanggal || '';
+  document.getElementById('modal-judul').innerText = b['Judul Artikel'] || '';
+  
+  // Format rapi teks panjang agar baris paragraf tidak menyatu
+  const isiEl = document.getElementById('modal-isi');
+  isiEl.style.whiteSpace = "pre-line";
+  isiEl.innerText = b['Isi Lengkap Artikel'] || b['Ringkasan Cuplikan'] || '';
+  
   const sumberEl = document.getElementById('modal-sumber');
-  if (b.SumberURL) {
-    sumberEl.innerHTML = `Referensi: <a href="${b.SumberURL}" target="_blank" class="text-sky-500 underline font-semibold ml-1">${b.SumberURL}</a>`;
+  if (b.SumberURL && b.SumberURL.startsWith("http")) {
+    sumberEl.innerHTML = `Referensi: <a href="${b.SumberURL}" target="_blank" rel="noopener noreferrer" class="text-sky-500 underline font-semibold ml-1 break-all">${b.SumberURL}</a>`;
   } else {
     sumberEl.innerHTML = "";
   }
+
+  // Siapkan wadah tombol share dinamis di bawah referensi
+  let shareBox = document.getElementById('modal-share-container');
+  if (!shareBox) {
+    shareBox = document.createElement('div');
+    shareBox.id = 'modal-share-container';
+    shareBox.className = 'mt-6 pt-5 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3';
+    sumberEl.parentNode.appendChild(shareBox);
+  }
+
+  const judulEncoded = encodeURIComponent(b['Judul Artikel']);
+  const urlSekarang = encodeURIComponent(window.location.href);
+
+  shareBox.innerHTML = `
+    <span class="text-xs font-bold text-slate-500 dark:text-slate-400">Bagikan artikel:</span>
+    <div class="flex items-center gap-2 flex-wrap">
+      <!-- WhatsApp -->
+      <a href="https://api.whatsapp.com/send?text=${judulEncoded}%20${urlSekarang}" target="_blank" rel="noopener noreferrer" 
+         class="px-3 py-1.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 text-xs font-bold hover:bg-emerald-500 hover:text-white transition">
+        WhatsApp
+      </a>
+      
+      <!-- X / Twitter -->
+      <a href="https://twitter.com/intent/tweet?text=${judulEncoded}&url=${urlSekarang}" target="_blank" rel="noopener noreferrer" 
+         class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs font-bold hover:bg-black hover:text-white transition">
+        X
+      </a>
+
+      <!-- Threads -->
+      <a href="https://threads.net/intent/post?text=${judulEncoded}%20${urlSekarang}" target="_blank" rel="noopener noreferrer" 
+         class="px-3 py-1.5 rounded-xl bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 text-xs font-bold hover:bg-purple-600 hover:text-white transition">
+        Threads
+      </a>
+
+      <!-- Copy Link (Instagram / TikTok) -->
+      <button onclick="salinLinkArtikel(this)" type="button"
+         class="px-3 py-1.5 rounded-xl bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 text-xs font-bold hover:bg-sky-500 hover:text-white transition">
+        Salin Link
+      </button>
+    </div>
+  `;
+
   document.getElementById('modal-reader').classList.remove('hidden');
+}
+
+// 7. HELPER SALIN LINK CLIPBOARD
+function salinLinkArtikel(btn) {
+  const url = window.location.href;
+  navigator.clipboard.writeText(url).then(() => {
+    const teksAwal = btn.innerText;
+    btn.innerText = "✓ Tersalin!";
+    setTimeout(() => {
+      btn.innerText = teksAwal;
+    }, 2000);
+  }).catch(() => {
+    alert("Gagal menyalin link.");
+  });
 }
 
 function tutupModal() { 

@@ -1,6 +1,5 @@
 // pages/catatan.js - Modul Blog & Catatan Mandiri Terhubung Google Sheets
 
-// 1. MASUKKAN URL DEPLOY APPS SCRIPT KAMU DI SINI:
 const URL_GAS_BLOG = "MASUKKAN_URL_DEPLOY_APPS_SCRIPT_KAMU_DISINI";
 
 // Data awal / cadangan (fallback jika internet offline / API loading)

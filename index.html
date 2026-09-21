@@ -190,6 +190,32 @@
 
   <script src="eksplor/n3.js"></script>
   <script src="script.js"></script>
-  
+
+
+<script>
+
+// PREFETCH SILENT BACKGROUND (Curi Start saat di Beranda)
+window.addEventListener('DOMContentLoaded', () => {
+  // Tunggu 800ms biar halaman Beranda kelar render dulu dengan mulus
+  setTimeout(() => {
+    prefetchSemuaData();
+  }, 800);
+});
+
+async function prefetchSemuaData() {
+  console.log("⚡ [Prefetch] Memulai penarikan data di latar belakang...");
+
+  // 1. Prefetch Data Catatan / Blog 
+  if (typeof sinkronkanBlogSheets === 'function') {
+    sinkronkanBlogSheets();
+  }
+
+  // 2. Prefetch Data Materi N3 / Eksplor
+  // Cek nama fungsi penarik data N3 (misal di n3.js atau bunpou.js)
+  if (typeof sinkronkanMateriN3 === 'function') {
+    sinkronkanMateriN3();
+  }
+}
+</script>
 </body>
 </html>

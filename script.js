@@ -200,17 +200,18 @@ document.addEventListener('keydown', (e) => {
 
 
 // =============================================================================
-// ⚡ FORCE ROUTER 2.0 (Pemaksa Mutlak Hash URL Anti-Nyangkut)
+// 🔄 TWO-WAY SYNC ROUTER (Sinkronisasi Sempurna Layar & URL Hash)
 // =============================================================================
 (function() {
-  function eksekusiPaksaRute() {
+  
+  // 1. FUNGSI UTAMA: Pindah Layar Berdasarkan Hash URL
+  function sinkronkanDariURL() {
     let hash = window.location.hash.toLowerCase().trim();
     if (!hash || hash === '#' || hash === '#/') return;
 
     let target = hash.replace(/^#\/?/, '').replace(/\/$/, '');
-    console.log("⚡ Memaksa buka rute:", target);
+    console.log("🌐 URL berubah ke:", target);
 
-    // 1. Cari elemen tombol/menu yang sesuai dengan target hash
     let ketemu = false;
     const semuaTombol = document.querySelectorAll('button, a, [onclick], [data-tab], [data-page]');
     
@@ -218,42 +219,59 @@ document.addEventListener('keydown', (e) => {
       let attr = (el.getAttribute('onclick') || el.getAttribute('data-tab') || el.getAttribute('data-page') || el.id || '').toLowerCase();
       let teks = el.innerText.toLowerCase();
 
-      // Cocokkan apakah elemen ini adalah tombol tujuan (misal: n3, catatan, tentang, alquran, tugas)
       if (attr.includes(target) || (target === 'n3' && (teks.includes('n3') || teks.includes('jlpt'))) || (target === 'catatan' && teks.includes('catatan'))) {
+        // Eksekusi klik tanpa memicu event loop berlebih
         el.click();
         ketemu = true;
         break;
       }
     }
 
-    // 2. Jika tombol tidak ketemu lewat DOM, paksa panggil fungsi render JavaScript-nya langsung
     if (!ketemu) {
-      if (target.includes('n3') && typeof renderN3 === 'function') { renderN3(); ketemu = true; }
-      else if (target.includes('catatan') && typeof renderCatatan === 'function') { renderCatatan(); ketemu = true; }
-      else if (target.includes('tentang') && typeof renderTentang === 'function') { renderTentang(); ketemu = true; }
-      else if (target.includes('keahlian') && typeof renderKeahlian === 'function') { renderKeahlian(); ketemu = true; }
-      else if (target.includes('alquran') && typeof renderAlquran === 'function') { renderAlquran(); ketemu = true; }
-      else if (target.includes('tugas') && typeof renderTugas === 'function') { renderTugas(); ketemu = true; }
+      if (target.includes('n3') && typeof renderN3 === 'function') { renderN3(); }
+      else if (target.includes('catatan') && typeof renderCatatan === 'function') { renderCatatan(); }
+      else if (target.includes('tentang') && typeof renderTentang === 'function') { renderTentang(); }
+      else if (target.includes('keahlian') && typeof renderKeahlian === 'function') { renderKeahlian(); }
+      else if (target.includes('alquran') && typeof renderAlquran === 'function') { renderAlquran(); }
+      else if (target.includes('tugas') && typeof renderTugas === 'function') { renderTugas(); }
+      else if (target.includes('beranda') && typeof renderBeranda === 'function') { renderBeranda(); }
     }
-
-    return ketemu;
   }
 
-  // 3. Sistem Pemantau Berkelanjutan (Looping sampai berhasil tembus, mengantisipasi loading lambat)
-  let percobaan = 0;
-  let intervalPemaksa = setInterval(() => {
-    percobaan++;
-    let berhasil = eksekusiPaksaRute();
-    
-    // Kalau sudah sukses atau sudah mencoba selama 5 detik (10x cek), hentikan intervalnya
-    if (berhasil || percobaan > 10) {
-      clearInterval(intervalPemaksa);
-    }
-  }, 500); // Cek setiap 0.5 detik
+  // 2. FUNGSI SEBALIKNYA: Tangkap Klik Tombol User agar URL Otomatis Ikut Ganti
+  function pasangPeleraiKlikMenu() {
+    document.addEventListener('click', (e) => {
+      let targetEl = e.target.closest('button, a, [onclick], [data-tab], [data-page]');
+      if (!targetEl) return;
 
-  // Pantau juga jika user mengganti hash secara manual di browser saat web aktif
-  window.addEventListener('hashchange', () => {
-    percobaan = 0;
-    eksekusiPaksaRute();
+      let identitas = (targetEl.getAttribute('onclick') || targetEl.getAttribute('data-tab') || targetEl.getAttribute('data-page') || targetEl.id || targetEl.innerText || '').toLowerCase();
+
+      // Deteksi menu apa yang sedang diklik user lalu ubah URL hash secara instan
+      if (identitas.includes('n3') || identitas.includes('jlpt')) {
+        history.pushState(null, null, '#n3');
+      } else if (identitas.includes('catatan') || identitas.includes('blog')) {
+        history.pushState(null, null, '#catatan');
+      } else if (identitas.includes('tentang') || identitas.includes('about')) {
+        history.pushState(null, null, '#tentang');
+      } else if (identitas.includes('keahlian') || identitas.includes('skill')) {
+        history.pushState(null, null, '#keahlian');
+      } else if (identitas.includes('alquran') || identitas.includes('quran')) {
+        history.pushState(null, null, '#alquran');
+      } else if (identitas.includes('tugas')) {
+        history.pushState(null, null, '#tugas');
+      } else if (identitas.includes('beranda') || identitas.includes('home')) {
+        history.pushState(null, null, '#beranda');
+      } else if (identitas.includes('eksplor') || identitas.includes('explore')) {
+        history.pushState(null, null, '#eksplor');
+      }
+    }, true);
+  }
+
+  // 3. Eksekusi Saat Halaman Dimuat & Ketika URL Berubah
+  window.addEventListener('load', () => {
+    setTimeout(sinkronkanDariURL, 400);
+    pasangPeleraiKlikMenu();
   });
+
+  window.addEventListener('hashchange', sinkronkanDariURL);
 })();

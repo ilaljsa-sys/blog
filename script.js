@@ -196,3 +196,126 @@ document.addEventListener('keydown', (e) => {
     return false;
   }
 });
+
+
+
+// =============================================================================
+// 🌐 UNIVERSAL HASH ROUTER (Navigasi Langsung Per Menu & Sub-Fitur)
+// =============================================================================
+(function() {
+  function jalankanNavigasiHash() {
+    try {
+      let rawHash = window.location.hash.toLowerCase().trim();
+      if (!rawHash || rawHash === '#' || rawHash === '#/') return;
+
+      // Bersihkan tanda # dan slash di awal/akhir
+      let route = rawHash.replace(/^#\/?/, '').replace(/\/$/, '');
+
+      // Helper untuk klik elemen berdasarkan kata kunci (jika fungsi JS langsung tidak ada)
+      function triggerKlik(kunci) {
+        const selector = [
+          `[onclick*="${kunci}"]`,
+          `[data-tab*="${kunci}"]`,
+          `[data-page*="${kunci}"]`,
+          `[data-menu*="${kunci}"]`,
+          `#btn-${kunci}`,
+          `#tab-${kunci}`,
+          `#nav-${kunci}`,
+          `#${kunci}`
+        ].join(',');
+        
+        const el = document.querySelector(selector);
+        if (el) {
+          el.click();
+          return true;
+        }
+        return false;
+      }
+
+      // Daftar Mapping Rute ke Fungsi Halaman / Klik Otomatis
+      switch (route) {
+        // --- 1. PAGES / MENU UTAMA ---
+        case 'beranda':
+        case 'home':
+          if (typeof renderBeranda === 'function') renderBeranda();
+          else triggerKlik('beranda');
+          break;
+
+        case 'catatan':
+        case 'blog':
+          if (typeof renderCatatan === 'function') renderCatatan();
+          else triggerKlik('catatan');
+          break;
+
+        case 'tentang':
+        case 'about':
+          if (typeof renderTentang === 'function') renderTentang();
+          else triggerKlik('tentang');
+          break;
+
+        case 'keahlian':
+        case 'skills':
+        case 'skill':
+          if (typeof renderKeahlian === 'function') renderKeahlian();
+          else triggerKlik('keahlian');
+          break;
+
+        // --- 2. EKSPLOR HUB ---
+        case 'eksplor':
+        case 'explore':
+          if (typeof renderEksplor === 'function') renderEksplor();
+          else triggerKlik('eksplor');
+          break;
+
+        // --- 3. EKSPLOR: AL-QURAN ---
+        case 'alquran':
+        case 'eksplor/alquran':
+        case 'quran':
+          if (typeof renderAlquran === 'function') renderAlquran();
+          else if (typeof initAlquran === 'function') initAlquran();
+          else triggerKlik('alquran');
+          break;
+
+        // --- 4. EKSPLOR: TUGAS KULIAH ---
+        case 'tugas':
+        case 'eksplor/tugas':
+        case 'tugaskuliah':
+        case 'tugas-kuliah':
+          if (typeof renderTugas === 'function') renderTugas();
+          else if (typeof initTugas === 'function') initTugas();
+          else triggerKlik('tugas');
+          break;
+
+        // --- 5. EKSPLOR: PERSIAPAN JLPT N3 ---
+        case 'n3':
+        case 'eksplor/n3':
+        case 'jlpt':
+        case 'jlptn3':
+          if (typeof renderN3 === 'function') renderN3();
+          else if (typeof initN3 === 'function') initN3();
+          else if (typeof muatDataN3 === 'function') muatDataN3();
+          else triggerKlik('n3');
+          break;
+
+        default:
+          // Cadangan darurat: jika rute tidak ada di daftar, cari elemen dengan ID sama
+          triggerKlik(route);
+          break;
+      }
+    } catch (err) {
+      console.warn("Router info:", err);
+    }
+  }
+
+  // Jalankan saat halaman pertama kali selesai dimuat
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(jalankanNavigasiHash, 300);
+    });
+  } else {
+    setTimeout(jalankanNavigasiHash, 300);
+  }
+
+  // Jalankan otomatis jika user mengetik atau mengganti hash di URL
+  window.addEventListener('hashchange', jalankanNavigasiHash);
+})();

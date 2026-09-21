@@ -200,122 +200,60 @@ document.addEventListener('keydown', (e) => {
 
 
 // =============================================================================
-// 🌐 UNIVERSAL HASH ROUTER (Navigasi Langsung Per Menu & Sub-Fitur)
+// ⚡ FORCE ROUTER 2.0 (Pemaksa Mutlak Hash URL Anti-Nyangkut)
 // =============================================================================
 (function() {
-  function jalankanNavigasiHash() {
-    try {
-      let rawHash = window.location.hash.toLowerCase().trim();
-      if (!rawHash || rawHash === '#' || rawHash === '#/') return;
+  function eksekusiPaksaRute() {
+    let hash = window.location.hash.toLowerCase().trim();
+    if (!hash || hash === '#' || hash === '#/') return;
 
-      // Bersihkan tanda # dan slash di awal/akhir
-      let route = rawHash.replace(/^#\/?/, '').replace(/\/$/, '');
+    let target = hash.replace(/^#\/?/, '').replace(/\/$/, '');
+    console.log("⚡ Memaksa buka rute:", target);
 
-      // Helper untuk klik elemen berdasarkan kata kunci (jika fungsi JS langsung tidak ada)
-      function triggerKlik(kunci) {
-        const selector = [
-          `[onclick*="${kunci}"]`,
-          `[data-tab*="${kunci}"]`,
-          `[data-page*="${kunci}"]`,
-          `[data-menu*="${kunci}"]`,
-          `#btn-${kunci}`,
-          `#tab-${kunci}`,
-          `#nav-${kunci}`,
-          `#${kunci}`
-        ].join(',');
-        
-        const el = document.querySelector(selector);
-        if (el) {
-          el.click();
-          return true;
-        }
-        return false;
+    // 1. Cari elemen tombol/menu yang sesuai dengan target hash
+    let ketemu = false;
+    const semuaTombol = document.querySelectorAll('button, a, [onclick], [data-tab], [data-page]');
+    
+    for (let el of semuaTombol) {
+      let attr = (el.getAttribute('onclick') || el.getAttribute('data-tab') || el.getAttribute('data-page') || el.id || '').toLowerCase();
+      let teks = el.innerText.toLowerCase();
+
+      // Cocokkan apakah elemen ini adalah tombol tujuan (misal: n3, catatan, tentang, alquran, tugas)
+      if (attr.includes(target) || (target === 'n3' && (teks.includes('n3') || teks.includes('jlpt'))) || (target === 'catatan' && teks.includes('catatan'))) {
+        el.click();
+        ketemu = true;
+        break;
       }
-
-      // Daftar Mapping Rute ke Fungsi Halaman / Klik Otomatis
-      switch (route) {
-        // --- 1. PAGES / MENU UTAMA ---
-        case 'beranda':
-        case 'home':
-          if (typeof renderBeranda === 'function') renderBeranda();
-          else triggerKlik('beranda');
-          break;
-
-        case 'catatan':
-        case 'blog':
-          if (typeof renderCatatan === 'function') renderCatatan();
-          else triggerKlik('catatan');
-          break;
-
-        case 'tentang':
-        case 'about':
-          if (typeof renderTentang === 'function') renderTentang();
-          else triggerKlik('tentang');
-          break;
-
-        case 'keahlian':
-        case 'skills':
-        case 'skill':
-          if (typeof renderKeahlian === 'function') renderKeahlian();
-          else triggerKlik('keahlian');
-          break;
-
-        // --- 2. EKSPLOR HUB ---
-        case 'eksplor':
-        case 'explore':
-          if (typeof renderEksplor === 'function') renderEksplor();
-          else triggerKlik('eksplor');
-          break;
-
-        // --- 3. EKSPLOR: AL-QURAN ---
-        case 'alquran':
-        case 'eksplor/alquran':
-        case 'quran':
-          if (typeof renderAlquran === 'function') renderAlquran();
-          else if (typeof initAlquran === 'function') initAlquran();
-          else triggerKlik('alquran');
-          break;
-
-        // --- 4. EKSPLOR: TUGAS KULIAH ---
-        case 'tugas':
-        case 'eksplor/tugas':
-        case 'tugaskuliah':
-        case 'tugas-kuliah':
-          if (typeof renderTugas === 'function') renderTugas();
-          else if (typeof initTugas === 'function') initTugas();
-          else triggerKlik('tugas');
-          break;
-
-        // --- 5. EKSPLOR: PERSIAPAN JLPT N3 ---
-        case 'n3':
-        case 'eksplor/n3':
-        case 'jlpt':
-        case 'jlptn3':
-          if (typeof renderN3 === 'function') renderN3();
-          else if (typeof initN3 === 'function') initN3();
-          else if (typeof muatDataN3 === 'function') muatDataN3();
-          else triggerKlik('n3');
-          break;
-
-        default:
-          // Cadangan darurat: jika rute tidak ada di daftar, cari elemen dengan ID sama
-          triggerKlik(route);
-          break;
-      }
-    } catch (err) {
-      console.warn("Router info:", err);
     }
+
+    // 2. Jika tombol tidak ketemu lewat DOM, paksa panggil fungsi render JavaScript-nya langsung
+    if (!ketemu) {
+      if (target.includes('n3') && typeof renderN3 === 'function') { renderN3(); ketemu = true; }
+      else if (target.includes('catatan') && typeof renderCatatan === 'function') { renderCatatan(); ketemu = true; }
+      else if (target.includes('tentang') && typeof renderTentang === 'function') { renderTentang(); ketemu = true; }
+      else if (target.includes('keahlian') && typeof renderKeahlian === 'function') { renderKeahlian(); ketemu = true; }
+      else if (target.includes('alquran') && typeof renderAlquran === 'function') { renderAlquran(); ketemu = true; }
+      else if (target.includes('tugas') && typeof renderTugas === 'function') { renderTugas(); ketemu = true; }
+    }
+
+    return ketemu;
   }
 
-  // Jalankan saat halaman pertama kali selesai dimuat
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(jalankanNavigasiHash, 300);
-    });
-  } else {
-    setTimeout(jalankanNavigasiHash, 300);
-  }
+  // 3. Sistem Pemantau Berkelanjutan (Looping sampai berhasil tembus, mengantisipasi loading lambat)
+  let percobaan = 0;
+  let intervalPemaksa = setInterval(() => {
+    percobaan++;
+    let berhasil = eksekusiPaksaRute();
+    
+    // Kalau sudah sukses atau sudah mencoba selama 5 detik (10x cek), hentikan intervalnya
+    if (berhasil || percobaan > 10) {
+      clearInterval(intervalPemaksa);
+    }
+  }, 500); // Cek setiap 0.5 detik
 
-  // Jalankan otomatis jika user mengetik atau mengganti hash di URL
-  window.addEventListener('hashchange', jalankanNavigasiHash);
+  // Pantau juga jika user mengganti hash secara manual di browser saat web aktif
+  window.addEventListener('hashchange', () => {
+    percobaan = 0;
+    eksekusiPaksaRute();
+  });
 })();

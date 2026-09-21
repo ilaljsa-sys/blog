@@ -200,78 +200,70 @@ document.addEventListener('keydown', (e) => {
 
 
 // =============================================================================
-// 🔄 TWO-WAY SYNC ROUTER (Sinkronisasi Sempurna Layar & URL Hash)
+// 🚨 MUTANT ROUTER: Pemantau URL Real-Time (Anti-Meleset)
 // =============================================================================
 (function() {
-  
-  // 1. FUNGSI UTAMA: Pindah Layar Berdasarkan Hash URL
-  function sinkronkanDariURL() {
-    let hash = window.location.hash.toLowerCase().trim();
-    if (!hash || hash === '#' || hash === '#/') return;
-
-    let target = hash.replace(/^#\/?/, '').replace(/\/$/, '');
-    console.log("🌐 URL berubah ke:", target);
-
-    let ketemu = false;
-    const semuaTombol = document.querySelectorAll('button, a, [onclick], [data-tab], [data-page]');
-    
-    for (let el of semuaTombol) {
-      let attr = (el.getAttribute('onclick') || el.getAttribute('data-tab') || el.getAttribute('data-page') || el.id || '').toLowerCase();
-      let teks = el.innerText.toLowerCase();
-
-      if (attr.includes(target) || (target === 'n3' && (teks.includes('n3') || teks.includes('jlpt'))) || (target === 'catatan' && teks.includes('catatan'))) {
-        // Eksekusi klik tanpa memicu event loop berlebih
-        el.click();
-        ketemu = true;
-        break;
-      }
+  // 1. Tangkap saat halaman pertama kali dibuka lewat link share
+  window.addEventListener('DOMContentLoaded', () => {
+    let hash = window.location.hash;
+    if (hash && hash.length > 2) {
+      setTimeout(() => {
+        let keyword = hash.replace('#', '').toLowerCase();
+        let targetBtn = Array.from(document.querySelectorAll('button, a, [onclick]')).find(el => {
+          let str = (el.getAttribute('onclick') || el.innerText || '').toLowerCase();
+          return str.includes(keyword);
+        });
+        if (targetBtn) targetBtn.click();
+      }, 500);
     }
-
-    if (!ketemu) {
-      if (target.includes('n3') && typeof renderN3 === 'function') { renderN3(); }
-      else if (target.includes('catatan') && typeof renderCatatan === 'function') { renderCatatan(); }
-      else if (target.includes('tentang') && typeof renderTentang === 'function') { renderTentang(); }
-      else if (target.includes('keahlian') && typeof renderKeahlian === 'function') { renderKeahlian(); }
-      else if (target.includes('alquran') && typeof renderAlquran === 'function') { renderAlquran(); }
-      else if (target.includes('tugas') && typeof renderTugas === 'function') { renderTugas(); }
-      else if (target.includes('beranda') && typeof renderBeranda === 'function') { renderBeranda(); }
-    }
-  }
-
-  // 2. FUNGSI SEBALIKNYA: Tangkap Klik Tombol User agar URL Otomatis Ikut Ganti
-  function pasangPeleraiKlikMenu() {
-    document.addEventListener('click', (e) => {
-      let targetEl = e.target.closest('button, a, [onclick], [data-tab], [data-page]');
-      if (!targetEl) return;
-
-      let identitas = (targetEl.getAttribute('onclick') || targetEl.getAttribute('data-tab') || targetEl.getAttribute('data-page') || targetEl.id || targetEl.innerText || '').toLowerCase();
-
-      // Deteksi menu apa yang sedang diklik user lalu ubah URL hash secara instan
-      if (identitas.includes('n3') || identitas.includes('jlpt')) {
-        history.pushState(null, null, '#n3');
-      } else if (identitas.includes('catatan') || identitas.includes('blog')) {
-        history.pushState(null, null, '#catatan');
-      } else if (identitas.includes('tentang') || identitas.includes('about')) {
-        history.pushState(null, null, '#tentang');
-      } else if (identitas.includes('keahlian') || identitas.includes('skill')) {
-        history.pushState(null, null, '#keahlian');
-      } else if (identitas.includes('alquran') || identitas.includes('quran')) {
-        history.pushState(null, null, '#alquran');
-      } else if (identitas.includes('tugas')) {
-        history.pushState(null, null, '#tugas');
-      } else if (identitas.includes('beranda') || identitas.includes('home')) {
-        history.pushState(null, null, '#beranda');
-      } else if (identitas.includes('eksplor') || identitas.includes('explore')) {
-        history.pushState(null, null, '#eksplor');
-      }
-    }, true);
-  }
-
-  // 3. Eksekusi Saat Halaman Dimuat & Ketika URL Berubah
-  window.addEventListener('load', () => {
-    setTimeout(sinkronkanDariURL, 400);
-    pasangPeleraiKlikMenu();
   });
 
-  window.addEventListener('hashchange', sinkronkanDariURL);
+  // 2. Pemantau Aktif: Kalau URL berubah, layar wajib ikut berubah detik itu juga
+  let oldHash = window.location.hash;
+  setInterval(() => {
+    if (window.location.hash !== oldHash) {
+      oldHash = window.location.hash;
+      let keyword = oldHash.replace('#', '').toLowerCase();
+      if (!keyword) return;
+
+      let targetBtn = Array.from(document.querySelectorAll('button, a, [onclick]')).find(el => {
+        let str = (el.getAttribute('onclick') || el.innerText || '').toLowerCase();
+        return str.includes(keyword);
+      });
+      if (targetBtn) targetBtn.click();
+    }
+  }, 300);
+
+  // 3. Tangkap setiap klik tombol di layar agar URL ikut update secara paksa
+  document.addEventListener('click', (e) => {
+    let el = e.target.closest('button, a, [onclick], [data-tab]');
+    if (!el) return;
+    let teks = (el.getAttribute('onclick') || el.innerText || el.getAttribute('data-tab') || '').toLowerCase();
+
+    if (teks.includes('n3') || teks.includes('jlpt')) {
+      history.replaceState(null, null, '#n3');
+      oldHash = '#n3';
+    } else if (teks.includes('catatan') || teks.includes('blog')) {
+      history.replaceState(null, null, '#catatan');
+      oldHash = '#catatan';
+    } else if (teks.includes('tentang') || teks.includes('about')) {
+      history.replaceState(null, null, '#tentang');
+      oldHash = '#tentang';
+    } else if (teks.includes('keahlian') || teks.includes('skill')) {
+      history.replaceState(null, null, '#keahlian');
+      oldHash = '#keahlian';
+    } else if (teks.includes('alquran')) {
+      history.replaceState(null, null, '#alquran');
+      oldHash = '#alquran';
+    } else if (teks.includes('tugas')) {
+      history.replaceState(null, null, '#tugas');
+      oldHash = '#tugas';
+    } else if (teks.includes('eksplor') || teks.includes('explore')) {
+      history.replaceState(null, null, '#eksplor');
+      oldHash = '#eksplor';
+    } else if (teks.includes('beranda') || teks.includes('home')) {
+      history.replaceState(null, null, '#beranda');
+      oldHash = '#beranda';
+    }
+  });
 })();

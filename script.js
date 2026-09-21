@@ -1,6 +1,6 @@
 // script.js - Core Engine & Router Navigasi Utama Murni
 
-const APPS_SCRIPT_API_URL = "https://script.google.com/macros/s/AKfycbxzuJqhGKE7wPhfwcOBSdXkQ3zl0I7dQxN2dQwJq1IQhQaDLNYmfMd9cbRKIY0VgQzP1w/exec";
+const APPS_SCRIPT_API_URL = "https://script.google.com/macros/s/AKfycby7uH_OZjjEevBl18220gEdg6nQkBL9TPPd3lsB0uy4s1VVqqaDO30cuPjLBMQse82c2w/exec";
 
 function initTheme() {
   const html = document.documentElement;

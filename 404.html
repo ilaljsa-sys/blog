@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 • Halaman Tidak Ditemukan</title>
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%231b2838'/><path d='M28 35 L34 50 L20 48 Z' fill='%2300e5ff'/><path d='M72 35 L66 50 L80 48 Z' fill='%2300e5ff'/><circle cx='50' cy='56' r='26' fill='%2300e5ff'/><circle cx='50' cy='56' r='23' fill='%231b2838'/><ellipse cx='40' cy='54' rx='4' ry='6' fill='%2300e5ff'/><ellipse cx='60' cy='54' rx='4' ry='6' fill='%2300e5ff'/><polygon points='50,63 46,67 54,67' fill='%2300e5ff'/></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { neutralDark: '#080d1a', cardDark: '#0f172a', borderDark: '#1e293b' }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="bg-neutralDark text-slate-100 min-h-screen flex flex-col justify-between selection:bg-sky-500 selection:text-white bg-dots-dark text-base antialiased" id="body-root">
+
+  <nav class="sticky top-0 z-50 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 bg-white/85 dark:bg-neutralDark/85 px-6 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="/" class="text-3xl font-black tracking-tight text-slate-900 dark:text-white">
+        ilal<span class="text-sky-500 font-black">jsa</span>
+      </a>
+      <button onclick="toggleTheme()" class="w-11 h-11 rounded-2xl flex items-center justify-center bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+        <svg id="theme-sun" class="w-5 h-5 hidden dark:block text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+        <svg id="theme-moon" class="w-5 h-5 block dark:hidden text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+      </button>
+    </div>
+  </nav>
+
+  <main class="max-w-md mx-auto w-full px-6 flex-grow flex flex-col items-center justify-center text-center space-y-5 py-16">
+    <span class="text-7xl font-black text-sky-500 tracking-wider">404</span>
+    <div class="space-y-2">
+      <h1 class="text-2xl font-black text-slate-900 dark:text-white">Halaman Tidak Ditemukan</h1>
+      <p class="text-sm text-slate-400 leading-relaxed">
+        Tautan yang kamu tuju sepertinya salah ketik atau telah dipindahkan ke rute lain.
+      </p>
+    </div>
+    <a href="/" class="px-6 py-3 rounded-xl bg-sky-500 hover:bg-sky-400 text-white font-bold text-xs shadow-lg shadow-sky-500/30 transition active:scale-95 inline-block">
+      ← Kembali ke Beranda cok dalan mu salah
+    </a>
+  </main>
+
+  <footer class="border-t border-slate-200 dark:border-slate-900 py-6 px-6 text-center text-xs text-slate-400">
+    <p>© 2026 I'lal Jalalludin Syahputra</p>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

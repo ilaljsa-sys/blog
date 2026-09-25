@@ -47,7 +47,6 @@ function tutupModalAnon() {
   if (modal) modal.classList.add('hidden'); 
 }
 
-
 async function kirimPesanAnonim() {
   const input = document.getElementById('anon-pesan-input');
   const status = document.getElementById('anon-status');
@@ -78,7 +77,7 @@ async function kirimPesanAnonim() {
   }
 
   const sekarang = new Date();
-  const idUnikBebasBentrok = Date.now(); // Menjamin nilai ID unik dan tidak duplikat
+  const idUnikBebasBentrok = Date.now();
   const tanggal = sekarang.toISOString().split('T')[0];
   const waktu = sekarang.toTimeString().split(' ')[0];
 
@@ -101,7 +100,6 @@ async function kirimPesanAnonim() {
     }
     setTimeout(() => tutupModalAnon(), 1500);
   } catch (e) { 
-    console.error("Gagal kirim pesan:", e);
     if (status) { 
       status.classList.remove('hidden', 'text-sky-400'); 
       status.classList.add('text-rose-400');
@@ -129,3 +127,16 @@ function toggleAudio() {
 window.addEventListener('DOMContentLoaded', () => {
   initTheme();
 });
+
+(function() {
+  if (!document.querySelector('script[src*="kamus.js"]')) {
+    const s = document.createElement('script');
+    const currentScript = document.currentScript;
+    if (currentScript && currentScript.src) {
+      s.src = new URL('kamus.js', currentScript.src).href;
+    } else {
+      s.src = '/kamus.js';
+    }
+    document.head.appendChild(s);
+  }
+})();

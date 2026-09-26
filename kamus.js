@@ -1,4 +1,4 @@
-(function() {
+(function () {
   const _kToken = () => {
     try {
       const customKey = localStorage.getItem('kamus_custom_api_key');
@@ -13,22 +13,22 @@
     if (localStorage.getItem('kamus_gemini_api_key')) {
       localStorage.removeItem('kamus_gemini_api_key');
     }
-  } catch(e) {}
+  } catch (e) { }
 
   const ROMAJI_MAP = {
-    kya:'きゃ',kyu:'きゅ',kyo:'きょ',sha:'しゃ',shu:'しゅ',sho:'しょ',
-    cha:'ちゃ',chu:'ちゅ',cho:'ちょ',nya:'にゃ',nyu:'にゅ',nyo:'にょ',
-    hya:'ひゃ',hyu:'ひゅ',hyo:'ひょ',mya:'みゃ',myu:'みゅ',myo:'みょ',
-    rya:'りゃ',ryu:'りゅ',ryo:'りょ',gya:'ぎゃ',gyu:'ぎゅ',gyo:'ぎょ',
-    ja:'じゃ',ju:'じゅ',jo:'じょ',bya:'びゃ',byu:'びゅ',byo:'びょ',
-    pya:'ぴゃ',pyu:'ぴゅ',pyo:'ぴょ',ka:'か',ki:'き',ku:'く',ke:'け',ko:'こ',
-    sa:'さ',shi:'し',su:'す',se:'せ',so:'そ',ta:'た',chi:'ち',tsu:'つ',te:'て',to:'と',
-    na:'な',ni:'に',nu:'ぬ',ne:'ね',no:'の',ha:'は',hi:'ひ',fu:'ふ',he:'へ',ho:'ほ',
-    ma:'ま',mi:'み',mu:'む',me:'me',mo:'も',ya:'や',yu:'ゆ',yo:'よ',
-    ra:'ら',ri:'り',ru:'る',re:'れ',ro:'ろ',wa:'わ',wo:'を',nn:'ん',n:'ん',
-    ga:'が',gi:'ぎ',gu:'ぐ',ge:'げ',go:'ご',za:'ざ',ji:'じ',zu:'ず',ze:'ぜ',zo:'ぞ',
-    da:'だ',di:'ぢ',du:'づ',de:'で',do:'ど',ba:'ば',bi:'び',bu:'ぶ',be:'べ',bo:'ぼ',
-    pa:'ぱ',pi:'ぴ',pu:'ぷ',pe:'ぺ',po:'ぽ',a:'あ',i:'い',u:'う',e:'え',o:'お'
+    kya: 'きゃ', kyu: 'きゅ', kyo: 'きょ', sha: 'しゃ', shu: 'しゅ', sho: 'しょ',
+    cha: 'ちゃ', chu: 'ちゅ', cho: 'ちょ', nya: 'にゃ', nyu: 'にゅ', nyo: 'にょ',
+    hya: 'ひゃ', hyu: 'ひゅ', hyo: 'ひょ', mya: 'みゃ', myu: 'みゅ', myo: 'みょ',
+    rya: 'りゃ', ryu: 'りゅ', ryo: 'りょ', gya: 'ぎゃ', gyu: 'ぎゅ', gyo: 'ぎょ',
+    ja: 'じゃ', ju: 'じゅ', jo: 'じょ', bya: 'びゃ', byu: 'びゅ', byo: 'びょ',
+    pya: 'ぴゃ', pyu: 'ぴゅ', pyo: 'ぴょ', ka: 'か', ki: 'き', ku: 'く', ke: 'け', ko: 'こ',
+    sa: 'さ', shi: 'し', su: 'す', se: 'せ', so: 'そ', ta: 'た', chi: 'ち', tsu: 'つ', te: 'て', to: 'と',
+    na: 'な', ni: 'に', nu: 'ぬ', ne: 'ね', no: 'の', ha: 'は', hi: 'ひ', fu: 'ふ', he: 'へ', ho: 'ほ',
+    ma: 'ま', mi: 'み', mu: 'む', me: 'me', mo: 'も', ya: 'や', yu: 'ゆ', yo: 'よ',
+    ra: 'ら', ri: 'り', ru: 'る', re: 'れ', ro: 'ろ', wa: 'わ', wo: 'を', nn: 'ん', n: 'ん',
+    ga: 'が', gi: 'ぎ', gu: 'ぐ', ge: 'げ', go: 'ご', za: 'ざ', ji: 'じ', zu: 'ず', ze: 'ぜ', zo: 'ぞ',
+    da: 'だ', di: 'ぢ', du: 'づ', de: 'で', do: 'ど', ba: 'ば', bi: 'び', bu: 'ぶ', be: 'べ', bo: 'ぼ',
+    pa: 'ぱ', pi: 'ぴ', pu: 'ぷ', pe: 'ぺ', po: 'ぽ', a: 'あ', i: 'い', u: 'う', e: 'え', o: 'お'
   };
 
   function romajiKeHiragana(text) {
@@ -37,7 +37,7 @@
     let res = "";
     let i = 0;
     while (i < str.length) {
-      if (i + 1 < str.length && str[i] === str[i+1] && !"aeiouyn".includes(str[i])) {
+      if (i + 1 < str.length && str[i] === str[i + 1] && !"aeiouyn".includes(str[i])) {
         res += "っ";
         i++;
         continue;
@@ -72,19 +72,19 @@
       try {
         const r = await fetch('/eksplor/n5/data/kotoba.json');
         if (r.ok) LOCAL_KOTOBA = await r.json();
-      } catch (e) {}
+      } catch (e) { }
     }
     if (!LOCAL_BUNPOU) {
       try {
         const r = await fetch('/eksplor/n5/data/bunpou.json');
         if (r.ok) LOCAL_BUNPOU = await r.json();
-      } catch (e) {}
+      } catch (e) { }
     }
     if (!LOCAL_KANJI) {
       try {
         const r = await fetch('/eksplor/n5/data/kanji.json');
         if (r.ok) LOCAL_KANJI = await r.json();
-      } catch (e) {}
+      } catch (e) { }
     }
   }
   muatDataLokalKamus();
@@ -102,12 +102,12 @@
         HASIL_CACHE.set(qLower, parsed);
         return parsed;
       }
-    } catch (e) {}
+    } catch (e) { }
 
     const qHira = romajiKeHiragana(qLower);
 
     if (LOCAL_KOTOBA && LOCAL_KOTOBA.length > 0) {
-      const exactKotoba = LOCAL_KOTOBA.find(k => 
+      const exactKotoba = LOCAL_KOTOBA.find(k =>
         (k.kanji && k.kanji.toLowerCase() === qLower) ||
         (k.baca && k.baca === qHira) ||
         (k.arti && k.arti.toLowerCase() === qLower)
@@ -133,7 +133,7 @@
     }
 
     if (LOCAL_KANJI && LOCAL_KANJI.length > 0) {
-      const exactKanji = LOCAL_KANJI.find(k => 
+      const exactKanji = LOCAL_KANJI.find(k =>
         (k.kanji && k.kanji.toLowerCase() === qLower) ||
         (k.baca && k.baca === qHira) ||
         (k.arti && k.arti.toLowerCase() === qLower)
@@ -159,7 +159,7 @@
     }
 
     if (LOCAL_BUNPOU && LOCAL_BUNPOU.length > 0) {
-      const matchBunpou = LOCAL_BUNPOU.find(b => 
+      const matchBunpou = LOCAL_BUNPOU.find(b =>
         (b.pola && (b.pola.toLowerCase() === qLower || b.pola.includes(qHira)))
       );
       if (matchBunpou) {
@@ -187,7 +187,7 @@
     else if (qHira.endsWith('る') || qHira.endsWith('た') || qHira.endsWith('て')) stem = qHira.slice(0, -1);
 
     if (stem.length >= 2 && LOCAL_KOTOBA) {
-      const stemKotoba = LOCAL_KOTOBA.find(k => 
+      const stemKotoba = LOCAL_KOTOBA.find(k =>
         (k.baca && k.baca.startsWith(stem)) || (k.kanji && k.kanji.startsWith(stem))
       );
       if (stemKotoba) {
@@ -263,7 +263,7 @@
     }
 
     if (LOCAL_BUNPOU) {
-      const matchBunpouArti = LOCAL_BUNPOU.find(b => 
+      const matchBunpouArti = LOCAL_BUNPOU.find(b =>
         (b.arti && b.arti.toLowerCase().includes(qLower))
       );
       if (matchBunpouArti) {
@@ -291,6 +291,8 @@
 
   const style = document.createElement('style');
   style.textContent = `
+    #modal-kamus.hidden { display: none !important; }
+    #modal-kamus:not(.hidden) { display: flex !important; }
     .kamus-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
     .kamus-scrollbar::-webkit-scrollbar-track { background: transparent; }
     .kamus-scrollbar::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.2); border-radius: 9999px; }
@@ -300,6 +302,7 @@
 
   function pastikanModalKamusAda() {
     if (document.getElementById('modal-kamus')) return;
+    if (!document.body) return;
 
     const modalHtml = `
       <div id="modal-kamus" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
@@ -397,7 +400,7 @@
     window.renderRiwayatKamus();
   }
 
-  window.renderFuriganaKamus = function(text) {
+  window.renderFuriganaKamus = function (text) {
     if (!text) return "";
     let parsed = String(text);
     parsed = parsed.replace(/([一-龯々仝〆〇ヶ]+)\[([^\x00-\x7F]+?)\]/g, '<ruby class="mx-0.5 font-bold">$1<rt class="text-[9px] text-sky-400 font-sans tracking-tight font-normal select-none leading-none">$2</rt></ruby>');
@@ -405,7 +408,7 @@
     return parsed;
   };
 
-  window.putarSuaraKamus = function(text) {
+  window.putarSuaraKamus = function (text) {
     if (!('speechSynthesis' in window)) return;
     window.speechSynthesis.cancel();
     const clean = String(text).replace(/\[.*?\]|\(.*?\)/g, '');
@@ -415,25 +418,50 @@
     window.speechSynthesis.speak(utter);
   };
 
-  window.bukaModalKamus = function() {
+  window.bukaModalKamus = function (queryAwal) {
     pastikanModalKamusAda();
     const modal = document.getElementById('modal-kamus');
     if (modal) {
       modal.classList.remove('hidden');
       const input = document.getElementById('input-kamus-query');
       if (input) {
-        setTimeout(() => input.focus(), 80);
+        if (queryAwal && typeof queryAwal === 'string' && queryAwal.trim().length > 0) {
+          input.value = queryAwal.trim();
+          window.prosesPencarianKamus();
+        } else {
+          input.value = '';
+        }
+        input.focus();
+        input.select();
+        requestAnimationFrame(() => {
+          input.focus();
+          input.select();
+        });
+        setTimeout(() => {
+          input.focus();
+          input.select();
+        }, 50);
       }
       window.renderRiwayatKamus();
     }
   };
 
-  window.tutupModalKamus = function() {
+  window.tutupModalKamus = function () {
     const modal = document.getElementById('modal-kamus');
     if (modal) modal.classList.add('hidden');
   };
 
-  window.jalankanCariCepat = function(kata) {
+  window.toggleModalKamus = function (queryAwal) {
+    pastikanModalKamusAda();
+    const modal = document.getElementById('modal-kamus');
+    if (modal && !modal.classList.contains('hidden')) {
+      window.tutupModalKamus();
+    } else {
+      window.bukaModalKamus(queryAwal);
+    }
+  };
+
+  window.jalankanCariCepat = function (kata) {
     const input = document.getElementById('input-kamus-query');
     if (input) {
       input.value = kata;
@@ -441,7 +469,7 @@
     }
   };
 
-  window.simpanRiwayatKamus = function(query) {
+  window.simpanRiwayatKamus = function (query) {
     if (!query) return;
     let list = JSON.parse(localStorage.getItem('kamus_riwayat_pencarian') || "[]");
     list = list.filter(item => item.toLowerCase() !== query.toLowerCase());
@@ -451,7 +479,7 @@
     window.renderRiwayatKamus();
   };
 
-  window.renderRiwayatKamus = function() {
+  window.renderRiwayatKamus = function () {
     const box = document.getElementById('kamus-riwayat-box');
     const listEl = document.getElementById('kamus-riwayat-list');
 
@@ -471,7 +499,7 @@
     `).join('');
   };
 
-  window.hapusSemuaRiwayatKamus = function() {
+  window.hapusSemuaRiwayatKamus = function () {
     localStorage.removeItem('kamus_riwayat_pencarian');
     window.renderRiwayatKamus();
   };
@@ -525,16 +553,16 @@ Format JSON:
             try {
               localStorage.setItem('kamus_c_' + query.toLowerCase().trim(), JSON.stringify(data));
               HASIL_CACHE.set(query.toLowerCase().trim(), data);
-            } catch (e) {}
+            } catch (e) { }
             return data;
           }
         }
-      } catch (e) {}
+      } catch (e) { }
     }
     throw new Error("Pencarian AI sedang sibuk atau kuota habis. Silakan coba beberapa saat lagi.");
   }
 
-  window.prosesPencarianKamus = async function() {
+  window.prosesPencarianKamus = async function () {
     pastikanModalKamusAda();
     const input = document.getElementById('input-kamus-query');
     const query = input ? input.value.trim() : "";
@@ -670,19 +698,26 @@ Format JSON:
     `;
   }
 
-  window.addEventListener('keydown', function(e) {
-    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-      e.preventDefault();
-      const modal = document.getElementById('modal-kamus');
-      if (modal && !modal.classList.contains('hidden')) {
-        window.tutupModalKamus();
-      } else {
-        window.bukaModalKamus();
+  if (!window._kamusKeydownBound) {
+    window._kamusKeydownBound = true;
+    window.addEventListener('keydown', function (e) {
+      const isCmdOrCtrl = !!(e.metaKey || e.ctrlKey);
+      const isK = (e.key && (e.key === 'k' || e.key === 'K')) || e.code === 'KeyK' || e.keyCode === 75 || e.which === 75;
+      if (isCmdOrCtrl && isK) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        const selectedText = window.getSelection ? window.getSelection().toString().trim() : '';
+        window.toggleModalKamus(selectedText);
+      } else if (e.key === 'Escape') {
+        const modal = document.getElementById('modal-kamus');
+        if (modal && !modal.classList.contains('hidden')) {
+          e.preventDefault();
+          window.tutupModalKamus();
+        }
       }
-    } else if (e.key === 'Escape') {
-      window.tutupModalKamus();
-    }
-  });
+    }, true);
+  }
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', pastikanModalKamusAda);

@@ -1,0 +1,740 @@
+[
+  {
+    "id": "1-1",
+    "bab": 1,
+    "pola": "N1 は N2 です",
+    "rumus": "Kata Benda 1 + は + Kata Benda 2 + です",
+    "arti": "N1 adalah N2. Digunakan untuk menyatakan identitas, nama, kebangsaan, atau profesi.",
+    "contoh": "わたしは 学生[がくせい]です。",
+    "arti_contoh": "Saya adalah seorang siswa."
+  },
+  {
+    "id": "1-2",
+    "bab": 1,
+    "pola": "N1 は N2 じゃ ありません / では ありません",
+    "rumus": "Kata Benda 1 + は + Kata Benda 2 + じゃ ありません",
+    "arti": "N1 bukan N2 (Bentuk negatif sopan).",
+    "contoh": "サントスさんは 先生[せんせい]じゃ ありません。",
+    "arti_contoh": "Tuan Santos bukan seorang guru."
+  },
+  {
+    "id": "1-3",
+    "bab": 1,
+    "pola": "N1 は N2 ですか",
+    "rumus": "Kalimat + か",
+    "arti": "Apakah N1 adalah N2? (Partikel tanya).",
+    "contoh": "ミラーさんは アメリカ人[じん]ですか。",
+    "arti_contoh": "Apakah Tuan Miller orang Amerika?"
+  },
+  {
+    "id": "1-4",
+    "bab": 1,
+    "pola": "N も",
+    "rumus": "Kata Benda + も",
+    "arti": "Juga / pun. Menggantikan partikel は ketika predikatnya sama.",
+    "contoh": "グプタさんも 会社員[かいしゃいん]です。",
+    "arti_contoh": "Tuan Gupta juga seorang karyawan perusahaan."
+  },
+  {
+    "id": "1-5",
+    "bab": 1,
+    "pola": "N1 の N2",
+    "rumus": "Kata Benda 1 + の + Kata Benda 2",
+    "arti": "Kepemilikan atau modifikasi kata benda (N2 milik N1 / N2 afiliasi N1).",
+    "contoh": "これは わたしの 本[ほん]です。",
+    "arti_contoh": "Ini adalah buku saya."
+  },
+  {
+    "id": "2-1",
+    "bab": 2,
+    "pola": "これ / それ / あれ は N です",
+    "rumus": "これ/それ/あれ + は + Kata Benda + です",
+    "arti": "Kata tunjuk benda mandiri: Ini (dekat pembicara), itu (dekat lawan bicara), itu (jauh dari keduanya).",
+    "contoh": "これは 辞書[じしょ]です。",
+    "arti_contoh": "Ini adalah kamus."
+  },
+  {
+    "id": "2-2",
+    "bab": 2,
+    "pola": "この / その / あの N は 〜です",
+    "rumus": "この/その/あの + Kata Benda + は ...",
+    "arti": "Kata tunjuk yang harus diikuti langsung oleh kata benda (Benda ini/itu/itu yang di sana).",
+    "contoh": "この 傘[かさ]は だれの ですか。",
+    "arti_contoh": "Payung ini milik siapa?"
+  },
+  {
+    "id": "2-3",
+    "bab": 2,
+    "pola": "そうです / そうじゃ ありません",
+    "rumus": "はい、そうです / いいえ、そうじゃありません",
+    "arti": "Pernyataan konfirmasi: Benar begitu / Bukan begitu.",
+    "contoh": "それは 手帳[てちょう]ですか。――はい、そうです。",
+    "arti_contoh": "Apakah itu buku agenda? ―― Ya, betul."
+  },
+  {
+    "id": "2-4",
+    "bab": 2,
+    "pola": "〜か、〜か (Pilihan)",
+    "rumus": "Kalimat 1 + か、Kalimat 2 + か",
+    "arti": "Memilih salah satu: Apakah A atau B?",
+    "contoh": "これは 「９」ですか、「７」ですか。",
+    "arti_contoh": "Apakah ini angka '9' atau '7'?"
+  },
+  {
+    "id": "3-1",
+    "bab": 3,
+    "pola": "ここ / そこ / あそこ / どこ",
+    "rumus": "ここ/そこ/あそこ/どこ + は + Tempat + です",
+    "arti": "Kata tunjuk tempat: Di sini, di situ, di sana, di mana.",
+    "contoh": "ここは 教室[きょうしつ]です。",
+    "arti_contoh": "Di sini adalah ruang kelas."
+  },
+  {
+    "id": "3-2",
+    "bab": 3,
+    "pola": "こちら / そちら / あちら / どちら",
+    "rumus": "Bentuk sopan arah/tempat",
+    "arti": "Arah atau penunjukan sopan tempat/pihak/negara/organisasi.",
+    "contoh": "お手洗[てあら]いは どちらですか。",
+    "arti_contoh": "Toilet di sebelah mana?"
+  },
+  {
+    "id": "3-3",
+    "bab": 3,
+    "pola": "N は [Tempat] です",
+    "rumus": "Subjek + は + Tempat + です",
+    "arti": "Menyatakan keberadaan lokasi seseorang atau benda.",
+    "contoh": "事務所[じむしょ]は あそこです。",
+    "arti_contoh": "Kantor ada di sebelah sana."
+  },
+  {
+    "id": "4-1",
+    "bab": 4,
+    "pola": "今[いま] 〜時[じ] 〜分[ふん]です",
+    "rumus": "今 + [Angka]時 + [Angka]分 + です",
+    "arti": "Sekarang jam ... menit ...",
+    "contoh": "今[いま] 四時[よじ]半[はん]です。",
+    "arti_contoh": "Sekarang jam empat lewat tiga puluh menit (setengah lima)."
+  },
+  {
+    "id": "4-2",
+    "bab": 4,
+    "pola": "V-ます / ません / ました / ませんでした",
+    "rumus": "Bentuk dasar kata kerja sopan (Verbal conjugation)",
+    "arti": "Bentuk positif, negatif, lampau, dan negatif-lampau pada kata kerja.",
+    "contoh": "昨日[きのう] 勉強[べんきょう]しました。",
+    "arti_contoh": "Kemarin saya telah belajar."
+  },
+  {
+    "id": "4-3",
+    "bab": 4,
+    "pola": "[Waktu] に V",
+    "rumus": "Waktu spesifik (berangka/hari) + に + Kata Kerja",
+    "arti": "Partikel に untuk menandai waktu spesifik dilakukannya suatu aktivitas.",
+    "contoh": "毎朝[まいあさ] 六[ろく]時[とき]に 起[お]きます。",
+    "arti_contoh": "Setiap pagi saya bangun pada jam enam."
+  },
+  {
+    "id": "4-4",
+    "bab": 4,
+    "pola": "〜から 〜まで",
+    "rumus": "Waktu/Tempat 1 + から + Waktu/Tempat 2 + まで",
+    "arti": "Dari ... sampai / hingga ...",
+    "contoh": "銀行[ぎんこう]は 九時[くじ]から 三時[さんじ]までです。",
+    "arti_contoh": "Bank buka dari jam 9 sampai jam 3."
+  },
+  {
+    "id": "5-1",
+    "bab": 5,
+    "pola": "[Tempat] へ 行[い]きます / 来[き]ます / 帰[かえ]ります",
+    "rumus": "Tempat + へ (dibaca 'e') + Kata Kerja Perpindahan",
+    "arti": "Partikel へ menunjukkan arah tujuan perpindahan.",
+    "contoh": "明日[あした] 京都[きょうと]へ 行[い]きます。",
+    "arti_contoh": "Besok saya pergi ke Kyoto."
+  },
+  {
+    "id": "5-2",
+    "bab": 5,
+    "pola": "どこ[へ]も 行[い]きません",
+    "rumus": "Kata tanya + [Partikel] + も + Negatif",
+    "arti": "Penyangkalan menyeluruh: Tidak pergi ke mana pun.",
+    "contoh": "日曜日[にちようび]は どこへも 行[い]きませんでした。",
+    "arti_contoh": "Pada hari Minggu saya tidak pergi ke mana pun."
+  },
+  {
+    "id": "5-3",
+    "bab": 5,
+    "pola": "[Kendaraan] で 行[い]きます",
+    "rumus": "Kendaraan / Sarana + で + 行きます/来ます/帰ります",
+    "arti": "Partikel で menunjukkan alat transportasi yang digunakan.",
+    "contoh": "電車[でんしゃ]で 会社[かいしゃ]へ 行[い]きます。",
+    "arti_contoh": "Pergi ke kantor naik kereta api."
+  },
+  {
+    "id": "5-4",
+    "bab": 5,
+    "pola": "[Orang/Hewan] と V",
+    "rumus": "Orang + と + Kata Kerja",
+    "arti": "Melakukan kegiatan bersama dengan seseorang.",
+    "contoh": "家族[かぞく]と 日本[にっぽん]へ 来[き]ました。",
+    "arti_contoh": "Saya datang ke Jepang bersama keluarga."
+  },
+  {
+    "id": "6-1",
+    "bab": 6,
+    "pola": "[Objek] を V (Transitif)",
+    "rumus": "Kata Benda + を (dibaca 'o') + Kata Kerja Transitif",
+    "arti": "Partikel を menandai sasaran/objek langsung dari suatu tindakan.",
+    "contoh": "朝[あさ]ご飯[はん]を 食[た]べます。",
+    "arti_contoh": "Makan sarapan pagi."
+  },
+  {
+    "id": "6-2",
+    "bab": 6,
+    "pola": "[Tempat] で V (Aktivitas)",
+    "rumus": "Tempat + で + Kata Kerja",
+    "arti": "Partikel で menandai tempat berlangsungnya suatu kegiatan aktif.",
+    "contoh": "図書館[としょかん]で 本[ほん]を 読[よ]みます。",
+    "arti_contoh": "Membaca buku di perpustakaan."
+  },
+  {
+    "id": "6-3",
+    "bab": 6,
+    "pola": "V-ませんか (Ajakan sopan)",
+    "rumus": "Kata Kerja bentuk -ます ganti -ませんか",
+    "arti": "Mengajak orang lain dengan santun: 'Maukah... bersama?'",
+    "contoh": "一緒[いっしょ]に お茶[ちゃ]を 飲[の]みませんか。",
+    "arti_contoh": "Maukah minum teh bersama-sama?"
+  },
+  {
+    "id": "6-4",
+    "bab": 6,
+    "pola": "V-ましょう (Ajakan proaktif)",
+    "rumus": "Kata Kerja bentuk -ます ganti -ましょう",
+    "arti": "'Ayo kita...' (Menyatakan persetujuan atau mengajak secara proaktif).",
+    "contoh": "ちょっと 休[やす]みましょう。",
+    "arti_contoh": "Ayo kita istirahat sejenak."
+  },
+  {
+    "id": "7-1",
+    "bab": 7,
+    "pola": "[Alat / Bahasa] で V",
+    "rumus": "Alat/Bahasa + で + Kata Kerja",
+    "arti": "Melakukan sesuatu dengan sarana, perkakas, atau bahasa tertentu.",
+    "contoh": "日本語[にほんご]で レポートを 書[か]きます。",
+    "arti_contoh": "Menulis laporan dalam bahasa Jepang."
+  },
+  {
+    "id": "7-2",
+    "bab": 7,
+    "pola": "「Kata/Kalimat」は 〜語[ご]で 何[なん]ですか",
+    "rumus": "Kata + は + Bahasa + で + 何ですか",
+    "arti": "Menanyakan arti suatu kata dalam bahasa lain.",
+    "contoh": "「ありがとう」は 英語[えいご]で 何[なん]ですか。",
+    "arti_contoh": "Apa arti 'arigatou' dalam bahasa Inggris?"
+  },
+  {
+    "id": "7-3",
+    "bab": 7,
+    "pola": "[Orang] に あげます / 貸[か]します / 教[おし]えます",
+    "rumus": "Penerima + に + Benda + を + あげます",
+    "arti": "Memberikan, meminjamkan, atau mengajarkan sesuatu kepada orang lain.",
+    "contoh": "木村[きむら]さんに 花[はな]を あげました。",
+    "arti_contoh": "Saya memberikan bunga kepada Nona Kimura."
+  },
+  {
+    "id": "7-4",
+    "bab": 7,
+    "pola": "[Orang] に もらいます / 借[か]ります / 習[なら]います",
+    "rumus": "Pemberi + に / から + Benda + を + もらいます",
+    "arti": "Menerima, meminjam, atau belajar sesuatu dari orang lain.",
+    "contoh": "田中[たなか]先生[せんせい]に 日本語[にほんご]を 習[なら]いました。",
+    "arti_contoh": "Saya belajar bahasa Jepang dari Guru Tanaka."
+  },
+  {
+    "id": "7-5",
+    "bab": 7,
+    "pola": "もう V-ました / まだです",
+    "rumus": "もう + Kata Kerja Lampau",
+    "arti": "Sudah melakukan sesuatu / Belum dilakukan.",
+    "contoh": "もう 昼[ひる]ご飯[はん]を 食[た]べましたか。――いいえ、まだです。",
+    "arti_contoh": "Apakah sudah makan siang? ―― Belum, belum makan."
+  },
+  {
+    "id": "8-1",
+    "bab": 8,
+    "pola": "Kata Sifat い & Kata Sifat な",
+    "rumus": "N は Adj-い です / N は Adj-な です",
+    "arti": "Menyatakan sifat atau keadaan benda saat ini.",
+    "contoh": "富士山[ふじさん]は 高[たか]いです。桜[さくら]は きれいです。",
+    "arti_contoh": "Gunung Fuji tinggi. Bunga sakura cantik."
+  },
+  {
+    "id": "8-2",
+    "bab": 8,
+    "pola": "Bentuk Negatif Kata Sifat",
+    "rumus": "い-Adj: 〜くないです | な-Adj: 〜じゃ ありません",
+    "arti": "Penyangkalan sifat dalam bentuk sopan.",
+    "contoh": "この 部屋[へや]は 広[ひろ]くないです。静[しず]かじゃ ありません。",
+    "arti_contoh": "Kamar ini tidak luas. Tidak tenang/sunyi."
+  },
+  {
+    "id": "8-3",
+    "bab": 8,
+    "pola": "Adj + N (Modifikasi Benda)",
+    "rumus": "[Adj-い] + N / [Adj-な] + な + N",
+    "arti": "Menerangkan kata benda secara langsung dengan kata sifat.",
+    "contoh": "これは 新[あたら]しい 車[くるま]です。親切[しんせつ]な 人[ひと]です。",
+    "arti_contoh": "Ini adalah mobil baru. Orang yang ramah."
+  },
+  {
+    "id": "8-4",
+    "bab": 8,
+    "pola": "とても / あまり",
+    "rumus": "とても + Positif / あまり + Negatif",
+    "arti": "Sangat ... / Tidak begitu ...",
+    "contoh": "日本[にっぽん]の 食[た]べ物[もの]は とても 美味[おい]しいですが、あまり 安[やす]くないです。",
+    "arti_contoh": "Makanan Jepang sangat lezat, namun tidak begitu murah."
+  },
+  {
+    "id": "9-1",
+    "bab": 9,
+    "pola": "N が 好[す]きです / 嫌[きら]いです / 上手[じょうず]です / 下手[へた]です",
+    "rumus": "Subjek + は + Objek + が + Sifat",
+    "arti": "Menyatakan suka/tidak suka, mahir/tidak pandai terhadap suatu objek.",
+    "contoh": "わたしは イタリア料理[りょうり]が 好[す]きです。",
+    "arti_contoh": "Saya suka masakan Italia."
+  },
+  {
+    "id": "9-2",
+    "bab": 9,
+    "pola": "N が 分[わ]かります / あります",
+    "rumus": "Objek + が + わかります / あります",
+    "arti": "Menyatakan pemahaman (mengerti) atau kepemilikan abstrak/benda mati.",
+    "contoh": "日本語[にほんご]が 少[すこ]し わかります。",
+    "arti_contoh": "Saya sedikit mengerti bahasa Jepang."
+  },
+  {
+    "id": "9-3",
+    "bab": 9,
+    "pola": "[Alasan] から、[Akibat]",
+    "rumus": "Kalimat Alasan + から、Kalimat Utama",
+    "arti": "Menyatakan alasan atau sebab: 'Karena ..., maka ...'",
+    "contoh": "時間[じかん]が ありませんから、タクシーで 行[い]きます。",
+    "arti_contoh": "Karena tidak ada waktu, saya pergi naik taksi."
+  },
+  {
+    "id": "10-1",
+    "bab": 10,
+    "pola": "[Tempat] に N が あります / います",
+    "rumus": "Tempat + に + Benda Mati/Tumbuhan + が あります | Makhluk Hidup + が います",
+    "arti": "Menyatakan keberadaan benda mati (あります) atau makhluk bernyawa (います).",
+    "contoh": "机[つくえ]の 上[うえ]に 本[ほん]が あります。庭[にわ]に 犬[いぬ]が います。",
+    "arti_contoh": "Di atas meja ada buku. Di halaman ada anjing."
+  },
+  {
+    "id": "10-2",
+    "bab": 10,
+    "pola": "N は [Tempat] に あります / います",
+    "rumus": "Benda/Orang + は + Lokasi + に あります/います",
+    "arti": "Menjelaskan di mana letak subjek tertentu.",
+    "contoh": "ミラーさんは 会議室[かいぎしつ]に います。",
+    "arti_contoh": "Tuan Miller ada di ruang rapat."
+  },
+  {
+    "id": "10-3",
+    "bab": 10,
+    "pola": "Kata Posisi (上[うえ] / 下[した] / 前[まえ] / 後[うし]ろ / 中[なか] / 隣[となり] / 近[ちか]く)",
+    "rumus": "N1 の [Posisi] に N2 が あります",
+    "arti": "Menyatakan lokasi detail suatu benda terhadap patokan tertentu.",
+    "contoh": "駅[えき]の 前[まえ]に ポストが あります。",
+    "arti_contoh": "Di depan stasiun ada kotak pos."
+  },
+  {
+    "id": "11-1",
+    "bab": 11,
+    "pola": "Kata Bantu Bilangan (Counter Suffix)",
+    "rumus": "Benda + を + [Bilangan] + Kata Kerja",
+    "arti": "Menyebutkan kuantitas/jumlah benda (つ, 人, 枚, 台, 本, 杯, dll).",
+    "contoh": "りんごを 四[よ]つ 買[か]いました。",
+    "arti_contoh": "Saya membeli empat buah apel."
+  },
+  {
+    "id": "11-2",
+    "bab": 11,
+    "pola": "[Periode] に [Frekuensi] 回[かい] V",
+    "rumus": "Jangka Waktu + に + Jumlah Kali + Kata Kerja",
+    "arti": "Menyatakan frekuensi aktivitas dalam periode tertentu.",
+    "contoh": "一[いち]か月[がつ]に 二回[にかい] 映画[えいが]を 見[み]ます。",
+    "arti_contoh": "Menonton film dua kali dalam sebulan."
+  },
+  {
+    "id": "11-3",
+    "bab": 11,
+    "pola": "どのくらい かかりますか",
+    "rumus": "Waktu/Biaya + が かかります",
+    "arti": "Menanyakan perkiraan lama waktu atau biaya yang dihabiskan.",
+    "contoh": "東京[とうきょう]から 大阪[おおさか]まで 新幹線[しんかんせん]で 二[に]時間[じかん]半[はん] かかります。",
+    "arti_contoh": "Dari Tokyo ke Osaka butuh waktu dua setengah jam dengan Shinkansen."
+  },
+  {
+    "id": "12-1",
+    "bab": 12,
+    "pola": "Bentuk Lampau Kata Sifat & Benda",
+    "rumus": "Adj-い: 〜かったです / 〜くなかったです | Adj-な/N: 〜でした / 〜じゃありませんでした",
+    "arti": "Menyatakan sifat atau kondisi di masa lampau.",
+    "contoh": "昨日[きのう]は とても 暑[あつ]かったです。",
+    "arti_contoh": "Kemarin sangat panas."
+  },
+  {
+    "id": "12-2",
+    "bab": 12,
+    "pola": "N1 は N2 より [Adj] です",
+    "rumus": "N1 + は + N2 + より + Kata Sifat + です",
+    "arti": "Membandingkan dua hal: 'N1 lebih ... daripada N2'.",
+    "contoh": "車[くるま]は 自転車[じてんしゃ]より 速[はや]いです。",
+    "arti_contoh": "Mobil lebih cepat daripada sepeda."
+  },
+  {
+    "id": "12-3",
+    "bab": 12,
+    "pola": "N1 と N2 と どちらが [Adj] ですか",
+    "rumus": "N1 と N2 と どちらが ... ―― N1 の ほうが [Adj] です",
+    "arti": "Menanyakan pilihan komparasi antara dua hal.",
+    "contoh": "肉[にく]と 魚[さかな]と どちらが 好[す]きですか。――魚[さかな]の ほうが 好[す]きです。",
+    "arti_contoh": "Antara daging dan ikan, mana yang lebih kamu sukai? ―― Saya lebih suka ikan."
+  },
+  {
+    "id": "12-4",
+    "bab": 12,
+    "pola": "[Kategori] の 中[なか]で 何[なに]/だれ/どこ/いつ が 一番[いちばん] [Adj] ですか",
+    "rumus": "Lingkup + で + Kata Tanya + が + 一番 (いちばん) + Adj + ですか",
+    "arti": "Menyatakan superlatif (paling / nomor satu) dalam suatu kelompok.",
+    "contoh": "一年[いちねん]で いつが 一番[いちばん] 寒[さむ]いですか。――二月[にがつ]が 一番[いちばん] 寒[さむ]いです。",
+    "arti_contoh": "Kapan waktu paling dingin dalam setahun? ―― Bulan Februari yang paling dingin."
+  },
+  {
+    "id": "13-1",
+    "bab": 13,
+    "pola": "N が 欲[ほ]しいです",
+    "rumus": "Benda + が + 欲しいです (ほしいです)",
+    "arti": "Menyatakan keinginan memiliki suatu barang/benda.",
+    "contoh": "新[あたら]しい パソコンが 欲[ほ]しいです。",
+    "arti_contoh": "Saya ingin komputer/laptop baru."
+  },
+  {
+    "id": "13-2",
+    "bab": 13,
+    "pola": "V-たいです / たくないです",
+    "rumus": "Kata Kerja bentuk -ます ganti -たいです",
+    "arti": "Menyatakan keinginan untuk melakukan suatu kegiatan.",
+    "contoh": "日本[にっぽん]へ 行[い]きたいです。何[なに]も 食[た]べたくないです。",
+    "arti_contoh": "Saya ingin pergi ke Jepang. Saya tidak ingin makan apa pun."
+  },
+  {
+    "id": "13-3",
+    "bab": 13,
+    "pola": "[Tempat] へ [Tujuan: V-stem / N] に 行[い]きます / 来[き]ます",
+    "rumus": "Tempat + へ + V-stem / Kata Benda Aktivitas + に + 行きます",
+    "arti": "Pergi atau datang ke suatu tempat dengan tujuan tertentu.",
+    "contoh": "デパートへ 買[か]い物[もの]に 行[い]きます。",
+    "arti_contoh": "Pergi ke toserba untuk berbelanja."
+  },
+  {
+    "id": "14-1",
+    "bab": 14,
+    "pola": "Perubahan Bentuk Te (V-て)",
+    "rumus": "Gol 1: いちり→って / みびに→んで / き→いて / ぎ→いで / し→して | Gol 2: 〜て | Gol 3: きて / して",
+    "arti": "Konjugasi dasar Te-form untuk permohonan, penghubung, status berkelanjutan, dll.",
+    "contoh": "本[ほん]を 読[よ]んで、ノートに 書[か]きます。",
+    "arti_contoh": "Membaca buku, lalu mencatat di buku tulis."
+  },
+  {
+    "id": "14-2",
+    "bab": 14,
+    "pola": "V-てください",
+    "rumus": "Kata Kerja Bentuk -て + ください",
+    "arti": "Meminta atau memohon tolong dengan sopan: 'Tolong lakukan...'",
+    "contoh": "名前[なまえ]を 書[か]いて ください。",
+    "arti_contoh": "Tolong tulis nama Anda."
+  },
+  {
+    "id": "14-3",
+    "bab": 14,
+    "pola": "V-ましょうか (Menawarkan bantuan)",
+    "rumus": "Kata Kerja bentuk -ます ganti -ましょうか",
+    "arti": "Menawarkan bantuan secara proaktif: 'Bagaimana kalau saya bantu...?'",
+    "contoh": "荷物[にもつ]を 持[も]ちましょうか。",
+    "arti_contoh": "Bagaimana kalau saya bawakan barang bawaan Anda?"
+  },
+  {
+    "id": "14-4",
+    "bab": 14,
+    "pola": "今[いま] V-ています (Sedang berlangsung)",
+    "rumus": "Kata Kerja Bentuk -て + います",
+    "arti": "Menyatakan aktivitas yang sedang berlangsung saat ini.",
+    "contoh": "今[いま] 雨[あめ]が 降[ふ]っています。",
+    "arti_contoh": "Sekarang hujan sedang turun."
+  },
+  {
+    "id": "15-1",
+    "bab": 15,
+    "pola": "V-ても いいですか (Meminta Izin)",
+    "rumus": "Kata Kerja Bentuk -て + も いいですか",
+    "arti": "Meminta izin: 'Bolehkah saya melakukan...?'",
+    "contoh": "写真[しゃしん]を 撮[と]っても いいですか。",
+    "arti_contoh": "Bolehkah saya mengambil foto?"
+  },
+  {
+    "id": "15-2",
+    "bab": 15,
+    "pola": "V-ては いけません (Larangan)",
+    "rumus": "Kata Kerja Bentuk -て + は いけません",
+    "arti": "Menyatakan larangan tegas: 'Tidak boleh / dilarang melakukan...'",
+    "contoh": "ここで タバコを 吸[す]っては いけません。",
+    "arti_contoh": "Dilarang merokok di sini."
+  },
+  {
+    "id": "15-3",
+    "bab": 15,
+    "pola": "V-ています (Status Berkelanjutan / Kebiasaan)",
+    "rumus": "Kata Kerja Bentuk -て + います (Menikah, tinggal, mengenal, bekerja)",
+    "arti": "Menyatakan status kondisi akibat perbuatan masa lalu yang masih berlanjut.",
+    "contoh": "東京[とうきょう]に 住[す]んでいます。IMCで 働[はたら]いています。",
+    "arti_contoh": "Saya tinggal di Tokyo. Saya bekerja di IMC."
+  },
+  {
+    "id": "16-1",
+    "bab": 16,
+    "pola": "V-て、V-て、〜 (Rangkaian Aksi)",
+    "rumus": "V1-て、V2-て、V3-ます",
+    "arti": "Menghubungkan beberapa tindakan berurutan secara kronologis.",
+    "contoh": "朝[あさ] ジョギングをして、シャワーを 浴[あ]びて、会社[かいしゃ]へ 行[い]きます。",
+    "arti_contoh": "Di pagi hari saya joging, mandi shower, lalu pergi ke kantor."
+  },
+  {
+    "id": "16-2",
+    "bab": 16,
+    "pola": "V-てから、〜",
+    "rumus": "Kata Kerja 1 Bentuk -て + から、Kata Kerja 2",
+    "arti": "Setelah selesai melakukan aksi 1, baru kemudian melakukan aksi 2.",
+    "contoh": "仕事[しごと]が 終[お]わってから、飲[の]みに行[い]きます。",
+    "arti_contoh": "Setelah pekerjaan selesai, saya pergi minum."
+  },
+  {
+    "id": "16-3",
+    "bab": 16,
+    "pola": "N1 は [Ciri Fisik] が [Adj] です",
+    "rumus": "Subjek + は + Anggota Badan/Ciri + が + Kata Sifat",
+    "arti": "Menyebutkan karakteristik atau ciri fisik seseorang/sesuatu.",
+    "contoh": "マリアさんは 目[め]が 大[おお]きいです。",
+    "arti_contoh": "Maria matanya besar."
+  },
+  {
+    "id": "17-1",
+    "bab": 17,
+    "pola": "Perubahan Bentuk Nai (V-ない)",
+    "rumus": "Gol 1: baris 'i' ganti baris 'a' + ない (u→わ) | Gol 2: buang る + ない | Gol 3: こない / しない",
+    "arti": "Konjugasi bentuk negatif kasual/dasar.",
+    "contoh": "書[か]かない、食[た]べない、来[こ]ない、しない。",
+    "arti_contoh": "Tidak menulis, tidak makan, tidak datang, tidak melakukan."
+  },
+  {
+    "id": "17-2",
+    "bab": 17,
+    "pola": "V-ないで ください",
+    "rumus": "Kata Kerja Bentuk -ない + で ください",
+    "arti": "Permohonan untuk tidak melakukan sesuatu: 'Tolong jangan...'",
+    "contoh": "ここで 写真[しゃしん]を 撮[と]らないで ください。",
+    "arti_contoh": "Tolong jangan mengambil foto di sini."
+  },
+  {
+    "id": "17-3",
+    "bab": 17,
+    "pola": "V-なければ なりません",
+    "rumus": "Kata Kerja Bentuk -ない (buang 'い') + ければ なりません",
+    "arti": "Menyatakan kewajiban / keharusan: 'Harus / wajib melakukan...'",
+    "contoh": "毎日[まいにち] 薬[くすり]を 飲[の]まなければ なりません。",
+    "arti_contoh": "Setiap hari harus meminum obat."
+  },
+  {
+    "id": "17-4",
+    "bab": 17,
+    "pola": "V-なくても いいです",
+    "rumus": "Kata Kerja Bentuk -ない (buang 'い') + くても いいです",
+    "arti": "Menyatakan ketidakharusan: 'Tidak perlu / boleh tidak...'",
+    "contoh": "明日[あした] 来[こ]なくても いいですよ。",
+    "arti_contoh": "Besok Anda tidak perlu datang kok."
+  },
+  {
+    "id": "18-1",
+    "bab": 18,
+    "pola": "V-辞書形[じしょけい] ことが できます (Kemampuan)",
+    "rumus": "Kata Kerja Bentuk Kamus (Jishokei) + ことが できます",
+    "arti": "Menyatakan kemampuan atau kemungkinan: 'Bisa / dapat melakukan...'",
+    "contoh": "ミラーさんは 漢字[かんじ]を 読[よ]む ことが できます。",
+    "arti_contoh": "Tuan Miller bisa membaca kanji."
+  },
+  {
+    "id": "18-2",
+    "bab": 18,
+    "pola": "私[わたし]の 趣味[しゅみ]は [V-辞書形[じしょけい] / N] ことです",
+    "rumus": "趣味 + は + Kata Kerja Bentuk Kamus + ことです",
+    "arti": "Menjelaskan hobi atau kegemaran.",
+    "contoh": "私[わたし]の 趣味[しゅみ]は 映画[えいが]を 見[み]る ことです。",
+    "arti_contoh": "Hobi saya adalah menonton film."
+  },
+  {
+    "id": "18-3",
+    "bab": 18,
+    "pola": "[V-辞書形[じしょけい] / N の / Waktu] 前[まえ]に、〜",
+    "rumus": "V-kamus + 前に | N + の 前に",
+    "arti": "Sebelum melakukan suatu kegiatan atau batas waktu tertentu.",
+    "contoh": "寝[ね]る 前[まえ]に、本[ほん]を 読[よ]みます。",
+    "arti_contoh": "Sebelum tidur, saya membaca buku."
+  },
+  {
+    "id": "19-1",
+    "bab": 19,
+    "pola": "V-た ことが あります (Pengalaman)",
+    "rumus": "Kata Kerja Bentuk -た (Lampau kasual) + ことが あります",
+    "arti": "Menyatakan pengalaman di masa lampau: 'Pernah melakukan...'",
+    "contoh": "富士山[ふじさん]に 登[のぼ]った ことが あります。",
+    "arti_contoh": "Saya pernah mendaki Gunung Fuji."
+  },
+  {
+    "id": "19-2",
+    "bab": 19,
+    "pola": "V-たり、V-たり します",
+    "rumus": "V1-たり、V2-たり します",
+    "arti": "Menyebutkan contoh beberapa kegiatan non-kronologis (antara lain... dan...)",
+    "contoh": "日曜日[にちようび]は 掃除[そうじ]したり、買[か]い物[もの]を したり します。",
+    "arti_contoh": "Pada hari Minggu saya antara lain membersihkan kamar, berbelanja, dan sebagainya."
+  },
+  {
+    "id": "19-3",
+    "bab": 19,
+    "pola": "[Adj / N] に なります / くなります",
+    "rumus": "Adj-い: 〜くなります | Adj-な/N: 〜に なります",
+    "arti": "Menyatakan perubahan keadaan atau status: 'Menjadi...'",
+    "contoh": "暖[あたた]かく なりました。二十歳[はたち]に なります。",
+    "arti_contoh": "Cuaca telah menjadi hangat. Akan menjadi genap berusia 20 tahun."
+  },
+  {
+    "id": "20-1",
+    "bab": 20,
+    "pola": "Bentuk Biasa (普通形[ふつうけい] - Futsuukei)",
+    "rumus": "Bentuk Kasual dalam percakapan akrab (tanpa です/ます)",
+    "arti": "Percakapan informal antara teman dekat atau anggota keluarga.",
+    "contoh": "明日[あした] 暇[ひま]？ ――うん、暇[ひま]だよ。",
+    "arti_contoh": "Besok luang? ―― Iya, senggang kok."
+  },
+  {
+    "id": "20-2",
+    "bab": 20,
+    "pola": "Aturan Bentuk Biasa Percakapan",
+    "rumus": "Partikel か sering dihilangkan dengan intonasi naik; kata benda/sifat-な positif dihilangkan だ-nya",
+    "arti": "Intonasi dan nuansa khas bahasa sehari-hari.",
+    "contoh": "コーヒーを 飲[の]む？ ――うん、飲[の]む。／ううん、飲[の]まない。",
+    "arti_contoh": "Mau minum kopi? ―― Ya, mau. / Nggak, nggak mau."
+  },
+  {
+    "id": "21-1",
+    "bab": 21,
+    "pola": "[Bentuk Biasa] と 思[おも]います (Pendapat)",
+    "rumus": "Kalimat Bentuk Kasual + と 思います (とおもいます)",
+    "arti": "Menyampaikan dugaan atau pendapat pribadi: 'Saya pikir / menurut saya...'",
+    "contoh": "明日[あした] 雨[あめ]が 降[ふ]る と 思[おも]います。",
+    "arti_contoh": "Saya kira besok hujan akan turun."
+  },
+  {
+    "id": "21-2",
+    "bab": 21,
+    "pola": "「Kalimat」/ [Bentuk Biasa] と 言[い]いました",
+    "rumus": "Kutipan langsung atau tidak langsung + と 言いました",
+    "arti": "Menyampaikan apa yang dikatakan orang lain: 'Berkata bahwa...'",
+    "contoh": "ミラーさんは 「来週[らいしゅう] 東京[とうきょう]へ 行[い]く」と 言[い]いました。",
+    "arti_contoh": "Tuan Miller berkata bahwa minggu depan ia akan pergi ke Tokyo."
+  },
+  {
+    "id": "21-3",
+    "bab": 21,
+    "pola": "〜でしょう？ (Konfirmasi)",
+    "rumus": "Bentuk Biasa + でしょう",
+    "arti": "Meminta persetujuan lawan bicara: '...kan? / bukankah demikian?'",
+    "contoh": "明日[あした]の パーティーに 行[い]くでしょう？",
+    "arti_contoh": "Kamu akan pergi ke pesta besok, kan?"
+  },
+  {
+    "id": "22-1",
+    "bab": 22,
+    "pola": "Modifikasi Kata Benda (Anak Kalimat)",
+    "rumus": "[Anak Kalimat Bentuk Biasa (Futsuukei)] + Kata Benda Inti",
+    "arti": "Menerangkan kata benda dengan klausa kata kerja.",
+    "contoh": "これは 私[わたし]が 昨日[きのう] 撮[と]った 写真[しゃしん]です。",
+    "arti_contoh": "Ini adalah foto yang saya ambil kemarin."
+  },
+  {
+    "id": "22-2",
+    "bab": 22,
+    "pola": "Kata Benda Terkualifikasi dalam Pola Kalimat",
+    "rumus": "[V-biasa + N] は ... / [V-biasa + N] を ...",
+    "arti": "Menggunakan frasa benda bermodifikasi sebagai subjek atau objek.",
+    "contoh": "あそこで 新聞[しんぶん]を 読[よ]んでいる 人[ひと]は だれですか。",
+    "arti_contoh": "Orang yang sedang membaca koran di sana itu siapa?"
+  },
+  {
+    "id": "23-1",
+    "bab": 23,
+    "pola": "[V-辞書形[じしょけい] / V-た / V-ない] とき、〜",
+    "rumus": "Kata Kerja/Kata Sifat + とき、...",
+    "arti": "Menyatakan waktu/keadaan saat suatu aksi terjadi: 'Ketika / saat...'",
+    "contoh": "道[みち]を 渡[わた]る とき、車[くるま]に 注意[ちゅうい]します。",
+    "arti_contoh": "Ketika menyeberang jalan, berhati-hatilah terhadap mobil."
+  },
+  {
+    "id": "23-2",
+    "bab": 23,
+    "pola": "[V-辞書形[じしょけい]] と、〜 (Sebab Akibat Pasti)",
+    "rumus": "Kata Kerja Bentuk Kamus + と、Kalimat Hasil Otomatis",
+    "arti": "Menyatakan hubungan kondisi alami atau mekanisme mesin: 'Begitu... maka pasti...'",
+    "contoh": "この ボタンを 押[お]す と、お釣[つ]りが 出[で]ます。",
+    "arti_contoh": "Jika menekan tombol ini, uang kembalian akan keluar."
+  },
+  {
+    "id": "24-1",
+    "bab": 24,
+    "pola": "[人[ひと]] が [私[わたし]] に N を くれます",
+    "rumus": "Pemberi + が + 私/Keluarga + に + Benda + を くれます",
+    "arti": "Seseorang memberikan sesuatu kepada saya atau keluarga saya.",
+    "contoh": "佐藤[さとう]さんが 私[わたし]に お菓子[かし]を くれました。",
+    "arti_contoh": "Nona Sato memberikan kue kepada saya."
+  },
+  {
+    "id": "24-2",
+    "bab": 24,
+    "pola": "V-て あげます / もらいます / くれます",
+    "rumus": "V-て + あげます (kebaikan untuk orang) / もらいます (minta bantuan) / くれます (diberi kebaikan)",
+    "arti": "Ungkapan saling membantu atau menerima budi baik berupa perbuatan.",
+    "contoh": "山田[やまだ]さんは 私[わたし]の 荷物[にもつ]を 持[も]って くれました。",
+    "arti_contoh": "Tuan Yamada membawakan barang bawaan saya."
+  },
+  {
+    "id": "25-1",
+    "bab": 25,
+    "pola": "[Bentuk -たら]、〜 (Pengandaian / Kondisi Waktu)",
+    "rumus": "V-たら / Adj-い かったら / Adj-な/N だったら、...",
+    "arti": "'Kalau / Jika / Setelah...'. Menyatakan syarat atau kepastian waktu.",
+    "contoh": "雨[あめ]が 降[ふ]ったら、出[で]かけません。",
+    "arti_contoh": "Kalau hujan turun, saya tidak akan bepergian."
+  },
+  {
+    "id": "25-2",
+    "bab": 25,
+    "pola": "[Bentuk -ても]、〜 (Meskipun / Walaupun)",
+    "rumus": "V-ても / Adj-い くても / Adj-な/N でも、...",
+    "arti": "Menyatakan perlawanan kondisi: 'Meskipun / walaupun...'",
+    "contoh": "高[たか]くても、この カメラを 買[か]いたいです。",
+    "arti_contoh": "Meskipun mahal, saya tetap ingin membeli kamera ini."
+  }
+]

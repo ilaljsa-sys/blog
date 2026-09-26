@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keahlian • I'lal Jalalludin Syahputra</title>
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%231b2838'/><path d='M28 35 L34 50 L20 48 Z' fill='%2300e5ff'/><path d='M72 35 L66 50 L80 48 Z' fill='%2300e5ff'/><circle cx='50' cy='56' r='26' fill='%2300e5ff'/><circle cx='50' cy='56' r='23' fill='%231b2838'/><ellipse cx='40' cy='54' rx='4' ry='6' fill='%2300e5ff'/><ellipse cx='60' cy='54' rx='4' ry='6' fill='%2300e5ff'/><polygon points='50,63 46,67 54,67' fill='%2300e5ff'/></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { neutralDark: '#080d1a', cardDark: '#0f172a', borderDark: '#1e293b' }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body class="bg-neutralDark text-slate-100 min-h-screen flex flex-col justify-between selection:bg-sky-500 selection:text-white bg-dots-dark text-base antialiased pb-28 md:pb-0" id="body-root">
+
+  <nav class="sticky top-0 z-50 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 bg-white/85 dark:bg-neutralDark/85 px-6 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-3 sm:gap-5">
+        <a href="/" class="text-3xl font-black tracking-tight text-slate-900 dark:text-white">
+          ilal<span class="text-sky-500 font-black">jsa</span>
+        </a>
+        <button onclick="bukaModalAnon()" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-sky-50 dark:bg-sky-950/60 border border-sky-200 dark:border-sky-800 hover:border-sky-500 text-xs font-bold text-sky-600 dark:text-sky-400 transition shadow-sm active:scale-95">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+          <span>Pesan Rahasia</span>
+        </button>
+      </div>
+
+      <div class="relative hidden md:flex items-center bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 p-1.5 rounded-2xl shadow-inner mr-4">
+        <a href="/" class="tab-item px-5 py-2.5 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-white transition">Beranda</a>
+        <a href="/tentang/" class="tab-item px-5 py-2.5 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-white transition">Tentang</a>
+        <a href="/keahlian/" class="tab-item px-5 py-2.5 rounded-xl text-sm font-bold text-sky-600 dark:text-sky-400 transition">Keahlian</a>
+        <a href="/catatan/" class="tab-item px-5 py-2.5 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-white transition">Catatan</a>
+        <a href="/eksplor/" class="tab-item px-5 py-2.5 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-white transition">Eksplor</a>
+      </div>
+
+      <div class="flex items-center gap-2 sm:gap-3">
+        <button onclick="window.bukaModalKamus()" class="h-11 px-3 sm:px-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-sky-500 text-xs font-bold text-slate-700 dark:text-slate-200 hover:text-sky-400 transition shadow-sm active:scale-95 flex items-center justify-center gap-2 group" title="Kamus Pintar">
+          <svg class="w-4 h-4 text-sky-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+          <span class="hidden sm:inline font-bold whitespace-nowrap">Kamus Pintar</span>
+        </button>
+
+        <button onclick="toggleTheme()" class="w-11 h-11 rounded-2xl flex items-center justify-center bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm shrink-0">
+          <svg id="theme-sun" class="w-5 h-5 hidden dark:block text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+          <svg id="theme-moon" class="w-5 h-5 block dark:hidden text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-7xl mx-auto w-full px-6 flex-grow py-8 sm:py-10 space-y-8 sm:space-y-10">
+    <div id="sec-skills" class="space-y-8 sm:space-y-10"></div>
+  </main>
+
+  <div id="modal-anon" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-cardDark border border-slate-200 dark:border-slate-800 rounded-3xl w-full max-w-md p-6 sm:p-7 space-y-5 shadow-2xl">
+      <div class="flex items-center justify-between">
+        <h3 class="text-base font-black text-slate-900 dark:text-white">Kirim Pesan Anonim</h3>
+        <button onclick="tutupModalAnon()" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center font-bold">✕</button>
+      </div>
+      <textarea id="anon-pesan-input" rows="4" placeholder="Tulis pesan rahasia di sini..." class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 text-sm focus:outline-none focus:border-sky-500 resize-none text-slate-900 dark:text-white"></textarea>
+      <div id="anon-status" class="text-xs font-bold text-center hidden"></div>
+      <button onclick="kirimPesanAnonim()" class="w-full py-3.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-white font-extrabold text-sm transition">Kirim Pesan Rahasia</button>
+    </div>
+  </div>
+
+  <div id="bottom-navbar-mobile" class="fixed bottom-4 left-4 right-4 z-50 md:hidden transition-all duration-300">
+    <div class="bg-white/90 dark:bg-cardDark/95 backdrop-blur-xl border border-slate-200 dark:border-slate-800 rounded-3xl shadow-2xl px-3 py-2 flex items-center justify-between">
+      <a href="/" class="flex flex-col items-center justify-center w-14 py-1 text-slate-500 dark:text-slate-400 hover:text-sky-500 transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+        <span class="text-[10px] font-bold mt-0.5">Beranda</span>
+      </a>
+      <a href="/catatan/" class="flex flex-col items-center justify-center w-14 py-1 text-slate-500 dark:text-slate-400 hover:text-sky-500 transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
+        <span class="text-[10px] font-bold mt-0.5">Catatan</span>
+      </a>
+      <a href="/eksplor/" class="relative -top-5 w-14 h-14 rounded-full bg-sky-500 hover:bg-sky-400 text-white flex items-center justify-center shadow-lg shadow-sky-500/40 transition active:scale-95" title="Eksplor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
+      </a>
+      <a href="/tentang/" class="flex flex-col items-center justify-center w-14 py-1 text-slate-500 dark:text-slate-400 hover:text-sky-500 transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+        <span class="text-[10px] font-bold mt-0.5">Tentang</span>
+      </a>
+      <a href="/keahlian/" class="flex flex-col items-center justify-center w-14 py-1 text-sky-500 transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+        <span class="text-[10px] font-bold mt-0.5">Keahlian</span>
+      </a>
+    </div>
+  </div>
+
+  <footer class="border-t border-slate-200 dark:border-slate-900 py-8 px-6 text-center text-xs text-slate-400">
+    <p>© 2026 I'lal Jalalludin Syahputra</p>
+  </footer>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../kamus.js"></script>
+  <script src="../script.js"></script>
+  <script src="./keahlian.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      renderKeahlian();
+    });
+  </script>
+</body>
+</html>

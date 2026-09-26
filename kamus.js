@@ -559,7 +559,7 @@ Format JSON:
         }
       } catch (e) { }
     }
-    throw new Error("Pencarian AI sedang sibuk atau kuota habis. Silakan coba beberapa saat lagi.");
+    throw new Error("Pencarian sedang sibuk atau koneksi internet mu seng bosok.");
   }
 
   window.prosesPencarianKamus = async function () {

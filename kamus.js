@@ -559,10 +559,10 @@ Format JSON:
         }
       } catch (e) { }
     }
-    throw new Error("Pencarian AI sedang sibuk atau kuota habis. Silakan coba beberapa saat lagi.");
+    throw new Error("Prikso koneksi internet mu cok, Coba di refresh lagi.");
   }
 
-  window.prosesPencarianKamus = async function () {
+  window.prosesPencarianKamus = async function () 
     pastikanModalKamusAda();
     const input = document.getElementById('input-kamus-query');
     const query = input ? input.value.trim() : "";

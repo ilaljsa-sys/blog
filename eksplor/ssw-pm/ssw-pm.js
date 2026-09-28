@@ -768,7 +768,7 @@
         <div onclick="window.toggleFlipCardSSW()" class="p-6 lg:p-10 rounded-3xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center relative shadow-md min-h-[190px] flex flex-col justify-center items-center cursor-pointer select-none group transition hover:border-sky-500/40">
           <span class="absolute top-3.5 left-4 text-xs font-mono font-bold text-slate-500">#${curr.id}</span>
 
-          <button onclick="event.stopPropagation(); window.bicaraJepangSSW('${curr.kanji.replace(/'/g, "\\'")}')" class="absolute top-3.5 right-4 p-1.5 rounded-lg bg-sky-500/10 text-sky-400 hover:bg-sky-500 hover:text-white transition" title="Dengarkan Suara (P)">
+          <button onclick="event.stopPropagation(); window.bicaraJepangSSW('${curr.kanji.replace(/'/g, "\\'")}')" class="absolute top-3.5 right-4 p-1.5 rounded-lg bg-sky-500/10 text-sky-400 hover:bg-sky-500 hover:text-white transition" title="Dengarkan Suara">
             ${ICONS.sound}
           </button>
 
@@ -788,38 +788,31 @@
         </div>
 
         <div class="grid grid-cols-4 gap-1.5 mt-2.5">
-          <button onclick="window.toggleSensorKotobaSSW('kanji')" class="h-9 rounded-xl border text-[11px] font-bold transition flex items-center justify-center gap-1 ${k.sembunyiKanji ? 'bg-sky-500 border-sky-500 text-white' : 'border-slate-200 dark:border-slate-800 text-slate-400'}">
+          <button onclick="window.toggleSensorKotobaSSW('kanji')" class="h-9 rounded-xl border text-[11px] font-bold transition flex items-center justify-center ${k.sembunyiKanji ? 'bg-sky-500 border-sky-500 text-white' : 'border-slate-200 dark:border-slate-800 text-slate-400'}">
             <span>Kanji</span>
-            <span class="text-[9px] opacity-70 font-mono">1</span>
           </button>
-          <button onclick="window.toggleSensorKotobaSSW('baca')" class="h-9 rounded-xl border text-[11px] font-bold transition flex items-center justify-center gap-1 ${k.sembunyiBaca ? 'bg-sky-500 border-sky-500 text-white' : 'border-slate-200 dark:border-slate-800 text-slate-400'}">
+          <button onclick="window.toggleSensorKotobaSSW('baca')" class="h-9 rounded-xl border text-[11px] font-bold transition flex items-center justify-center ${k.sembunyiBaca ? 'bg-sky-500 border-sky-500 text-white' : 'border-slate-200 dark:border-slate-800 text-slate-400'}">
             <span>Furigana</span>
-            <span class="text-[9px] opacity-70 font-mono">2</span>
           </button>
-          <button onclick="window.toggleSensorKotobaSSW('arti')" class="h-9 rounded-xl border text-[11px] font-bold transition flex items-center justify-center gap-1 ${k.sembunyiArti ? 'bg-sky-500 border-sky-500 text-white' : 'border-slate-200 dark:border-slate-800 text-slate-400'}">
+          <button onclick="window.toggleSensorKotobaSSW('arti')" class="h-9 rounded-xl border text-[11px] font-bold transition flex items-center justify-center ${k.sembunyiArti ? 'bg-sky-500 border-sky-500 text-white' : 'border-slate-200 dark:border-slate-800 text-slate-400'}">
             <span>Arti</span>
-            <span class="text-[9px] opacity-70 font-mono">3</span>
           </button>
-          <button onclick="window.bukaModalContohSSW(window.stateSSW.kotoba.daftarFlashcard[window.stateSSW.kotoba.indeksFlashcard])" class="h-9 px-1.5 rounded-xl border border-sky-500/30 text-sky-400 text-[10px] font-bold transition hover:bg-sky-500/20 flex items-center justify-center gap-1">
+          <button onclick="window.bukaModalContohSSW(window.stateSSW.kotoba.daftarFlashcard[window.stateSSW.kotoba.indeksFlashcard])" class="h-9 px-2 rounded-xl border border-sky-500/30 text-sky-400 text-[11px] font-bold transition hover:bg-sky-500/20 flex items-center justify-center gap-1.5">
             ${ICONS.chat}
-            <span class="truncate">Contoh</span>
-            <span class="text-[9px] opacity-70 font-mono">C</span>
+            <span>Contoh</span>
           </button>
         </div>
 
         <div class="flex items-center gap-2 pt-3">
-          <button onclick="window.gantiKartuFlashcardSSW(-1)" title="Kartu Sebelumnya (← / A)" class="p-3 rounded-2xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold transition text-xs shadow-sm flex items-center gap-1">
-            <span>◀</span>
-            <span class="text-[10px] text-slate-400 font-mono">A</span>
+          <button onclick="window.gantiKartuFlashcardSSW(-1)" class="w-12 h-11 rounded-2xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold transition shadow-sm flex items-center justify-center shrink-0">
+            ${ICONS.arrowLeft}
           </button>
-          <button onclick="window.toggleTandaHafalSSW(${curr.id})" title="Tandai Hafal (M)" class="flex-1 py-3 rounded-2xl font-bold text-xs transition shadow-sm flex items-center justify-center gap-1.5 ${isHafal ? 'bg-sky-500 hover:bg-sky-600 text-white' : 'bg-slate-100 dark:bg-slate-800 hover:bg-sky-500 hover:text-white text-slate-700 dark:text-slate-300'}">
+          <button onclick="window.toggleTandaHafalSSW(${curr.id})" class="flex-1 h-11 rounded-2xl font-bold text-xs transition shadow-sm flex items-center justify-center gap-1.5 ${isHafal ? 'bg-sky-500 hover:bg-sky-600 text-white' : 'bg-slate-100 dark:bg-slate-800 hover:bg-sky-500 hover:text-white text-slate-700 dark:text-slate-300'}">
             ${ICONS.check}
             <span>${isHafal ? 'Sudah Ditandai Hafal' : 'Tandai Hafal'}</span>
-            <span class="text-[10px] opacity-60 font-mono">M</span>
           </button>
-          <button onclick="window.gantiKartuFlashcardSSW(1)" title="Kartu Berikutnya (→ / D)" class="p-3 rounded-2xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold transition text-xs shadow-sm flex items-center gap-1">
-            <span class="text-[10px] text-slate-400 font-mono">D</span>
-            <span>▶</span>
+          <button onclick="window.gantiKartuFlashcardSSW(1)" class="w-12 h-11 rounded-2xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold transition shadow-sm flex items-center justify-center shrink-0">
+            ${ICONS.arrowRight}
           </button>
         </div>
       </div>
@@ -1208,7 +1201,7 @@
                   onclick="window.kembaliSoalSSW()" 
                   ${lat.indeksSoal === 0 ? 'disabled' : ''} 
                   class="w-8 h-8 rounded-lg ${lat.indeksSoal === 0 ? 'bg-sky-500/5 text-sky-400/25 border border-sky-500/10 cursor-not-allowed' : 'bg-sky-500/10 hover:bg-sky-500 text-sky-400 hover:text-white border border-sky-500/20 active:scale-95 transition'} flex items-center justify-center shrink-0"
-                  title="Kembali ke soal sebelumnya (←)"
+                  title="Kembali ke soal sebelumnya"
                 >
                   ${ICONS.arrowLeft}
                 </button>
@@ -1217,7 +1210,7 @@
                   type="button" 
                   onclick="window.skipSoalSSW()" 
                   class="w-8 h-8 rounded-lg bg-sky-500/10 hover:bg-sky-500 text-sky-400 hover:text-white border border-sky-500/20 flex items-center justify-center shrink-0 transition active:scale-95"
-                  title="Lewati soal ini (→)"
+                  title="Lewati soal ini"
                 >
                   ${ICONS.arrowRight}
                 </button>

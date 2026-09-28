@@ -240,6 +240,34 @@ window.bukaModalShortcut = function() {
 
           <div class="space-y-2">
             <h4 class="font-black text-sky-500 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
+              <span>Modul SSW Pengolahan Makanan</span>
+            </h4>
+            <div class="grid grid-cols-1 gap-1.5 bg-slate-50 dark:bg-slate-900/60 p-3 rounded-2xl border border-slate-200 dark:border-slate-800/80">
+              <div class="flex items-center justify-between py-1">
+                <span class="text-slate-600 dark:text-slate-300 font-medium">Navigasi Menu Hub SSW</span>
+                <div class="flex items-center gap-1"><kbd class="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 font-mono font-bold text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700">1</kbd> <span class="text-slate-400 text-[10px]">Materi</span> <kbd class="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 font-mono font-bold text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700">2</kbd> <span class="text-slate-400 text-[10px]">Kotoba</span> <kbd class="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 font-mono font-bold text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700">3</kbd> <span class="text-slate-400 text-[10px]">Soal</span> <kbd class="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 font-mono font-bold text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700">4</kbd> <span class="text-slate-400 text-[10px]">Rumus</span></div>
+              </div>
+              <div class="flex items-center justify-between py-1 border-t border-slate-200/60 dark:border-slate-800/60">
+                <span class="text-slate-600 dark:text-slate-300 font-medium">Pindah Bab Materi SSW</span>
+                <div class="flex items-center gap-1"><kbd class="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 font-mono font-bold text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700">1 - 5</kbd> <span class="text-slate-400 text-[10px]">atau</span> <kbd class="px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-800 font-mono font-bold text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700">←</kbd> <kbd class="px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-800 font-mono font-bold text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700">→</kbd></div>
+              </div>
+              <div class="flex items-center justify-between py-1 border-t border-slate-200/60 dark:border-slate-800/60">
+                <span class="text-slate-600 dark:text-slate-300 font-medium">Simulasi Soal SSW (Opsi & Lanjut)</span>
+                <div class="flex items-center gap-1"><kbd class="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 font-mono font-bold text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700">A-D</kbd> <span class="text-slate-400 text-[10px]">/</span> <kbd class="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 font-mono font-bold text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700">1-4</kbd> <span class="text-slate-400 text-[10px]">•</span> <kbd class="px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-800 font-mono font-bold text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700">Enter</kbd></div>
+              </div>
+              <div class="flex items-center justify-between py-1 border-t border-slate-200/60 dark:border-slate-800/60">
+                <span class="text-slate-600 dark:text-slate-300 font-medium">Flashcard Kotoba (Balik / Contoh / Hafal)</span>
+                <div class="flex items-center gap-1"><kbd class="px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-800 font-mono font-bold text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700">Spasi</kbd> <span class="text-slate-400 text-[10px]">Flip</span> <kbd class="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 font-mono font-bold text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700">C</kbd> <span class="text-slate-400 text-[10px]">Contoh</span> <kbd class="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 font-mono font-bold text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700">M</kbd> <span class="text-slate-400 text-[10px]">Hafal</span></div>
+              </div>
+              <div class="flex items-center justify-between py-1 border-t border-slate-200/60 dark:border-slate-800/60">
+                <span class="text-slate-600 dark:text-slate-300 font-medium">Audio TTS Suara Jepang</span>
+                <kbd class="px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-800 font-mono font-bold text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700">P</kbd>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <h4 class="font-black text-sky-500 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
               <span>Umum & Navigasi</span>
             </h4>
             <div class="grid grid-cols-1 gap-1.5 bg-slate-50 dark:bg-slate-900/60 p-3 rounded-2xl border border-slate-200 dark:border-slate-800/80">

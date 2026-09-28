@@ -1,0 +1,650 @@
+{
+  "metadata": {
+    "judul_ujian": "Ujian Evaluasi Keterampilan Pengolahan Makanan Tokutei Ginou 1",
+    "nama_jepang": "飲食料品[いんしょくりょうひん]製造業[せいぞうぎょう]特定[とくてい]技能[ぎのう]1号[ごう]技能[ぎのう]測定[そくてい]試験[しけん]",
+    "edisi_kurikulum": "Revisi Resmi OTAFF Terlengkap (Bilingual Standar Pabrik)",
+    "bahasa_pengantar": "Bilingual: Bahasa Jepang Berfurigana + Terjemahan Indonesia",
+    "total_bab": 5,
+    "standar_kelulusan": "Minimal 60% skor total ujian teori dan praktek"
+  },
+  "ringkasan_struktur_bab": [
+    {
+      "bab": 1,
+      "topik": "Pengetahuan Dasar Kebersihan Umum dan Sanitasi Makanan (一般衛生管理の基本知識)",
+      "sub_topik_count": 3
+    },
+    {
+      "bab": 2,
+      "topik": "Manajemen Kebersihan Berdasarkan Prinsip HACCP (HACCPに基づく衛生管理)",
+      "sub_topik_count": 4
+    },
+    {
+      "bab": 3,
+      "topik": "Proses Produksi, Pengendalian Mutu, dan Peralatan Kerja (製造工程と品質管理)",
+      "sub_topik_count": 4
+    },
+    {
+      "bab": 4,
+      "topik": "Keselamatan dan Kesehatan Kerja / K3 Industri Makanan (労働安全衛生)",
+      "sub_topik_count": 3
+    },
+    {
+      "bab": 5,
+      "topik": "Sikap Kerja, Etika Industri Jepang, dan Manajemen Operasional (作業姿勢と職場のルール)",
+      "sub_topik_count": 3
+    }
+  ],
+  "kurikulum_detail": [
+    {
+      "bab": 1,
+      "judul_bab": "Pengetahuan Dasar Kebersihan Umum dan Sanitasi (一般[いっぱん]衛生[えいせい]管理[かんり]の基本[きほん]知識[ちしき])",
+      "deskripsi": "Pemahaman tentang keracunan makanan, mikroorganisme patogen, higienitas diri, dan prosedur pembersihan tempat kerja.",
+      "sub_bab": [
+        {
+          "id_sub": "1.1",
+          "judul_sub": "Tiga Prinsip Utama Pencegahan Keracunan Makanan (食中毒[しょくちゅうどく]予防[よぼう]の3原則[げんそく])",
+          "konten_utama": [
+            {
+              "prinsip_jp": "つけない（付着[ふちゃく]させない）",
+              "prinsip_id": "Prinsip 1: Jangan Menempelkan / Mengkontaminasi",
+              "penjelasan_jp": "食中毒[しょくちゅうどく]菌[きん]やウイルスを食品[しょくひん]につけないこと。",
+              "penjelasan_id": "Mencegah perpindahan bakteri dan virus berbahaya ke bahan makanan.",
+              "tindakan_kunci": [
+                {
+                  "jp": "石[せっ]けんを使[つか]って正[ただ]しく手洗[てあら]いをする。",
+                  "id": "Mencuci tangan dengan benar memakai sabun antiseptik."
+                },
+                {
+                  "jp": "生[なま]の食材[しょくざい]と加熱[かねつ]済[ず]みの食材[しょくざい]で、まな板[いた]や包丁[ほうちょう]を分[わ]ける。",
+                  "id": "Memisahkan talenan dan pisau untuk bahan mentah dan bahan matang."
+                },
+                {
+                  "jp": "清潔[せいけつ]な作業服[さぎょうふく]や手袋[てぶくろ]を着用[ちゃくよう]する。",
+                  "id": "Mengenakan pakaian kerja bersih dan sarung tangan steril."
+                }
+              ]
+            },
+            {
+              "prinsip_jp": "増[ふ]やさない（増殖[ぞうしょく]させない）",
+              "prinsip_id": "Prinsip 2: Jangan Memperbanyak (Mencegah Perkembangbiakan)",
+              "penjelasan_jp": "食品[しょくひん]についた食中毒[しょくちゅうどく]菌[きん]を増殖[ぞうしょく]させないこと。",
+              "penjelasan_id": "Menghambat perkembangbiakan mikroorganisme pada makanan dengan kontrol suhu.",
+              "tindakan_kunci": [
+                {
+                  "jp": "冷蔵庫[れいぞうこ]は10℃以下[いか]、冷凍庫[れいとうこ]は-15℃以下[いか]で保管[ほかん]する。",
+                  "id": "Menjaga suhu kulkas di bawah 10°C dan freezer di bawah -15°C."
+                },
+                {
+                  "jp": "食材[しょくざい]を室温[しつおん]（危険[きけん]温度[おんど]帯[たい] 10〜60℃）に長[なが]く放置[ほうち]しない。",
+                  "id": "Jangan membiarkan bahan makanan berada pada suhu ruang bahaya (10°C - 60°C)."
+                },
+                {
+                  "jp": "加熱[かねつ]後[ご]の食品[しょくひん]は速[すみ]やかに冷却[れいきゃく]する。",
+                  "id": "Segera mendinginkan makanan setelah selesai dipanaskan."
+                }
+              ]
+            },
+            {
+              "prinsip_jp": "やっつける（殺菌[さっきん]する）",
+              "prinsip_id": "Prinsip 3: Binasakan / Membunuh Kuman",
+              "penjelasan_jp": "食品[しょくひん]や器具[きぐ]についた食中毒[しょくちゅうどく]菌[きん]やウイルスをやっつけること。",
+              "penjelasan_id": "Mematikan kuman dan virus melalui pemanasan dan disinfeksi yang memadai.",
+              "tindakan_kunci": [
+                {
+                  "jp": "食品[しょくひん]の中心部[ちゅうしんぶ]を75℃以上[いじょう]で1分間[いっぷんかん]以上[いじょう]加熱[かねつ]する。",
+                  "id": "Pemanasan standar: Bagian tengah minimal 75°C selama lebih dari 1 menit."
+                },
+                {
+                  "jp": "ノロウイルス対策[たいさく]では、中心部[ちゅうしんぶ]を85〜90℃で90秒間[きゅうじゅうびょうかん]以上[いじょう]加熱[かねつ]する。",
+                  "id": "Pemanasan khusus Norovirus: Suhu inti 85°C - 90°C selama minimal 90 detik."
+                },
+                {
+                  "jp": "器具[きぐ]は次亜塩素酸[じあえんそさん]ナトリウムやアルコール、熱湯[ねっとう]で確実に殺菌[さっきん]する。",
+                  "id": "Mensterilkan peralatan kerja dengan natrium hipoklorit, alkohol, atau air panas."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id_sub": "1.2",
+          "judul_sub": "Jenis-Jenis Bakteri dan Virus Penyebab Keracunan Makanan (病原[びょうげん]微生物[びせいぶつ]の分類[ぶんるい])",
+          "klasifikasi": [
+            {
+              "kategori": "Bakteri Tipe Infeksi (感染型[かんせんがた]細菌[さいきん])",
+              "bakteri": [
+                {
+                  "nama": "サルモネラ属菌[ぞくきん] (Salmonella)",
+                  "sumber_jp": "鶏肉[とりにく]、生卵[なまたまご]",
+                  "sumber_id": "Daging ayam, telur mentah",
+                  "gejala_jp": "腹痛[ふくつう]、下痢[げり]、発熱[はつねつ]",
+                  "gejala_id": "Sakit perut, diare, demam tinggi",
+                  "sifat_jp": "熱[ねつ]に弱[よわ]く、十分[じゅうぶん]な加熱[かねつ]（75℃1分間[いっぷんかん]）で死滅[しめつ]する。",
+                  "sifat_id": "Lemah terhadap panas, mati dengan pemanasan standar 75℃ 1 menit."
+                },
+                {
+                  "nama": "腸炎[ちょうえん]ビブリオ (Vibrio parahaemolyticus)",
+                  "sumber_jp": "生[なま]の魚介類[ぎょかいるい]（刺身[さしみ]、寿司[すし]）",
+                  "sumber_id": "Hasil laut mentah (ikan laut, sashimi, sushi)",
+                  "gejala_jp": "激[はげ]しい腹痛[ふくつう]、水様性[すいようせい]下痢[げり]",
+                  "gejala_id": "Sakit perut hebat, diare berair akut",
+                  "sifat_jp": "塩分[えんぶん]を好[この]むが、真水[まみず]（水道水[すいどうすい]）や熱[ねつ]に極[きわ]めて弱[よわ]い。",
+                  "sifat_id": "Menyukai garam, tetapi sangat lemah terhadap air tawar kran dan panas."
+                },
+                {
+                  "nama": "カンピロバクター (Campylobacter)",
+                  "sumber_jp": "生[なま]または加熱[かねつ]不足[ぶそく]の鶏肉[とりにく]、汚染[おせん]された水[みず]",
+                  "sumber_id": "Daging ayam mentah/kurang matang, air minum terkontaminasi",
+                  "gejala_jp": "下痢[げり]、腹痛[ふくつう]、発熱[はつねつ]、血便[けつべん]",
+                  "gejala_id": "Diare berdarah, sakit perut, demam",
+                  "sifat_jp": "少量[しょうりょう]の菌[きん]数[すう]でも発症[はっしょう]する。",
+                  "sifat_id": "Dapat memicu infeksi bahkan dalam jumlah bakteri yang sangat sedikit."
+                }
+              ]
+            },
+            {
+              "kategori": "Bakteri Tipe Toksin & Spora (毒素型[どくそがた]・芽胞[がほう]細菌[さいきん])",
+              "bakteri": [
+                {
+                  "nama": "黄色[おうしょく]ブドウ球菌[きゅうきん] (Staphylococcus aureus)",
+                  "sumber_jp": "人[ひと]の手指[しゅし]の傷口[きずぐち]、おでき、鼻[はな]の粘膜[ねんまく]",
+                  "sumber_id": "Luka gores di jari manusia, bisul, rongga hidung",
+                  "gejala_jp": "激[はげ]しい吐[は]き気[け]、嘔吐[おうと]、腹痛[ふくつう]",
+                  "gejala_id": "Mual hebat, muntah akut, kram perut",
+                  "sifat_jp": "菌[きん]が作[つく]る毒素[どくそ]（エンテロトキシン）は熱[ねつ]に強[つよ]く、加熱[かねつ]しても壊[こわ]れない。",
+                  "sifat_id": "Toksin yang diproduksi tahan panas; tidak rusak meskipun dimasak kembali."
+                },
+                {
+                  "nama": "腸管[ちょうかん]出血性[しゅっけつせい]大腸菌[だいちょうきん]（O157等）",
+                  "sumber_jp": "牛[うし]の肉[にく]、内臓[ないぞう]、汚染[おせん]された生野菜[なまやさい]",
+                  "sumber_id": "Daging sapi, jeroan sapi, sayuran segar tercemar",
+                  "gejala_jp": "激[はげ]しい腹痛[ふくつう]、血便[けつべん]、HUS（溶血性[ようけつせい]尿毒症[にょうどくしょう]症候群[しょうこうぐん]）",
+                  "gejala_id": "Sakit perut luar biasa, tinja berdarah segar, gagal ginjal akut (HUS)",
+                  "sifat_jp": "強力[きょうりょく]なベロ毒素[どくそ]を出[だ]す。75℃1分[いっぷん]の加熱[かねつ]で死滅[しめつ]する。",
+                  "sifat_id": "Memproduksi racun verotoksin ganas; mati pada pemanasan 75°C 1 menit."
+                },
+                {
+                  "nama": "ウェルシュ菌[きん] (Clostridium perfringens)",
+                  "sumber_jp": "カレー、シチュー、大量[たいりょう]調理[ちょうり]された肉料理[にくりょうり]",
+                  "sumber_id": "Kari, sup kaldu, masakan daging dalam panci besar",
+                  "gejala_jp": "腹痛[ふくつう]、下痢[げり]",
+                  "gejala_id": "Sakit perut, diare berulang",
+                  "sifat_jp": "熱[ねつ]に強[つよ]い芽胞[がほう]を作[つく]るため、調理[ちょうり]後[ご]は小分[こわ]けにして急速[きゅうそく]冷却[れいきゃく]する。",
+                  "sifat_id": "Membentuk spora tahan panas; wajib dibagi porsi kecil dan didinginkan cepat."
+                }
+              ]
+            },
+            {
+              "kategori": "Virus Makanan (食品[しょくひん]媒介[ばいかい]ウイルス)",
+              "bakteri": [
+                {
+                  "nama": "ノロウイルス (Norovirus)",
+                  "sumber_jp": "生[なま]のカキ（二枚貝[にまいがい]）、感染者[かんせんしゃ]の手指[しゅし]や便[べん]・吐瀉物[としゃぶつ]",
+                  "sumber_id": "Tiram mentah (kerang bivalvia), jari/feses/muntahan orang yang terinfeksi",
+                  "gejala_jp": "激[はげ]しい嘔吐[おうと]、吐[は]き気[け]、下痢[げり]、腹痛[ふくつう]",
+                  "gejala_id": "Muntah mendadak berulang, mual, diare, demam ringan",
+                  "sifat_jp": "アルコール消毒[しょうどく]が効[き]きにくいため、次亜塩素酸[じあえんそさん]ナトリウムや85〜90℃90秒[びょう]以上[いじょう]の加熱[かねつ]が必要[ひつよう]。",
+                  "sifat_id": "Resisten alkohol; harus disanitasi natrium hipoklorit atau dipanaskan 85-90℃ selama 90 detik."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id_sub": "1.3",
+          "judul_sub": "Kebersihan Diri dan Prosedur Mencuci Tangan (身[み]だしなみと手洗[てあら]い手順[てじゅん])",
+          "aturan_pakaian_kerja": [
+            {
+              "jp": "清潔[せいけつ]な作業服[さぎょうふく]・帽子[ぼうし]・マスク・作業[さぎょう]靴[ぐつ]を正[ただ]しく着用[ちゃくよう]する。",
+              "id": "Mengenakan pakaian kerja, topi, masker, dan sepatu kerja bersih secara benar."
+            },
+            {
+              "jp": "髪の毛[かみのけ]が帽子[ぼうし]から出[で]ないよう、ネットインナーをしっかり被[かぶ]る。",
+              "id": "Memakai inner hairnet agar tidak ada rambut yang keluar dari topi."
+            },
+            {
+              "jp": "時計[とけい]、指輪[ゆびわ]、ネックレスなどの装飾品[そうしょくひん]は必[かなら]ず外[はず]す。",
+              "id": "Wajib melepas jam tangan, cincin, kalung, dan perhiasan sebelum bekerja."
+            },
+            {
+              "jp": "爪[つめ]を短[みじか]く切[き]り、マニキュアや付[つ]け爪[づめ]は禁止[きんし]する。",
+              "id": "Kuku harus dipotong pendek rapi, dilarang cat kuku atau kuku palsu."
+            },
+            {
+              "jp": "入室[にゅうしつ]前[まえ]に粘着[ねんちゃく]ローラーとエアシャワーで毛髪[もうはつ]・埃[ほこり]を除去[じょきょ]する。",
+              "id": "Gunakan roller perekat dan air shower sebelum masuk ruang produksi."
+            }
+          ],
+          "prosedur_cuci_tangan_7_langkah": [
+            {
+              "langkah": "Langkah 1",
+              "jp": "流水[りゅうすい]で手[て]を濡[ぬ]らし、石[せっ]けん液[えき]を泡立[あわだ]てる。",
+              "id": "Basahi tangan dengan air mengalir dan buat busa sabun cair."
+            },
+            {
+              "langkah": "Langkah 2",
+              "jp": "手[て]のひらを強[つよ]く擦[す]り合[あ]わせる。",
+              "id": "Gosok kedua telapak tangan dengan kuat."
+            },
+            {
+              "langkah": "Langkah 3",
+              "jp": "手[て]の甲[こう]を伸[の]ばすようにもみ洗[あら]いする。",
+              "id": "Gosok punggung tangan secara bergantian."
+            },
+            {
+              "langkah": "Langkah 4",
+              "jp": "指先[ゆびさき]や爪[つめ]の間[あいだ]を爪[つめ]ブラシ等[とう]で丁寧[ていねい]に洗[あら]う。",
+              "id": "Bersihkan ujung jari dan sela kuku dengan teliti."
+            },
+            {
+              "langkah": "Langkah 5",
+              "jp": "指[ゆび]の間[あいだ]（指の股）を組[く]み合[あ]わせて擦[す]る。",
+              "id": "Jalin jari-jemari dan gosok sela-sela antar jari."
+            },
+            {
+              "langkah": "Langkah 6",
+              "jp": "親指[おやゆび]を反対[はんたい]の手[て]で包[つつ]み、ねじり洗[あら]いする。",
+              "id": "Genggam dan putar ibu jari secara menyeluruh."
+            },
+            {
+              "langkah": "Langkah 7",
+              "jp": "手首[てくび]まで洗[あら]い、すすいでペーパータオルで拭[ふ]き、アルコール消毒[しょうどく]する。",
+              "id": "Cuci pergelangan tangan, bilas, lap paper towel, semprot alkohol 70%."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bab": 2,
+      "judul_bab": "Manajemen Kebersihan Berdasarkan Prinsip HACCP (HACCPに基[もと]づく衛生[えいせい]管理[かんり])",
+      "deskripsi": "Sistem manajemen pencegahan bahaya dari penerimaan bahan mentah hingga pengiriman produk jadi.",
+      "sub_bab": [
+        {
+          "id_sub": "2.1",
+          "judul_sub": "Pengertian dan Manfaat Konsep HACCP (HACCPの概要[がいよう]と特徴[とくちょう])",
+          "definisi": {
+            "jp": "HACCPとは、原料[げんりょう]の受入[うけいれ]から最終[さいしゅう]製品[せいひん]の出荷[しゅっか]に至[いた]る全[ぜん]工程[こうてい]で、危害[きがい]要因[よういん]を分析[ぶんせき]し、重要[じゅうよう]な工程[こうてい]（CCP）を連続[れんぞく]的[てき]に監視[かんし]・記録[きろく]する衛生[えいせい]管理[かんり]手法[しゅほう]です。",
+            "id": "HACCP adalah metode manajemen kebersihan yang menganalisis potensi bahaya di seluruh proses dari penerimaan bahan hingga pengiriman, serta memantau dan mencatat titik kendali kritis (CCP) secara terus-menerus."
+          },
+          "perbedaan_sistem": {
+            "konvensional": {
+              "judul": "Sistem Konvensional (従来の衛生管理)",
+              "jp": "最終[さいしゅう]製品[せいひん]の一部[いちぶ]を抜[ぬ]き取[と]り検査[けんさ]する方式[ほうしき]。汚染[おせん]された製品[せいひん]が出荷[しゅっか]されるリスクが残[のこ]る。",
+              "id": "Pemeriksaan acak (sampling) pada produk jadi di akhir lini. Masih berisiko meloloskan produk cacat ke pasar."
+            },
+            "sistem_haccp": {
+              "judul": "Sistem Terpadu HACCP (HACCPシステム)",
+              "jp": "全[ぜん]工程[こうてい]で危害[きがい]の発生[はっせい]を予測[よそく]し、重要[じゅうよう]管理[かんり]点[てん]で未然[みぜん]に防[ふせ]ぐ連続[れんぞく]監視[かんし]システム。",
+              "id": "Mencegah bahaya sebelum terjadi melalui pengawasan terus-menerus di titik kendali kritis pada setiap tahap produksi."
+            }
+          }
+        },
+        {
+          "id_sub": "2.2",
+          "judul_sub": "Tiga Jenis Bahaya Keamanan Makanan (3つの危害[きがい]要因[よういん] / ハザード)",
+          "jenis_bahaya": [
+            {
+              "tipe": "Bahaya Biologis (生物的[せいぶつてき]危害[きがい]要因[よういん])",
+              "jp": "病原[びょうげん]微生物[びせいぶつ]（サルモネラ菌[きん]、黄色[おうしょく]ブドウ球菌[きゅうきん]、O157、ノロウイルスなど）。",
+              "id": "Mikroorganisme patogen (Salmonella, Staph aureus, E. coli O157, Norovirus, dll)."
+            },
+            {
+              "tipe": "Bahaya Kimia (化学的[かがくてき]危害[きがい]要因[よういん])",
+              "jp": "洗剤[せんざい]・消毒[しょうどく]剤[ざい]の残留[ざんりゅう]、残留[ざんりゅう]農薬[のうやく]、機械[きかい]の潤滑[じゅんかつ]油[ゆ]、アレルゲン物質[ぶっしつ]の混入[こんにゅう]。",
+              "id": "Sisa residu deterjen/disinfektan, pestisida, pelumas oli mesin, dan alergen."
+            },
+            {
+              "tipe": "Bahaya Fisik (物理的[ぶつりてき]危害[きがい]要因[よういん])",
+              "jp": "金属[きんぞく]片[へん]、ガラス破片[はへん]、硬質[こうしつ]プラスチック、針[はり]、毛髪[もうはつ]、虫[むし]などの異物[いぶつ]混入[こんにゅう]。",
+              "id": "Serpihan logam, pecahan kaca, plastik keras, jarum, rambut, dan serangga."
+            }
+          ]
+        },
+        {
+          "id_sub": "2.3",
+          "judul_sub": "Pengelompokan Proses Produksi Makanan (製造[せいぞう]工程[こうてい]のグループ分類[ぶんるい])",
+          "kelompok_proses": [
+            {
+              "grup": "Kelompok 1: Non-Pemanasan (第1グループ：非加熱[ひかねつ])",
+              "deskripsi_jp": "原材料[げんざいりょう]を受[う]け入[い]れ、加熱[かねつ]せずにそのまま冷却[れいきゃく]・調製[ちょうせい]・包装[ほうそう]する工程[こうてい]。",
+              "deskripsi_id": "Bahan baku diterima dan diolah tanpa melalui proses pemanasan pembunuhan kuman.",
+              "contoh": "Salad sayur, sashimi, potongan buah segar, makanan dingin.",
+              "fokus_jp": "交差[こうさ]汚染[おせん]の防止[ぼうし]と徹底[てってい]した温度[おんど]管理[かんり]（10℃以下[いか]）。",
+              "fokus_id": "Pencegahan kontaminasi silang dan kontrol suhu dingin ketat (≤10°C)."
+            },
+            {
+              "grup": "Kelompok 2: Pemanasan lalu Didinginkan (第2グループ：加熱[かねつ]後[ご]冷却[れいきゃく])",
+              "deskripsi_jp": "加熱[かねつ]殺菌[さっきん]を行[おこな]った後[のち]、急速[きゅうそく]に冷却[れいきゃく]して包装[ほうそう]する工程[こうてい]。",
+              "deskripsi_id": "Proses pemanasan sterilisasi lalu didinginkan secara cepat sebelum dikemas.",
+              "contoh": "Sup kemasan dingin, produk daging olahan, pasta saus.",
+              "fokus_jp": "中心[ちゅうしん]温度[おんど]75℃1分[いっぷん]の加熱[かねつ]と、危険[きけん]温度[おんど]帯[たい]の速[すみ]やかな通過[つうか]。",
+              "fokus_id": "Pemanasan suhu inti 75℃ 1 menit dan percepatan melewati zona suhu bahaya."
+            },
+            {
+              "grup": "Kelompok 3: Pemanasan dan Penjagaan Panas (第3グループ：加熱[かねつ]保温[ほおん])",
+              "deskripsi_jp": "加熱[かねつ]調理[ちょうり]した後[のち]、高温[こうおん]状態[じょうたい]を維持[いじ]して提供[ていきょう]する工程[こうてい]。",
+              "deskripsi_id": "Proses pemanasan yang diikuti dengan penahanan pada suhu panas konstan.",
+              "contoh": "Sup panas di warmer, kari panas, bento hangat.",
+              "fokus_jp": "菌[きん]の増殖[ぞうしょく]を防[ふせ]ぐため、保温[ほおん]温度[おんど]を60℃以上[いじょう]に保[たも]つこと。",
+              "fokus_id": "Menjaga suhu penahanan tetap di atas 60°C untuk mencegah pertumbuhan spora."
+            }
+          ]
+        },
+        {
+          "id_sub": "2.4",
+          "judul_sub": "Prinsip Kunci HACCP: Batas Kritis, Pemantauan, dan Tindakan Perbaikan",
+          "elemen_kunci": [
+            {
+              "istilah": "重要[じゅうよう]管理[かんり]点[てん]（CCP / Critical Control Point）",
+              "jp": "食中毒[しょくちゅうどく]などの危害[きがい]を防[ふせ]ぐために、絶対[ぜったい]に管理[かんり]しなければならない最[もっと]も重要[じゅうよう]な工程[こうてい]（加熱[かねつ]、金属[きんぞく]検出[けんしゅつ]など）。",
+              "id": "Tahap krusial yang wajib dikendalikan untuk menghilangkan bahaya (contoh: pemanasan inti, detektor logam)."
+            },
+            {
+              "istilah": "管理[かんり]基準[きじゅん]（CL / Critical Limit）",
+              "jp": "CCPが安全[あんぜん]に管理[かんり]されているかを判断[はんだん]するための許容[きょよう]限界[げんかい]値[ち]（例[れい]：中心[ちゅうしん]温度[おんど]75℃以上[いじょう]で1分間[いっぷんかん]以上[いじょう]）。",
+              "id": "Batas toleransi keselamatan pada CCP (contoh: suhu bagian tengah ≥75°C selama ≥1 menit)."
+            },
+            {
+              "istilah": "モニタリング（監視[かんし]）と記録[きろく]",
+              "jp": "CLが守[まも]られているかを定期的[ていきてき]・連続的[れんぞくてき]に測定[そくてい]し、その数値[すうち]を正確[せいかく]に記録[きろく]する。",
+              "id": "Memantau secara kontinu pemenuhan kriteria batas kritis dan mendokumentasikan hasilnya."
+            },
+            {
+              "istilah": "改善[かいぜん]措置[そち]（是正[ぜせい]措置[そち]）",
+              "jp": "CLを外[はず]れた異常[いじょう]が発生[はっせい]した際[さい]に、製品[せいひん]を隔離[かくり]し、原因[げんいん]を究明[きゅうめい]して元[もと]に戻[もど]す手順[てじゅん]。",
+              "id": "Langkah korektif ketika batas kritis dilanggar: isolasi produk dan perbaiki penyebabnya."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bab": 3,
+      "judul_bab": "Pengetahuan Dasar Proses Produksi, Pengendalian Mutu, dan Peralatan (製造[せいぞう]工程[こうてい]と品質[ひんしつ]管理[かんり])",
+      "deskripsi": "Manajemen suhu operasional, pencegahan benda asing, penanganan bahan alergen, dan sanitasi pabrik.",
+      "sub_bab": [
+        {
+          "id_sub": "3.1",
+          "judul_sub": "Manajemen Suhu dan Zona Suhu Bahaya (危険[きけん]温度[おんど]帯[たい]と温度[おんど]管理[かんり])",
+          "rentang_suhu": {
+            "zona_suhu_bahaya": {
+              "judul": "Zona Suhu Bahaya (危険温度帯)",
+              "jp": "10℃〜60℃（特[とく]に30℃〜40℃は食中毒[しょくちゅうどく]菌[きん]が最[もっと]も活発[かっぱつ]に増殖[ぞうしょく]する温度[おんど]）。",
+              "id": "Rentang 10°C - 60°C (terutama 30°C - 40°C adalah suhu paling subur bagi bakteri untuk berkembang biak)."
+            },
+            "standar_chilling": {
+              "judul": "Standar Pendinginan (冷蔵保管)",
+              "jp": "冷蔵庫[れいぞうこ]は10℃以下[いか]（生鮮[せいせん]魚介類[ぎょかいるい]や食肉[しょくにく]は4℃以下[いか]が望[のぞ]ましい）。",
+              "id": "Lemari pendingin wajib di bawah 10°C (daging dan ikan segar dianjurkan di bawah 4°C)."
+            },
+            "pembekuan_makanan": {
+              "judul": "Penyimpanan Beku (冷凍保管)",
+              "jp": "冷凍庫[れいとうこ]は-15℃以下[いか]で厳格[げんかく]に維持[いじ]する（菌[きん]の増殖[ぞうしょく]は止[と]まるが死滅[しめつ]はしない）。",
+              "id": "Freezer wajib dijaga di bawah -15°C (perkembangbiakan bakteri terhenti, namun bakteri tidak mati)."
+            }
+          }
+        },
+        {
+          "id_sub": "3.2",
+          "judul_sub": "Pencegahan Kontaminasi Silang dan Benda Asing (二次[にじ]汚染[おせん]・異物[いぶつ]混入[こんにゅう]防止[ぼうし])",
+          "tindakan_pencegahan": [
+            {
+              "aspek": "Pemisahan Jalur Bersih dan Kotor (清浄度[せいじょうど]の区分[くぶん])",
+              "jp": "汚染[おせん]作業[さぎょう]区域[くいき]（原料[げんりょう]処理[しょり]）と清潔[せいけつ]作業[さぎょう]区域[くいき]（加熱[かねつ]後[ご]包装[ほうそう]）を明確[めいかく]に区切[くぎ]る。",
+              "id": "Memisahkan area kerja terkontaminasi (penanganan bahan mentah) dan area bersih (pengemasan produk matang)."
+            },
+            {
+              "aspek": "Deteksi Logam dan Sinar-X (金属[きんぞく]検出[けんしゅつ]機[き]・X線[せん]検査[けんさ])",
+              "jp": "製品[せいひん]に混入[こんにゅう]した微細[びさい]な金属[きんぞく]片[へん]や骨[ほね]・硬質[こうしつ]物を検出[けんしゅつ]機[き]で自動[じどう]排除[はいじょ]する。",
+              "id": "Mendeteksi dan menyingkirkan serpihan logam, tulang, atau benda padat lain menggunakan mesin detektor."
+            },
+            {
+              "aspek": "Pengendalian Serangga dan Hama (防虫[ぼうちゅう]・防鼠[ぼうそ])",
+              "jp": "工場[こうじょう]の扉[とびら]を開[あ]け放[ぱな]しにせず、捕虫[ほちゅう]灯[とう]やシートを定期的[ていきてき]に点検[てんけん]する。",
+              "id": "Pintu pabrik tidak boleh dibiarkan terbuka; periksa perangkap serangga dan tikus secara berkala."
+            }
+          ]
+        },
+        {
+          "id_sub": "3.3",
+          "judul_sub": "Penanganan Bahan Alergen (特定[とくてい]原材料[げんざいりょう]アレルゲン管理[かんり])",
+          "tujuh_bahan_alergen_wajib_label": [
+            {
+              "nama": "えび (Udang)",
+              "kanji": "海老[えび]"
+            },
+            {
+              "nama": "かに (Kepiting)",
+              "kanji": "蟹[かに]"
+            },
+            {
+              "nama": "小麦 (Gandum / Terigu)",
+              "kanji": "小麦[こむぎ]"
+            },
+            {
+              "nama": "そば (Soba / Gandum Hitam)",
+              "kanji": "蕎麦[そば]"
+            },
+            {
+              "nama": "卵 (Telur)",
+              "kanji": "卵[たまご]"
+            },
+            {
+              "nama": "乳 (Susu / Produk Susu)",
+              "kanji": "乳[にゅう]"
+            },
+            {
+              "nama": "落花生 / ピーナッツ (Kacang Tanah)",
+              "kanji": "落花生[らっかせい]"
+            },
+            {
+              "nama": "くるみ (Walnut - Wajib Baru)",
+              "kanji": "胡桃[くるみ]"
+            }
+          ],
+          "aturan_manajemen": {
+            "jp": "アレルゲンを含[ふく]む製品[せいひん]を製造[せいぞう]した後は、専用[せんよう]器具[きぐ]の洗浄[せんじょう]を徹底[てってい]し、他[ほか]の製品[せいひん]への微量[びりょう]混入[こんにゅう]（コンタミネーション）を完全[かんぜん]に防[ふせ]ぐ。",
+            "id": "Setelah memproduksi produk yang mengandung alergen, bersihkan mesin dan peralatan khusus secara menyeluruh demi mencegah kontaminasi silang ke produk non-alergen."
+          }
+        },
+        {
+          "id_sub": "3.4",
+          "judul_sub": "Sanitasi dan Disinfeksi Peralatan Pabrik (器具[きぐ]の洗浄[せんじょう]と消毒[しょうどく])",
+          "metode_pembersihan": [
+            {
+              "nama": "Pembersihan Otomatis Pipa (CIP / 定置[ていち]洗浄[せんじょう])",
+              "jp": "配管[はいかん]やタンクを分解[ぶんかい]せず、内部[ないぶ]に洗浄[せんじょう]液[えき]と殺菌[さっきん]水[すい]を循環[じゅんかん]させて洗[あら]う。",
+              "id": "Membersihkan jalur pipa dan tangki dengan mengalirkan cairan pembersih tanpa membongkar mesin."
+            },
+            {
+              "nama": "Disinfeksi Klorin (次亜塩素酸[じあえんそさん]ナトリウム希釈[きしゃく])",
+              "jp": "生野菜[なまやさい]の殺菌[さっきん]や作業台[さぎょうだい]の消毒[しょうどく]には、100〜200ppmに希釈[きしゃく]した次亜塩素酸[じあえんそさん]ナトリウム液[えき]を使用[しよう]する。",
+              "id": "Gunakan larutan natrium hipoklorit 100-200 ppm untuk sterilisasi sayuran segar dan meja kerja."
+            },
+            {
+              "nama": "Disinfeksi Alkohol (アルコール製剤[せいざい]噴霧[ふんむ])",
+              "jp": "水分[すいぶん]を拭[ふ]き取[と]った清潔[せいけつ]な器具[きぐ]や手指[しゅし]に噴霧[ふんむ]して蒸発[じょうはつ]させる。",
+              "id": "Semprotkan alkohol 70-75% pada permukaan peralatan yang sudah kering atau telapak tangan."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bab": 4,
+      "judul_bab": "Pengetahuan Dasar Keselamatan dan Kesehatan Kerja / K3 (労働[ろうどう]安全[あんぜん]衛生[えいせい])",
+      "deskripsi": "Budaya 5S, pencegahan kecelakaan kerja pabrik, APD pelindung, dan penanganan darurat.",
+      "sub_bab": [
+        {
+          "id_sub": "4.1",
+          "judul_sub": "Penerapan Budaya 5S di Tempat Kerja (5S運動[うんどう]の徹底[てってい])",
+          "langkah_5s": [
+            {
+              "huruf": "S1",
+              "nama_jp": "整理[せいり] (Seiri)",
+              "definisi_jp": "必要[ひつよう]なものと不要[ふよう]なものを分[わ]け、不要[ふよう]なものを捨[す]てる。",
+              "definisi_id": "Memilah barang yang dibutuhkan dan yang tidak dibutuhkan, lalu membuang yang tidak terpakai."
+            },
+            {
+              "huruf": "S2",
+              "nama_jp": "整頓[せいとん] (Seiton)",
+              "definisi_jp": "必要[ひつよう]なものを、誰[だれ]でもすぐに取[と]り出[だ]せるよう定位置[ていいち]に置[お]く。",
+              "definisi_id": "Menempatkan barang yang dibutuhkan pada posisi yang jelas agar siapa pun bisa mengambilnya segera."
+            },
+            {
+              "huruf": "S3",
+              "nama_jp": "清掃[せいそう] (Seisou)",
+              "definisi_jp": "作業場[さぎょうば]や機械[きかい]のゴミ・埃[ほこり]・汚[よご]れをきれいに掃[は]き拭[ふ]く。",
+              "definisi_id": "Membersihkan kotoran, debu, dan sampah di area kerja serta mesin hingga bersih."
+            },
+            {
+              "huruf": "S4",
+              "nama_jp": "清潔[せいけつ] (Seiketsu)",
+              "definisi_jp": "整理[せいり]・整頓[せいとん]・清掃[せいそう]の3Sを維持[いじ]し、衛生的[えいせいてき]な状態[じょうたい]を保[たも]つ。",
+              "definisi_id": "Menjaga dan memelihara kondisi 3S (Seiri, Seiton, Seisou) secara konsisten dan higienis."
+            },
+            {
+              "huruf": "S5",
+              "nama_jp": "躾[しつけ] / 習慣[しゅうかん] (Shitsuke)",
+              "definisi_jp": "決[き]められたルールや手順[てじゅん]を正[ただ]しく守[まも]る習慣[しゅうかん]をつける。",
+              "definisi_id": "Membiasakan diri untuk selalu mematuhi aturan dan standar kerja yang telah ditetapkan."
+            }
+          ]
+        },
+        {
+          "id_sub": "4.2",
+          "judul_sub": "Pencegahan Tiga Kecelakaan Kerja Terbesar di Pabrik Makanan (三大[さんだい]労働[ろうどう]災害[さいがい])",
+          "jenis_kecelakaan": [
+            {
+              "nama_jp": "はさまれ・巻[ま]き込[こ]まれ (Terjepit / Tergulung Mesin)",
+              "situasi_jp": "機械[きかい]の回転[かいてん]部[ぶ]やコンベアに手袋[てぶくろ]や衣服[いふく]が引[ひ]っ掛[か]かる。",
+              "pencegahan_jp": "点検[てんけん]や清掃[せいそう]の前[まえ]に必[かなら]ず電源[でんげん]を切[き]り、安全[あんぜん]カバーを外[はず]したまま運転[うんてん]しない。",
+              "pencegahan_id": "Wajib mematikan saklar daya sebelum membersihkan mesin. Dilarang mengoperasikan tanpa tutup pelindung."
+            },
+            {
+              "nama_jp": "転倒[てんとう] (Terpeleset / Jatuh Tergelincir)",
+              "situasi_jp": "床[ゆか]の水[みず]や油[あぶ]、洗剤[せんざい]で足元[あしもと]が滑[すべ]って転[ころ]ぶ。",
+              "pencegahan_jp": "床[ゆか]の水分[すいぶん]や油[あぶ]を直[ただ]ちに拭[ふ]き取[と]り、滑[すべ]り止[ど]め付[つ]きの専用[せんよう]作業[さぎょう]靴[ぐつ]を履[は]く。",
+              "pencegahan_id": "Segera lap air atau minyak di lantai; wajib gunakan sepatu kerja bersol anti-slip."
+            },
+            {
+              "nama_jp": "切[き]れ・こすれ (Terpotong / Tergores Pisau & Slicer)",
+              "situasi_jp": "包丁[ほうちょう]での食材[しょくざい]カットや、スライサーの刃[は]に触[ふ]れてケガをする。",
+              "pencegahan_jp": "防刃[ぼうじん]手袋[てぶくろ]（クサリ手袋[てぶくろ]）を着用[ちゃくよう]し、よそ見[み]をせず作業[さぎょう]に集中[しゅうちゅう]する。",
+              "pencegahan_id": "Gunakan sarung tangan anti-sayat (rantai jaring stainless) dan fokus penuh saat memotong."
+            }
+          ]
+        },
+        {
+          "id_sub": "4.3",
+          "judul_sub": "Penggunaan Alat Pelindung Diri dan Prosedur Keadaan Darurat (保護具[ほごぐ]と非常[ひじょう]対応[たいおう])",
+          "standar_apd": [
+            {
+              "alat_jp": "安全[あんぜん]靴[ぐつ]・耐滑[たいかつ]靴[ぐつ]",
+              "fungsi_jp": "床[ゆか]の滑[すべ]りによる転倒[てんとう]や、重量[じゅうりょう]物[ぶつ]の落下[らっか]から足[あし]を守[まも]る。",
+              "fungsi_id": "Melindungi kaki dari lantai licin dan kejatuhan benda berat."
+            },
+            {
+              "alat_jp": "保護[ほご]メガネ・フェイスシールド",
+              "fungsi_jp": "熱湯[ねっとう]、油[あぶ]、強[つよ]い殺菌[さっきん]薬品[やくひん]の目[め]への飛散[ひさん]を防[ふせ]ぐ。",
+              "fungsi_id": "Mencegah percikan air panas, minyak, atau cairan disinfektan ke mata."
+            },
+            {
+              "alat_jp": "耐熱[たいねつ]手袋[てぶくろ]・防刃[ぼうじん]手袋[てぶくろ]",
+              "fungsi_jp": "オーブンやスチーム調理[ちょうり]の火傷[やけど]、刃物[はもの]の切[き]り傷[きず]を防[ふせ]ぐ。",
+              "fungsi_id": "Mencegah luka bakar dari oven/uap panas dan luka sayat dari pisau potong."
+            }
+          ],
+          "tindakan_darurat": {
+            "jp": "機械[きかい]の異常[いじょう]や人身[じんしん]事故[じこ]が発生[はっせい]したときは、ためらわずに直[ただ]ちに非常[ひじょう]停止[ていし]ボタン（赤[あか]いボタン）を押[お]し、大声[おおごえ]で周囲[しゅうい]に知[し]らせてリーダーに報告[ほうこく]する。",
+            "id": "Jika terjadi keanehan mesin atau kecelakaan kerja, segera tekan tombol henti darurat (Emergency Stop warna merah), berteriak beri tahu rekan kerja sekitar, dan segera lapor ke supervisor."
+          }
+        }
+      ]
+    },
+    {
+      "bab": 5,
+      "judul_bab": "Sikap Kerja, Etika Industri Jepang, dan Manajemen Operasional (作業[さぎょう]姿勢[しせい]と職場のルール)",
+      "deskripsi": "Komunikasi tempat kerja (Ho-Ren-So), disiplin kepatuhan SOP, dan manajemen 5M di pabrik Jepang.",
+      "sub_bab": [
+        {
+          "id_sub": "5.1",
+          "judul_sub": "Prinsip Komunikasi Pabrik Jepang: Ho-Ren-So (報[ほう]・連[れん]・相[そう])",
+          "pilar_komunikasi": [
+            {
+              "elemen": "Hokoku / 報告[ほうこく] (Melaporkan)",
+              "definisi_jp": "自分[じぶん]の仕事[しごと]の進捗[しんちょく]や結果[けっか]、トラブルを上司[じょうし]に速[すみ]やかに伝[つた]える。",
+              "definisi_id": "Melaporkan perkembangan tugas, hasil akhir, atau masalah ke atasan dengan cepat dan akurat.",
+              "poin_kunci_jp": "悪[わる]い情報[じょうほう]やミスほど、隠[かく]さずにすぐ報告[ほうこく]する。",
+              "poin_kunci_id": "Kabar buruk atau kesalahan kerja harus segera dilaporkan pertama kali, jangan ditutupi."
+            },
+            {
+              "elemen": "Renraku / 連絡[れんらく] (Menghubungi / Berbagi Info)",
+              "definisi_jp": "関係[かんけい]する仲間[なかま]や前[まえ]後[ご]のシフトの担当[たんとう]者[しゃ]に、事実[じじつ]や情報[じょうほう]を正確[せいかく]に共有[きょうゆう]する。",
+              "definisi_id": "Menyampaikan fakta dan informasi kerja kepada rekan kerja tim atau pergantian shift.",
+              "poin_kunci_jp": "自分[じぶん]の意見[いけん]を混[ま]ぜず、事実[じじつ]をそのまま伝[つた]える。",
+              "poin_kunci_id": "Sampaikan fakta objektif apa adanya tanpa opini pribadi yang menyesatkan."
+            },
+            {
+              "elemen": "Soudan / 相談[そうだん] (Berkonsultasi)",
+              "definisi_jp": "作業[さぎょう]手順[てじゅん]や判断[はんだん]に迷[まよ]った際[さい]、自己[じこ]判断[はんだん]せず先輩[せんぱい]や上司[じょうし]に意見[いけん]を聞[き]く。",
+              "definisi_id": "Membicarakan dan meminta arahan atasan/senior jika ragu sebelum mengambil tindakan sendiri.",
+              "poin_kunci_jp": "「たぶん大丈夫[だいじょうぶ]」という思[おも]い込[こ]みで作業[さぎょう]をしない。",
+              "poin_kunci_id": "Jangan pernah bekerja atas dasar asumsi 'mungkin tidak apa-apa'."
+            }
+          ]
+        },
+        {
+          "id_sub": "5.2",
+          "judul_sub": "Kepatuhan SOP dan Penanganan Produk Cacat (作業[さぎょう]手順[てじゅん]書[しょ]の遵守[じゅんしゅ]と不適合[ふてきごう]品[ひん])",
+          "aturan_operasional": [
+            {
+              "jp": "作業[さぎょう]手順[てじゅん]書[しょ]（マニュアル）に書[か]かれた通[とお]りに作業[さぎょう]を行[おこな]い、勝手[かって]な自己[じこ]流[りゅう]のやり方[かた]をしない。",
+              "id": "Bekerja persis sesuai instruksi kerja (SOP), dilarang menggunakan cara sendiri tanpa izin."
+            },
+            {
+              "jp": "指差[しさ]呼称[こしょう]（指[ゆび]差[さ]し確認[かくにん]）を行[おこな]い、ミスや不注意[ふちゅうい]を未然[みぜん]に防[ふせ]ぐ。",
+              "id": "Lakukan tunjuk-sebut (shisa koshou) untuk mencegah kesalahan dan kelalaian kerja."
+            },
+            {
+              "jp": "不良[ふりょう]品[ひん]（不適合[ふてきごう]品[ひん]）を発見[はっけん]したときは、合格[ごうかく]品[ひん]と混[ま]ざらないよう直[ただ]ちに隔離[かくり]し表示[ひょうじ]する。",
+              "id": "Jika menemukan produk cacat, segera pisahkan dan beri label agar tidak tercampur produk lulus uji."
+            }
+          ]
+        },
+        {
+          "id_sub": "5.3",
+          "judul_sub": "Konsep 5M Manajemen Produksi Pabrik Jepang (5M管理[かんり]の視点[してん])",
+          "konsep_5m": [
+            {
+              "faktor": "Man (人 / 作業者)",
+              "jp": "健康[けんこう]管理[かんり]、手洗[てあら]い、身[み]だしなみ、手順[てじゅん]の遵守[じゅんしゅ]。",
+              "id": "Kesehatan fisik, sanitasi cuci tangan, pakaian kerja, dan kepatuhan SOP."
+            },
+            {
+              "faktor": "Machine (機械 / 設備)",
+              "jp": "機械[きかい]の始業[しぎょう]点検[てんけん]、定期的[ていきてき]な清掃[せいそう]・注油[ちゅうゆ]、刃物[はもの]の欠[か]け確認[かくにん]。",
+              "id": "Inspeksi awal mesin, pembersihan rutin, pelumasan, dan cek mata pisau."
+            },
+            {
+              "faktor": "Material (原材料 / 資材)",
+              "jp": "原材料[げんざいりょう]の鮮度[せんど]、賞味[しょうみ]期限[きげん]、アレルゲン表示[ひょうじ]、受入[うけいれ]温度[おんど]検査[けんさ]。",
+              "id": "Kesegaran bahan baku, tanggal kedaluwarsa, label alergen, dan suhu penerimaan."
+            },
+            {
+              "faktor": "Method (方法 / 作業手順)",
+              "jp": "標準[ひょうじゅん]作業[さぎょう]マニュアル、加熱[かねつ]温度[おんど]・時間[じかん]の設定[せってい]、交差[こうさ]汚染[おせん]対策[たいさく]。",
+              "id": "Buku panduan kerja standar, pengaturan waktu dan suhu pemanasan, zonasi higienitas."
+            },
+            {
+              "faktor": "Measurement (測定 / 検査)",
+              "jp": "温度[おんど]計[けい]・計量[けいりょう]器[き]の校正[こうせい]（キャリブレーション）、金属[きんぞく]検出[けんしゅつ]機[き]のテストピース確認[かくにん]。",
+              "id": "Kalibrasi termometer dan timbangan, serta uji test piece pada detektor logam."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
